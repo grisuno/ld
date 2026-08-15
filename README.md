@@ -1,8 +1,25 @@
 # ld — miniGCC assembler and linker
 
 `ld` assembles the x86-64 AT&T dialect emitted by the
-[miniGCC](https://example.invalid/miniGCC) C compiler into executable
+[miniGCC](https://github.com/grisuno/miniGCC) C compiler into executable
 formats. It is self-contained: no external assembler or linker.
+
+## Related projects
+
+| Repository | Role |
+|------------|------|
+| [miniGCC](https://github.com/grisuno/miniGCC) | C compiler: C to x86-64 AT&T assembly |
+| [ld](https://github.com/grisuno/ld) | this repository: assembly to a Linux ELF or a CVM module |
+| [cvm](https://github.com/grisuno/cvm) | the CVM / cvm2 bytecode interpreter |
+| [miniOS](https://github.com/grisuno/miniOS) | the kernel that hosts the whole toolchain |
+
+The test suite drives miniGCC and cvm2, so clone them as siblings of this
+repository (or point `MINIGCC=` and `CVM2=` at them):
+
+```bash
+git clone https://github.com/grisuno/miniGCC ../miniGCC
+git clone https://github.com/grisuno/cvm     ../cvm
+```
 
 ## Formats
 
