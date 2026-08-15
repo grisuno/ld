@@ -198,24 +198,57 @@ else
     echo "SKIP minigcc chain (minigcc binary not found)"
 fi
 
-if [ "$RUN_SLOW" = "1" ] && [ -x "$MINIGCC" ]; then
-    echo "=== self-host chain (minigcc.c via minigcc+ld) ==="
-    if [ -f "$ROOT/../miniGCC/minigccg2.s" ]; then
-        "$LD_TOOL" -f elf -o "$WORK/minigcc.elf" "$ROOT/../miniGCC/minigccg2.s" 2>/dev/null
-        chmod +x "$WORK/minigcc.elf"
-        run_prog "$WORK/selfhost.s" "$WORK/minigcc.elf" "$WORK/chain.c"
-        if [ $? -ne 0 ]; then
-            echo "FAIL selfhost: compiler hung or crashed"
-            note_fail "selfhost"
-        else
-            "$LD_TOOL" -f elf -o "$WORK/selfhost.elf" "$WORK/selfhost.s" 2>/dev/null
-            chmod +x "$WORK/selfhost.elf"
-            run_prog "$WORK/selfhost.out" "$WORK/selfhost.elf"
-            check selfhost elf "$WORK/selfhost.out" $?
-        fi
+if [ "$RUN_SLOW" = "1" ] && [ -x "$MINIGCC" ] && [ -f "$ROOT/../miniGCC/minigcc.c" ]; then
+    echo "=== self-host chain (minigcc.c via minigcc + ld) ==="
+    SRCC="$ROOT/../miniGCC/minigcc.c"
+    # Generation 2: gen1 minigcc compiles itself; this ld links it.
+    if ! run_prog "$WORK/g2.s" "$MINIGCC" "$SRCC"; then
+        echo "FAIL selfhost: gen1 minigcc could not compile minigcc.c"
+        note_fail "selfhost(gen1)"
     else
-        echo "SKIP self-host (minigccg2.s not found)"
+        if ! "$LD_TOOL" -f elf -o "$WORK/g2.elf" "$WORK/g2.s" 2>/dev/null; then
+            echo "FAIL selfhost: ld could not link gen2"
+            note_fail "selfhost(gen2-link)"
+        else
+            chmod +x "$WORK/g2.elf"
+            # Generation 3: the ld-linked compiler compiles itself again.
+            if ! run_prog "$WORK/g3.s" "$WORK/g2.elf" "$SRCC"; then
+                echo "FAIL selfhost: gen2 (ld-linked) hung or crashed"
+                note_fail "selfhost(gen3)"
+            elif ! "$LD_TOOL" -f elf -o "$WORK/g3.elf" "$WORK/g3.s" 2>/dev/null; then
+                echo "FAIL selfhost: ld could not link gen3"
+                note_fail "selfhost(gen3-link)"
+            else
+                chmod +x "$WORK/g3.elf"
+                # Generation 4: fixed point required.
+                if ! run_prog "$WORK/g4.s" "$WORK/g3.elf" "$SRCC"; then
+                    echo "FAIL selfhost: gen3 hung or crashed"
+                    note_fail "selfhost(gen4)"
+                elif cmp -s "$WORK/g3.s" "$WORK/g4.s"; then
+                    echo "PASS selfhost: fixed point g3.s == g4.s"
+                    PASS=$((PASS + 1))
+                else
+                    echo "FAIL selfhost: fixed point not reached"
+                    note_fail "selfhost(fixed-point)"
+                fi
+                # Behaviour: the self-hosted compiler compiles chain.c;
+                # its output must match tests/selfhost.expect.
+                if ! run_prog "$WORK/selfhost.s" "$WORK/g3.elf" "$WORK/chain.c"; then
+                    echo "FAIL selfhost: self-hosted compiler hung or crashed on chain.c"
+                    note_fail "selfhost(chain-compile)"
+                elif ! "$LD_TOOL" -f elf -o "$WORK/selfhost.elf" "$WORK/selfhost.s" 2>/dev/null; then
+                    echo "FAIL selfhost: ld could not link chain.c output"
+                    note_fail "selfhost(chain-link)"
+                else
+                    chmod +x "$WORK/selfhost.elf"
+                    run_prog "$WORK/selfhost.out" "$WORK/selfhost.elf"
+                    check selfhost elf "$WORK/selfhost.out" $?
+                fi
+            fi
+        fi
     fi
+elif [ "$RUN_SLOW" = "1" ]; then
+    echo "SKIP self-host chain (minigcc binary or minigcc.c not found)"
 fi
 
 echo ""
