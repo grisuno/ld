@@ -1,0 +1,13 @@
+plain
+d=42
+s=str|
+pct=%
+w=    7|
+z=00007|
+o=100|
+neg=-9
+two=1,2
+three=3,4,5
+mix=m/6/10
+four=1,2,3,4
+five=1,2,3,4,5
