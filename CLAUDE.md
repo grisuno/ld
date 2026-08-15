@@ -96,9 +96,13 @@ Layers:
    and diffs stdout + exit codes against `tests/*.expect`. `.s` fixtures are
    assembled directly; `.c` fixtures (`chain.c`, `fmt.c`) go through miniGCC
    first, which is what keeps the compiler-to-linker contract honest.
-   Fixtures are copied into the scratch directory and every tool runs against
-   the copies: the suite is also the input to mutation testing, and a mutant
-   that mishandles an argument path must never reach the pristine sources.
+    Fixtures are copied into the scratch directory and every tool runs against
+    the copies: the suite is also the input to mutation testing, and a mutant
+    that mishandles an argument path must never reach the pristine sources.
+    With `RUN_SLOW=1` (which `mutate.sh` sets) the suite also runs the full
+    self-host chain: miniGCC compiles its own source and every generation is
+    linked by `ld`, which must reach the bootstrap fixed point and still
+    reproduce `tests/selfhost.expect`.
 4. **Mutation testing**: `tests/mutate.sh` injects one-line mutations into
    `ld.c` (opcode swaps, format constants, section flags, libc register
    shuffles), rebuilds, and runs the suite. A mutant that passes the suite is

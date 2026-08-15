@@ -75,6 +75,21 @@ entry points share one core that reads arguments from an array; how many
 variadic arguments each accepts follows from the argument registers it has
 left over: `printf` 5, `fprintf` and `sprintf` 4, `snprintf` 3.
 
+## Self-hosting miniGCC
+
+`ld` is the only assembler and linker miniGCC needs to bootstrap itself:
+miniGCC compiles its own source, `ld` links every generation, and the chain
+must reach the bootstrap fixed point. Two suites pin this milestone:
+
+```bash
+../miniGCC/test_ld_selfhost.sh   # GNU-free chain: fixed point + behaviour
+RUN_SLOW=1 tests/run_tests.sh    # this repository's suite, self-host included
+```
+
+The same chain builds `minigcc.elf` for the MiniOS ramdisk (`make selfhost`
+in the miniOS repository): a compiler that is its own child, running inside
+the OS it was built with.
+
 ## Development
 
 See `CLAUDE.md` for the full contract (SDD + TDD + BDD + mutation testing).
