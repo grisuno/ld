@@ -282,6 +282,7 @@ static long data_cap;
 
 static unsigned char *code;
 static long code_len;
+static long term_pos = -1;
 static long code_cap;
 
 static char *pool;
@@ -1456,6 +1457,7 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
         epush_local(0);
         estore_global(CFG_GSLOT_RET);
         e1(OP_RET);
+        term_pos = code_len - 1;
         return;
     }
     if (strcmp(mn, "leave") == 0) {
@@ -1614,6 +1616,7 @@ static void cvm_encode(LineSrc *src) {
     long lineno = 0;
     n_labels = 0;
     n_fixups = 0;
+    term_pos = -1;
     while (ls_getline(src, line, sizeof(line))) {
         lineno++;
         cur_line = lineno;
@@ -1670,6 +1673,10 @@ static void cvm_encode(LineSrc *src) {
         cvm_translate(mn, &o1, &o2);
     }
     if (in_func >= 0) resolve_fixups();
+    if (code_len > 0 && term_pos != code_len - 1) {
+        e1(OP_HALT);
+        term_pos = code_len - 1;
+    }
     if (error_count) {
         fprintf(stderr, "ld: %d error(s)\n", error_count);
         exit(1);
