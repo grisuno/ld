@@ -284,7 +284,6 @@ static unsigned char *code;
 static long code_len;
 static long term_pos = -1;
 static long code_cap;
-static long term_pos = -1;
 
 static char *pool;
 static long pool_len;
