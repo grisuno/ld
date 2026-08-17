@@ -284,6 +284,7 @@ static unsigned char *code;
 static long code_len;
 static long term_pos = -1;
 static long code_cap;
+static long term_pos = -1;
 
 static char *pool;
 static long pool_len;
@@ -421,9 +422,21 @@ static char *trim(char *s) {
     return s;
 }
 
+/* Truncate at the first '#' outside a double-quoted string: '#' is the
+ * comment character, but a string literal may carry one ("#"). */
 static void strip_comment(char *s) {
-    char *c = strchr(s, '#');
-    if (c) *c = 0;
+    int in_str = 0;
+    for (; *s; s++) {
+        if (in_str && *s == '\\' && s[1]) {
+            s++;
+            continue;
+        }
+        if (*s == '"') in_str = !in_str;
+        else if (*s == '#' && !in_str) {
+            *s = 0;
+            return;
+        }
+    }
 }
 
 static void name_copy(char *dst, const char *src) {
@@ -1833,6 +1846,58 @@ static const char ELF_STUBS_SRC[] =
     "    movq $12, %rax\n"
     "    syscall\n"
     "    ret\n"
+    ".globl socket\n"
+    "socket:\n"
+    "    movq $41, %rax\n"
+    "    syscall\n"
+    "    ret\n"
+    ".globl connect\n"
+    "connect:\n"
+    "    movq $42, %rax\n"
+    "    syscall\n"
+    "    ret\n"
+    ".globl sendto\n"
+    "sendto:\n"
+    "    movq %rcx, %r10\n"
+    "    movq $44, %rax\n"
+    "    syscall\n"
+    "    ret\n"
+    ".globl recvfrom\n"
+    "recvfrom:\n"
+    "    movq %rcx, %r10\n"
+    "    movq $45, %rax\n"
+    "    syscall\n"
+    "    ret\n"
+    ".globl shutdown\n"
+    "shutdown:\n"
+    "    movq $48, %rax\n"
+    "    syscall\n"
+    "    ret\n"
+    ".globl poll\n"
+    "poll:\n"
+    "    movq $7, %rax\n"
+    "    syscall\n"
+    "    ret\n"
+    ".globl net_dns_resolve\n"
+    "net_dns_resolve:\n"
+    "    movq $200, %rax\n"
+    "    syscall\n"
+    "    ret\n"
+    ".globl tls_handshake\n"
+    "tls_handshake:\n"
+    "    movq $201, %rax\n"
+    "    syscall\n"
+    "    ret\n"
+    ".globl tls_send\n"
+    "tls_send:\n"
+    "    movq $202, %rax\n"
+    "    syscall\n"
+    "    ret\n"
+    ".globl tls_recv\n"
+    "tls_recv:\n"
+    "    movq $203, %rax\n"
+    "    syscall\n"
+    "    ret\n"
     ".bss\n"
     "__malloc_cur:\n"
     "    .space 8\n"
@@ -2840,12 +2905,12 @@ static void elf_grp3(const Op *o, int ext) {
     }
 }
 
-static void elf_sal(const Op *s, const Op *d) {
+static void elf_shift_cl(const Op *s, const Op *d, int ext) {
     if (s->kind != K_REG || s->reg != REG_RCX) { die("shift count must be %cl"); return; }
     if (d->kind != K_REG) { die("invalid shift destination"); return; }
     emit_rex(1, 0, 0, (d->reg >> 3) & 1);
     x8(0xD3);
-    emit_modrm(3, 4, d->reg & 7);
+    emit_modrm(3, ext, d->reg & 7);
 }
 
 static void elf_test(const Op *s, const Op *d) {
@@ -2973,7 +3038,9 @@ static void elf_ins(const char *mn, const Op *o1, const Op *o2) {
     if (strcmp(mn, "negq") == 0) { elf_grp3(o1, 3); return; }
     if (strcmp(mn, "notq") == 0) { elf_grp3(o1, 2); return; }
     if (strcmp(mn, "idivq") == 0) { elf_grp3(o1, 7); return; }
-    if (strcmp(mn, "salq") == 0) { elf_sal(o1, o2); return; }
+    if (strcmp(mn, "salq") == 0) { elf_shift_cl(o1, o2, 4); return; }
+    if (strcmp(mn, "shrq") == 0) { elf_shift_cl(o1, o2, 5); return; }
+    if (strcmp(mn, "sarq") == 0) { elf_shift_cl(o1, o2, 7); return; }
     if (strcmp(mn, "testq") == 0) { elf_test(o1, o2); return; }
     if (strcmp(mn, "sete") == 0) { elf_set(X86_SET_E, o1); return; }
     if (strcmp(mn, "setne") == 0) { elf_set(X86_SET_NE, o1); return; }
