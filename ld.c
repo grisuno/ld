@@ -103,6 +103,10 @@
 #define X86_SET_G  0x9F
 #define X86_SET_LE 0x9E
 #define X86_SET_GE 0x9D
+#define X86_SET_A  0x97
+#define X86_SET_AE 0x93
+#define X86_SET_B  0x92
+#define X86_SET_BE 0x96
 
 #define X86_SYS_WRITE      1
 #define X86_SYS_READ       0
@@ -136,6 +140,7 @@
 #define K_IMM 1
 #define K_MEM 2
 #define K_SYM 3
+#define K_SYM_IMM 4
 
 #define OP_NOP          0
 #define OP_PUSH_IMM64   1
@@ -159,6 +164,7 @@
 #define OP_NOT          51
 #define OP_SHL          52
 #define OP_SHR          53
+#define OP_USHR         54
 #define OP_CMP_EQ       64
 #define OP_CMP_NE       65
 #define OP_CMP_LT       66
@@ -166,6 +172,10 @@
 #define OP_CMP_GT       68
 #define OP_CMP_GE       69
 #define OP_LNOT         70
+#define OP_CMP_ULT      71
+#define OP_CMP_ULE      72
+#define OP_CMP_UGT      73
+#define OP_CMP_UGE      74
 #define OP_JMP          80
 #define OP_JZ           81
 #define OP_JNZ          82
@@ -173,9 +183,11 @@
 #define OP_RET          97
 #define OP_CALL_NATIVE  98
 #define OP_LOAD8        112
+#define OP_LOAD16       111
 #define OP_LOAD32       113
 #define OP_LOAD64       114
 #define OP_STORE8       115
+#define OP_STORE16      110
 #define OP_STORE32      116
 #define OP_STORE64      117
 #define OP_LEA_LOCAL    118
@@ -502,6 +514,11 @@ static const char *reg8_names[] = {
     "%r8b", "%r9b", "%r10b", "%r11b", "%r12b", "%r13b", "%r14b", "%r15b", 0
 };
 
+static const char *reg16_names[] = {
+    "%ax", "%cx", "%dx", "%bx", "%sp", "%bp", "%si", "%di",
+    "%r8w", "%r9w", "%r10w", "%r11w", "%r12w", "%r13w", "%r14w", "%r15w", 0
+};
+
 static int parse_reg(const char *s, int *reg, int *sz) {
     for (int i = 0; reg64_names[i]; i++)
         if (strcmp(s, reg64_names[i]) == 0) { *reg = i; *sz = 8; return 1; }
@@ -509,6 +526,8 @@ static int parse_reg(const char *s, int *reg, int *sz) {
         if (strcmp(s, reg32_names[i]) == 0) { *reg = i; *sz = 4; return 1; }
     for (int i = 0; reg8_names[i]; i++)
         if (strcmp(s, reg8_names[i]) == 0) { *reg = i; *sz = 1; return 1; }
+    for (int i = 0; reg16_names[i]; i++)
+        if (strcmp(s, reg16_names[i]) == 0) { *reg = i; *sz = 2; return 1; }
     return 0;
 }
 
@@ -570,8 +589,14 @@ static void parse_operand(char *s, Op *op) {
     s = trim(s);
     if (!*s) { die("missing operand"); return; }
     if (s[0] == '$') {
+        char *name = trim(s + 1);
+        if (*name != '-' && *name != '+' && !(*name >= '0' && *name <= '9')) {
+            op->kind = K_SYM_IMM;
+            name_copy(op->sym, name);
+            return;
+        }
         op->kind = K_IMM;
-        op->imm = parse_num(s + 1);
+        op->imm = parse_num(name);
         return;
     }
     if (s[0] == '%') {
@@ -1055,6 +1080,7 @@ static void resolve_fixups(void) {
 
 static void push_mask32(void) { eimm(4294967295L); e1(OP_AND); }
 static void push_mask8(void) { eimm(255); e1(OP_AND); }
+static void push_mask16(void) { eimm(65535); e1(OP_AND); }
 
 static void elea_mem(Op *op) {
     if (op->has_base) epush_reg(op->base);
@@ -1072,7 +1098,7 @@ static void elea_mem(Op *op) {
 }
 
 static void elea_operand(Op *op) {
-    if (op->kind == K_SYM) {
+    if (op->kind == K_SYM || op->kind == K_SYM_IMM) {
         long off = -1;
         int g = cvm_find_global(op->sym);
         if (g >= 0) off = globals[g].off;
@@ -1120,7 +1146,12 @@ static void epush_value(Op *op, int size) {
         elea_operand(op);
         if (size == 8) e1(OP_LOAD64);
         else if (size == 4) e1(OP_LOAD32);
+        else if (size == 2) e1(OP_LOAD16);
         else e1(OP_LOAD8);
+        return;
+    }
+    if (op->kind == K_SYM_IMM) {
+        elea_operand(op);
         return;
     }
     die("invalid operand");
@@ -1138,6 +1169,12 @@ static void signext32(void) {
     eimm(2147483648L); e1(OP_SUB);
 }
 
+static void signext16(void) {
+    eimm(65535); e1(OP_AND);
+    eimm(32768); e1(OP_XOR);
+    eimm(32768); e1(OP_SUB);
+}
+
 static void mov(int size, Op *s, Op *d) {
     if (d->kind == K_REG) {
         if (s->kind == K_REG) {
@@ -1149,6 +1186,9 @@ static void mov(int size, Op *s, Op *d) {
             eimm(s->imm);
             if (size == 4) push_mask32();
             else if (size == 1) push_mask8();
+            estore_reg(d->reg);
+        } else if (s->kind == K_SYM_IMM) {
+            elea_operand(s);
             estore_reg(d->reg);
         } else if (s->kind == K_MEM || s->kind == K_SYM) {
             elea_operand(s);
@@ -1230,21 +1270,93 @@ static void arith_reg(int opc, int size, Op *d, Op *s) {
         if (size == 4) push_mask32();
         else if (size == 1) push_mask8();
         estore_reg(d->reg);
+    } else if (s->kind == K_SYM_IMM) {
+        elea_operand(s);
+        epush_reg(d->reg);
+        e1(opc);
+        if (size == 4) push_mask32();
+        else if (size == 1) push_mask8();
+        estore_reg(d->reg);
     } else die("invalid arithmetic operand");
+}
+
+static void cvm_push_cmpval(Op *o, int size) {
+    epush_value(o, size);
+    if (size == 4) signext32();
+    else if (size == 1) signext8();
+}
+
+static void cvm_cmp(int size, Op *o1, Op *o2) {
+    cvm_push_cmpval(o1, size);
+    estore_local(CFG_SLOT_FLAGS_A);
+    cvm_push_cmpval(o2, size);
+    estore_local(CFG_SLOT_FLAGS_B);
 }
 
 static void cvm_translate(const char *mn, Op *o1, Op *o2) {
     if (strcmp(mn, "movq") == 0) { mov(8, o1, o2); return; }
     if (strcmp(mn, "movl") == 0) { mov(4, o1, o2); return; }
     if (strcmp(mn, "movb") == 0) { mov(1, o1, o2); return; }
+    if (strcmp(mn, "movw") == 0) {
+        if (o2->kind == K_REG) {
+            if (o1->kind == K_REG) { epush_reg(o1->reg); push_mask16(); estore_reg(o2->reg); }
+            else if (o1->kind == K_IMM) { eimm(o1->imm); push_mask16(); estore_reg(o2->reg); }
+            else if (o1->kind == K_SYM_IMM) { elea_operand(o1); push_mask16(); estore_reg(o2->reg); }
+            else { elea_operand(o1); e1(OP_LOAD16); estore_reg(o2->reg); }
+        } else {
+            if (o1->kind == K_REG) {
+                epush_reg(o1->reg); push_mask16(); estore_local(CFG_SLOT_S0);
+                elea_operand(o2); epush_local(CFG_SLOT_S0); e1(OP_STORE16);
+            } else if (o1->kind == K_IMM) {
+                eimm(o1->imm); push_mask16(); estore_local(CFG_SLOT_S0);
+                elea_operand(o2); epush_local(CFG_SLOT_S0); e1(OP_STORE16);
+            } else die("invalid movw source");
+        }
+        return;
+    }
     if (strcmp(mn, "movzbq") == 0) {
         if (o1->kind == K_REG) { epush_reg(o1->reg); push_mask8(); estore_reg(o2->reg); }
         else { elea_operand(o1); e1(OP_LOAD8); push_mask8(); estore_reg(o2->reg); }
         return;
     }
+    if (strcmp(mn, "movzbl") == 0) {
+        if (o1->kind == K_REG) { epush_reg(o1->reg); push_mask8(); estore_reg(o2->reg); }
+        else { elea_operand(o1); e1(OP_LOAD8); push_mask8(); estore_reg(o2->reg); }
+        return;
+    }
+    if (strcmp(mn, "movzwl") == 0) {
+        if (o1->kind == K_REG) { epush_reg(o1->reg); push_mask16(); estore_reg(o2->reg); }
+        else { elea_operand(o1); e1(OP_LOAD16); push_mask16(); estore_reg(o2->reg); }
+        return;
+    }
+    if (strcmp(mn, "movzwq") == 0) {
+        if (o1->kind == K_REG) { epush_reg(o1->reg); push_mask16(); estore_reg(o2->reg); }
+        else { elea_operand(o1); e1(OP_LOAD16); push_mask16(); estore_reg(o2->reg); }
+        return;
+    }
     if (strcmp(mn, "movsbq") == 0) {
         if (o1->kind == K_REG) { epush_reg(o1->reg); signext8(); estore_reg(o2->reg); }
         else { elea_operand(o1); e1(OP_LOAD8); estore_reg(o2->reg); }
+        return;
+    }
+    if (strcmp(mn, "movsbl") == 0) {
+        if (o1->kind == K_REG) { epush_reg(o1->reg); signext8(); push_mask32(); estore_reg(o2->reg); }
+        else { elea_operand(o1); e1(OP_LOAD8); push_mask32(); estore_reg(o2->reg); }
+        return;
+    }
+    if (strcmp(mn, "movswl") == 0) {
+        if (o1->kind == K_REG) { epush_reg(o1->reg); signext16(); push_mask32(); estore_reg(o2->reg); }
+        else { elea_operand(o1); e1(OP_LOAD16); push_mask32(); estore_reg(o2->reg); }
+        return;
+    }
+    if (strcmp(mn, "movswq") == 0) {
+        if (o1->kind == K_REG) { epush_reg(o1->reg); signext16(); estore_reg(o2->reg); }
+        else { elea_operand(o1); e1(OP_LOAD16); signext16(); estore_reg(o2->reg); }
+        return;
+    }
+    if (strcmp(mn, "movzwq") == 0) {
+        if (o1->kind == K_REG) { epush_reg(o1->reg); push_mask16(); estore_reg(o2->reg); }
+        else { elea_operand(o1); e1(OP_LOAD32); push_mask16(); estore_reg(o2->reg); }
         return;
     }
     if (strcmp(mn, "movslq") == 0) {
@@ -1282,6 +1394,16 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
     if (strcmp(mn, "addq") == 0) {
         if (o2->kind == K_REG) arith_reg(OP_ADD, 8, o2, o1);
         else arith_mem(OP_ADD, 8, o2, o1);
+        return;
+    }
+    if (strcmp(mn, "addl") == 0) {
+        if (o2->kind == K_REG) {
+            epush_reg(o2->reg);
+            epush_value(o1, 4);
+            e1(OP_ADD);
+            push_mask32();
+            estore_reg(o2->reg);
+        } else arith_mem(OP_ADD, 4, o2, o1);
         return;
     }
     if (strcmp(mn, "subq") == 0) {
@@ -1329,6 +1451,14 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
         estore_reg(o2->reg);
         return;
     }
+    if (strcmp(mn, "imull") == 0) {
+        epush_reg(o2->reg);
+        epush_value(o1, 4);
+        e1(OP_MUL);
+        push_mask32();
+        estore_reg(o2->reg);
+        return;
+    }
     if (strcmp(mn, "negq") == 0) {
         epush_reg(o1->reg);
         e1(OP_NEG);
@@ -1346,9 +1476,41 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
         else arith_mem(OP_AND, 8, o2, o1);
         return;
     }
+    if (strcmp(mn, "andl") == 0) {
+        if (o2->kind == K_REG) {
+            epush_reg(o2->reg);
+            epush_value(o1, 4);
+            e1(OP_AND);
+            push_mask32();
+            estore_reg(o2->reg);
+        } else arith_mem(OP_AND, 4, o2, o1);
+        return;
+    }
     if (strcmp(mn, "orq") == 0) {
         if (o2->kind == K_REG) arith_reg(OP_OR, 8, o2, o1);
         else arith_mem(OP_OR, 8, o2, o1);
+        return;
+    }
+    if (strcmp(mn, "orl") == 0) {
+        if (o2->kind == K_REG) {
+            epush_reg(o2->reg);
+            epush_value(o1, 4);
+            e1(OP_OR);
+            push_mask32();
+            estore_reg(o2->reg);
+        } else arith_mem(OP_OR, 4, o2, o1);
+        return;
+    }
+    if (strcmp(mn, "xorq") == 0) {
+        if (o1->kind == K_REG && o2->kind == K_REG && o1->reg == o2->reg) {
+            eimm(0);
+            estore_reg(o2->reg);
+        } else {
+            epush_reg(o2->reg);
+            epush_value(o1, 8);
+            e1(OP_XOR);
+            estore_reg(o2->reg);
+        }
         return;
     }
     if (strcmp(mn, "xorl") == 0) {
@@ -1371,9 +1533,65 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
         estore_reg(o2->reg);
         return;
     }
+    if (strcmp(mn, "shll") == 0) {
+        epush_reg(o2->reg);
+        epush_value(o1, 4);
+        e1(OP_SHL);
+        push_mask32();
+        estore_reg(o2->reg);
+        return;
+    }
+    if (strcmp(mn, "sall") == 0) {
+        epush_reg(o2->reg);
+        epush_value(o1, 4);
+        e1(OP_SHL);
+        push_mask32();
+        estore_reg(o2->reg);
+        return;
+    }
+    if (strcmp(mn, "shrl") == 0) {
+        epush_reg(o2->reg);
+        epush_value(o1, 4);
+        e1(OP_USHR);
+        push_mask32();
+        estore_reg(o2->reg);
+        return;
+    }
+    if (strcmp(mn, "sarl") == 0) {
+        epush_reg(o2->reg);
+        signext32();
+        epush_value(o1, 4);
+        e1(OP_SHR);
+        push_mask32();
+        estore_reg(o2->reg);
+        return;
+    }
+    if (strcmp(mn, "shrq") == 0) {
+        epush_reg(o2->reg);
+        epush_value(o1, 8);
+        e1(OP_USHR);
+        estore_reg(o2->reg);
+        return;
+    }
+    if (strcmp(mn, "sarq") == 0) {
+        epush_reg(o2->reg);
+        epush_value(o1, 8);
+        e1(OP_SHR);
+        estore_reg(o2->reg);
+        return;
+    }
     if (strcmp(mn, "testq") == 0) {
         epush_value(o1, 8);
         epush_value(o2, 8);
+        e1(OP_AND);
+        estore_local(CFG_SLOT_FLAGS_A);
+        eimm(0);
+        estore_local(CFG_SLOT_FLAGS_B);
+        return;
+    }
+    if (strcmp(mn, "testl") == 0) {
+        cvm_push_cmpval(o1, 4);
+        cvm_push_cmpval(o2, 4);
         e1(OP_AND);
         estore_local(CFG_SLOT_FLAGS_A);
         eimm(0);
@@ -1385,6 +1603,14 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
         estore_local(CFG_SLOT_FLAGS_A);
         epush_value(o2, 8);
         estore_local(CFG_SLOT_FLAGS_B);
+        return;
+    }
+    if (strcmp(mn, "cmpl") == 0) {
+        cvm_cmp(4, o1, o2);
+        return;
+    }
+    if (strcmp(mn, "cmpb") == 0) {
+        cvm_cmp(1, o1, o2);
         return;
     }
     if (strcmp(mn, "sete") == 0) {
@@ -1411,6 +1637,22 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
         epush_local(CFG_SLOT_FLAGS_B); epush_local(CFG_SLOT_FLAGS_A); e1(OP_CMP_GE); estore_reg(o1->reg);
         return;
     }
+    if (strcmp(mn, "seta") == 0) {
+        epush_local(CFG_SLOT_FLAGS_B); epush_local(CFG_SLOT_FLAGS_A); e1(OP_CMP_UGT); estore_reg(o1->reg);
+        return;
+    }
+    if (strcmp(mn, "setae") == 0) {
+        epush_local(CFG_SLOT_FLAGS_B); epush_local(CFG_SLOT_FLAGS_A); e1(OP_CMP_UGE); estore_reg(o1->reg);
+        return;
+    }
+    if (strcmp(mn, "setb") == 0) {
+        epush_local(CFG_SLOT_FLAGS_B); epush_local(CFG_SLOT_FLAGS_A); e1(OP_CMP_ULT); estore_reg(o1->reg);
+        return;
+    }
+    if (strcmp(mn, "setbe") == 0) {
+        epush_local(CFG_SLOT_FLAGS_B); epush_local(CFG_SLOT_FLAGS_A); e1(OP_CMP_ULE); estore_reg(o1->reg);
+        return;
+    }
     if (strcmp(mn, "je") == 0) {
         epush_local(CFG_SLOT_FLAGS_A); epush_local(CFG_SLOT_FLAGS_B); e1(OP_CMP_EQ); ejnz(o1->sym);
         return;
@@ -1433,6 +1675,26 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
     }
     if (strcmp(mn, "jge") == 0) {
         epush_local(CFG_SLOT_FLAGS_B); epush_local(CFG_SLOT_FLAGS_A); e1(OP_CMP_GE); ejnz(o1->sym);
+        return;
+    }
+    if (strcmp(mn, "ja") == 0) {
+        epush_local(CFG_SLOT_FLAGS_B); epush_local(CFG_SLOT_FLAGS_A); e1(OP_CMP_UGT); ejnz(o1->sym);
+        return;
+    }
+    if (strcmp(mn, "jae") == 0) {
+        epush_local(CFG_SLOT_FLAGS_B); epush_local(CFG_SLOT_FLAGS_A); e1(OP_CMP_UGE); ejnz(o1->sym);
+        return;
+    }
+    if (strcmp(mn, "jnb") == 0) {
+        epush_local(CFG_SLOT_FLAGS_B); epush_local(CFG_SLOT_FLAGS_A); e1(OP_CMP_UGE); ejnz(o1->sym);
+        return;
+    }
+    if (strcmp(mn, "jb") == 0) {
+        epush_local(CFG_SLOT_FLAGS_B); epush_local(CFG_SLOT_FLAGS_A); e1(OP_CMP_ULT); ejnz(o1->sym);
+        return;
+    }
+    if (strcmp(mn, "jbe") == 0) {
+        epush_local(CFG_SLOT_FLAGS_B); epush_local(CFG_SLOT_FLAGS_A); e1(OP_CMP_ULE); ejnz(o1->sym);
         return;
     }
     if (strcmp(mn, "jmp") == 0) { ejmp(o1->sym); return; }
@@ -1468,6 +1730,7 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
     if (strcmp(mn, "ret") == 0) {
         epush_local(0);
         estore_global(CFG_GSLOT_RET);
+        epush_local(0);
         e1(OP_RET);
         term_pos = code_len - 1;
         return;
@@ -1496,6 +1759,34 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
         eimm(63);
         e1(OP_SHR);
         estore_local(2);
+        return;
+    }
+    if (strcmp(mn, "cltd") == 0) {
+        epush_local(0);
+        signext32();
+        eimm(31);
+        e1(OP_SHR);
+        estore_local(2);
+        return;
+    }
+    if (strcmp(mn, "cwtl") == 0) {
+        epush_local(0);
+        signext16();
+        push_mask32();
+        estore_local(0);
+        return;
+    }
+    if (strcmp(mn, "cdqe") == 0) {
+        epush_local(0);
+        signext32();
+        estore_local(0);
+        return;
+    }
+    if (strcmp(mn, "idivl") == 0) {
+        epush_local(0); signext32(); estore_local(CFG_SLOT_S0);
+        epush_value(o1, 4); signext32(); estore_local(CFG_SLOT_S1);
+        epush_local(CFG_SLOT_S0); epush_local(CFG_SLOT_S1); e1(OP_DIV); push_mask32(); estore_local(0);
+        epush_local(CFG_SLOT_S0); epush_local(CFG_SLOT_S1); e1(OP_MOD); push_mask32(); estore_local(2);
         return;
     }
     if (strcmp(mn, "syscall") == 0) {
@@ -2541,6 +2832,12 @@ static void x8(int b) {
     code[code_len++] = (unsigned char)b;
 }
 
+static void x16(long v) {
+    breserve(&code, &code_cap, code_len + 2);
+    code[code_len++] = (unsigned char)(v & 255);
+    code[code_len++] = (unsigned char)((v >> 8) & 255);
+}
+
 static void x32(long v) {
     breserve(&code, &code_cap, code_len + 4);
     code[code_len++] = (unsigned char)(v & 255);
@@ -2757,6 +3054,41 @@ static void elf_movzx(const Op *s, const Op *d, int opc, int rexw, int has_0f) {
     }
 }
 
+static void elf_movw(const Op *s, const Op *d) {
+    if (d->kind == K_REG) {
+        if (s->kind == K_REG) {
+            x8(0x66);
+            x86_rex_reg(0, s->reg, d->reg);
+            x8(0x89);
+            emit_modrm(3, s->reg & 7, d->reg & 7);
+        } else if (s->kind == K_MEM || s->kind == K_SYM) {
+            x8(0x66);
+            x86_ea_rex(s, d->reg, 0, 0);
+            x8(0x8B);
+            x86_ea_modrm(s, d->reg);
+        } else {
+            die("invalid movw source");
+        }
+    } else if (d->kind == K_MEM || d->kind == K_SYM) {
+        if (s->kind == K_REG) {
+            x8(0x66);
+            x86_ea_rex(d, s->reg, 0, 0);
+            x8(0x89);
+            x86_ea_modrm(d, s->reg);
+        } else if (s->kind == K_IMM) {
+            x8(0x66);
+            x86_ea_rex(d, 0, 0, 0);
+            x8(0xC7);
+            x86_ea_modrm(d, 0);
+            x16(s->imm);
+        } else {
+            die("invalid movw source");
+        }
+    } else {
+        die("invalid movw destination");
+    }
+}
+
 static void elf_lea(const Op *s, const Op *d) {
     if (d->kind != K_REG) { die("invalid lea destination"); return; }
     x86_ea_rex(s, d->reg, 1, 0);
@@ -2890,6 +3222,35 @@ static void elf_imul(const Op *s, const Op *d) {
     }
 }
 
+static void elf_imull(const Op *s, const Op *d) {
+    if (d->kind != K_REG) { die("invalid imull destination"); return; }
+    if (s->kind == K_REG) {
+        x86_rex_reg(0, d->reg, s->reg);
+        x8(0x0F);
+        x8(0xAF);
+        emit_modrm(3, d->reg & 7, s->reg & 7);
+    } else if (s->kind == K_MEM || s->kind == K_SYM) {
+        x86_ea_rex(s, d->reg, 0, 0);
+        x8(0x0F);
+        x8(0xAF);
+        x86_ea_modrm(s, d->reg);
+    } else if (s->kind == K_IMM) {
+        long long v = s->imm;
+        emit_rex(0, 0, 0, (d->reg >> 3) & 1);
+        if ((long long)(signed char)v == v) {
+            x8(0x6B);
+            emit_modrm(3, d->reg & 7, d->reg & 7);
+            x8((int)(v & 255));
+        } else {
+            x8(0x69);
+            emit_modrm(3, d->reg & 7, d->reg & 7);
+            x32(v);
+        }
+    } else {
+        die("invalid imull operand");
+    }
+}
+
 static void elf_grp3(const Op *o, int ext) {
     if (o->kind == K_REG) {
         emit_rex(1, 0, 0, (o->reg >> 3) & 1);
@@ -2910,6 +3271,31 @@ static void elf_shift_cl(const Op *s, const Op *d, int ext) {
     emit_rex(1, 0, 0, (d->reg >> 3) & 1);
     x8(0xD3);
     emit_modrm(3, ext, d->reg & 7);
+}
+
+static void elf_shift_cl32(const Op *s, const Op *d, int ext) {
+    if (s->kind != K_REG || s->reg != REG_RCX) { die("shift count must be %cl"); return; }
+    if (d->kind != K_REG) { die("invalid shift destination"); return; }
+    emit_rex(0, 0, 0, (d->reg >> 3) & 1);
+    x8(0xD3);
+    emit_modrm(3, ext, d->reg & 7);
+}
+
+static void elf_testl(const Op *s, const Op *d) {
+    if (d->kind != K_REG) { die("invalid test destination"); return; }
+    if (s->kind == K_REG) {
+        x86_rex_reg(0, s->reg, d->reg);
+        x8(0x85);
+        emit_modrm(3, s->reg & 7, d->reg & 7);
+    } else if (s->kind == K_IMM) {
+        if ((long long)(int)s->imm != s->imm) { die("immediate out of range"); return; }
+        emit_rex(0, 0, 0, (d->reg >> 3) & 1);
+        x8(0xF7);
+        emit_modrm(3, 0, d->reg & 7);
+        x32(s->imm);
+    } else {
+        die("invalid test operand");
+    }
 }
 
 static void elf_test(const Op *s, const Op *d) {
@@ -3017,36 +3403,57 @@ static void elf_ins(const char *mn, const Op *o1, const Op *o2) {
     if (strcmp(mn, "movq") == 0) { elf_mov(8, o1, o2); return; }
     if (strcmp(mn, "movl") == 0) { elf_mov(4, o1, o2); return; }
     if (strcmp(mn, "movb") == 0) { elf_mov(1, o1, o2); return; }
+    if (strcmp(mn, "movw") == 0) { elf_movw(o1, o2); return; }
     if (strcmp(mn, "movzbq") == 0) { elf_movzx(o1, o2, 0xB6, 1, 1); return; }
     if (strcmp(mn, "movsbq") == 0) { elf_movzx(o1, o2, 0xBE, 1, 1); return; }
     if (strcmp(mn, "movslq") == 0) { elf_movzx(o1, o2, 0x63, 1, 0); return; }
+    if (strcmp(mn, "movzbl") == 0) { elf_movzx(o1, o2, 0xB6, 0, 1); return; }
+    if (strcmp(mn, "movsbl") == 0) { elf_movzx(o1, o2, 0xBE, 0, 1); return; }
+    if (strcmp(mn, "movzwl") == 0) { elf_movzx(o1, o2, 0xB7, 0, 1); return; }
+    if (strcmp(mn, "movswl") == 0) { elf_movzx(o1, o2, 0xBF, 0, 1); return; }
+    if (strcmp(mn, "movzwq") == 0) { elf_movzx(o1, o2, 0xB7, 1, 1); return; }
+    if (strcmp(mn, "movswq") == 0) { elf_movzx(o1, o2, 0xBF, 1, 1); return; }
     if (strcmp(mn, "leaq") == 0) { elf_lea(o1, o2); return; }
     if (strcmp(mn, "pushq") == 0) { elf_push(o1); return; }
     if (strcmp(mn, "popq") == 0) { elf_pop(o1); return; }
     if (strcmp(mn, "addq") == 0) { elf_alu(X86_G1_ADD, 8, o1, o2); return; }
+    if (strcmp(mn, "addl") == 0) { elf_alu(X86_G1_ADD, 4, o1, o2); return; }
     if (strcmp(mn, "addb") == 0) { elf_alu(X86_G1_ADD, 1, o1, o2); return; }
     if (strcmp(mn, "subq") == 0) { elf_alu(X86_G1_SUB, 8, o1, o2); return; }
     if (strcmp(mn, "subl") == 0) { elf_alu(X86_G1_SUB, 4, o1, o2); return; }
     if (strcmp(mn, "andq") == 0) { elf_alu(X86_G1_AND, 8, o1, o2); return; }
+    if (strcmp(mn, "andl") == 0) { elf_alu(X86_G1_AND, 4, o1, o2); return; }
     if (strcmp(mn, "orq") == 0) { elf_alu(X86_G1_OR, 8, o1, o2); return; }
+    if (strcmp(mn, "orl") == 0) { elf_alu(X86_G1_OR, 4, o1, o2); return; }
+    if (strcmp(mn, "xorq") == 0) { elf_alu(X86_G1_XOR, 8, o1, o2); return; }
     if (strcmp(mn, "xorl") == 0) { elf_alu(X86_G1_XOR, 4, o1, o2); return; }
     if (strcmp(mn, "cmpq") == 0) { elf_cmp(8, o1, o2); return; }
     if (strcmp(mn, "cmpl") == 0) { elf_cmp(4, o1, o2); return; }
     if (strcmp(mn, "cmpb") == 0) { elf_cmp(1, o1, o2); return; }
     if (strcmp(mn, "imulq") == 0) { elf_imul(o1, o2); return; }
+    if (strcmp(mn, "imull") == 0) { elf_imull(o1, o2); return; }
     if (strcmp(mn, "negq") == 0) { elf_grp3(o1, 3); return; }
     if (strcmp(mn, "notq") == 0) { elf_grp3(o1, 2); return; }
     if (strcmp(mn, "idivq") == 0) { elf_grp3(o1, 7); return; }
     if (strcmp(mn, "salq") == 0) { elf_shift_cl(o1, o2, 4); return; }
+    if (strcmp(mn, "shll") == 0) { elf_shift_cl32(o1, o2, 4); return; }
+    if (strcmp(mn, "sall") == 0) { elf_shift_cl32(o1, o2, 4); return; }
+    if (strcmp(mn, "shrl") == 0) { elf_shift_cl32(o1, o2, 5); return; }
+    if (strcmp(mn, "sarl") == 0) { elf_shift_cl32(o1, o2, 7); return; }
     if (strcmp(mn, "shrq") == 0) { elf_shift_cl(o1, o2, 5); return; }
     if (strcmp(mn, "sarq") == 0) { elf_shift_cl(o1, o2, 7); return; }
     if (strcmp(mn, "testq") == 0) { elf_test(o1, o2); return; }
+    if (strcmp(mn, "testl") == 0) { elf_testl(o1, o2); return; }
     if (strcmp(mn, "sete") == 0) { elf_set(X86_SET_E, o1); return; }
     if (strcmp(mn, "setne") == 0) { elf_set(X86_SET_NE, o1); return; }
     if (strcmp(mn, "setl") == 0) { elf_set(X86_SET_L, o1); return; }
     if (strcmp(mn, "setg") == 0) { elf_set(X86_SET_G, o1); return; }
     if (strcmp(mn, "setle") == 0) { elf_set(X86_SET_LE, o1); return; }
     if (strcmp(mn, "setge") == 0) { elf_set(X86_SET_GE, o1); return; }
+    if (strcmp(mn, "seta") == 0) { elf_set(X86_SET_A, o1); return; }
+    if (strcmp(mn, "setae") == 0) { elf_set(X86_SET_AE, o1); return; }
+    if (strcmp(mn, "setb") == 0) { elf_set(X86_SET_B, o1); return; }
+    if (strcmp(mn, "setbe") == 0) { elf_set(X86_SET_BE, o1); return; }
     if (strcmp(mn, "je") == 0) { elf_branch(X86_JCC_JE, o1); return; }
     if (strcmp(mn, "jne") == 0) { elf_branch(X86_JCC_JNE, o1); return; }
     if (strcmp(mn, "jl") == 0) { elf_branch(X86_JCC_JL, o1); return; }
@@ -3055,6 +3462,7 @@ static void elf_ins(const char *mn, const Op *o1, const Op *o2) {
     if (strcmp(mn, "jge") == 0) { elf_branch(X86_JCC_JGE, o1); return; }
     if (strcmp(mn, "ja") == 0) { elf_branch(X86_JCC_JA, o1); return; }
     if (strcmp(mn, "jae") == 0) { elf_branch(X86_JCC_JAE, o1); return; }
+    if (strcmp(mn, "jnb") == 0) { elf_branch(X86_JCC_JAE, o1); return; }
     if (strcmp(mn, "jb") == 0) { elf_branch(X86_JCC_JB, o1); return; }
     if (strcmp(mn, "jbe") == 0) { elf_branch(X86_JCC_JBE, o1); return; }
     if (strcmp(mn, "jmp") == 0) { elf_branch(0xE9, o1); return; }
@@ -3062,6 +3470,9 @@ static void elf_ins(const char *mn, const Op *o1, const Op *o2) {
     if (strcmp(mn, "ret") == 0) { x8(0xC3); return; }
     if (strcmp(mn, "leave") == 0) { x8(0xC9); return; }
     if (strcmp(mn, "cqto") == 0) { x8(0x48); x8(0x99); return; }
+    if (strcmp(mn, "cltd") == 0) { x8(0x99); return; }
+    if (strcmp(mn, "cwtl") == 0) { x8(0x98); return; }
+    if (strcmp(mn, "cdqe") == 0) { x8(0x48); x8(0x98); return; }
     if (strcmp(mn, "syscall") == 0) { x8(0x0F); x8(0x05); return; }
     if (strcmp(mn, "nop") == 0) { x8(0x90); return; }
     fprintf(stderr, "ld: %s:%ld: unsupported instruction '%s'\n", cur_file, cur_line, mn);
