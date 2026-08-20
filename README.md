@@ -104,3 +104,18 @@ Fixtures are copied into a scratch directory and every tool runs against the
 copies: mutation testing deliberately builds broken binaries from this suite,
 and a mutant that mishandles an argument path must not be able to reach the
 pristine sources.
+
+<!-- readmenator-kb-link -->
+## Knowledge Base
+
+This project has been analyzed by [ReadMenator](https://github.com/grisuno/ReadMenator),
+a zero-token polyglot static analysis tool. A comprehensive knowledge base is available:
+
+- **[KNOWLEDGE_BASE.md](./KNOWLEDGE_BASE.md)** -- Architecture reference with all
+  classes, functions, imports, dependency graphs, UML class diagrams, security
+  audit findings, community analysis, and more.
+
+AI agents and developers: Read `KNOWLEDGE_BASE.md` for full project context
+without LLM token cost.
+<!-- /readmenator-kb-link -->
+

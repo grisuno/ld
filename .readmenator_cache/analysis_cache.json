@@ -1,0 +1,80 @@
+{
+  "analysis_v2": {
+    "god_nodes": [
+      [
+        "ld.c",
+        28.0
+      ],
+      [
+        "test/run_tests.sh",
+        0.6000000000000001
+      ],
+      [
+        "test/fib.s",
+        0.30000000000000004
+      ],
+      [
+        "test/fib2.s",
+        0.30000000000000004
+      ],
+      [
+        "test/fib3.s",
+        0.30000000000000004
+      ],
+      [
+        "test/argv.s",
+        0.2
+      ],
+      [
+        "test/chain.c",
+        0.2
+      ],
+      [
+        "test/loop.s",
+        0.2
+      ],
+      [
+        "test/movslq.s",
+        0.2
+      ],
+      [
+        "test/start.s",
+        0.2
+      ]
+    ],
+    "communities": [],
+    "surprising_connections": [],
+    "suggested_questions": [
+      "What does ld.c depend on, and what depends on it? (0 connections)",
+      "What does run_tests.sh depend on, and what depends on it? (0 connections)",
+      "What does fib.s depend on, and what depends on it? (0 connections)",
+      "What is the overall architecture of this codebase?"
+    ]
+  },
+  "layers": {
+    "app.py": "utility",
+    "install.sh": "utility",
+    "ld.c": "utility",
+    "test/argv.c": "testing",
+    "test/argv.s": "testing",
+    "test/chain.c": "testing",
+    "test/fib.s": "testing",
+    "test/fib2.s": "testing",
+    "test/fib3.s": "testing",
+    "test/fmt.c": "testing",
+    "test/globals.c": "testing",
+    "test/hello.c": "testing",
+    "test/loop.s": "testing",
+    "test/movslq.s": "testing",
+    "test/mutate.sh": "testing",
+    "test/run_tests.sh": "testing",
+    "test/start.s": "testing",
+    "test/t1.c": "testing",
+    "test/t1.s": "testing",
+    "test/w1.c": "testing",
+    "test/w1.s": "testing"
+  },
+  "security": {
+    "findings": []
+  }
+}
