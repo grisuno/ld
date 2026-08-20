@@ -31,9 +31,13 @@
 #define CFG_MAX_ERRORS  32
 #define CFG_GROW_UNIT   1024
 
-#define CFG_ABI_BYTES   96
-#define CFG_STACK_BASE  96
+#define CFG_ABI_BYTES   104
+#define CFG_STACK_BASE  104
 #define CFG_XSTACK_DEF  262144
+/* Room reserved past the stack region for the argv pointer array that the
+ * interpreter builds at the stack top; an argument list longer than this
+ * cap is rejected by the interpreter, never silently truncated. */
+#define CFG_MAX_ARGS    1024
 
 #define CFG_REG_LOCALS  18
 #define CFG_SLOT_FLAGS_A 14
@@ -1856,14 +1860,15 @@ static void cvm_prepare_tables(void) {
 }
 
 static void cvm_layout_data(void) {
+    /* ABI area first (argc, argv, rsp, rbp, args, ret, stack size, stack
+     * base), then globals, blobs and extern slots, then the x86 stack
+     * region last. The interpreter writes the argv array at the very top
+     * of the stack region, so the reserved headroom keeps it clear of the
+     * global/blob data instead of overwriting string constants (the fault
+     * a fixed ABI-first layout had when a module carried both arguments
+     * and blobs). */
     data_fill(CFG_ABI_BYTES, 0);
-    while (data_len < CFG_STACK_BASE) data_put(0);
-    breserve(&data_region, &data_cap, data_len + g_xstack);
-    memset(data_region + data_len, 0, (size_t)g_xstack);
-    data_len += g_xstack;
-    unsigned char szb[8];
-    for (int i = 0; i < 8; i++) szb[i] = (unsigned char)((g_xstack >> (i * 8)) & 255);
-    memcpy(data_region + 88, szb, 8);
+    while (data_len < CFG_ABI_BYTES) data_put(0);
     for (int i = 0; i < n_globals; i++) {
         data_align(8);
         globals[i].off = data_len;
@@ -1887,6 +1892,16 @@ static void cvm_layout_data(void) {
         extern_off[i] = data_len;
         data_fill(8, 0);
     }
+    long stack_base = data_len;
+    long stack_size = g_xstack + (long)(CFG_MAX_ARGS + 1) * 8;
+    breserve(&data_region, &data_cap, data_len + stack_size);
+    memset(data_region + data_len, 0, (size_t)stack_size);
+    data_len += stack_size;
+    unsigned char szb[8];
+    for (int i = 0; i < 8; i++) szb[i] = (unsigned char)((g_xstack >> (i * 8)) & 255);
+    memcpy(data_region + 88, szb, 8);
+    for (int i = 0; i < 8; i++) szb[i] = (unsigned char)((stack_base >> (i * 8)) & 255);
+    memcpy(data_region + 96, szb, 8);
 }
 
 static void func_glue(void) {

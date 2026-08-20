@@ -145,8 +145,13 @@ usage: ld [-f cvm|elf] [-o out] [-xstack N] input.s
 ```
 
 ## Compatibility
-- CVM backend output is bit-compatible with the previous ld release; the
-  cvm2 interpreter loads modules with magic `CVM\x04`, version 1.0.
+- The CVM backend stores the x86 stack region's offset in the module ABI
+  area (`stack_base`, data offset 96) and reserves the argv array area above
+  the stack region, so argument passing can never overwrite globals or
+  string blobs. Modules need the matching cvm2 interpreter; older modules
+  without the stored offset are still loaded by the interpreter (it falls
+  back to the fixed 96-byte layout), but a module produced by a new `ld`
+  needs a new interpreter and vice versa. Magic is `CVM\x04`, version 1.0.
 - ELF backend output runs on Linux kernels (static PIE) and inside MiniOS
   (`load_exec_elf`); it makes only syscalls that MiniOS implements
   (read/write/writev/open/openat/close/lseek/brk/mmap/munmap/exit/exit_group).
