@@ -1,11 +1,13 @@
 # Polyglot Codebase Knowledge Graph
 
-> Generated offline by **readmenator**. Supports C, C++, Python, Go, Rust, JS/TS, Java, C#, Shell, PHP, Dart, GDScript, Nim, ASM, Ruby, Swift, Kotlin, Scala, Lua, Elixir.
+> Generated offline by **readmenator**. 21 files, 340 symbols, 3 imports. Supports C, C++, Python, Go, Rust, JS/TS, Java, C#, Shell, PHP, Dart, GDScript, Nim, ASM, Ruby, Swift, Kotlin, Scala, Lua, Elixir.
 > No LLMs. No tokens. Pure static analysis. See more [here](https://github.com/grisuno/ReadMenator)
 
-**Total Files Parsed:** 21 | **Total Symbols Extracted:** 315 | **Total Imports:** 3
+**Start here:** Statistics Dashboard for scope, God Nodes for blast radius, Architecture Reference for per-file API. Agents: prefer `readmenator-agent/INDEX.md` + `SYMBOLS.md`.
 
-<!-- ranking_model: v1.0 | weights: {ppr:0.45,auth:0.2,test:0.15,doc:0.1,fresh:0.1} | alpha:0.85 | commit:75d209c | date:2026-07-18 -->
+**Total Files Parsed:** 21 | **Total Symbols Extracted:** 340 | **Total Imports:** 3
+
+<!-- ranking_model: v1.0 | weights: {ppr:0.45,auth:0.2,test:0.15,doc:0.1,fresh:0.1} | alpha:0.85 | commit:b3ca3bb | date:2026-07-18 -->
 
 
 ## Table of Contents
@@ -36,19 +38,19 @@
 | Metric | Value |
 |--------|-------|
 | Total Files | 21 |
-| Total Symbols | 315 |
+| Total Symbols | 340 |
 | Total Imports | 3 |
 | Call Edges | 0 |
 | Inheritance Edges | 0 |
 | Languages | 4 |
-| Avg Symbols/File | 15.0 |
+| Avg Symbols/File | 16.2 |
 | Avg Imports/File | 0.1 |
 
 ### Top Files by Import Count (Fan-Out)
 
 | File | Imports | Symbols | Language |
 |------|---------|---------|----------|
-| `ld.c` | 3 | 280 | c |
+| `ld.c` | 3 | 300 | c |
 
 ---
 
@@ -65,18 +67,18 @@ Auto-detected from path patterns, naming conventions, and imported frameworks.
 
 - `app.py` (py, 0 symbols)
 - `install.sh` (sh, 0 symbols)
-- `ld.c` (c, 280 symbols)
+- `ld.c` (c, 300 symbols)
 
 ### testing
 
-- `argv.c` (c, 1 symbols)
+- `argv.c` (c, 2 symbols)
 - `argv.s` (s, 2 symbols)
 - `chain.c` (c, 2 symbols)
 - `fib.s` (s, 3 symbols)
 - `fib2.s` (s, 3 symbols)
 - `fib3.s` (s, 3 symbols)
-- `fmt.c` (c, 1 symbols)
-- `globals.c` (c, 1 symbols)
+- `fmt.c` (c, 2 symbols)
+- `globals.c` (c, 3 symbols)
 - `hello.c` (c, 1 symbols)
 - `loop.s` (s, 2 symbols)
 - `movslq.s` (s, 2 symbols)
@@ -97,7 +99,7 @@ Files ranked by composite score for the current query context. The ranking combi
 | 1 | `app.py` | 0.1000 | 0.0000 | 0.0000 | 0.00 | 1.00 |
 | 2 | `mutate.sh` | 0.1000 | 0.0000 | 0.0000 | 0.00 | 1.00 |
 | 3 | `run_tests.sh` | 0.0833 | 0.0000 | 0.0000 | 0.00 | 0.83 |
-| 4 | `ld.c` | 0.0025 | 0.0000 | 0.0000 | 0.00 | 0.03 |
+| 4 | `ld.c` | 0.0023 | 0.0000 | 0.0000 | 0.00 | 0.02 |
 | 5 | `install.sh` | 0.0000 | 0.0000 | 0.0000 | 0.00 | 0.00 |
 | 6 | `argv.c` | 0.0000 | 0.0000 | 0.0000 | 0.00 | 0.00 |
 | 7 | `argv.s` | 0.0000 | 0.0000 | 0.0000 | 0.00 | 0.00 |
@@ -113,16 +115,16 @@ Most architecturally central files ranked by combined import/export degree and s
 
 | File | Score | Connections | PageRank |
 |------|-------|-------------|----------|
-| `ld.c` | 28.0 | | 0.0000 |
+| `ld.c` | 30.0 | | 0.0000 |
 | `run_tests.sh` | 0.6 | | 0.0000 |
 | `fib.s` | 0.3 | | 0.0000 |
 | `fib2.s` | 0.3 | | 0.0000 |
 | `fib3.s` | 0.3 | | 0.0000 |
+| `globals.c` | 0.3 | | 0.0000 |
+| `argv.c` | 0.2 | | 0.0000 |
 | `argv.s` | 0.2 | | 0.0000 |
 | `chain.c` | 0.2 | | 0.0000 |
-| `loop.s` | 0.2 | | 0.0000 |
-| `movslq.s` | 0.2 | | 0.0000 |
-| `start.s` | 0.2 | | 0.0000 |
+| `fmt.c` | 0.2 | | 0.0000 |
 
 ---
 
@@ -133,6 +135,7 @@ Auto-generated exploration prompts based on graph structure:
 - What does ld.c depend on, and what depends on it? (0 connections)
 - What does run_tests.sh depend on, and what depends on it? (0 connections)
 - What does fib.s depend on, and what depends on it? (0 connections)
+- What is Sym in ld.c and how is it used?
 - What is the overall architecture of this codebase?
 
 ---
@@ -145,19 +148,19 @@ Files ranked by combined complexity (symbol count) and centrality (connection co
 |------|-----------|------------|----------|---------|-------------|
 | `app.py` | 0.000 | 0.000 | 0.000 | 0 | 0 |
 | `mutate.sh` | 0.000 | 0.000 | 0.000 | 0 | 0 |
-| `run_tests.sh` | 0.021 | 0.000 | 0.009 | 6 | 0 |
-| `ld.c` | 1.000 | 1.000 | 1.000 | 280 | 3 |
+| `run_tests.sh` | 0.020 | 0.000 | 0.008 | 6 | 0 |
+| `ld.c` | 1.000 | 1.000 | 1.000 | 300 | 3 |
 | `install.sh` | 0.000 | 0.000 | 0.000 | 0 | 0 |
-| `argv.c` | 0.004 | 0.000 | 0.001 | 1 | 0 |
+| `argv.c` | 0.007 | 0.000 | 0.003 | 2 | 0 |
 | `argv.s` | 0.007 | 0.000 | 0.003 | 2 | 0 |
 | `chain.c` | 0.007 | 0.000 | 0.003 | 2 | 0 |
-| `fib.s` | 0.011 | 0.000 | 0.004 | 3 | 0 |
-| `fib2.s` | 0.011 | 0.000 | 0.004 | 3 | 0 |
-| `fib3.s` | 0.011 | 0.000 | 0.004 | 3 | 0 |
+| `fib.s` | 0.010 | 0.000 | 0.004 | 3 | 0 |
+| `fib2.s` | 0.010 | 0.000 | 0.004 | 3 | 0 |
+| `fib3.s` | 0.010 | 0.000 | 0.004 | 3 | 0 |
+| `globals.c` | 0.010 | 0.000 | 0.004 | 3 | 0 |
+| `fmt.c` | 0.007 | 0.000 | 0.003 | 2 | 0 |
 | `loop.s` | 0.007 | 0.000 | 0.003 | 2 | 0 |
 | `movslq.s` | 0.007 | 0.000 | 0.003 | 2 | 0 |
-| `start.s` | 0.007 | 0.000 | 0.003 | 2 | 0 |
-| `t1.s` | 0.007 | 0.000 | 0.003 | 2 | 0 |
 
 ---
 
@@ -192,7 +195,7 @@ Automatically suggested linting and security rules based on patterns detected in
 | Rule ID | Severity | Description | Language | Matches |
 |---------|----------|-------------|----------|---------|
 | `RM001` | info | Large number of functions in sh: 6 total | sh | 6 |
-| `RM002` | info | Large number of functions in c: 128 total | c | 128 |
+| `RM002` | info | Large number of functions in c: 144 total | c | 144 |
 | `RM003` | info | Large number of functions in s: 21 total | s | 21 |
 
 ---
@@ -202,21 +205,21 @@ Automatically suggested linting and security rules based on patterns detected in
 Files with no documentation or low connectivity. These are candidates for documentation investment or cleanup.
 
 - `install.sh` (0 symbols, no doc)
-- `argv.c` (1 symbols, no doc)
+- `argv.c` (2 symbols, no doc)
 - `argv.s` (2 symbols, no doc)
 - `chain.c` (2 symbols, no doc)
 - `fib.s` (3 symbols, no doc)
 - `fib2.s` (3 symbols, no doc)
 - `fib3.s` (3 symbols, no doc)
-- `fmt.c` (1 symbols, no doc)
-- `globals.c` (1 symbols, no doc)
+- `fmt.c` (2 symbols, no doc)
+- `globals.c` (3 symbols, no doc)
 - `hello.c` (1 symbols, no doc)
 - `loop.s` (2 symbols, no doc)
 - `movslq.s` (2 symbols, no doc)
 - `start.s` (2 symbols, no doc)
 - `t1.c` (1 symbols, no doc)
 - `t1.s` (2 symbols, no doc)
-- `w1.c` (1 symbols, no doc)
+- `w1.c` (2 symbols, no doc)
 - `w1.s` (2 symbols, no doc)
 
 ---
@@ -261,21 +264,21 @@ graph TD
     classDef ext fill:#111,stroke:#666,stroke-dasharray:5 5,color:#aaa;
     ld_c["ld.c (c)"]
     class ld_c mod;
-    ld_c_die["die"]
-    class ld_c_die fn;
-    ld_c --> ld_c_die
-    ld_c_breserve["breserve"]
-    class ld_c_breserve fn;
-    ld_c --> ld_c_breserve
-    ld_c_fixup_reserve["fixup_reserve"]
-    class ld_c_fixup_reserve fn;
-    ld_c --> ld_c_fixup_reserve
-    ld_c_creserve["creserve"]
-    class ld_c_creserve fn;
-    ld_c --> ld_c_creserve
-    ld_c_parse_num["parse_num"]
-    class ld_c_parse_num fn;
-    ld_c --> ld_c_parse_num
+    ld_c_Sym["Sym"]
+    class ld_c_Sym cls;
+    ld_c --> ld_c_Sym
+    ld_c_Op["Op"]
+    class ld_c_Op cls;
+    ld_c --> ld_c_Op
+    ld_c_Fixup["Fixup"]
+    class ld_c_Fixup cls;
+    ld_c --> ld_c_Fixup
+    ld_c_LineSrc["LineSrc"]
+    class ld_c_LineSrc cls;
+    ld_c --> ld_c_LineSrc
+    ld_c_Func["Func"]
+    class ld_c_Func cls;
+    ld_c --> ld_c_Func
     test_run_tests_sh["run_tests.sh (sh)"]
     class test_run_tests_sh mod;
     test_fib_s["fib.s (s)"]
@@ -284,10 +287,16 @@ graph TD
     class test_fib2_s mod;
     test_fib3_s["fib3.s (s)"]
     class test_fib3_s mod;
+    test_globals_c["globals.c (c)"]
+    class test_globals_c mod;
+    test_argv_c["argv.c (c)"]
+    class test_argv_c mod;
     test_argv_s["argv.s (s)"]
     class test_argv_s mod;
     test_chain_c["chain.c (c)"]
     class test_chain_c mod;
+    test_fmt_c["fmt.c (c)"]
+    class test_fmt_c mod;
     test_loop_s["loop.s (s)"]
     class test_loop_s mod;
     test_movslq_s["movslq.s (s)"]
@@ -296,20 +305,14 @@ graph TD
     class test_start_s mod;
     test_t1_s["t1.s (s)"]
     class test_t1_s mod;
+    test_w1_c["w1.c (c)"]
+    class test_w1_c mod;
     test_w1_s["w1.s (s)"]
     class test_w1_s mod;
-    test_argv_c["argv.c (c)"]
-    class test_argv_c mod;
-    test_fmt_c["fmt.c (c)"]
-    class test_fmt_c mod;
-    test_globals_c["globals.c (c)"]
-    class test_globals_c mod;
     test_hello_c["hello.c (c)"]
     class test_hello_c mod;
     test_t1_c["t1.c (c)"]
     class test_t1_c mod;
-    test_w1_c["w1.c (c)"]
-    class test_w1_c mod;
     app_py["app.py (py)"]
     class app_py mod;
     install_sh["install.sh (sh)"]
@@ -329,12 +332,139 @@ graph TD
 
 ---
 
+## UML Class Diagram
+
+Auto-generated Mermaid class diagram from parsed class-level symbols. Shows classes, structs, interfaces, traits, and their methods with inheritance and dependency relationships.
+
+```mermaid
+classDiagram
+  class ld_c_Sym {
+    <<struct>>
+    +die(const char *msg)
+    +breserve(unsigned char **p, long *cap, long need)
+    +fixup_reserve(void)
+    +creserve(char **p, long *cap, long need)
+    +parse_num(const char *s)
+    +trim(char *s)
+    +strip_comment(char *s)
+    +name_copy(char *dst, const char *src)
+    +split_word(char *line, char *word, long wcap, char **rest)
+    +hexval(char c)
+  }
+  class ld_c_Op {
+    <<struct>>
+    +die(const char *msg)
+    +breserve(unsigned char **p, long *cap, long need)
+    +fixup_reserve(void)
+    +creserve(char **p, long *cap, long need)
+    +parse_num(const char *s)
+    +trim(char *s)
+    +strip_comment(char *s)
+    +name_copy(char *dst, const char *src)
+    +split_word(char *line, char *word, long wcap, char **rest)
+    +hexval(char c)
+  }
+  class ld_c_Fixup {
+    <<struct>>
+    +die(const char *msg)
+    +breserve(unsigned char **p, long *cap, long need)
+    +fixup_reserve(void)
+    +creserve(char **p, long *cap, long need)
+    +parse_num(const char *s)
+    +trim(char *s)
+    +strip_comment(char *s)
+    +name_copy(char *dst, const char *src)
+    +split_word(char *line, char *word, long wcap, char **rest)
+    +hexval(char c)
+  }
+  class ld_c_LineSrc {
+    <<struct>>
+    +die(const char *msg)
+    +breserve(unsigned char **p, long *cap, long need)
+    +fixup_reserve(void)
+    +creserve(char **p, long *cap, long need)
+    +parse_num(const char *s)
+    +trim(char *s)
+    +strip_comment(char *s)
+    +name_copy(char *dst, const char *src)
+    +split_word(char *line, char *word, long wcap, char **rest)
+    +hexval(char c)
+  }
+  class ld_c_Func {
+    <<struct>>
+    +die(const char *msg)
+    +breserve(unsigned char **p, long *cap, long need)
+    +fixup_reserve(void)
+    +creserve(char **p, long *cap, long need)
+    +parse_num(const char *s)
+    +trim(char *s)
+    +strip_comment(char *s)
+    +name_copy(char *dst, const char *src)
+    +split_word(char *line, char *word, long wcap, char **rest)
+    +hexval(char c)
+  }
+  class ld_c_GVar {
+    <<struct>>
+    +die(const char *msg)
+    +breserve(unsigned char **p, long *cap, long need)
+    +fixup_reserve(void)
+    +creserve(char **p, long *cap, long need)
+    +parse_num(const char *s)
+    +trim(char *s)
+    +strip_comment(char *s)
+    +name_copy(char *dst, const char *src)
+    +split_word(char *line, char *word, long wcap, char **rest)
+    +hexval(char c)
+  }
+  class ld_c_Blob {
+    <<struct>>
+    +die(const char *msg)
+    +breserve(unsigned char **p, long *cap, long need)
+    +fixup_reserve(void)
+    +creserve(char **p, long *cap, long need)
+    +parse_num(const char *s)
+    +trim(char *s)
+    +strip_comment(char *s)
+    +name_copy(char *dst, const char *src)
+    +split_word(char *line, char *word, long wcap, char **rest)
+    +hexval(char c)
+  }
+  class ld_c_Nat {
+    <<struct>>
+    +die(const char *msg)
+    +breserve(unsigned char **p, long *cap, long need)
+    +fixup_reserve(void)
+    +creserve(char **p, long *cap, long need)
+    +parse_num(const char *s)
+    +trim(char *s)
+    +strip_comment(char *s)
+    +name_copy(char *dst, const char *src)
+    +split_word(char *line, char *word, long wcap, char **rest)
+    +hexval(char c)
+  }
+  class ld_c_Label {
+    <<struct>>
+    +die(const char *msg)
+    +breserve(unsigned char **p, long *cap, long need)
+    +fixup_reserve(void)
+    +creserve(char **p, long *cap, long need)
+    +parse_num(const char *s)
+    +trim(char *s)
+    +strip_comment(char *s)
+    +name_copy(char *dst, const char *src)
+    +split_word(char *line, char *word, long wcap, char **rest)
+    +hexval(char c)
+  }
+```
+
+---
+
 ## Code Property Graph
 
 Machine-readable Code Property Graph (CPG) in JSON-LD format. This block allows AI agents to parse the full structural graph without additional file reads. Compatible with GraphRAG pipelines.
 
 ```json
-{"@context": "https://schema.org", "analysis": {"communities": [], "god_nodes": [{"node_id": "ld.c", "score": 28.0}, {"node_id": "test/run_tests.sh", "score": 0.6}, {"node_id": "test/fib.s", "score": 0.3}, {"node_id": "test/fib2.s", "score": 0.3}, {"node_id": "test/fib3.s", "score": 0.3}, {"node_id": "test/argv.s", "score": 0.2}, {"node_id": "test/chain.c", "score": 0.2}, {"node_id": "test/loop.s", "score": 0.2}, {"node_id": "test/movslq.s", "score": 0.2}, {"node_id": "test/start.s", "score": 0.2}], "surprising_connections": []}, "edges": [{"confidence": "EXTRACTED", "relation": "imports", "source": "ld.c", "target": "stdio.h"}, {"confidence": "EXTRACTED", "relation": "imports", "source": "ld.c", "target": "stdlib.h"}, {"confidence": "EXTRACTED", "relation": "imports", "source": "ld.c", "target": "string.h"}], "generator": "readmenator", "metadata": {"edge_count": 3, "file_count": 21, "language_count": 4, "symbol_count": 315}, "nodes": [{"doc": "_*_ coding: utf8 _*_", "id": "app.py", "kind": "module", "label": "app.py", "language": "py", "sha256": "57b21bdb023585b8", "symbol_count": 0, "symbols": []}, {"id": "install.sh", "kind": "module", "label": "install.sh", "language": "sh", "sha256": "c907d80fd6734993", "symbol_count": 0, "symbols": []}, {"id": "ld.c", "kind": "module", "label": "ld.c", "language": "c", "sha256": "dee0948e741cba44", "symbol_count": 280, "symbols": [{"doc": "================================================================ Diagnostics and memory * ================================================================", "kind": "function", "line": 339, "name": "die", "signature": "static void die(const char *msg)"}, {"kind": "function", "line": 348, "name": "breserve", "signature": "static void breserve(unsigned char **p, long *cap, long need)"}, {"doc": "Grow the fixup table so that one more entry fits. The table is heap allocated rather than statically reserved: a worst-case static array would * dominate the image and put it out of reach of hosts with a small heap.", "kind": "function", "line": 368, "name": "fixup_reserve", "signature": "static void fixup_reserve(void)"}, {"kind": "function", "line": 383, "name": "creserve", "signature": "static void creserve(char **p, long *cap, long need)"}, {"kind": "function", "line": 399, "name": "parse_num", "signature": "static long parse_num(const char *s)"}, {"kind": "function", "line": 431, "name": "trim", "signature": "static char *trim(char *s)"}, {"doc": "Truncate at the first '#' outside a double-quoted string: '#' is the * comment character, but a string literal may carry one (\"#\").", "kind": "function", "line": 442, "name": "strip_comment", "signature": "static void strip_comment(char *s)"}, {"kind": "function", "line": 456, "name": "name_copy", "signature": "static void name_copy(char *dst, const char *src)"}, {"kind": "function", "line": 463, "name": "split_word", "signature": "static void split_word(char *line, char *word, long wcap, char **rest)"}, {"kind": "function", "line": 476, "name": "hexval", "signature": "static int hexval(char c)"}, {"kind": "function", "line": 483, "name": "find_sym", "signature": "static int find_sym(const char *name)"}, {"kind": "function", "line": 489, "name": "add_sym", "signature": "static int add_sym(const char *name, int kind, int sec)"}, {"kind": "function", "line": 525, "name": "parse_reg", "signature": "static int parse_reg(const char *s, int *reg, int *sz)"}, {"kind": "function", "line": 537, "name": "parse_mem", "signature": "static void parse_mem(char *s, Op *op)"}, {"kind": "function", "line": 590, "name": "parse_operand", "signature": "static void parse_operand(char *s, Op *op)"}, {"kind": "function", "line": 621, "name": "split_operands", "signature": "static int split_operands(char *rest, char *o1, char *o2)"}, {"kind": "function", "line": 646, "name": "ls_open_file", "signature": "static void ls_open_file(LineSrc *s, const char *path)"}, {"kind": "function", "line": 658, "name": "ls_open_mem", "signature": "static void ls_open_mem(LineSrc *s, const char *text)"}, {"kind": "function", "line": 666, "name": "ls_getline", "signature": "static int ls_getline(LineSrc *s, char *buf, size_t n)"}, {"kind": "function", "line": 682, "name": "ls_close", "signature": "static void ls_close(LineSrc *s)"}, {"doc": "================================================================ Data region helpers * ================================================================", "kind": "function", "line": 690, "name": "data_put", "signature": "static void data_put(unsigned char b)"}, {"kind": "function", "line": 695, "name": "data_fill", "signature": "static void data_fill(long n, unsigned char b)"}, {"kind": "function", "line": 702, "name": "data_align", "signature": "static void data_align(long a)"}, {"kind": "function", "line": 706, "name": "blob_put", "signature": "static void blob_put(unsigned char b)"}, {"kind": "function", "line": 711, "name": "blob_append_str", "signature": "static void blob_append_str(char *s)"}, {"kind": "function", "line": 750, "name": "set_section", "signature": "static int set_section(char *line)"}, {"doc": "================================================================ Shared scan pass * ================================================================", "kind": "function", "line": 773, "name": "scan_directive", "signature": "static void scan_directive(char *line, int *section, int pending_global,\n                        ..."}, {"kind": "function", "line": 869, "name": "scan_src", "signature": "static void scan_src(LineSrc *src, int from_stubs)"}, {"doc": "================================================================ CVM backend * ================================================================", "kind": "function", "line": 940, "name": "cvm_find_func", "signature": "static int cvm_find_func(const char *name)"}, {"kind": "function", "line": 946, "name": "cvm_find_global", "signature": "static int cvm_find_global(const char *name)"}, {"kind": "function", "line": 952, "name": "cvm_find_blob", "signature": "static int cvm_find_blob(const char *name)"}, {"kind": "function", "line": 958, "name": "cvm_find_nat", "signature": "static int cvm_find_nat(const char *name)"}, {"kind": "function", "line": 964, "name": "cvm_add_nat", "signature": "static int cvm_add_nat(const char *name)"}, {"kind": "function", "line": 973, "name": "e1", "signature": "static void e1(int b)"}, {"kind": "function", "line": 978, "name": "e4", "signature": "static void e4(long v)"}, {"kind": "function", "line": 986, "name": "e8", "signature": "static void e8(unsigned long long v)"}, {"kind": "function", "line": 994, "name": "eimm", "signature": "static void eimm(long long v)"}, {"kind": "function", "line": 1007, "name": "epush_local", "signature": "static void epush_local(int slot)"}, {"kind": "function", "line": 1009, "name": "estore_local", "signature": "static void estore_local(int slot)"}, {"kind": "function", "line": 1010, "name": "epush_global", "signature": "static void epush_global(int slot)"}, {"kind": "function", "line": 1011, "name": "estore_global", "signature": "static void estore_global(int slot)"}, {"kind": "function", "line": 1012, "name": "cvm_slot", "signature": "static int cvm_slot(int std)"}, {"kind": "function", "line": 1019, "name": "epush_reg", "signature": "static void epush_reg(int r)"}, {"kind": "function", "line": 1025, "name": "estore_reg", "signature": "static void estore_reg(int r)"}, {"kind": "function", "line": 1031, "name": "pool_add", "signature": "static long pool_add(const char *s)"}, {"kind": "function", "line": 1040, "name": "cvm_fixup_add", "signature": "static void cvm_fixup_add(long pos, const char *name)"}, {"kind": "function", "line": 1047, "name": "ejmp", "signature": "static void ejmp(const char *lbl)"}, {"kind": "function", "line": 1049, "name": "ejz", "signature": "static void ejz(const char *lbl)"}, {"kind": "function", "line": 1050, "name": "ejnz", "signature": "static void ejnz(const char *lbl)"}, {"kind": "function", "line": 1051, "name": "find_label", "signature": "static long find_label(const char *name)"}, {"kind": "function", "line": 1057, "name": "add_label", "signature": "static void add_label(const char *name, long off)"}, {"kind": "function", "line": 1065, "name": "resolve_fixups", "signature": "static void resolve_fixups(void)"}, {"kind": "function", "line": 1084, "name": "push_mask32", "signature": "static void push_mask32(void)"}, {"kind": "function", "line": 1086, "name": "push_mask8", "signature": "static void push_mask8(void)"}, {"kind": "function", "line": 1087, "name": "push_mask16", "signature": "static void push_mask16(void)"}, {"kind": "function", "line": 1088, "name": "elea_mem", "signature": "static void elea_mem(Op *op)"}, {"kind": "function", "line": 1103, "name": "elea_operand", "signature": "static void elea_operand(Op *op)"}, {"kind": "function", "line": 1137, "name": "epush_value", "signature": "static void epush_value(Op *op, int size)"}, {"kind": "function", "line": 1163, "name": "signext8", "signature": "static void signext8(void)"}, {"kind": "function", "line": 1169, "name": "signext32", "signature": "static void signext32(void)"}, {"kind": "function", "line": 1175, "name": "signext16", "signature": "static void signext16(void)"}, {"kind": "function", "line": 1181, "name": "mov", "signature": "static void mov(int size, Op *s, Op *d)"}, {"kind": "function", "line": 1241, "name": "arith_mem", "signature": "static void arith_mem(int opc, int size, Op *d, Op *s)"}, {"kind": "function", "line": 1258, "name": "arith_reg", "signature": "static void arith_reg(int opc, int size, Op *d, Op *s)"}, {"kind": "function", "line": 1286, "name": "cvm_push_cmpval", "signature": "static void cvm_push_cmpval(Op *o, int size)"}, {"kind": "function", "line": 1292, "name": "cvm_cmp", "signature": "static void cvm_cmp(int size, Op *o1, Op *o2)"}, {"kind": "function", "line": 1299, "name": "cvm_translate", "signature": "static void cvm_translate(const char *mn, Op *o1, Op *o2)"}, {"kind": "function", "line": 1829, "name": "cvm_prepare_tables", "signature": "static void cvm_prepare_tables(void)"}, {"kind": "function", "line": 1861, "name": "cvm_layout_data", "signature": "static void cvm_layout_data(void)"}, {"kind": "function", "line": 1906, "name": "func_glue", "signature": "static void func_glue(void)"}, {"kind": "function", "line": 1915, "name": "entry_glue", "signature": "static void entry_glue(void)"}, {"kind": "function", "line": 1929, "name": "cvm_encode", "signature": "static void cvm_encode(LineSrc *src)"}, {"kind": "function", "line": 2003, "name": "w32", "signature": "static void w32(unsigned char *p, long v)"}, {"kind": "function", "line": 2010, "name": "w16", "signature": "static void w16(unsigned char *p, long v)"}, {"kind": "function", "line": 2015, "name": "w64_at", "signature": "static void w64_at(unsigned char *p, unsigned long long v)"}, {"kind": "function", "line": 2022, "name": "cvm_write_module", "signature": "static void cvm_write_module(const char *path)"}, {"kind": "function", "line": 2840, "name": "x86_align_up", "signature": "static long x86_align_up(long v, long a)"}, {"kind": "function", "line": 2844, "name": "x8", "signature": "static void x8(int b)"}, {"kind": "function", "line": 2849, "name": "x16", "signature": "static void x16(long v)"}, {"kind": "function", "line": 2855, "name": "x32", "signature": "static void x32(long v)"}, {"kind": "function", "line": 2863, "name": "x64", "signature": "static void x64(unsigned long long v)"}, {"kind": "function", "line": 2871, "name": "xfix32", "signature": "static void xfix32(const char *sym)"}, {"kind": "function", "line": 2879, "name": "emit_rex", "signature": "static void emit_rex(int w, int r, int x, int b)"}, {"kind": "function", "line": 2884, "name": "emit_modrm", "signature": "static void emit_modrm(int mod, int reg, int rm)"}, {"kind": "function", "line": 2888, "name": "emit_sib", "signature": "static void emit_sib(int scale, int index, int base)"}, {"kind": "function", "line": 2892, "name": "x86_ea_rex", "signature": "static void x86_ea_rex(const Op *op, int regfield, int rexw, int force)"}, {"kind": "function", "line": 2900, "name": "x86_ea_modrm", "signature": "static void x86_ea_modrm(const Op *op, int regfield)"}, {"kind": "function", "line": 2953, "name": "x86_rex_reg", "signature": "static void x86_rex_reg(int w, int regfield, int rm)"}, {"kind": "function", "line": 2957, "name": "x86_rex8", "signature": "static void x86_rex8(int regfield, int rm)"}, {"kind": "function", "line": 2964, "name": "ea_mov", "signature": "static void ea_mov(int size, const Op *o, int regfield)"}, {"kind": "function", "line": 2970, "name": "ea_mov_to", "signature": "static void ea_mov_to(int size, const Op *o, int regfield)"}, {"kind": "function", "line": 2976, "name": "ea_alu", "signature": "static void ea_alu(int g1, int size, const Op *o, int regfield, int from_mem)"}, {"kind": "function", "line": 2982, "name": "ea_cmp", "signature": "static void ea_cmp(int size, const Op *o, int regfield, int from_mem)"}, {"kind": "function", "line": 2988, "name": "ea_grp", "signature": "static void ea_grp(int opc, int size, const Op *o, int regfield)"}, {"kind": "function", "line": 2994, "name": "elf_mov", "signature": "static void elf_mov(int size, const Op *s, const Op *d)"}, {"kind": "function", "line": 3054, "name": "elf_movzx", "signature": "static void elf_movzx(const Op *s, const Op *d, int opc, int rexw, int has_0f)"}, {"kind": "function", "line": 3071, "name": "elf_movw", "signature": "static void elf_movw(const Op *s, const Op *d)"}, {"kind": "function", "line": 3106, "name": "elf_lea", "signature": "static void elf_lea(const Op *s, const Op *d)"}, {"kind": "function", "line": 3113, "name": "elf_push", "signature": "static void elf_push(const Op *o)"}, {"kind": "function", "line": 3137, "name": "elf_pop", "signature": "static void elf_pop(const Op *o)"}, {"kind": "function", "line": 3150, "name": "elf_alu", "signature": "static void elf_alu(int g1, int size, const Op *s, const Op *d)"}, {"kind": "function", "line": 3210, "name": "elf_imul", "signature": "static void elf_imul(const Op *s, const Op *d)"}, {"kind": "function", "line": 3239, "name": "elf_imull", "signature": "static void elf_imull(const Op *s, const Op *d)"}, {"kind": "function", "line": 3268, "name": "elf_grp3", "signature": "static void elf_grp3(const Op *o, int ext)"}, {"kind": "function", "line": 3282, "name": "elf_shift_cl", "signature": "static void elf_shift_cl(const Op *s, const Op *d, int ext)"}, {"kind": "function", "line": 3290, "name": "elf_shift_cl32", "signature": "static void elf_shift_cl32(const Op *s, const Op *d, int ext)"}, {"kind": "function", "line": 3298, "name": "elf_testl", "signature": "static void elf_testl(const Op *s, const Op *d)"}, {"kind": "function", "line": 3315, "name": "elf_test", "signature": "static void elf_test(const Op *s, const Op *d)"}, {"kind": "function", "line": 3332, "name": "elf_cmp", "signature": "static void elf_cmp(int size, const Op *s, const Op *d)"}, {"kind": "function", "line": 3397, "name": "elf_set", "signature": "static void elf_set(int cc, const Op *o)"}, {"kind": "function", "line": 3405, "name": "elf_branch", "signature": "static void elf_branch(int opc, const Op *o)"}, {"kind": "function", "line": 3416, "name": "elf_ins", "signature": "static void elf_ins(const char *mn, const Op *o1, const Op *o2)"}, {"kind": "function", "line": 3496, "name": "elf_sym_addr", "signature": "static long elf_sym_addr(const Sym *s)"}, {"kind": "function", "line": 3509, "name": "elf_resolve_fixups", "signature": "static void elf_resolve_fixups(void)"}, {"kind": "function", "line": 3528, "name": "elf_encode_src", "signature": "static void elf_encode_src(LineSrc *src)"}, {"kind": "function", "line": 3584, "name": "elf_layout", "signature": "static void elf_layout(void)"}, {"kind": "function", "line": 3616, "name": "elf_write", "signature": "static void elf_write(const char *path)"}, {"kind": "function", "line": 3734, "name": "elf_build", "signature": "static void elf_build(const char *in_path, const char *out_path)"}, {"doc": "================================================================ CLI * ================================================================", "kind": "function", "line": 3810, "name": "usage", "signature": "static void usage(void)"}, {"kind": "function", "line": 3821, "name": "main", "signature": "int main(int argc, char **argv)"}, {"kind": "macro", "line": 24, "name": "CFG_MAX_SYMBOLS"}, {"kind": "macro", "line": 26, "name": "CFG_MAX_FIXUPS"}, {"kind": "macro", "line": 27, "name": "CFG_FIXUP_INIT"}, {"kind": "macro", "line": 28, "name": "CFG_LINE_MAX"}, {"kind": "macro", "line": 29, "name": "CFG_NAME_MAX"}, {"kind": "macro", "line": 30, "name": "CFG_MAX_NATS"}, {"kind": "macro", "line": 31, "name": "CFG_MAX_ERRORS"}, {"kind": "macro", "line": 32, "name": "CFG_GROW_UNIT"}, {"kind": "macro", "line": 33, "name": "CFG_ABI_BYTES"}, {"kind": "macro", "line": 35, "name": "CFG_STACK_BASE"}, {"kind": "macro", "line": 36, "name": "CFG_XSTACK_DEF"}, {"kind": "macro", "line": 40, "name": "CFG_MAX_ARGS"}, {"kind": "macro", "line": 41, "name": "CFG_REG_LOCALS"}, {"kind": "macro", "line": 43, "name": "CFG_SLOT_FLAGS_A"}, {"kind": "macro", "line": 44, "name": "CFG_SLOT_FLAGS_B"}, {"kind": "macro", "line": 45, "name": "CFG_SLOT_S0"}, {"kind": "macro", "line": 46, "name": "CFG_SLOT_S1"}, {"kind": "macro", "line": 47, "name": "CFG_GSLOT_RSP"}, {"kind": "macro", "line": 49, "name": "CFG_GSLOT_RBP"}, {"kind": "macro", "line": 50, "name": "CFG_GSLOT_ARGS"}, {"kind": "macro", "line": 51, "name": "CFG_GSLOT_RET"}, {"kind": "macro", "line": 52, "name": "CFG_CVM_MAGIC_0"}, {"kind": "macro", "line": 54, "name": "CFG_CVM_MAGIC_1"}, {"kind": "macro", "line": 55, "name": "CFG_CVM_MAGIC_2"}, {"kind": "macro", "line": 56, "name": "CFG_CVM_MAGIC_3"}, {"kind": "macro", "line": 57, "name": "CFG_CVM_VER_MAJ"}, {"kind": "macro", "line": 58, "name": "CFG_CVM_VER_MIN"}, {"kind": "macro", "line": 59, "name": "CFG_CVM_HDR_SIZE"}, {"kind": "macro", "line": 60, "name": "CFG_ELF_PAGE"}, {"kind": "macro", "line": 62, "name": "CFG_ELF_HSIZE"}, {"kind": "macro", "line": 63, "name": "CFG_ELF_PHENTSZ"}, {"kind": "macro", "line": 64, "name": "CFG_ELF_PHNUM"}, {"kind": "macro", "line": 65, "name": "CFG_ELF_SHENTSZ"}, {"kind": "macro", "line": 66, "name": "CFG_ELF_SHNUM"}, {"kind": "macro", "line": 67, "name": "CFG_ELF_SHSTRNDX"}, {"kind": "macro", "line": 68, "name": "CFG_ELF_ET_DYN"}, {"kind": "macro", "line": 69, "name": "CFG_ELF_EM_X8664"}, {"kind": "macro", "line": 70, "name": "CFG_ELF_PF_R"}, {"kind": "macro", "line": 71, "name": "CFG_ELF_PF_W"}, {"kind": "macro", "line": 72, "name": "CFG_ELF_PF_X"}, {"kind": "macro", "line": 73, "name": "CFG_ELF_PT_LOAD"}, {"kind": "macro", "line": 74, "name": "CFG_ELF_SHT_PROGBITS"}, {"kind": "macro", "line": 75, "name": "CFG_ELF_SHT_NOBITS"}, {"kind": "macro", "line": 76, "name": "CFG_ELF_SHT_STRTAB"}, {"kind": "macro", "line": 77, "name": "CFG_ELF_SHF_A"}, {"kind": "macro", "line": 78, "name": "CFG_ELF_SHF_X"}, {"kind": "macro", "line": 79, "name": "CFG_ELF_SHF_W"}, {"kind": "macro", "line": 80, "name": "CFG_ELF_TEXT_BASE"}, {"kind": "macro", "line": 81, "name": "CFG_FMT_CVM"}, {"kind": "macro", "line": 83, "name": "CFG_FMT_ELF"}, {"kind": "macro", "line": 86, "name": "X86_G1_ADD"}, {"kind": "macro", "line": 87, "name": "X86_G1_OR"}, {"kind": "macro", "line": 88, "name": "X86_G1_AND"}, {"kind": "macro", "line": 89, "name": "X86_G1_SUB"}, {"kind": "macro", "line": 90, "name": "X86_G1_XOR"}, {"kind": "macro", "line": 91, "name": "X86_G1_CMP"}, {"kind": "macro", "line": 92, "name": "X86_JCC_JE"}, {"kind": "macro", "line": 94, "name": "X86_JCC_JNE"}, {"kind": "macro", "line": 95, "name": "X86_JCC_JL"}, {"kind": "macro", "line": 96, "name": "X86_JCC_JG"}, {"kind": "macro", "line": 97, "name": "X86_JCC_JLE"}, {"kind": "macro", "line": 98, "name": "X86_JCC_JGE"}, {"kind": "macro", "line": 99, "name": "X86_JCC_JA"}, {"kind": "macro", "line": 100, "name": "X86_JCC_JAE"}, {"kind": "macro", "line": 101, "name": "X86_JCC_JB"}, {"kind": "macro", "line": 102, "name": "X86_JCC_JBE"}, {"kind": "macro", "line": 103, "name": "X86_SET_E"}, {"kind": "macro", "line": 105, "name": "X86_SET_NE"}, {"kind": "macro", "line": 106, "name": "X86_SET_L"}, {"kind": "macro", "line": 107, "name": "X86_SET_G"}, {"kind": "macro", "line": 108, "name": "X86_SET_LE"}, {"kind": "macro", "line": 109, "name": "X86_SET_GE"}, {"kind": "macro", "line": 110, "name": "X86_SET_A"}, {"kind": "macro", "line": 111, "name": "X86_SET_AE"}, {"kind": "macro", "line": 112, "name": "X86_SET_B"}, {"kind": "macro", "line": 113, "name": "X86_SET_BE"}, {"kind": "macro", "line": 114, "name": "X86_SYS_WRITE"}, {"kind": "macro", "line": 116, "name": "X86_SYS_READ"}, {"kind": "macro", "line": 117, "name": "X86_SYS_OPEN"}, {"kind": "macro", "line": 118, "name": "X86_SYS_CLOSE"}, {"kind": "macro", "line": 119, "name": "X86_SYS_LSEEK"}, {"kind": "macro", "line": 120, "name": "X86_SYS_BRK"}, {"kind": "macro", "line": 121, "name": "X86_SYS_EXIT"}, {"kind": "macro", "line": 122, "name": "X86_SYS_EXIT_GROUP"}, {"kind": "macro", "line": 123, "name": "REG_RAX"}, {"kind": "macro", "line": 125, "name": "REG_RCX"}, {"kind": "macro", "line": 126, "name": "REG_RDX"}, {"kind": "macro", "line": 127, "name": "REG_RBX"}, {"kind": "macro", "line": 128, "name": "REG_RSP"}, {"kind": "macro", "line": 129, "name": "REG_RBP"}, {"kind": "macro", "line": 130, "name": "REG_RSI"}, {"kind": "macro", "line": 131, "name": "REG_RDI"}, {"kind": "macro", "line": 132, "name": "SEC_TEXT"}, {"kind": "macro", "line": 134, "name": "SEC_BSS"}, {"kind": "macro", "line": 135, "name": "SEC_DATA"}, {"kind": "macro", "line": 136, "name": "SEC_RODATA"}, {"kind": "macro", "line": 137, "name": "SYM_FUNC"}, {"kind": "macro", "line": 139, "name": "SYM_LABEL"}, {"kind": "macro", "line": 140, "name": "SYM_GLOBAL"}, {"kind": "macro", "line": 141, "name": "SYM_BLOB"}, {"kind": "macro", "line": 142, "name": "K_REG"}, {"kind": "macro", "line": 144, "name": "K_IMM"}, {"kind": "macro", "line": 145, "name": "K_MEM"}, {"kind": "macro", "line": 146, "name": "K_SYM"}, {"kind": "macro", "line": 147, "name": "K_SYM_IMM"}, {"kind": "macro", "line": 148, "name": "OP_NOP"}, {"kind": "macro", "line": 150, "name": "OP_PUSH_IMM64"}, {"kind": "macro", "line": 151, "name": "OP_PUSH_IMM32"}, {"kind": "macro", "line": 152, "name": "OP_PUSH_IMM8"}, {"kind": "macro", "line": 153, "name": "OP_PUSH_ZERO"}, {"kind": "macro", "line": 154, "name": "OP_PUSH_ONE"}, {"kind": "macro", "line": 155, "name": "OP_PUSH_LOCAL"}, {"kind": "macro", "line": 156, "name": "OP_STORE_LOCAL"}, {"kind": "macro", "line": 157, "name": "OP_PUSH_GLOBAL"}, {"kind": "macro", "line": 158, "name": "OP_STORE_GLOBAL"}, {"kind": "macro", "line": 159, "name": "OP_ADD"}, {"kind": "macro", "line": 160, "name": "OP_SUB"}, {"kind": "macro", "line": 161, "name": "OP_MUL"}, {"kind": "macro", "line": 162, "name": "OP_DIV"}, {"kind": "macro", "line": 163, "name": "OP_MOD"}, {"kind": "macro", "line": 164, "name": "OP_NEG"}, {"kind": "macro", "line": 165, "name": "OP_AND"}, {"kind": "macro", "line": 166, "name": "OP_OR"}, {"kind": "macro", "line": 167, "name": "OP_XOR"}, {"kind": "macro", "line": 168, "name": "OP_NOT"}, {"kind": "macro", "line": 169, "name": "OP_SHL"}, {"kind": "macro", "line": 170, "name": "OP_SHR"}, {"kind": "macro", "line": 171, "name": "OP_USHR"}, {"kind": "macro", "line": 172, "name": "OP_CMP_EQ"}, {"kind": "macro", "line": 173, "name": "OP_CMP_NE"}, {"kind": "macro", "line": 174, "name": "OP_CMP_LT"}, {"kind": "macro", "line": 175, "name": "OP_CMP_LE"}, {"kind": "macro", "line": 176, "name": "OP_CMP_GT"}, {"kind": "macro", "line": 177, "name": "OP_CMP_GE"}, {"kind": "macro", "line": 178, "name": "OP_LNOT"}, {"kind": "macro", "line": 179, "name": "OP_CMP_ULT"}, {"kind": "macro", "line": 180, "name": "OP_CMP_ULE"}, {"kind": "macro", "line": 181, "name": "OP_CMP_UGT"}, {"kind": "macro", "line": 182, "name": "OP_CMP_UGE"}, {"kind": "macro", "line": 183, "name": "OP_JMP"}, {"kind": "macro", "line": 184, "name": "OP_JZ"}, {"kind": "macro", "line": 185, "name": "OP_JNZ"}, {"kind": "macro", "line": 186, "name": "OP_CALL"}, {"kind": "macro", "line": 187, "name": "OP_RET"}, {"kind": "macro", "line": 188, "name": "OP_CALL_NATIVE"}, {"kind": "macro", "line": 189, "name": "OP_LOAD8"}, {"kind": "macro", "line": 190, "name": "OP_LOAD16"}, {"kind": "macro", "line": 191, "name": "OP_LOAD32"}, {"kind": "macro", "line": 192, "name": "OP_LOAD64"}, {"kind": "macro", "line": 193, "name": "OP_STORE8"}, {"kind": "macro", "line": 194, "name": "OP_STORE16"}, {"kind": "macro", "line": 195, "name": "OP_STORE32"}, {"kind": "macro", "line": 196, "name": "OP_STORE64"}, {"kind": "macro", "line": 197, "name": "OP_LEA_LOCAL"}, {"kind": "macro", "line": 198, "name": "OP_LEA_GLOBAL"}, {"kind": "macro", "line": 199, "name": "OP_ALLOC"}, {"kind": "macro", "line": 200, "name": "OP_FREE"}, {"kind": "macro", "line": 201, "name": "OP_LEA_DATA"}, {"kind": "macro", "line": 202, "name": "OP_SYSCALL"}, {"kind": "macro", "line": 203, "name": "OP_HALT"}]}, {"id": "test/argv.c", "kind": "module", "label": "argv.c", "language": "c", "sha256": "f01eba8196bd2124", "symbol_count": 1, "symbols": [{"kind": "function", "line": 2, "name": "main", "signature": "int main(int argc, char **argv)"}]}, {"id": "test/argv.s", "kind": "module", "label": "argv.s", "language": "s", "sha256": "72a261431cbd6125", "symbol_count": 2, "symbols": [{"kind": "function", "line": 3, "name": "main"}, {"kind": "function", "line": 98, "name": "_start"}]}, {"id": "test/chain.c", "kind": "module", "label": "chain.c", "language": "c", "sha256": "e6a6e5c45015164e", "symbol_count": 2, "symbols": [{"kind": "function", "line": 1, "name": "fib", "signature": "int fib(int n)"}, {"kind": "function", "line": 5, "name": "main", "signature": "int main(void)"}]}, {"id": "test/fib.s", "kind": "module", "label": "fib.s", "language": "s", "sha256": "606c1b30ade10a75", "symbol_count": 3, "symbols": [{"kind": "function", "line": 3, "name": "fib"}, {"kind": "function", "line": 61, "name": "main"}, {"kind": "function", "line": 82, "name": "_start"}]}, {"id": "test/fib2.s", "kind": "module", "label": "fib2.s", "language": "s", "sha256": "bf60f78d21b1e1d5", "symbol_count": 3, "symbols": [{"kind": "function", "line": 3, "name": "fib"}, {"kind": "function", "line": 61, "name": "main"}, {"kind": "function", "line": 82, "name": "_start"}]}, {"id": "test/fib3.s", "kind": "module", "label": "fib3.s", "language": "s", "sha256": "b076a9de6faf74f9", "symbol_count": 3, "symbols": [{"kind": "function", "line": 3, "name": "fib"}, {"kind": "function", "line": 61, "name": "main"}, {"kind": "function", "line": 82, "name": "_start"}]}, {"id": "test/fmt.c", "kind": "module", "label": "fmt.c", "language": "c", "sha256": "129b72810ea4c9ad", "symbol_count": 1, "symbols": [{"kind": "function", "line": 2, "name": "main", "signature": "int main(void)"}]}, {"id": "test/globals.c", "kind": "module", "label": "globals.c", "language": "c", "sha256": "1bfa71aa4e4f6913", "symbol_count": 1, "symbols": [{"kind": "function", "line": 10, "name": "main", "signature": "int main(void)"}]}, {"id": "test/hello.c", "kind": "module", "label": "hello.c", "language": "c", "sha256": "66774237346ee0bf", "symbol_count": 1, "symbols": [{"kind": "function", "line": 1, "name": "main", "signature": "int main(void)"}]}, {"id": "test/loop.s", "kind": "module", "label": "loop.s", "language": "s", "sha256": "e7ed86593fb06b11", "symbol_count": 2, "symbols": [{"kind": "function", "line": 3, "name": "main"}, {"kind": "function", "line": 21, "name": "_start"}]}, {"id": "test/movslq.s", "kind": "module", "label": "movslq.s", "language": "s", "sha256": "22f683469a3ffed5", "symbol_count": 2, "symbols": [{"kind": "function", "line": 3, "name": "main"}, {"kind": "function", "line": 14, "name": "_start"}]}, {"doc": "Mutation testing for ld: every mutant in MUTATIONS is injected into a private copy of ld.c, rebuilt, and run against the BDD suite. A mutant that survives (suite fully green) exposes a test gap.  Mutation format: \"name | sed -i expression | file\" name     unique mutant id expr     sed program applied once (first match) file     target: ld.c", "id": "test/mutate.sh", "kind": "module", "label": "mutate.sh", "language": "sh", "sha256": "502fa07a13affa43", "symbol_count": 0, "symbols": []}, {"doc": "BDD suite for the ld tool (miniGCC asm -> CVM / ELF). Every fixture is assembled to BOTH formats; the .cvm runs on the cvm2 interpreter and the .elf runs natively on Linux. Stdout and exit codes are diffed against tests/<name>[.<fmt>].expect{,.exit}.  Layout of expectation files (per fixture name N, format F in cvm|elf): tests/N.expect            default stdout tests/N.F.expect          format-specific stdout override tests/N.expect.exit       default exit code tests/N.F.expect.exit     format-specific exit code override  Tool locations (override with env): LD_TOOL  path to the ld binary (default: build from ld.c) CVM2     path to the cvm2 interpreter MINIGCC  path to the miniGCC compiler binary", "id": "test/run_tests.sh", "kind": "module", "label": "run_tests.sh", "language": "sh", "sha256": "2aed7033d986e70d", "symbol_count": 6, "symbols": [{"doc": "run_prog <outfile> <cmd...> : run with a timeout; on timeout the program is treated as hung (exit code 124, empty output).", "kind": "function", "line": 40, "name": "run_prog"}, {"kind": "function", "line": 47, "name": "note_fail"}, {"doc": "check <name> <fmt> <actual_stdout_file> <actual_exit>", "kind": "function", "line": 53, "name": "check"}, {"doc": "run_fixture <name> <extra args...>", "kind": "function", "line": 78, "name": "run_fixture"}, {"doc": "run_chain <name> [args...] : compile tests/<name>.c with miniGCC, assemble the result to both formats and check each against tests/<name>.expect.", "kind": "function", "line": 107, "name": "run_chain"}, {"kind": "function", "line": 139, "name": "elf_structure_check"}]}, {"id": "test/start.s", "kind": "module", "label": "start.s", "language": "s", "sha256": "90b0c4b82cc85738", "symbol_count": 2, "symbols": [{"kind": "function", "line": 3, "name": "main"}, {"kind": "function", "line": 8, "name": "_start"}]}, {"id": "test/t1.c", "kind": "module", "label": "t1.c", "language": "c", "sha256": "37b7295fa10d8dd7", "symbol_count": 1, "symbols": [{"kind": "function", "line": 1, "name": "main", "signature": "int main(void)"}]}, {"id": "test/t1.s", "kind": "module", "label": "t1.s", "language": "s", "sha256": "07984fb30bc093b1", "symbol_count": 2, "symbols": [{"kind": "function", "line": 3, "name": "main"}, {"kind": "function", "line": 14, "name": "_start"}]}, {"id": "test/w1.c", "kind": "module", "label": "w1.c", "language": "c", "sha256": "0414e3d9dfc8e58c", "symbol_count": 1, "symbols": [{"kind": "function", "line": 2, "name": "main", "signature": "int main(void)"}]}, {"id": "test/w1.s", "kind": "module", "label": "w1.s", "language": "s", "sha256": "01e8c6ad821a16d2", "symbol_count": 2, "symbols": [{"kind": "function", "line": 3, "name": "main"}, {"kind": "function", "line": 37, "name": "_start"}]}], "type": "CodePropertyGraph", "version": "1.0"}
+{"@context": "https://schema.org", "analysis": {"communities": [], "god_nodes": [{"node_id": "ld.c", "score": 30.0}, {"node_id": "test/run_tests.sh", "score": 0.6}, {"node_id": "test/fib.s", "score": 0.3}, {"node_id": "test/fib2.s", "score": 0.3}, {"node_id": "test/fib3.s", "score": 0.3}, {"node_id": "test/globals.c", "score": 0.3}, {"node_id": "test/argv.c", "score": 0.2}, {"node_id": "test/argv.s", "score": 0.2}, {"node_id": "test/chain.c", "score": 0.2}, {"node_id": "test/fmt.c", "score": 0.2}], "surprising_connections": []}, "edges": [{"confidence": "EXTRACTED", "relation": "imports", "source": "ld.c", "target": "stdio.h"}, {"confidence": "EXTRACTED", "relation": "imports", "source": "ld.c", "target": "stdlib.h"}, {"confidence": "EXTRACTED", "relation": "imports", "source": "ld.c", "target": "string.h"}], "generator": "readmenator", "metadata": {"edge_count": 3, "file_count": 21, "language_count": 4, "symbol_count": 340}, "nodes": [{"doc": "_*_ coding: utf8 _*_", "id": "app.py", "kind": "module", "label": "app.py", "language": "py", "sha256": "57b21bdb023585b8", "symbol_count": 0, "symbols": []}, {"id": "install.sh", "kind": "module", "label": "install.sh", "language": "sh", "sha256": "c907d80fd6734993", "symbol_count": 0, "symbols": []}, {"id": "ld.c", "kind": "module", "label": "ld.c", "language": "c", "sha256": "5c0e05f61065a877", "symbol_count": 300, "symbols": [{"kind": "struct", "line": 209, "name": "Sym"}, {"kind": "struct", "line": 221, "name": "Op"}, {"kind": "struct", "line": 236, "name": "Fixup"}, {"kind": "struct", "line": 241, "name": "LineSrc"}, {"kind": "struct", "line": 249, "name": "Func"}, {"kind": "struct", "line": 256, "name": "GVar"}, {"kind": "struct", "line": 263, "name": "Blob"}, {"kind": "struct", "line": 270, "name": "Nat"}, {"kind": "struct", "line": 274, "name": "Label"}, {"doc": "================================================================ Diagnostics and memory * ================================================================", "kind": "function", "line": 339, "name": "die", "signature": "static void die(const char *msg)"}, {"kind": "function", "line": 348, "name": "breserve", "signature": "static void breserve(unsigned char **p, long *cap, long need)"}, {"doc": "Grow the fixup table so that one more entry fits. The table is heap allocated rather than statically reserved: a worst-case static array would * dominate the image and put it out of reach of hosts with a small heap.", "kind": "function", "line": 368, "name": "fixup_reserve", "signature": "static void fixup_reserve(void)"}, {"kind": "function", "line": 383, "name": "creserve", "signature": "static void creserve(char **p, long *cap, long need)"}, {"kind": "function", "line": 399, "name": "parse_num", "signature": "static long parse_num(const char *s)"}, {"kind": "function", "line": 431, "name": "trim", "signature": "static char *trim(char *s)"}, {"doc": "Truncate at the first '#' outside a double-quoted string: '#' is the * comment character, but a string literal may carry one (\"#\").", "kind": "function", "line": 442, "name": "strip_comment", "signature": "static void strip_comment(char *s)"}, {"kind": "function", "line": 456, "name": "name_copy", "signature": "static void name_copy(char *dst, const char *src)"}, {"kind": "function", "line": 463, "name": "split_word", "signature": "static void split_word(char *line, char *word, long wcap, char **rest)"}, {"kind": "function", "line": 476, "name": "hexval", "signature": "static int hexval(char c)"}, {"kind": "function", "line": 483, "name": "find_sym", "signature": "static int find_sym(const char *name)"}, {"kind": "function", "line": 489, "name": "add_sym", "signature": "static int add_sym(const char *name, int kind, int sec)"}, {"kind": "function", "line": 525, "name": "parse_reg", "signature": "static int parse_reg(const char *s, int *reg, int *sz)"}, {"kind": "function", "line": 537, "name": "parse_mem", "signature": "static void parse_mem(char *s, Op *op)"}, {"kind": "function", "line": 590, "name": "parse_operand", "signature": "static void parse_operand(char *s, Op *op)"}, {"kind": "function", "line": 621, "name": "split_operands", "signature": "static int split_operands(char *rest, char *o1, char *o2)"}, {"kind": "function", "line": 646, "name": "ls_open_file", "signature": "static void ls_open_file(LineSrc *s, const char *path)"}, {"kind": "function", "line": 658, "name": "ls_open_mem", "signature": "static void ls_open_mem(LineSrc *s, const char *text)"}, {"kind": "function", "line": 666, "name": "ls_getline", "signature": "static int ls_getline(LineSrc *s, char *buf, size_t n)"}, {"kind": "function", "line": 682, "name": "ls_close", "signature": "static void ls_close(LineSrc *s)"}, {"doc": "================================================================ Data region helpers * ================================================================", "kind": "function", "line": 690, "name": "data_put", "signature": "static void data_put(unsigned char b)"}, {"kind": "function", "line": 695, "name": "data_fill", "signature": "static void data_fill(long n, unsigned char b)"}, {"kind": "function", "line": 702, "name": "data_align", "signature": "static void data_align(long a)"}, {"kind": "function", "line": 706, "name": "blob_put", "signature": "static void blob_put(unsigned char b)"}, {"kind": "function", "line": 711, "name": "blob_append_str", "signature": "static void blob_append_str(char *s)"}, {"kind": "function", "line": 750, "name": "set_section", "signature": "static int set_section(char *line)"}, {"doc": "================================================================ Shared scan pass * ================================================================", "kind": "function", "line": 773, "name": "scan_directive", "signature": "static void scan_directive(char *line, int *section, int pending_global,\n                        ..."}, {"kind": "function", "line": 869, "name": "scan_src", "signature": "static void scan_src(LineSrc *src, int from_stubs)"}, {"doc": "================================================================ CVM backend * ================================================================", "kind": "function", "line": 940, "name": "cvm_find_func", "signature": "static int cvm_find_func(const char *name)"}, {"kind": "function", "line": 946, "name": "cvm_find_global", "signature": "static int cvm_find_global(const char *name)"}, {"kind": "function", "line": 952, "name": "cvm_find_blob", "signature": "static int cvm_find_blob(const char *name)"}, {"kind": "function", "line": 958, "name": "cvm_find_nat", "signature": "static int cvm_find_nat(const char *name)"}, {"kind": "function", "line": 964, "name": "cvm_add_nat", "signature": "static int cvm_add_nat(const char *name)"}, {"kind": "function", "line": 973, "name": "e1", "signature": "static void e1(int b)"}, {"kind": "function", "line": 978, "name": "e4", "signature": "static void e4(long v)"}, {"kind": "function", "line": 986, "name": "e8", "signature": "static void e8(unsigned long long v)"}, {"kind": "function", "line": 994, "name": "eimm", "signature": "static void eimm(long long v)"}, {"kind": "function", "line": 1007, "name": "epush_local", "signature": "static void epush_local(int slot)"}, {"kind": "function", "line": 1009, "name": "estore_local", "signature": "static void estore_local(int slot)"}, {"kind": "function", "line": 1010, "name": "epush_global", "signature": "static void epush_global(int slot)"}, {"kind": "function", "line": 1011, "name": "estore_global", "signature": "static void estore_global(int slot)"}, {"kind": "function", "line": 1012, "name": "cvm_slot", "signature": "static int cvm_slot(int std)"}, {"kind": "function", "line": 1019, "name": "epush_reg", "signature": "static void epush_reg(int r)"}, {"kind": "function", "line": 1025, "name": "estore_reg", "signature": "static void estore_reg(int r)"}, {"kind": "function", "line": 1031, "name": "pool_add", "signature": "static long pool_add(const char *s)"}, {"kind": "function", "line": 1040, "name": "cvm_fixup_add", "signature": "static void cvm_fixup_add(long pos, const char *name)"}, {"kind": "function", "line": 1047, "name": "ejmp", "signature": "static void ejmp(const char *lbl)"}, {"kind": "function", "line": 1049, "name": "ejz", "signature": "static void ejz(const char *lbl)"}, {"kind": "function", "line": 1050, "name": "ejnz", "signature": "static void ejnz(const char *lbl)"}, {"kind": "function", "line": 1051, "name": "find_label", "signature": "static long find_label(const char *name)"}, {"kind": "function", "line": 1057, "name": "add_label", "signature": "static void add_label(const char *name, long off)"}, {"kind": "function", "line": 1065, "name": "resolve_fixups", "signature": "static void resolve_fixups(void)"}, {"kind": "function", "line": 1084, "name": "push_mask32", "signature": "static void push_mask32(void)"}, {"kind": "function", "line": 1086, "name": "push_mask8", "signature": "static void push_mask8(void)"}, {"kind": "function", "line": 1087, "name": "push_mask16", "signature": "static void push_mask16(void)"}, {"kind": "function", "line": 1088, "name": "elea_mem", "signature": "static void elea_mem(Op *op)"}, {"kind": "function", "line": 1103, "name": "elea_operand", "signature": "static void elea_operand(Op *op)"}, {"kind": "function", "line": 1137, "name": "epush_value", "signature": "static void epush_value(Op *op, int size)"}, {"kind": "function", "line": 1163, "name": "signext8", "signature": "static void signext8(void)"}, {"kind": "function", "line": 1169, "name": "signext32", "signature": "static void signext32(void)"}, {"kind": "function", "line": 1175, "name": "signext16", "signature": "static void signext16(void)"}, {"kind": "function", "line": 1181, "name": "mov", "signature": "static void mov(int size, Op *s, Op *d)"}, {"kind": "function", "line": 1241, "name": "arith_mem", "signature": "static void arith_mem(int opc, int size, Op *d, Op *s)"}, {"kind": "function", "line": 1258, "name": "arith_reg", "signature": "static void arith_reg(int opc, int size, Op *d, Op *s)"}, {"kind": "function", "line": 1286, "name": "cvm_push_cmpval", "signature": "static void cvm_push_cmpval(Op *o, int size)"}, {"kind": "function", "line": 1292, "name": "cvm_cmp", "signature": "static void cvm_cmp(int size, Op *o1, Op *o2)"}, {"kind": "function", "line": 1299, "name": "cvm_translate", "signature": "static void cvm_translate(const char *mn, Op *o1, Op *o2)"}, {"kind": "function", "line": 1829, "name": "cvm_prepare_tables", "signature": "static void cvm_prepare_tables(void)"}, {"kind": "function", "line": 1861, "name": "cvm_layout_data", "signature": "static void cvm_layout_data(void)"}, {"kind": "function", "line": 1906, "name": "func_glue", "signature": "static void func_glue(void)"}, {"kind": "function", "line": 1915, "name": "entry_glue", "signature": "static void entry_glue(void)"}, {"kind": "function", "line": 1929, "name": "cvm_encode", "signature": "static void cvm_encode(LineSrc *src)"}, {"kind": "function", "line": 2003, "name": "w32", "signature": "static void w32(unsigned char *p, long v)"}, {"kind": "function", "line": 2010, "name": "w16", "signature": "static void w16(unsigned char *p, long v)"}, {"kind": "function", "line": 2015, "name": "w64_at", "signature": "static void w64_at(unsigned char *p, unsigned long long v)"}, {"kind": "function", "line": 2022, "name": "cvm_write_module", "signature": "static void cvm_write_module(const char *path)"}, {"kind": "function", "line": 2860, "name": "x86_align_up", "signature": "static long x86_align_up(long v, long a)"}, {"kind": "function", "line": 2864, "name": "x8", "signature": "static void x8(int b)"}, {"kind": "function", "line": 2869, "name": "x16", "signature": "static void x16(long v)"}, {"kind": "function", "line": 2875, "name": "x32", "signature": "static void x32(long v)"}, {"kind": "function", "line": 2883, "name": "x64", "signature": "static void x64(unsigned long long v)"}, {"kind": "function", "line": 2891, "name": "xfix32", "signature": "static void xfix32(const char *sym)"}, {"kind": "function", "line": 2899, "name": "emit_rex", "signature": "static void emit_rex(int w, int r, int x, int b)"}, {"kind": "function", "line": 2904, "name": "emit_modrm", "signature": "static void emit_modrm(int mod, int reg, int rm)"}, {"kind": "function", "line": 2908, "name": "emit_sib", "signature": "static void emit_sib(int scale, int index, int base)"}, {"kind": "function", "line": 2912, "name": "x86_ea_rex", "signature": "static void x86_ea_rex(const Op *op, int regfield, int rexw, int force)"}, {"kind": "function", "line": 2920, "name": "x86_ea_modrm", "signature": "static void x86_ea_modrm(const Op *op, int regfield)"}, {"kind": "function", "line": 2973, "name": "x86_rex_reg", "signature": "static void x86_rex_reg(int w, int regfield, int rm)"}, {"kind": "function", "line": 2977, "name": "x86_rex8", "signature": "static void x86_rex8(int regfield, int rm)"}, {"kind": "function", "line": 2984, "name": "ea_mov", "signature": "static void ea_mov(int size, const Op *o, int regfield)"}, {"kind": "function", "line": 2990, "name": "ea_mov_to", "signature": "static void ea_mov_to(int size, const Op *o, int regfield)"}, {"kind": "function", "line": 2996, "name": "ea_alu", "signature": "static void ea_alu(int g1, int size, const Op *o, int regfield, int from_mem)"}, {"kind": "function", "line": 3002, "name": "ea_cmp", "signature": "static void ea_cmp(int size, const Op *o, int regfield, int from_mem)"}, {"kind": "function", "line": 3008, "name": "ea_grp", "signature": "static void ea_grp(int opc, int size, const Op *o, int regfield)"}, {"kind": "function", "line": 3014, "name": "elf_mov", "signature": "static void elf_mov(int size, const Op *s, const Op *d)"}, {"kind": "function", "line": 3074, "name": "elf_movzx", "signature": "static void elf_movzx(const Op *s, const Op *d, int opc, int rexw, int has_0f)"}, {"kind": "function", "line": 3091, "name": "elf_movw", "signature": "static void elf_movw(const Op *s, const Op *d)"}, {"kind": "function", "line": 3126, "name": "elf_lea", "signature": "static void elf_lea(const Op *s, const Op *d)"}, {"kind": "function", "line": 3133, "name": "elf_push", "signature": "static void elf_push(const Op *o)"}, {"kind": "function", "line": 3157, "name": "elf_pop", "signature": "static void elf_pop(const Op *o)"}, {"kind": "function", "line": 3170, "name": "elf_alu", "signature": "static void elf_alu(int g1, int size, const Op *s, const Op *d)"}, {"kind": "function", "line": 3230, "name": "elf_imul", "signature": "static void elf_imul(const Op *s, const Op *d)"}, {"kind": "function", "line": 3259, "name": "elf_imull", "signature": "static void elf_imull(const Op *s, const Op *d)"}, {"kind": "function", "line": 3288, "name": "elf_grp3", "signature": "static void elf_grp3(const Op *o, int ext)"}, {"kind": "function", "line": 3302, "name": "elf_shift_cl", "signature": "static void elf_shift_cl(const Op *s, const Op *d, int ext)"}, {"kind": "function", "line": 3310, "name": "elf_shift_cl32", "signature": "static void elf_shift_cl32(const Op *s, const Op *d, int ext)"}, {"kind": "function", "line": 3318, "name": "elf_testl", "signature": "static void elf_testl(const Op *s, const Op *d)"}, {"kind": "function", "line": 3335, "name": "elf_test", "signature": "static void elf_test(const Op *s, const Op *d)"}, {"kind": "function", "line": 3352, "name": "elf_cmp", "signature": "static void elf_cmp(int size, const Op *s, const Op *d)"}, {"kind": "function", "line": 3417, "name": "elf_set", "signature": "static void elf_set(int cc, const Op *o)"}, {"kind": "function", "line": 3425, "name": "elf_branch", "signature": "static void elf_branch(int opc, const Op *o)"}, {"kind": "function", "line": 3436, "name": "elf_ins", "signature": "static void elf_ins(const char *mn, const Op *o1, const Op *o2)"}, {"kind": "function", "line": 3516, "name": "elf_sym_addr", "signature": "static long elf_sym_addr(const Sym *s)"}, {"kind": "function", "line": 3529, "name": "elf_resolve_fixups", "signature": "static void elf_resolve_fixups(void)"}, {"kind": "function", "line": 3548, "name": "elf_encode_src", "signature": "static void elf_encode_src(LineSrc *src)"}, {"kind": "function", "line": 3604, "name": "elf_layout", "signature": "static void elf_layout(void)"}, {"kind": "function", "line": 3636, "name": "elf_write", "signature": "static void elf_write(const char *path)"}, {"kind": "function", "line": 3754, "name": "elf_build", "signature": "static void elf_build(const char *in_path, const char *out_path)"}, {"doc": "================================================================ CLI * ================================================================", "kind": "function", "line": 3830, "name": "usage", "signature": "static void usage(void)"}, {"kind": "function", "line": 3841, "name": "main", "signature": "int main(int argc, char **argv)"}, {"kind": "function", "line": 341, "name": "fprintf", "signature": "fprintf(stderr, \"ld: %s:%ld: %s\\n\", cur_file, cur_line, msg);"}, {"kind": "function", "line": 345, "name": "exit", "signature": "exit(1);"}, {"kind": "function", "line": 460, "name": "memcpy", "signature": "memcpy(dst, src, (size_t)n);"}, {"kind": "function", "line": 495, "name": "memset", "signature": "memset(&syms[i], 0, sizeof(syms[i]));"}, {"kind": "function", "line": 636, "name": "strncpy", "signature": "strncpy(o1, trim(rest), CFG_LINE_MAX - 1);"}, {"kind": "function", "line": 1798, "name": "sprintf", "signature": "sprintf(l1, \"..S%lda\", synth_n);"}, {"kind": "function", "line": 2059, "name": "fwrite", "signature": "fwrite(hdr, 1, CFG_CVM_HDR_SIZE, f);"}, {"kind": "function", "line": 2090, "name": "fputc", "signature": "fputc((int)(z - 1), f);"}, {"kind": "function", "line": 2102, "name": "fclose", "signature": "fclose(f);"}, {"kind": "function", "line": 2103, "name": "free", "signature": "free(func_name_off);"}, {"kind": "function", "line": 3877, "name": "strncat", "signature": "strncat(out, ext, CFG_NAME_MAX - strlen(out) - 1);"}, {"kind": "macro", "line": 24, "name": "CFG_MAX_SYMBOLS", "signature": "#define CFG_MAX_SYMBOLS"}, {"kind": "macro", "line": 26, "name": "CFG_MAX_FIXUPS", "signature": "#define CFG_MAX_FIXUPS"}, {"kind": "macro", "line": 27, "name": "CFG_FIXUP_INIT", "signature": "#define CFG_FIXUP_INIT"}, {"kind": "macro", "line": 28, "name": "CFG_LINE_MAX", "signature": "#define CFG_LINE_MAX"}, {"kind": "macro", "line": 29, "name": "CFG_NAME_MAX", "signature": "#define CFG_NAME_MAX"}, {"kind": "macro", "line": 30, "name": "CFG_MAX_NATS", "signature": "#define CFG_MAX_NATS"}, {"kind": "macro", "line": 31, "name": "CFG_MAX_ERRORS", "signature": "#define CFG_MAX_ERRORS"}, {"kind": "macro", "line": 32, "name": "CFG_GROW_UNIT", "signature": "#define CFG_GROW_UNIT"}, {"kind": "macro", "line": 33, "name": "CFG_ABI_BYTES", "signature": "#define CFG_ABI_BYTES"}, {"kind": "macro", "line": 35, "name": "CFG_STACK_BASE", "signature": "#define CFG_STACK_BASE"}, {"kind": "macro", "line": 36, "name": "CFG_XSTACK_DEF", "signature": "#define CFG_XSTACK_DEF"}, {"kind": "macro", "line": 40, "name": "CFG_MAX_ARGS", "signature": "#define CFG_MAX_ARGS"}, {"kind": "macro", "line": 41, "name": "CFG_REG_LOCALS", "signature": "#define CFG_REG_LOCALS"}, {"kind": "macro", "line": 43, "name": "CFG_SLOT_FLAGS_A", "signature": "#define CFG_SLOT_FLAGS_A"}, {"kind": "macro", "line": 44, "name": "CFG_SLOT_FLAGS_B", "signature": "#define CFG_SLOT_FLAGS_B"}, {"kind": "macro", "line": 45, "name": "CFG_SLOT_S0", "signature": "#define CFG_SLOT_S0"}, {"kind": "macro", "line": 46, "name": "CFG_SLOT_S1", "signature": "#define CFG_SLOT_S1"}, {"kind": "macro", "line": 47, "name": "CFG_GSLOT_RSP", "signature": "#define CFG_GSLOT_RSP"}, {"kind": "macro", "line": 49, "name": "CFG_GSLOT_RBP", "signature": "#define CFG_GSLOT_RBP"}, {"kind": "macro", "line": 50, "name": "CFG_GSLOT_ARGS", "signature": "#define CFG_GSLOT_ARGS"}, {"kind": "macro", "line": 51, "name": "CFG_GSLOT_RET", "signature": "#define CFG_GSLOT_RET"}, {"kind": "macro", "line": 52, "name": "CFG_CVM_MAGIC_0", "signature": "#define CFG_CVM_MAGIC_0"}, {"kind": "macro", "line": 54, "name": "CFG_CVM_MAGIC_1", "signature": "#define CFG_CVM_MAGIC_1"}, {"kind": "macro", "line": 55, "name": "CFG_CVM_MAGIC_2", "signature": "#define CFG_CVM_MAGIC_2"}, {"kind": "macro", "line": 56, "name": "CFG_CVM_MAGIC_3", "signature": "#define CFG_CVM_MAGIC_3"}, {"kind": "macro", "line": 57, "name": "CFG_CVM_VER_MAJ", "signature": "#define CFG_CVM_VER_MAJ"}, {"kind": "macro", "line": 58, "name": "CFG_CVM_VER_MIN", "signature": "#define CFG_CVM_VER_MIN"}, {"kind": "macro", "line": 59, "name": "CFG_CVM_HDR_SIZE", "signature": "#define CFG_CVM_HDR_SIZE"}, {"kind": "macro", "line": 60, "name": "CFG_ELF_PAGE", "signature": "#define CFG_ELF_PAGE"}, {"kind": "macro", "line": 62, "name": "CFG_ELF_HSIZE", "signature": "#define CFG_ELF_HSIZE"}, {"kind": "macro", "line": 63, "name": "CFG_ELF_PHENTSZ", "signature": "#define CFG_ELF_PHENTSZ"}, {"kind": "macro", "line": 64, "name": "CFG_ELF_PHNUM", "signature": "#define CFG_ELF_PHNUM"}, {"kind": "macro", "line": 65, "name": "CFG_ELF_SHENTSZ", "signature": "#define CFG_ELF_SHENTSZ"}, {"kind": "macro", "line": 66, "name": "CFG_ELF_SHNUM", "signature": "#define CFG_ELF_SHNUM"}, {"kind": "macro", "line": 67, "name": "CFG_ELF_SHSTRNDX", "signature": "#define CFG_ELF_SHSTRNDX"}, {"kind": "macro", "line": 68, "name": "CFG_ELF_ET_DYN", "signature": "#define CFG_ELF_ET_DYN"}, {"kind": "macro", "line": 69, "name": "CFG_ELF_EM_X8664", "signature": "#define CFG_ELF_EM_X8664"}, {"kind": "macro", "line": 70, "name": "CFG_ELF_PF_R", "signature": "#define CFG_ELF_PF_R"}, {"kind": "macro", "line": 71, "name": "CFG_ELF_PF_W", "signature": "#define CFG_ELF_PF_W"}, {"kind": "macro", "line": 72, "name": "CFG_ELF_PF_X", "signature": "#define CFG_ELF_PF_X"}, {"kind": "macro", "line": 73, "name": "CFG_ELF_PT_LOAD", "signature": "#define CFG_ELF_PT_LOAD"}, {"kind": "macro", "line": 74, "name": "CFG_ELF_SHT_PROGBITS", "signature": "#define CFG_ELF_SHT_PROGBITS"}, {"kind": "macro", "line": 75, "name": "CFG_ELF_SHT_NOBITS", "signature": "#define CFG_ELF_SHT_NOBITS"}, {"kind": "macro", "line": 76, "name": "CFG_ELF_SHT_STRTAB", "signature": "#define CFG_ELF_SHT_STRTAB"}, {"kind": "macro", "line": 77, "name": "CFG_ELF_SHF_A", "signature": "#define CFG_ELF_SHF_A"}, {"kind": "macro", "line": 78, "name": "CFG_ELF_SHF_X", "signature": "#define CFG_ELF_SHF_X"}, {"kind": "macro", "line": 79, "name": "CFG_ELF_SHF_W", "signature": "#define CFG_ELF_SHF_W"}, {"kind": "macro", "line": 80, "name": "CFG_ELF_TEXT_BASE", "signature": "#define CFG_ELF_TEXT_BASE"}, {"kind": "macro", "line": 81, "name": "CFG_FMT_CVM", "signature": "#define CFG_FMT_CVM"}, {"kind": "macro", "line": 83, "name": "CFG_FMT_ELF", "signature": "#define CFG_FMT_ELF"}, {"kind": "macro", "line": 86, "name": "X86_G1_ADD", "signature": "#define X86_G1_ADD"}, {"kind": "macro", "line": 87, "name": "X86_G1_OR", "signature": "#define X86_G1_OR"}, {"kind": "macro", "line": 88, "name": "X86_G1_AND", "signature": "#define X86_G1_AND"}, {"kind": "macro", "line": 89, "name": "X86_G1_SUB", "signature": "#define X86_G1_SUB"}, {"kind": "macro", "line": 90, "name": "X86_G1_XOR", "signature": "#define X86_G1_XOR"}, {"kind": "macro", "line": 91, "name": "X86_G1_CMP", "signature": "#define X86_G1_CMP"}, {"kind": "macro", "line": 92, "name": "X86_JCC_JE", "signature": "#define X86_JCC_JE"}, {"kind": "macro", "line": 94, "name": "X86_JCC_JNE", "signature": "#define X86_JCC_JNE"}, {"kind": "macro", "line": 95, "name": "X86_JCC_JL", "signature": "#define X86_JCC_JL"}, {"kind": "macro", "line": 96, "name": "X86_JCC_JG", "signature": "#define X86_JCC_JG"}, {"kind": "macro", "line": 97, "name": "X86_JCC_JLE", "signature": "#define X86_JCC_JLE"}, {"kind": "macro", "line": 98, "name": "X86_JCC_JGE", "signature": "#define X86_JCC_JGE"}, {"kind": "macro", "line": 99, "name": "X86_JCC_JA", "signature": "#define X86_JCC_JA"}, {"kind": "macro", "line": 100, "name": "X86_JCC_JAE", "signature": "#define X86_JCC_JAE"}, {"kind": "macro", "line": 101, "name": "X86_JCC_JB", "signature": "#define X86_JCC_JB"}, {"kind": "macro", "line": 102, "name": "X86_JCC_JBE", "signature": "#define X86_JCC_JBE"}, {"kind": "macro", "line": 103, "name": "X86_SET_E", "signature": "#define X86_SET_E"}, {"kind": "macro", "line": 105, "name": "X86_SET_NE", "signature": "#define X86_SET_NE"}, {"kind": "macro", "line": 106, "name": "X86_SET_L", "signature": "#define X86_SET_L"}, {"kind": "macro", "line": 107, "name": "X86_SET_G", "signature": "#define X86_SET_G"}, {"kind": "macro", "line": 108, "name": "X86_SET_LE", "signature": "#define X86_SET_LE"}, {"kind": "macro", "line": 109, "name": "X86_SET_GE", "signature": "#define X86_SET_GE"}, {"kind": "macro", "line": 110, "name": "X86_SET_A", "signature": "#define X86_SET_A"}, {"kind": "macro", "line": 111, "name": "X86_SET_AE", "signature": "#define X86_SET_AE"}, {"kind": "macro", "line": 112, "name": "X86_SET_B", "signature": "#define X86_SET_B"}, {"kind": "macro", "line": 113, "name": "X86_SET_BE", "signature": "#define X86_SET_BE"}, {"kind": "macro", "line": 114, "name": "X86_SYS_WRITE", "signature": "#define X86_SYS_WRITE"}, {"kind": "macro", "line": 116, "name": "X86_SYS_READ", "signature": "#define X86_SYS_READ"}, {"kind": "macro", "line": 117, "name": "X86_SYS_OPEN", "signature": "#define X86_SYS_OPEN"}, {"kind": "macro", "line": 118, "name": "X86_SYS_CLOSE", "signature": "#define X86_SYS_CLOSE"}, {"kind": "macro", "line": 119, "name": "X86_SYS_LSEEK", "signature": "#define X86_SYS_LSEEK"}, {"kind": "macro", "line": 120, "name": "X86_SYS_BRK", "signature": "#define X86_SYS_BRK"}, {"kind": "macro", "line": 121, "name": "X86_SYS_EXIT", "signature": "#define X86_SYS_EXIT"}, {"kind": "macro", "line": 122, "name": "X86_SYS_EXIT_GROUP", "signature": "#define X86_SYS_EXIT_GROUP"}, {"kind": "macro", "line": 123, "name": "REG_RAX", "signature": "#define REG_RAX"}, {"kind": "macro", "line": 125, "name": "REG_RCX", "signature": "#define REG_RCX"}, {"kind": "macro", "line": 126, "name": "REG_RDX", "signature": "#define REG_RDX"}, {"kind": "macro", "line": 127, "name": "REG_RBX", "signature": "#define REG_RBX"}, {"kind": "macro", "line": 128, "name": "REG_RSP", "signature": "#define REG_RSP"}, {"kind": "macro", "line": 129, "name": "REG_RBP", "signature": "#define REG_RBP"}, {"kind": "macro", "line": 130, "name": "REG_RSI", "signature": "#define REG_RSI"}, {"kind": "macro", "line": 131, "name": "REG_RDI", "signature": "#define REG_RDI"}, {"kind": "macro", "line": 132, "name": "SEC_TEXT", "signature": "#define SEC_TEXT"}, {"kind": "macro", "line": 134, "name": "SEC_BSS", "signature": "#define SEC_BSS"}, {"kind": "macro", "line": 135, "name": "SEC_DATA", "signature": "#define SEC_DATA"}, {"kind": "macro", "line": 136, "name": "SEC_RODATA", "signature": "#define SEC_RODATA"}, {"kind": "macro", "line": 137, "name": "SYM_FUNC", "signature": "#define SYM_FUNC"}, {"kind": "macro", "line": 139, "name": "SYM_LABEL", "signature": "#define SYM_LABEL"}, {"kind": "macro", "line": 140, "name": "SYM_GLOBAL", "signature": "#define SYM_GLOBAL"}, {"kind": "macro", "line": 141, "name": "SYM_BLOB", "signature": "#define SYM_BLOB"}, {"kind": "macro", "line": 142, "name": "K_REG", "signature": "#define K_REG"}, {"kind": "macro", "line": 144, "name": "K_IMM", "signature": "#define K_IMM"}, {"kind": "macro", "line": 145, "name": "K_MEM", "signature": "#define K_MEM"}, {"kind": "macro", "line": 146, "name": "K_SYM", "signature": "#define K_SYM"}, {"kind": "macro", "line": 147, "name": "K_SYM_IMM", "signature": "#define K_SYM_IMM"}, {"kind": "macro", "line": 148, "name": "OP_NOP", "signature": "#define OP_NOP"}, {"kind": "macro", "line": 150, "name": "OP_PUSH_IMM64", "signature": "#define OP_PUSH_IMM64"}, {"kind": "macro", "line": 151, "name": "OP_PUSH_IMM32", "signature": "#define OP_PUSH_IMM32"}, {"kind": "macro", "line": 152, "name": "OP_PUSH_IMM8", "signature": "#define OP_PUSH_IMM8"}, {"kind": "macro", "line": 153, "name": "OP_PUSH_ZERO", "signature": "#define OP_PUSH_ZERO"}, {"kind": "macro", "line": 154, "name": "OP_PUSH_ONE", "signature": "#define OP_PUSH_ONE"}, {"kind": "macro", "line": 155, "name": "OP_PUSH_LOCAL", "signature": "#define OP_PUSH_LOCAL"}, {"kind": "macro", "line": 156, "name": "OP_STORE_LOCAL", "signature": "#define OP_STORE_LOCAL"}, {"kind": "macro", "line": 157, "name": "OP_PUSH_GLOBAL", "signature": "#define OP_PUSH_GLOBAL"}, {"kind": "macro", "line": 158, "name": "OP_STORE_GLOBAL", "signature": "#define OP_STORE_GLOBAL"}, {"kind": "macro", "line": 159, "name": "OP_ADD", "signature": "#define OP_ADD"}, {"kind": "macro", "line": 160, "name": "OP_SUB", "signature": "#define OP_SUB"}, {"kind": "macro", "line": 161, "name": "OP_MUL", "signature": "#define OP_MUL"}, {"kind": "macro", "line": 162, "name": "OP_DIV", "signature": "#define OP_DIV"}, {"kind": "macro", "line": 163, "name": "OP_MOD", "signature": "#define OP_MOD"}, {"kind": "macro", "line": 164, "name": "OP_NEG", "signature": "#define OP_NEG"}, {"kind": "macro", "line": 165, "name": "OP_AND", "signature": "#define OP_AND"}, {"kind": "macro", "line": 166, "name": "OP_OR", "signature": "#define OP_OR"}, {"kind": "macro", "line": 167, "name": "OP_XOR", "signature": "#define OP_XOR"}, {"kind": "macro", "line": 168, "name": "OP_NOT", "signature": "#define OP_NOT"}, {"kind": "macro", "line": 169, "name": "OP_SHL", "signature": "#define OP_SHL"}, {"kind": "macro", "line": 170, "name": "OP_SHR", "signature": "#define OP_SHR"}, {"kind": "macro", "line": 171, "name": "OP_USHR", "signature": "#define OP_USHR"}, {"kind": "macro", "line": 172, "name": "OP_CMP_EQ", "signature": "#define OP_CMP_EQ"}, {"kind": "macro", "line": 173, "name": "OP_CMP_NE", "signature": "#define OP_CMP_NE"}, {"kind": "macro", "line": 174, "name": "OP_CMP_LT", "signature": "#define OP_CMP_LT"}, {"kind": "macro", "line": 175, "name": "OP_CMP_LE", "signature": "#define OP_CMP_LE"}, {"kind": "macro", "line": 176, "name": "OP_CMP_GT", "signature": "#define OP_CMP_GT"}, {"kind": "macro", "line": 177, "name": "OP_CMP_GE", "signature": "#define OP_CMP_GE"}, {"kind": "macro", "line": 178, "name": "OP_LNOT", "signature": "#define OP_LNOT"}, {"kind": "macro", "line": 179, "name": "OP_CMP_ULT", "signature": "#define OP_CMP_ULT"}, {"kind": "macro", "line": 180, "name": "OP_CMP_ULE", "signature": "#define OP_CMP_ULE"}, {"kind": "macro", "line": 181, "name": "OP_CMP_UGT", "signature": "#define OP_CMP_UGT"}, {"kind": "macro", "line": 182, "name": "OP_CMP_UGE", "signature": "#define OP_CMP_UGE"}, {"kind": "macro", "line": 183, "name": "OP_JMP", "signature": "#define OP_JMP"}, {"kind": "macro", "line": 184, "name": "OP_JZ", "signature": "#define OP_JZ"}, {"kind": "macro", "line": 185, "name": "OP_JNZ", "signature": "#define OP_JNZ"}, {"kind": "macro", "line": 186, "name": "OP_CALL", "signature": "#define OP_CALL"}, {"kind": "macro", "line": 187, "name": "OP_RET", "signature": "#define OP_RET"}, {"kind": "macro", "line": 188, "name": "OP_CALL_NATIVE", "signature": "#define OP_CALL_NATIVE"}, {"kind": "macro", "line": 189, "name": "OP_LOAD8", "signature": "#define OP_LOAD8"}, {"kind": "macro", "line": 190, "name": "OP_LOAD16", "signature": "#define OP_LOAD16"}, {"kind": "macro", "line": 191, "name": "OP_LOAD32", "signature": "#define OP_LOAD32"}, {"kind": "macro", "line": 192, "name": "OP_LOAD64", "signature": "#define OP_LOAD64"}, {"kind": "macro", "line": 193, "name": "OP_STORE8", "signature": "#define OP_STORE8"}, {"kind": "macro", "line": 194, "name": "OP_STORE16", "signature": "#define OP_STORE16"}, {"kind": "macro", "line": 195, "name": "OP_STORE32", "signature": "#define OP_STORE32"}, {"kind": "macro", "line": 196, "name": "OP_STORE64", "signature": "#define OP_STORE64"}, {"kind": "macro", "line": 197, "name": "OP_LEA_LOCAL", "signature": "#define OP_LEA_LOCAL"}, {"kind": "macro", "line": 198, "name": "OP_LEA_GLOBAL", "signature": "#define OP_LEA_GLOBAL"}, {"kind": "macro", "line": 199, "name": "OP_ALLOC", "signature": "#define OP_ALLOC"}, {"kind": "macro", "line": 200, "name": "OP_FREE", "signature": "#define OP_FREE"}, {"kind": "macro", "line": 201, "name": "OP_LEA_DATA", "signature": "#define OP_LEA_DATA"}, {"kind": "macro", "line": 202, "name": "OP_SYSCALL", "signature": "#define OP_SYSCALL"}, {"kind": "macro", "line": 203, "name": "OP_HALT", "signature": "#define OP_HALT"}]}, {"id": "test/argv.c", "kind": "module", "label": "argv.c", "language": "c", "sha256": "7969af86a96bd693", "symbol_count": 2, "symbols": [{"kind": "function", "line": 2, "name": "main", "signature": "int main(int argc, char **argv)"}, {"kind": "function", "line": 1, "name": "write", "signature": "int write(int fd, char *buf, int n);"}]}, {"id": "test/argv.s", "kind": "module", "label": "argv.s", "language": "s", "sha256": "72a261431cbd6125", "symbol_count": 2, "symbols": [{"kind": "function", "line": 3, "name": "main"}, {"kind": "function", "line": 98, "name": "_start"}]}, {"id": "test/chain.c", "kind": "module", "label": "chain.c", "language": "c", "sha256": "e6a6e5c45015164e", "symbol_count": 2, "symbols": [{"kind": "function", "line": 1, "name": "fib", "signature": "int fib(int n)"}, {"kind": "function", "line": 5, "name": "main", "signature": "int main(void)"}]}, {"id": "test/fib.s", "kind": "module", "label": "fib.s", "language": "s", "sha256": "606c1b30ade10a75", "symbol_count": 3, "symbols": [{"kind": "function", "line": 3, "name": "fib"}, {"kind": "function", "line": 61, "name": "main"}, {"kind": "function", "line": 82, "name": "_start"}]}, {"id": "test/fib2.s", "kind": "module", "label": "fib2.s", "language": "s", "sha256": "bf60f78d21b1e1d5", "symbol_count": 3, "symbols": [{"kind": "function", "line": 3, "name": "fib"}, {"kind": "function", "line": 61, "name": "main"}, {"kind": "function", "line": 82, "name": "_start"}]}, {"id": "test/fib3.s", "kind": "module", "label": "fib3.s", "language": "s", "sha256": "b076a9de6faf74f9", "symbol_count": 3, "symbols": [{"kind": "function", "line": 3, "name": "fib"}, {"kind": "function", "line": 61, "name": "main"}, {"kind": "function", "line": 82, "name": "_start"}]}, {"id": "test/fmt.c", "kind": "module", "label": "fmt.c", "language": "c", "sha256": "736ea967e65d9eb2", "symbol_count": 2, "symbols": [{"kind": "function", "line": 2, "name": "main", "signature": "int main(void)"}, {"kind": "function", "line": 1, "name": "printf", "signature": "int printf();"}]}, {"id": "test/globals.c", "kind": "module", "label": "globals.c", "language": "c", "sha256": "60901759a433c238", "symbol_count": 3, "symbols": [{"kind": "function", "line": 10, "name": "main", "signature": "int main(void)"}, {"kind": "function", "line": 1, "name": "printf", "signature": "int printf();"}, {"kind": "function", "line": 2, "name": "puts", "signature": "int puts(char *s);"}]}, {"id": "test/hello.c", "kind": "module", "label": "hello.c", "language": "c", "sha256": "66774237346ee0bf", "symbol_count": 1, "symbols": [{"kind": "function", "line": 1, "name": "main", "signature": "int main(void)"}]}, {"id": "test/loop.s", "kind": "module", "label": "loop.s", "language": "s", "sha256": "e7ed86593fb06b11", "symbol_count": 2, "symbols": [{"kind": "function", "line": 3, "name": "main"}, {"kind": "function", "line": 21, "name": "_start"}]}, {"id": "test/movslq.s", "kind": "module", "label": "movslq.s", "language": "s", "sha256": "22f683469a3ffed5", "symbol_count": 2, "symbols": [{"kind": "function", "line": 3, "name": "main"}, {"kind": "function", "line": 14, "name": "_start"}]}, {"doc": "Mutation testing for ld: every mutant in MUTATIONS is injected into a private copy of ld.c, rebuilt, and run against the BDD suite. A mutant that survives (suite fully green) exposes a test gap.  Mutation format: \"name | sed -i expression | file\" name     unique mutant id expr     sed program applied once (first match) file     target: ld.c", "id": "test/mutate.sh", "kind": "module", "label": "mutate.sh", "language": "sh", "sha256": "502fa07a13affa43", "symbol_count": 0, "symbols": []}, {"doc": "BDD suite for the ld tool (miniGCC asm -> CVM / ELF). Every fixture is assembled to BOTH formats; the .cvm runs on the cvm2 interpreter and the .elf runs natively on Linux. Stdout and exit codes are diffed against tests/<name>[.<fmt>].expect{,.exit}.  Layout of expectation files (per fixture name N, format F in cvm|elf): tests/N.expect            default stdout tests/N.F.expect          format-specific stdout override tests/N.expect.exit       default exit code tests/N.F.expect.exit     format-specific exit code override  Tool locations (override with env): LD_TOOL  path to the ld binary (default: build from ld.c) CVM2     path to the cvm2 interpreter MINIGCC  path to the miniGCC compiler binary", "id": "test/run_tests.sh", "kind": "module", "label": "run_tests.sh", "language": "sh", "sha256": "2aed7033d986e70d", "symbol_count": 6, "symbols": [{"doc": "run_prog <outfile> <cmd...> : run with a timeout; on timeout the program is treated as hung (exit code 124, empty output).", "kind": "function", "line": 40, "name": "run_prog"}, {"kind": "function", "line": 47, "name": "note_fail"}, {"doc": "check <name> <fmt> <actual_stdout_file> <actual_exit>", "kind": "function", "line": 53, "name": "check"}, {"doc": "run_fixture <name> <extra args...>", "kind": "function", "line": 78, "name": "run_fixture"}, {"doc": "run_chain <name> [args...] : compile tests/<name>.c with miniGCC, assemble the result to both formats and check each against tests/<name>.expect.", "kind": "function", "line": 107, "name": "run_chain"}, {"kind": "function", "line": 139, "name": "elf_structure_check"}]}, {"id": "test/start.s", "kind": "module", "label": "start.s", "language": "s", "sha256": "90b0c4b82cc85738", "symbol_count": 2, "symbols": [{"kind": "function", "line": 3, "name": "main"}, {"kind": "function", "line": 8, "name": "_start"}]}, {"id": "test/t1.c", "kind": "module", "label": "t1.c", "language": "c", "sha256": "37b7295fa10d8dd7", "symbol_count": 1, "symbols": [{"kind": "function", "line": 1, "name": "main", "signature": "int main(void)"}]}, {"id": "test/t1.s", "kind": "module", "label": "t1.s", "language": "s", "sha256": "07984fb30bc093b1", "symbol_count": 2, "symbols": [{"kind": "function", "line": 3, "name": "main"}, {"kind": "function", "line": 14, "name": "_start"}]}, {"id": "test/w1.c", "kind": "module", "label": "w1.c", "language": "c", "sha256": "14f2e13f6758d92c", "symbol_count": 2, "symbols": [{"kind": "function", "line": 2, "name": "main", "signature": "int main(void)"}, {"kind": "function", "line": 1, "name": "write", "signature": "int write(int fd, char *buf, int n);"}]}, {"id": "test/w1.s", "kind": "module", "label": "w1.s", "language": "s", "sha256": "01e8c6ad821a16d2", "symbol_count": 2, "symbols": [{"kind": "function", "line": 3, "name": "main"}, {"kind": "function", "line": 37, "name": "_start"}]}], "type": "CodePropertyGraph", "version": "1.0"}
 ```
 
 ---
@@ -424,218 +554,241 @@ Machine-readable Code Property Graph (CPG) in JSON-LD format. This block allows 
 - `w16` (line 2010) `static void w16(unsigned char *p, long v)`
 - `w64_at` (line 2015) `static void w64_at(unsigned char *p, unsigned long long v)`
 - `cvm_write_module` (line 2022) `static void cvm_write_module(const char *path)`
-- `x86_align_up` (line 2840) `static long x86_align_up(long v, long a)`
-- `x8` (line 2844) `static void x8(int b)`
-- `x16` (line 2849) `static void x16(long v)`
-- `x32` (line 2855) `static void x32(long v)`
-- `x64` (line 2863) `static void x64(unsigned long long v)`
-- `xfix32` (line 2871) `static void xfix32(const char *sym)`
-- `emit_rex` (line 2879) `static void emit_rex(int w, int r, int x, int b)`
-- `emit_modrm` (line 2884) `static void emit_modrm(int mod, int reg, int rm)`
-- `emit_sib` (line 2888) `static void emit_sib(int scale, int index, int base)`
-- `x86_ea_rex` (line 2892) `static void x86_ea_rex(const Op *op, int regfield, int rexw, int force)`
-- `x86_ea_modrm` (line 2900) `static void x86_ea_modrm(const Op *op, int regfield)`
-- `x86_rex_reg` (line 2953) `static void x86_rex_reg(int w, int regfield, int rm)`
-- `x86_rex8` (line 2957) `static void x86_rex8(int regfield, int rm)`
-- `ea_mov` (line 2964) `static void ea_mov(int size, const Op *o, int regfield)`
-- `ea_mov_to` (line 2970) `static void ea_mov_to(int size, const Op *o, int regfield)`
-- `ea_alu` (line 2976) `static void ea_alu(int g1, int size, const Op *o, int regfield, int from_mem)`
-- `ea_cmp` (line 2982) `static void ea_cmp(int size, const Op *o, int regfield, int from_mem)`
-- `ea_grp` (line 2988) `static void ea_grp(int opc, int size, const Op *o, int regfield)`
-- `elf_mov` (line 2994) `static void elf_mov(int size, const Op *s, const Op *d)`
-- `elf_movzx` (line 3054) `static void elf_movzx(const Op *s, const Op *d, int opc, int rexw, int has_0f)`
-- `elf_movw` (line 3071) `static void elf_movw(const Op *s, const Op *d)`
-- `elf_lea` (line 3106) `static void elf_lea(const Op *s, const Op *d)`
-- `elf_push` (line 3113) `static void elf_push(const Op *o)`
-- `elf_pop` (line 3137) `static void elf_pop(const Op *o)`
-- `elf_alu` (line 3150) `static void elf_alu(int g1, int size, const Op *s, const Op *d)`
-- `elf_imul` (line 3210) `static void elf_imul(const Op *s, const Op *d)`
-- `elf_imull` (line 3239) `static void elf_imull(const Op *s, const Op *d)`
-- `elf_grp3` (line 3268) `static void elf_grp3(const Op *o, int ext)`
-- `elf_shift_cl` (line 3282) `static void elf_shift_cl(const Op *s, const Op *d, int ext)`
-- `elf_shift_cl32` (line 3290) `static void elf_shift_cl32(const Op *s, const Op *d, int ext)`
-- `elf_testl` (line 3298) `static void elf_testl(const Op *s, const Op *d)`
-- `elf_test` (line 3315) `static void elf_test(const Op *s, const Op *d)`
-- `elf_cmp` (line 3332) `static void elf_cmp(int size, const Op *s, const Op *d)`
-- `elf_set` (line 3397) `static void elf_set(int cc, const Op *o)`
-- `elf_branch` (line 3405) `static void elf_branch(int opc, const Op *o)`
-- `elf_ins` (line 3416) `static void elf_ins(const char *mn, const Op *o1, const Op *o2)`
-- `elf_sym_addr` (line 3496) `static long elf_sym_addr(const Sym *s)`
-- `elf_resolve_fixups` (line 3509) `static void elf_resolve_fixups(void)`
-- `elf_encode_src` (line 3528) `static void elf_encode_src(LineSrc *src)`
-- `elf_layout` (line 3584) `static void elf_layout(void)`
-- `elf_write` (line 3616) `static void elf_write(const char *path)`
-- `elf_build` (line 3734) `static void elf_build(const char *in_path, const char *out_path)`
-- `usage` (line 3810) `static void usage(void)` - *================================================================ CLI * ================================================================*
-- `main` (line 3821) `int main(int argc, char **argv)`
+- `x86_align_up` (line 2860) `static long x86_align_up(long v, long a)`
+- `x8` (line 2864) `static void x8(int b)`
+- `x16` (line 2869) `static void x16(long v)`
+- `x32` (line 2875) `static void x32(long v)`
+- `x64` (line 2883) `static void x64(unsigned long long v)`
+- `xfix32` (line 2891) `static void xfix32(const char *sym)`
+- `emit_rex` (line 2899) `static void emit_rex(int w, int r, int x, int b)`
+- `emit_modrm` (line 2904) `static void emit_modrm(int mod, int reg, int rm)`
+- `emit_sib` (line 2908) `static void emit_sib(int scale, int index, int base)`
+- `x86_ea_rex` (line 2912) `static void x86_ea_rex(const Op *op, int regfield, int rexw, int force)`
+- `x86_ea_modrm` (line 2920) `static void x86_ea_modrm(const Op *op, int regfield)`
+- `x86_rex_reg` (line 2973) `static void x86_rex_reg(int w, int regfield, int rm)`
+- `x86_rex8` (line 2977) `static void x86_rex8(int regfield, int rm)`
+- `ea_mov` (line 2984) `static void ea_mov(int size, const Op *o, int regfield)`
+- `ea_mov_to` (line 2990) `static void ea_mov_to(int size, const Op *o, int regfield)`
+- `ea_alu` (line 2996) `static void ea_alu(int g1, int size, const Op *o, int regfield, int from_mem)`
+- `ea_cmp` (line 3002) `static void ea_cmp(int size, const Op *o, int regfield, int from_mem)`
+- `ea_grp` (line 3008) `static void ea_grp(int opc, int size, const Op *o, int regfield)`
+- `elf_mov` (line 3014) `static void elf_mov(int size, const Op *s, const Op *d)`
+- `elf_movzx` (line 3074) `static void elf_movzx(const Op *s, const Op *d, int opc, int rexw, int has_0f)`
+- `elf_movw` (line 3091) `static void elf_movw(const Op *s, const Op *d)`
+- `elf_lea` (line 3126) `static void elf_lea(const Op *s, const Op *d)`
+- `elf_push` (line 3133) `static void elf_push(const Op *o)`
+- `elf_pop` (line 3157) `static void elf_pop(const Op *o)`
+- `elf_alu` (line 3170) `static void elf_alu(int g1, int size, const Op *s, const Op *d)`
+- `elf_imul` (line 3230) `static void elf_imul(const Op *s, const Op *d)`
+- `elf_imull` (line 3259) `static void elf_imull(const Op *s, const Op *d)`
+- `elf_grp3` (line 3288) `static void elf_grp3(const Op *o, int ext)`
+- `elf_shift_cl` (line 3302) `static void elf_shift_cl(const Op *s, const Op *d, int ext)`
+- `elf_shift_cl32` (line 3310) `static void elf_shift_cl32(const Op *s, const Op *d, int ext)`
+- `elf_testl` (line 3318) `static void elf_testl(const Op *s, const Op *d)`
+- `elf_test` (line 3335) `static void elf_test(const Op *s, const Op *d)`
+- `elf_cmp` (line 3352) `static void elf_cmp(int size, const Op *s, const Op *d)`
+- `elf_set` (line 3417) `static void elf_set(int cc, const Op *o)`
+- `elf_branch` (line 3425) `static void elf_branch(int opc, const Op *o)`
+- `elf_ins` (line 3436) `static void elf_ins(const char *mn, const Op *o1, const Op *o2)`
+- `elf_sym_addr` (line 3516) `static long elf_sym_addr(const Sym *s)`
+- `elf_resolve_fixups` (line 3529) `static void elf_resolve_fixups(void)`
+- `elf_encode_src` (line 3548) `static void elf_encode_src(LineSrc *src)`
+- `elf_layout` (line 3604) `static void elf_layout(void)`
+- `elf_write` (line 3636) `static void elf_write(const char *path)`
+- `elf_build` (line 3754) `static void elf_build(const char *in_path, const char *out_path)`
+- `usage` (line 3830) `static void usage(void)` - *================================================================ CLI * ================================================================*
+- `main` (line 3841) `int main(int argc, char **argv)`
+- `fprintf` (line 341) `fprintf(stderr, "ld: %s:%ld: %s\n", cur_file, cur_line, msg);`
+- `exit` (line 345) `exit(1);`
+- `memcpy` (line 460) `memcpy(dst, src, (size_t)n);`
+- `memset` (line 495) `memset(&syms[i], 0, sizeof(syms[i]));`
+- `strncpy` (line 636) `strncpy(o1, trim(rest), CFG_LINE_MAX - 1);`
+- `sprintf` (line 1798) `sprintf(l1, "..S%lda", synth_n);`
+- `fwrite` (line 2059) `fwrite(hdr, 1, CFG_CVM_HDR_SIZE, f);`
+- `fputc` (line 2090) `fputc((int)(z - 1), f);`
+- `fclose` (line 2102) `fclose(f);`
+- `free` (line 2103) `free(func_name_off);`
+- `strncat` (line 3877) `strncat(out, ext, CFG_NAME_MAX - strlen(out) - 1);`
 
 **Macros:**
-- `CFG_MAX_SYMBOLS` (line 24)
-- `CFG_MAX_FIXUPS` (line 26)
-- `CFG_FIXUP_INIT` (line 27)
-- `CFG_LINE_MAX` (line 28)
-- `CFG_NAME_MAX` (line 29)
-- `CFG_MAX_NATS` (line 30)
-- `CFG_MAX_ERRORS` (line 31)
-- `CFG_GROW_UNIT` (line 32)
-- `CFG_ABI_BYTES` (line 33)
-- `CFG_STACK_BASE` (line 35)
-- `CFG_XSTACK_DEF` (line 36)
-- `CFG_MAX_ARGS` (line 40)
-- `CFG_REG_LOCALS` (line 41)
-- `CFG_SLOT_FLAGS_A` (line 43)
-- `CFG_SLOT_FLAGS_B` (line 44)
-- `CFG_SLOT_S0` (line 45)
-- `CFG_SLOT_S1` (line 46)
-- `CFG_GSLOT_RSP` (line 47)
-- `CFG_GSLOT_RBP` (line 49)
-- `CFG_GSLOT_ARGS` (line 50)
-- `CFG_GSLOT_RET` (line 51)
-- `CFG_CVM_MAGIC_0` (line 52)
-- `CFG_CVM_MAGIC_1` (line 54)
-- `CFG_CVM_MAGIC_2` (line 55)
-- `CFG_CVM_MAGIC_3` (line 56)
-- `CFG_CVM_VER_MAJ` (line 57)
-- `CFG_CVM_VER_MIN` (line 58)
-- `CFG_CVM_HDR_SIZE` (line 59)
-- `CFG_ELF_PAGE` (line 60)
-- `CFG_ELF_HSIZE` (line 62)
-- `CFG_ELF_PHENTSZ` (line 63)
-- `CFG_ELF_PHNUM` (line 64)
-- `CFG_ELF_SHENTSZ` (line 65)
-- `CFG_ELF_SHNUM` (line 66)
-- `CFG_ELF_SHSTRNDX` (line 67)
-- `CFG_ELF_ET_DYN` (line 68)
-- `CFG_ELF_EM_X8664` (line 69)
-- `CFG_ELF_PF_R` (line 70)
-- `CFG_ELF_PF_W` (line 71)
-- `CFG_ELF_PF_X` (line 72)
-- `CFG_ELF_PT_LOAD` (line 73)
-- `CFG_ELF_SHT_PROGBITS` (line 74)
-- `CFG_ELF_SHT_NOBITS` (line 75)
-- `CFG_ELF_SHT_STRTAB` (line 76)
-- `CFG_ELF_SHF_A` (line 77)
-- `CFG_ELF_SHF_X` (line 78)
-- `CFG_ELF_SHF_W` (line 79)
-- `CFG_ELF_TEXT_BASE` (line 80)
-- `CFG_FMT_CVM` (line 81)
-- `CFG_FMT_ELF` (line 83)
-- `X86_G1_ADD` (line 86)
-- `X86_G1_OR` (line 87)
-- `X86_G1_AND` (line 88)
-- `X86_G1_SUB` (line 89)
-- `X86_G1_XOR` (line 90)
-- `X86_G1_CMP` (line 91)
-- `X86_JCC_JE` (line 92)
-- `X86_JCC_JNE` (line 94)
-- `X86_JCC_JL` (line 95)
-- `X86_JCC_JG` (line 96)
-- `X86_JCC_JLE` (line 97)
-- `X86_JCC_JGE` (line 98)
-- `X86_JCC_JA` (line 99)
-- `X86_JCC_JAE` (line 100)
-- `X86_JCC_JB` (line 101)
-- `X86_JCC_JBE` (line 102)
-- `X86_SET_E` (line 103)
-- `X86_SET_NE` (line 105)
-- `X86_SET_L` (line 106)
-- `X86_SET_G` (line 107)
-- `X86_SET_LE` (line 108)
-- `X86_SET_GE` (line 109)
-- `X86_SET_A` (line 110)
-- `X86_SET_AE` (line 111)
-- `X86_SET_B` (line 112)
-- `X86_SET_BE` (line 113)
-- `X86_SYS_WRITE` (line 114)
-- `X86_SYS_READ` (line 116)
-- `X86_SYS_OPEN` (line 117)
-- `X86_SYS_CLOSE` (line 118)
-- `X86_SYS_LSEEK` (line 119)
-- `X86_SYS_BRK` (line 120)
-- `X86_SYS_EXIT` (line 121)
-- `X86_SYS_EXIT_GROUP` (line 122)
-- `REG_RAX` (line 123)
-- `REG_RCX` (line 125)
-- `REG_RDX` (line 126)
-- `REG_RBX` (line 127)
-- `REG_RSP` (line 128)
-- `REG_RBP` (line 129)
-- `REG_RSI` (line 130)
-- `REG_RDI` (line 131)
-- `SEC_TEXT` (line 132)
-- `SEC_BSS` (line 134)
-- `SEC_DATA` (line 135)
-- `SEC_RODATA` (line 136)
-- `SYM_FUNC` (line 137)
-- `SYM_LABEL` (line 139)
-- `SYM_GLOBAL` (line 140)
-- `SYM_BLOB` (line 141)
-- `K_REG` (line 142)
-- `K_IMM` (line 144)
-- `K_MEM` (line 145)
-- `K_SYM` (line 146)
-- `K_SYM_IMM` (line 147)
-- `OP_NOP` (line 148)
-- `OP_PUSH_IMM64` (line 150)
-- `OP_PUSH_IMM32` (line 151)
-- `OP_PUSH_IMM8` (line 152)
-- `OP_PUSH_ZERO` (line 153)
-- `OP_PUSH_ONE` (line 154)
-- `OP_PUSH_LOCAL` (line 155)
-- `OP_STORE_LOCAL` (line 156)
-- `OP_PUSH_GLOBAL` (line 157)
-- `OP_STORE_GLOBAL` (line 158)
-- `OP_ADD` (line 159)
-- `OP_SUB` (line 160)
-- `OP_MUL` (line 161)
-- `OP_DIV` (line 162)
-- `OP_MOD` (line 163)
-- `OP_NEG` (line 164)
-- `OP_AND` (line 165)
-- `OP_OR` (line 166)
-- `OP_XOR` (line 167)
-- `OP_NOT` (line 168)
-- `OP_SHL` (line 169)
-- `OP_SHR` (line 170)
-- `OP_USHR` (line 171)
-- `OP_CMP_EQ` (line 172)
-- `OP_CMP_NE` (line 173)
-- `OP_CMP_LT` (line 174)
-- `OP_CMP_LE` (line 175)
-- `OP_CMP_GT` (line 176)
-- `OP_CMP_GE` (line 177)
-- `OP_LNOT` (line 178)
-- `OP_CMP_ULT` (line 179)
-- `OP_CMP_ULE` (line 180)
-- `OP_CMP_UGT` (line 181)
-- `OP_CMP_UGE` (line 182)
-- `OP_JMP` (line 183)
-- `OP_JZ` (line 184)
-- `OP_JNZ` (line 185)
-- `OP_CALL` (line 186)
-- `OP_RET` (line 187)
-- `OP_CALL_NATIVE` (line 188)
-- `OP_LOAD8` (line 189)
-- `OP_LOAD16` (line 190)
-- `OP_LOAD32` (line 191)
-- `OP_LOAD64` (line 192)
-- `OP_STORE8` (line 193)
-- `OP_STORE16` (line 194)
-- `OP_STORE32` (line 195)
-- `OP_STORE64` (line 196)
-- `OP_LEA_LOCAL` (line 197)
-- `OP_LEA_GLOBAL` (line 198)
-- `OP_ALLOC` (line 199)
-- `OP_FREE` (line 200)
-- `OP_LEA_DATA` (line 201)
-- `OP_SYSCALL` (line 202)
-- `OP_HALT` (line 203)
+- `CFG_MAX_SYMBOLS` (line 24) `#define CFG_MAX_SYMBOLS`
+- `CFG_MAX_FIXUPS` (line 26) `#define CFG_MAX_FIXUPS`
+- `CFG_FIXUP_INIT` (line 27) `#define CFG_FIXUP_INIT`
+- `CFG_LINE_MAX` (line 28) `#define CFG_LINE_MAX`
+- `CFG_NAME_MAX` (line 29) `#define CFG_NAME_MAX`
+- `CFG_MAX_NATS` (line 30) `#define CFG_MAX_NATS`
+- `CFG_MAX_ERRORS` (line 31) `#define CFG_MAX_ERRORS`
+- `CFG_GROW_UNIT` (line 32) `#define CFG_GROW_UNIT`
+- `CFG_ABI_BYTES` (line 33) `#define CFG_ABI_BYTES`
+- `CFG_STACK_BASE` (line 35) `#define CFG_STACK_BASE`
+- `CFG_XSTACK_DEF` (line 36) `#define CFG_XSTACK_DEF`
+- `CFG_MAX_ARGS` (line 40) `#define CFG_MAX_ARGS`
+- `CFG_REG_LOCALS` (line 41) `#define CFG_REG_LOCALS`
+- `CFG_SLOT_FLAGS_A` (line 43) `#define CFG_SLOT_FLAGS_A`
+- `CFG_SLOT_FLAGS_B` (line 44) `#define CFG_SLOT_FLAGS_B`
+- `CFG_SLOT_S0` (line 45) `#define CFG_SLOT_S0`
+- `CFG_SLOT_S1` (line 46) `#define CFG_SLOT_S1`
+- `CFG_GSLOT_RSP` (line 47) `#define CFG_GSLOT_RSP`
+- `CFG_GSLOT_RBP` (line 49) `#define CFG_GSLOT_RBP`
+- `CFG_GSLOT_ARGS` (line 50) `#define CFG_GSLOT_ARGS`
+- `CFG_GSLOT_RET` (line 51) `#define CFG_GSLOT_RET`
+- `CFG_CVM_MAGIC_0` (line 52) `#define CFG_CVM_MAGIC_0`
+- `CFG_CVM_MAGIC_1` (line 54) `#define CFG_CVM_MAGIC_1`
+- `CFG_CVM_MAGIC_2` (line 55) `#define CFG_CVM_MAGIC_2`
+- `CFG_CVM_MAGIC_3` (line 56) `#define CFG_CVM_MAGIC_3`
+- `CFG_CVM_VER_MAJ` (line 57) `#define CFG_CVM_VER_MAJ`
+- `CFG_CVM_VER_MIN` (line 58) `#define CFG_CVM_VER_MIN`
+- `CFG_CVM_HDR_SIZE` (line 59) `#define CFG_CVM_HDR_SIZE`
+- `CFG_ELF_PAGE` (line 60) `#define CFG_ELF_PAGE`
+- `CFG_ELF_HSIZE` (line 62) `#define CFG_ELF_HSIZE`
+- `CFG_ELF_PHENTSZ` (line 63) `#define CFG_ELF_PHENTSZ`
+- `CFG_ELF_PHNUM` (line 64) `#define CFG_ELF_PHNUM`
+- `CFG_ELF_SHENTSZ` (line 65) `#define CFG_ELF_SHENTSZ`
+- `CFG_ELF_SHNUM` (line 66) `#define CFG_ELF_SHNUM`
+- `CFG_ELF_SHSTRNDX` (line 67) `#define CFG_ELF_SHSTRNDX`
+- `CFG_ELF_ET_DYN` (line 68) `#define CFG_ELF_ET_DYN`
+- `CFG_ELF_EM_X8664` (line 69) `#define CFG_ELF_EM_X8664`
+- `CFG_ELF_PF_R` (line 70) `#define CFG_ELF_PF_R`
+- `CFG_ELF_PF_W` (line 71) `#define CFG_ELF_PF_W`
+- `CFG_ELF_PF_X` (line 72) `#define CFG_ELF_PF_X`
+- `CFG_ELF_PT_LOAD` (line 73) `#define CFG_ELF_PT_LOAD`
+- `CFG_ELF_SHT_PROGBITS` (line 74) `#define CFG_ELF_SHT_PROGBITS`
+- `CFG_ELF_SHT_NOBITS` (line 75) `#define CFG_ELF_SHT_NOBITS`
+- `CFG_ELF_SHT_STRTAB` (line 76) `#define CFG_ELF_SHT_STRTAB`
+- `CFG_ELF_SHF_A` (line 77) `#define CFG_ELF_SHF_A`
+- `CFG_ELF_SHF_X` (line 78) `#define CFG_ELF_SHF_X`
+- `CFG_ELF_SHF_W` (line 79) `#define CFG_ELF_SHF_W`
+- `CFG_ELF_TEXT_BASE` (line 80) `#define CFG_ELF_TEXT_BASE`
+- `CFG_FMT_CVM` (line 81) `#define CFG_FMT_CVM`
+- `CFG_FMT_ELF` (line 83) `#define CFG_FMT_ELF`
+- `X86_G1_ADD` (line 86) `#define X86_G1_ADD`
+- `X86_G1_OR` (line 87) `#define X86_G1_OR`
+- `X86_G1_AND` (line 88) `#define X86_G1_AND`
+- `X86_G1_SUB` (line 89) `#define X86_G1_SUB`
+- `X86_G1_XOR` (line 90) `#define X86_G1_XOR`
+- `X86_G1_CMP` (line 91) `#define X86_G1_CMP`
+- `X86_JCC_JE` (line 92) `#define X86_JCC_JE`
+- `X86_JCC_JNE` (line 94) `#define X86_JCC_JNE`
+- `X86_JCC_JL` (line 95) `#define X86_JCC_JL`
+- `X86_JCC_JG` (line 96) `#define X86_JCC_JG`
+- `X86_JCC_JLE` (line 97) `#define X86_JCC_JLE`
+- `X86_JCC_JGE` (line 98) `#define X86_JCC_JGE`
+- `X86_JCC_JA` (line 99) `#define X86_JCC_JA`
+- `X86_JCC_JAE` (line 100) `#define X86_JCC_JAE`
+- `X86_JCC_JB` (line 101) `#define X86_JCC_JB`
+- `X86_JCC_JBE` (line 102) `#define X86_JCC_JBE`
+- `X86_SET_E` (line 103) `#define X86_SET_E`
+- `X86_SET_NE` (line 105) `#define X86_SET_NE`
+- `X86_SET_L` (line 106) `#define X86_SET_L`
+- `X86_SET_G` (line 107) `#define X86_SET_G`
+- `X86_SET_LE` (line 108) `#define X86_SET_LE`
+- `X86_SET_GE` (line 109) `#define X86_SET_GE`
+- `X86_SET_A` (line 110) `#define X86_SET_A`
+- `X86_SET_AE` (line 111) `#define X86_SET_AE`
+- `X86_SET_B` (line 112) `#define X86_SET_B`
+- `X86_SET_BE` (line 113) `#define X86_SET_BE`
+- `X86_SYS_WRITE` (line 114) `#define X86_SYS_WRITE`
+- `X86_SYS_READ` (line 116) `#define X86_SYS_READ`
+- `X86_SYS_OPEN` (line 117) `#define X86_SYS_OPEN`
+- `X86_SYS_CLOSE` (line 118) `#define X86_SYS_CLOSE`
+- `X86_SYS_LSEEK` (line 119) `#define X86_SYS_LSEEK`
+- `X86_SYS_BRK` (line 120) `#define X86_SYS_BRK`
+- `X86_SYS_EXIT` (line 121) `#define X86_SYS_EXIT`
+- `X86_SYS_EXIT_GROUP` (line 122) `#define X86_SYS_EXIT_GROUP`
+- `REG_RAX` (line 123) `#define REG_RAX`
+- `REG_RCX` (line 125) `#define REG_RCX`
+- `REG_RDX` (line 126) `#define REG_RDX`
+- `REG_RBX` (line 127) `#define REG_RBX`
+- `REG_RSP` (line 128) `#define REG_RSP`
+- `REG_RBP` (line 129) `#define REG_RBP`
+- `REG_RSI` (line 130) `#define REG_RSI`
+- `REG_RDI` (line 131) `#define REG_RDI`
+- `SEC_TEXT` (line 132) `#define SEC_TEXT`
+- `SEC_BSS` (line 134) `#define SEC_BSS`
+- `SEC_DATA` (line 135) `#define SEC_DATA`
+- `SEC_RODATA` (line 136) `#define SEC_RODATA`
+- `SYM_FUNC` (line 137) `#define SYM_FUNC`
+- `SYM_LABEL` (line 139) `#define SYM_LABEL`
+- `SYM_GLOBAL` (line 140) `#define SYM_GLOBAL`
+- `SYM_BLOB` (line 141) `#define SYM_BLOB`
+- `K_REG` (line 142) `#define K_REG`
+- `K_IMM` (line 144) `#define K_IMM`
+- `K_MEM` (line 145) `#define K_MEM`
+- `K_SYM` (line 146) `#define K_SYM`
+- `K_SYM_IMM` (line 147) `#define K_SYM_IMM`
+- `OP_NOP` (line 148) `#define OP_NOP`
+- `OP_PUSH_IMM64` (line 150) `#define OP_PUSH_IMM64`
+- `OP_PUSH_IMM32` (line 151) `#define OP_PUSH_IMM32`
+- `OP_PUSH_IMM8` (line 152) `#define OP_PUSH_IMM8`
+- `OP_PUSH_ZERO` (line 153) `#define OP_PUSH_ZERO`
+- `OP_PUSH_ONE` (line 154) `#define OP_PUSH_ONE`
+- `OP_PUSH_LOCAL` (line 155) `#define OP_PUSH_LOCAL`
+- `OP_STORE_LOCAL` (line 156) `#define OP_STORE_LOCAL`
+- `OP_PUSH_GLOBAL` (line 157) `#define OP_PUSH_GLOBAL`
+- `OP_STORE_GLOBAL` (line 158) `#define OP_STORE_GLOBAL`
+- `OP_ADD` (line 159) `#define OP_ADD`
+- `OP_SUB` (line 160) `#define OP_SUB`
+- `OP_MUL` (line 161) `#define OP_MUL`
+- `OP_DIV` (line 162) `#define OP_DIV`
+- `OP_MOD` (line 163) `#define OP_MOD`
+- `OP_NEG` (line 164) `#define OP_NEG`
+- `OP_AND` (line 165) `#define OP_AND`
+- `OP_OR` (line 166) `#define OP_OR`
+- `OP_XOR` (line 167) `#define OP_XOR`
+- `OP_NOT` (line 168) `#define OP_NOT`
+- `OP_SHL` (line 169) `#define OP_SHL`
+- `OP_SHR` (line 170) `#define OP_SHR`
+- `OP_USHR` (line 171) `#define OP_USHR`
+- `OP_CMP_EQ` (line 172) `#define OP_CMP_EQ`
+- `OP_CMP_NE` (line 173) `#define OP_CMP_NE`
+- `OP_CMP_LT` (line 174) `#define OP_CMP_LT`
+- `OP_CMP_LE` (line 175) `#define OP_CMP_LE`
+- `OP_CMP_GT` (line 176) `#define OP_CMP_GT`
+- `OP_CMP_GE` (line 177) `#define OP_CMP_GE`
+- `OP_LNOT` (line 178) `#define OP_LNOT`
+- `OP_CMP_ULT` (line 179) `#define OP_CMP_ULT`
+- `OP_CMP_ULE` (line 180) `#define OP_CMP_ULE`
+- `OP_CMP_UGT` (line 181) `#define OP_CMP_UGT`
+- `OP_CMP_UGE` (line 182) `#define OP_CMP_UGE`
+- `OP_JMP` (line 183) `#define OP_JMP`
+- `OP_JZ` (line 184) `#define OP_JZ`
+- `OP_JNZ` (line 185) `#define OP_JNZ`
+- `OP_CALL` (line 186) `#define OP_CALL`
+- `OP_RET` (line 187) `#define OP_RET`
+- `OP_CALL_NATIVE` (line 188) `#define OP_CALL_NATIVE`
+- `OP_LOAD8` (line 189) `#define OP_LOAD8`
+- `OP_LOAD16` (line 190) `#define OP_LOAD16`
+- `OP_LOAD32` (line 191) `#define OP_LOAD32`
+- `OP_LOAD64` (line 192) `#define OP_LOAD64`
+- `OP_STORE8` (line 193) `#define OP_STORE8`
+- `OP_STORE16` (line 194) `#define OP_STORE16`
+- `OP_STORE32` (line 195) `#define OP_STORE32`
+- `OP_STORE64` (line 196) `#define OP_STORE64`
+- `OP_LEA_LOCAL` (line 197) `#define OP_LEA_LOCAL`
+- `OP_LEA_GLOBAL` (line 198) `#define OP_LEA_GLOBAL`
+- `OP_ALLOC` (line 199) `#define OP_ALLOC`
+- `OP_FREE` (line 200) `#define OP_FREE`
+- `OP_LEA_DATA` (line 201) `#define OP_LEA_DATA`
+- `OP_SYSCALL` (line 202) `#define OP_SYSCALL`
+- `OP_HALT` (line 203) `#define OP_HALT`
+
+**Structs:**
+- `Sym` (line 209)
+- `Op` (line 221)
+- `Fixup` (line 236)
+- `LineSrc` (line 241)
+- `Func` (line 249)
+- `GVar` (line 256)
+- `Blob` (line 263)
+- `Nat` (line 270)
+- `Label` (line 274)
 
 #### `argv.c`
 **Path:** `test/argv.c`
 
 **Functions:**
 - `main` (line 2) `int main(int argc, char **argv)`
+- `write` (line 1) `int write(int fd, char *buf, int n);`
 
 #### `chain.c`
 **Path:** `test/chain.c`
@@ -649,12 +802,15 @@ Machine-readable Code Property Graph (CPG) in JSON-LD format. This block allows 
 
 **Functions:**
 - `main` (line 2) `int main(void)`
+- `printf` (line 1) `int printf();`
 
 #### `globals.c`
 **Path:** `test/globals.c`
 
 **Functions:**
 - `main` (line 10) `int main(void)`
+- `printf` (line 1) `int printf();`
+- `puts` (line 2) `int puts(char *s);`
 
 #### `hello.c`
 **Path:** `test/hello.c`
@@ -673,6 +829,7 @@ Machine-readable Code Property Graph (CPG) in JSON-LD format. This block allows 
 
 **Functions:**
 - `main` (line 2) `int main(void)`
+- `write` (line 1) `int write(int fd, char *buf, int n);`
 
 ### PY (1 files)
 
