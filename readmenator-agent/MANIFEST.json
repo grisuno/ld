@@ -1,16 +1,16 @@
 {
   "tool": "readmenator",
-  "generated_at": "2026-09-15T01:43:22Z",
+  "generated_at": "2026-09-15T03:34:52Z",
   "project_root": "/home/grisun0/src_note/c/boot/repo/ld",
-  "files": 24,
-  "symbols": 355,
+  "files": 25,
+  "symbols": 361,
   "imports": 5,
   "resolved_imports": 0,
   "security_findings": 0,
   "languages": {
     "py": 1,
     "sh": 3,
-    "c": 10,
+    "c": 11,
     "s": 10
   },
   "entrypoints": [],

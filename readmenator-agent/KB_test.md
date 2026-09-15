@@ -133,6 +133,15 @@
   - `main` (function, line 37) `int main(void)`
   - `printf` (function, line 49) `printf("%d %d %d\n", gu8, gi8, gu16);`
 
+## test/sync.c
+- Layer: testing
+- Language: c
+- Symbols:
+  - `main` (function, line 5) `int main(void)`
+  - `printf` (function, line 1) `int printf();`
+  - `__sync_lock_release` (function, line 14) `__sync_lock_release(&flag);`
+  - `__sync_synchronize` (function, line 16) `__sync_synchronize();`
+
 ## test/t1.c
 - Layer: testing
 - Language: c

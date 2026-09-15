@@ -221,6 +221,37 @@ else
     fi
 fi
 
+echo "=== atomics: elf encodes+runs, cvm rejects ==="
+if [ -x "$MINIGCC" ]; then
+    if "$MINIGCC" "$WORK/sync.c" > "$WORK/sync.s" 2>/dev/null; then
+        if "$LD_TOOL" -f elf -o "$WORK/sync.elf" "$WORK/sync.s" 2>/dev/null; then
+            chmod +x "$WORK/sync.elf"
+            ( cd "$WORK" && run_prog "$WORK/sync.elf.out" "./sync.elf" )
+            check sync elf "$WORK/sync.elf.out" $?
+        else
+            echo "FAIL sync (elf): assembly failed"
+            note_fail "sync(elf)"
+        fi
+        if "$LD_TOOL" -f cvm -o "$WORK/sync.cvm" "$WORK/sync.s" 2>"$WORK/sync.err"; then
+            echo "FAIL sync (cvm): lock-prefixed asm accepted for virtualization"
+            note_fail "sync(cvm-accept)"
+        else
+            if grep -q "unsupported instruction 'lock'" "$WORK/sync.err"; then
+                echo "PASS sync (cvm): lock rejected fail-closed"
+                PASS=$((PASS + 1))
+            else
+                echo "FAIL sync (cvm): wrong diagnostic"
+                note_fail "sync(cvm-diag)"
+            fi
+        fi
+    else
+        echo "FAIL sync: minigcc could not compile sync.c"
+        note_fail "sync(minigcc)"
+    fi
+else
+    echo "SKIP sync (minigcc binary not found)"
+fi
+
 if [ "$RUN_SLOW" = "1" ] && [ -x "$MINIGCC" ] && [ -f "$ROOT/../miniGCC/minigcc.c" ]; then
     echo "=== self-host chain (minigcc.c via minigcc + ld) ==="
     SRCC="$ROOT/../miniGCC/minigcc.c"

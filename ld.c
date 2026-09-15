@@ -3347,6 +3347,40 @@ static void elf_grp3(const Op *o, int ext) {
     }
 }
 
+static void elf_xadd(const Op *s, const Op *d) {
+    if (s->kind != K_REG) { die("invalid xadd source"); return; }
+    if (d->kind == K_REG) {
+        emit_rex(1, (s->reg >> 3) & 1, 0, (d->reg >> 3) & 1);
+        x8(0x0F);
+        x8(0xC1);
+        emit_modrm(3, s->reg & 7, d->reg & 7);
+    } else if (d->kind == K_MEM || d->kind == K_SYM) {
+        x86_ea_rex(d, s->reg, 1, 0);
+        x8(0x0F);
+        x8(0xC1);
+        x86_ea_modrm(d, s->reg & 7);
+    } else {
+        die("invalid xadd destination");
+    }
+}
+
+static void elf_xchg(const Op *s, const Op *d) {
+    const Op *r = s->kind == K_REG ? s : d;
+    const Op *m = s->kind == K_REG ? d : s;
+    if (r->kind != K_REG) { die("xchg needs a register"); return; }
+    if (m->kind == K_REG) {
+        emit_rex(1, (r->reg >> 3) & 1, 0, (m->reg >> 3) & 1);
+        x8(0x87);
+        emit_modrm(3, r->reg & 7, m->reg & 7);
+    } else if (m->kind == K_MEM || m->kind == K_SYM) {
+        x86_ea_rex(m, r->reg, 1, 0);
+        x8(0x87);
+        x86_ea_modrm(m, r->reg & 7);
+    } else {
+        die("invalid xchg destination");
+    }
+}
+
 static void elf_grp_ff(const Op *o, int ext) {
     if (o->kind == K_REG) {
         emit_rex(1, 0, 0, (o->reg >> 3) & 1);
@@ -3576,6 +3610,10 @@ static void elf_ins(const char *mn, const Op *o1, const Op *o2) {
     if (strcmp(mn, "cdqe") == 0) { x8(0x48); x8(0x98); return; }
     if (strcmp(mn, "syscall") == 0) { x8(0x0F); x8(0x05); return; }
     if (strcmp(mn, "nop") == 0) { x8(0x90); return; }
+    if (strcmp(mn, "lock") == 0) { x8(0xF0); return; }
+    if (strcmp(mn, "xaddq") == 0) { elf_xadd(o1, o2); return; }
+    if (strcmp(mn, "xchgq") == 0) { elf_xchg(o1, o2); return; }
+    if (strcmp(mn, "mfence") == 0) { x8(0x0F); x8(0xAE); x8(0xF0); return; }
     if (strcmp(mn, "cli") == 0) { x8(0xFA); return; }
     if (strcmp(mn, "sti") == 0) { x8(0xFB); return; }
     if (strcmp(mn, "hlt") == 0) { x8(0xF4); return; }

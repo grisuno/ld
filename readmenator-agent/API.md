@@ -324,57 +324,63 @@
 ### elf_grp3 (function) `static void elf_grp3(const Op *o, int ext)`
 - Defined: `ld.c:3335`
 
-### elf_grp_ff (function) `static void elf_grp_ff(const Op *o, int ext)`
+### elf_xadd (function) `static void elf_xadd(const Op *s, const Op *d)`
 - Defined: `ld.c:3349`
 
+### elf_xchg (function) `static void elf_xchg(const Op *s, const Op *d)`
+- Defined: `ld.c:3366`
+
+### elf_grp_ff (function) `static void elf_grp_ff(const Op *o, int ext)`
+- Defined: `ld.c:3383`
+
 ### elf_shift_cl (function) `static void elf_shift_cl(const Op *s, const Op *d, int ext)`
-- Defined: `ld.c:3363`
+- Defined: `ld.c:3397`
 
 ### elf_shift_cl32 (function) `static void elf_shift_cl32(const Op *s, const Op *d, int ext)`
-- Defined: `ld.c:3371`
+- Defined: `ld.c:3405`
 
 ### elf_testl (function) `static void elf_testl(const Op *s, const Op *d)`
-- Defined: `ld.c:3379`
-
-### elf_test (function) `static void elf_test(const Op *s, const Op *d)`
-- Defined: `ld.c:3396`
-
-### elf_cmp (function) `static void elf_cmp(int size, const Op *s, const Op *d)`
 - Defined: `ld.c:3413`
 
+### elf_test (function) `static void elf_test(const Op *s, const Op *d)`
+- Defined: `ld.c:3430`
+
+### elf_cmp (function) `static void elf_cmp(int size, const Op *s, const Op *d)`
+- Defined: `ld.c:3447`
+
 ### elf_set (function) `static void elf_set(int cc, const Op *o)`
-- Defined: `ld.c:3481`
+- Defined: `ld.c:3515`
 
 ### elf_branch (function) `static void elf_branch(int opc, const Op *o)`
-- Defined: `ld.c:3489`
+- Defined: `ld.c:3523`
 
 ### elf_ins (function) `static void elf_ins(const char *mn, const Op *o1, const Op *o2)`
-- Defined: `ld.c:3500`
+- Defined: `ld.c:3534`
 
 ### elf_sym_addr (function) `static long elf_sym_addr(const Sym *s)`
-- Defined: `ld.c:3586`
+- Defined: `ld.c:3624`
 
 ### elf_resolve_fixups (function) `static void elf_resolve_fixups(void)`
-- Defined: `ld.c:3599`
+- Defined: `ld.c:3637`
 
 ### elf_encode_src (function) `static void elf_encode_src(LineSrc *src)`
-- Defined: `ld.c:3618`
+- Defined: `ld.c:3656`
 
 ### elf_layout (function) `static void elf_layout(void)`
-- Defined: `ld.c:3674`
+- Defined: `ld.c:3712`
 
 ### elf_write (function) `static void elf_write(const char *path)`
-- Defined: `ld.c:3706`
+- Defined: `ld.c:3744`
 
 ### elf_build (function) `static void elf_build(const char *in_path, const char *out_path)`
-- Defined: `ld.c:3824`
+- Defined: `ld.c:3862`
 
 ### usage (function) `static void usage(void)`
-- Defined: `ld.c:3900`
+- Defined: `ld.c:3938`
 - Doc: ================================================================ CLI * =================================================
 
 ### main (function) `int main(int argc, char **argv)`
-- Defined: `ld.c:3911`
+- Defined: `ld.c:3949`
 
 ### fprintf (function) `fprintf(stderr, "ld: %s:%ld: %s\n", cur_file, cur_line, msg);`
 - Defined: `ld.c:342`
@@ -407,7 +413,7 @@
 - Defined: `ld.c:2140`
 
 ### strncat (function) `strncat(out, ext, CFG_NAME_MAX - strlen(out) - 1);`
-- Defined: `ld.c:3947`
+- Defined: `ld.c:3985`
 
 ## test/argv.c
 
@@ -579,6 +585,20 @@
 
 ### printf (function) `printf("%d %d %d\n", gu8, gi8, gu16);`
 - Defined: `test/stdint.c:49`
+
+## test/sync.c
+
+### main (function) `int main(void)`
+- Defined: `test/sync.c:5`
+
+### printf (function) `int printf();`
+- Defined: `test/sync.c:1`
+
+### __sync_lock_release (function) `__sync_lock_release(&flag);`
+- Defined: `test/sync.c:14`
+
+### __sync_synchronize (function) `__sync_synchronize();`
+- Defined: `test/sync.c:16`
 
 ## test/t1.c
 

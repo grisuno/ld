@@ -3,7 +3,7 @@
     "god_nodes": [
       [
         "ld.c",
-        30.200000000000003
+        30.400000000000002
       ],
       [
         "test/stdint.c",
@@ -15,6 +15,10 @@
       ],
       [
         "test/asm.c",
+        0.4
+      ],
+      [
+        "test/sync.c",
         0.4
       ],
       [
@@ -35,10 +39,6 @@
       ],
       [
         "test/argv.c",
-        0.2
-      ],
-      [
-        "test/argv.s",
         0.2
       ]
     ],
@@ -73,6 +73,7 @@
     "test/run_tests.sh": "testing",
     "test/start.s": "testing",
     "test/stdint.c": "infrastructure",
+    "test/sync.c": "testing",
     "test/t1.c": "testing",
     "test/t1.s": "testing",
     "test/w1.c": "testing",
