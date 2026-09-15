@@ -49,12 +49,14 @@ Layers:
   field of its instruction (`mov`/`alu`/`cmp` immediate-to-memory forms
   carry the imm after the disp); resolution subtracts `pos + 4 + addend`.
 - Raw machine passthrough (miniGCC basic `asm`): the ELF backend encodes
-  `nop cli sti hlt incq decq` alongside the compiler-generated set, so a
+  `nop cli sti hlt rdtsc incq decq` alongside the compiler-generated set, so a
   template miniGCC passes verbatim always assembles. Anything without a
   machine meaning in the target stays a fail-closed `unsupported
   instruction` diagnostic, never a silent miscompile: the CVM backend has
   no translation for privileged ops (`cli sti hlt`), so a module using
-  them is rejected at assembly time with file and line.
+  them is rejected at assembly time with file and line. Privileged
+  load/store forms (`in out lidt lgdt ltr mov-cr`) are future work: they
+  need EA-operand encodings the current Format layer does not carry.
 - Data directives (`.byte .word .long .quad`) take integer literals only. A
   symbol operand is deliberately rejected: storing an address at rest would
   need either a load-time relocation, which a static PIE never receives, or a

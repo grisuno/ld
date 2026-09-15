@@ -5,6 +5,7 @@ main:
     cli
     sti
     hlt
+    rdtsc
     movq $0, %rax
     ret
     .weak _start

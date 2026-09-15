@@ -3579,6 +3579,7 @@ static void elf_ins(const char *mn, const Op *o1, const Op *o2) {
     if (strcmp(mn, "cli") == 0) { x8(0xFA); return; }
     if (strcmp(mn, "sti") == 0) { x8(0xFB); return; }
     if (strcmp(mn, "hlt") == 0) { x8(0xF4); return; }
+    if (strcmp(mn, "rdtsc") == 0) { x8(0x0F); x8(0x31); return; }
     fprintf(stderr, "ld: %s:%ld: unsupported instruction '%s'\n", cur_file, cur_line, mn);
     error_count++;
 }
