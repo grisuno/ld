@@ -73,7 +73,22 @@ the `l` modifier. It truncates rather than reporting a would-be length, so
 the byte count handed to `write` can never exceed the format buffer. All four
 entry points share one core that reads arguments from an array; how many
 variadic arguments each accepts follows from the argument registers it has
-left over: `printf` 5, `fprintf` and `sprintf` 4, `snprintf` 3.
+left over: `printf` 5, `fprintf` and `sprintf` 4, `snprintf` 3. `%d` consumes
+its argument as 32-bit signed (glibc parity); the neg flag lives in one
+frame slot shared by set, test and clear.
+
+## Instruction coverage
+
+Beyond everything miniGCC generates, the ELF backend encodes the raw
+templates miniGCC passes through from basic `asm`: `nop cli sti hlt rdtsc
+lock xaddq xchgq incq decq mfence`, with `disp32` fixups that account for
+trailing immediates (`mov`/`alu`/`cmp` immediate-to-memory forms carry the
+imm after the disp). Anything without a machine meaning in the target is a
+fail-closed `unsupported instruction` diagnostic with file and line — the CVM
+backend has no translation for privileged or lock-prefixed ops, so a module
+using them is rejected at assembly time instead of being silently
+miscompiled. Privileged load/store forms (`in out lidt lgdt ltr mov-cr`)
+are future work.
 
 ## Self-hosting miniGCC
 
@@ -100,6 +115,12 @@ make test          # same, then: tests/run_tests.sh (cvm + elf + minigcc chain)
 tests/run_tests.sh     # behavioral suite: cvm + elf + minigcc chain
 tests/mutate.sh        # mutation testing (every mutant must be killed)
 ```
+
+The suite assembles every fixture to both formats and runs each (cvm2 for
+`.cvm`, natively for `.elf`), including a chain that compiles C with miniGCC
+first (`chain`, `fmt`, `globals`, `asm`, `stdint`). privileged `cli/sti/hlt`
+assembles for ELF but is rejected fail-closed for CVM, and the same holds
+for the `lock`-prefixed atomics (`sync` case).
 
 Fixtures are copied into a scratch directory and every tool runs against the
 copies: mutation testing deliberately builds broken binaries from this suite,
