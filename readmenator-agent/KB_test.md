@@ -99,7 +99,7 @@
 - Language: s
 - Symbols:
   - `main` (function, line 3)
-  - `_start` (function, line 12)
+  - `_start` (function, line 13)
 
 ## test/run_tests.sh
 - Layer: testing

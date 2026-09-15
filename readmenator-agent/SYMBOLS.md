@@ -213,29 +213,29 @@
 | `elea_operand` | function | `ld.c:1104` | `static void elea_operand(Op *op)` |
 | `elf_alu` | function | `ld.c:3214` | `static void elf_alu(int g1, int size, const Op *s, const Op *d)` |
 | `elf_branch` | function | `ld.c:3489` | `static void elf_branch(int opc, const Op *o)` |
-| `elf_build` | function | `ld.c:3823` | `static void elf_build(const char *in_path, const char *out_path)` |
+| `elf_build` | function | `ld.c:3824` | `static void elf_build(const char *in_path, const char *out_path)` |
 | `elf_cmp` | function | `ld.c:3413` | `static void elf_cmp(int size, const Op *s, const Op *d)` |
-| `elf_encode_src` | function | `ld.c:3617` | `static void elf_encode_src(LineSrc *src)` |
+| `elf_encode_src` | function | `ld.c:3618` | `static void elf_encode_src(LineSrc *src)` |
 | `elf_grp3` | function | `ld.c:3335` | `static void elf_grp3(const Op *o, int ext)` |
 | `elf_grp_ff` | function | `ld.c:3349` | `static void elf_grp_ff(const Op *o, int ext)` |
 | `elf_imul` | function | `ld.c:3277` | `static void elf_imul(const Op *s, const Op *d)` |
 | `elf_imull` | function | `ld.c:3306` | `static void elf_imull(const Op *s, const Op *d)` |
 | `elf_ins` | function | `ld.c:3500` | `static void elf_ins(const char *mn, const Op *o1, const Op *o2)` |
-| `elf_layout` | function | `ld.c:3673` | `static void elf_layout(void)` |
+| `elf_layout` | function | `ld.c:3674` | `static void elf_layout(void)` |
 | `elf_lea` | function | `ld.c:3170` | `static void elf_lea(const Op *s, const Op *d)` |
 | `elf_mov` | function | `ld.c:3057` | `static void elf_mov(int size, const Op *s, const Op *d)` |
 | `elf_movw` | function | `ld.c:3135` | `static void elf_movw(const Op *s, const Op *d)` |
 | `elf_movzx` | function | `ld.c:3118` | `static void elf_movzx(const Op *s, const Op *d, int opc, int rexw, int has_0f)` |
 | `elf_pop` | function | `ld.c:3201` | `static void elf_pop(const Op *o)` |
 | `elf_push` | function | `ld.c:3177` | `static void elf_push(const Op *o)` |
-| `elf_resolve_fixups` | function | `ld.c:3598` | `static void elf_resolve_fixups(void)` |
+| `elf_resolve_fixups` | function | `ld.c:3599` | `static void elf_resolve_fixups(void)` |
 | `elf_set` | function | `ld.c:3481` | `static void elf_set(int cc, const Op *o)` |
 | `elf_shift_cl` | function | `ld.c:3363` | `static void elf_shift_cl(const Op *s, const Op *d, int ext)` |
 | `elf_shift_cl32` | function | `ld.c:3371` | `static void elf_shift_cl32(const Op *s, const Op *d, int ext)` |
-| `elf_sym_addr` | function | `ld.c:3585` | `static long elf_sym_addr(const Sym *s)` |
+| `elf_sym_addr` | function | `ld.c:3586` | `static long elf_sym_addr(const Sym *s)` |
 | `elf_test` | function | `ld.c:3396` | `static void elf_test(const Op *s, const Op *d)` |
 | `elf_testl` | function | `ld.c:3379` | `static void elf_testl(const Op *s, const Op *d)` |
-| `elf_write` | function | `ld.c:3705` | `static void elf_write(const char *path)` |
+| `elf_write` | function | `ld.c:3706` | `static void elf_write(const char *path)` |
 | `emit_modrm` | function | `ld.c:2947` | `static void emit_modrm(int mod, int reg, int rm)` |
 | `emit_rex` | function | `ld.c:2942` | `static void emit_rex(int w, int r, int x, int b)` |
 | `emit_sib` | function | `ld.c:2951` | `static void emit_sib(int scale, int index, int base)` |
@@ -263,7 +263,7 @@
 | `ls_getline` | function | `ld.c:667` | `static int ls_getline(LineSrc *s, char *buf, size_t n)` |
 | `ls_open_file` | function | `ld.c:647` | `static void ls_open_file(LineSrc *s, const char *path)` |
 | `ls_open_mem` | function | `ld.c:659` | `static void ls_open_mem(LineSrc *s, const char *text)` |
-| `main` | function | `ld.c:3910` | `int main(int argc, char **argv)` |
+| `main` | function | `ld.c:3911` | `int main(int argc, char **argv)` |
 | `memcpy` | function | `ld.c:461` | `memcpy(dst, src, (size_t)n);` |
 | `memset` | function | `ld.c:496` | `memset(&syms[i], 0, sizeof(syms[i]));` |
 | `mov` | function | `ld.c:1182` | `static void mov(int size, Op *s, Op *d)` |
@@ -288,10 +288,10 @@
 | `split_word` | function | `ld.c:464` | `static void split_word(char *line, char *word, long wcap, char **rest)` |
 | `sprintf` | function | `ld.c:1835` | `sprintf(l1, "..S%lda", synth_n);` |
 | `strip_comment` | function | `ld.c:443` | `static void strip_comment(char *s)` |
-| `strncat` | function | `ld.c:3946` | `strncat(out, ext, CFG_NAME_MAX - strlen(out) - 1);` |
+| `strncat` | function | `ld.c:3947` | `strncat(out, ext, CFG_NAME_MAX - strlen(out) - 1);` |
 | `strncpy` | function | `ld.c:637` | `strncpy(o1, trim(rest), CFG_LINE_MAX - 1);` |
 | `trim` | function | `ld.c:432` | `static char *trim(char *s)` |
-| `usage` | function | `ld.c:3899` | `static void usage(void)` |
+| `usage` | function | `ld.c:3900` | `static void usage(void)` |
 | `w16` | function | `ld.c:2047` | `static void w16(unsigned char *p, long v)` |
 | `w32` | function | `ld.c:2040` | `static void w32(unsigned char *p, long v)` |
 | `w64_at` | function | `ld.c:2052` | `static void w64_at(unsigned char *p, unsigned long long v)` |
@@ -334,7 +334,7 @@
 | `main` | function | `test/loop.s:3` | `` |
 | `_start` | function | `test/movslq.s:14` | `` |
 | `main` | function | `test/movslq.s:3` | `` |
-| `_start` | function | `test/priv.s:12` | `` |
+| `_start` | function | `test/priv.s:13` | `` |
 | `main` | function | `test/priv.s:3` | `` |
 | `check` | function | `test/run_tests.sh:53` | `` |
 | `elf_structure_check` | function | `test/run_tests.sh:139` | `` |

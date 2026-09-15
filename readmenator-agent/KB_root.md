@@ -137,14 +137,14 @@
   - `elf_set` (function, line 3481) `static void elf_set(int cc, const Op *o)`
   - `elf_branch` (function, line 3489) `static void elf_branch(int opc, const Op *o)`
   - `elf_ins` (function, line 3500) `static void elf_ins(const char *mn, const Op *o1, const Op *o2)`
-  - `elf_sym_addr` (function, line 3585) `static long elf_sym_addr(const Sym *s)`
-  - `elf_resolve_fixups` (function, line 3598) `static void elf_resolve_fixups(void)`
-  - `elf_encode_src` (function, line 3617) `static void elf_encode_src(LineSrc *src)`
-  - `elf_layout` (function, line 3673) `static void elf_layout(void)`
-  - `elf_write` (function, line 3705) `static void elf_write(const char *path)`
-  - `elf_build` (function, line 3823) `static void elf_build(const char *in_path, const char *out_path)`
-  - `usage` (function, line 3899) `static void usage(void)`
-  - `main` (function, line 3910) `int main(int argc, char **argv)`
+  - `elf_sym_addr` (function, line 3586) `static long elf_sym_addr(const Sym *s)`
+  - `elf_resolve_fixups` (function, line 3599) `static void elf_resolve_fixups(void)`
+  - `elf_encode_src` (function, line 3618) `static void elf_encode_src(LineSrc *src)`
+  - `elf_layout` (function, line 3674) `static void elf_layout(void)`
+  - `elf_write` (function, line 3706) `static void elf_write(const char *path)`
+  - `elf_build` (function, line 3824) `static void elf_build(const char *in_path, const char *out_path)`
+  - `usage` (function, line 3900) `static void usage(void)`
+  - `main` (function, line 3911) `int main(int argc, char **argv)`
   - `fprintf` (function, line 342) `fprintf(stderr, "ld: %s:%ld: %s\n", cur_file, cur_line, msg);`
   - `exit` (function, line 346) `exit(1);`
   - `memcpy` (function, line 461) `memcpy(dst, src, (size_t)n);`
@@ -155,7 +155,7 @@
   - `fputc` (function, line 2127) `fputc((int)(z - 1), f);`
   - `fclose` (function, line 2139) `fclose(f);`
   - `free` (function, line 2140) `free(func_name_off);`
-  - `strncat` (function, line 3946) `strncat(out, ext, CFG_NAME_MAX - strlen(out) - 1);`
+  - `strncat` (function, line 3947) `strncat(out, ext, CFG_NAME_MAX - strlen(out) - 1);`
   - `CFG_MAX_SYMBOLS` (macro, line 24) `#define CFG_MAX_SYMBOLS`
   - `CFG_MAX_FIXUPS` (macro, line 26) `#define CFG_MAX_FIXUPS`
   - `CFG_FIXUP_INIT` (macro, line 27) `#define CFG_FIXUP_INIT`

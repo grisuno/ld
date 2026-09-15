@@ -352,29 +352,29 @@
 - Defined: `ld.c:3500`
 
 ### elf_sym_addr (function) `static long elf_sym_addr(const Sym *s)`
-- Defined: `ld.c:3585`
+- Defined: `ld.c:3586`
 
 ### elf_resolve_fixups (function) `static void elf_resolve_fixups(void)`
-- Defined: `ld.c:3598`
+- Defined: `ld.c:3599`
 
 ### elf_encode_src (function) `static void elf_encode_src(LineSrc *src)`
-- Defined: `ld.c:3617`
+- Defined: `ld.c:3618`
 
 ### elf_layout (function) `static void elf_layout(void)`
-- Defined: `ld.c:3673`
+- Defined: `ld.c:3674`
 
 ### elf_write (function) `static void elf_write(const char *path)`
-- Defined: `ld.c:3705`
+- Defined: `ld.c:3706`
 
 ### elf_build (function) `static void elf_build(const char *in_path, const char *out_path)`
-- Defined: `ld.c:3823`
+- Defined: `ld.c:3824`
 
 ### usage (function) `static void usage(void)`
-- Defined: `ld.c:3899`
+- Defined: `ld.c:3900`
 - Doc: ================================================================ CLI * =================================================
 
 ### main (function) `int main(int argc, char **argv)`
-- Defined: `ld.c:3910`
+- Defined: `ld.c:3911`
 
 ### fprintf (function) `fprintf(stderr, "ld: %s:%ld: %s\n", cur_file, cur_line, msg);`
 - Defined: `ld.c:342`
@@ -407,7 +407,7 @@
 - Defined: `ld.c:2140`
 
 ### strncat (function) `strncat(out, ext, CFG_NAME_MAX - strlen(out) - 1);`
-- Defined: `ld.c:3946`
+- Defined: `ld.c:3947`
 
 ## test/argv.c
 
@@ -526,7 +526,7 @@
 - Defined: `test/priv.s:3`
 
 ### _start (function)
-- Defined: `test/priv.s:12`
+- Defined: `test/priv.s:13`
 
 ## test/run_tests.sh
 
