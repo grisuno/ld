@@ -3,11 +3,15 @@
     "god_nodes": [
       [
         "ld.c",
-        28.0
+        30.200000000000003
       ],
       [
         "test/run_tests.sh",
         0.6000000000000001
+      ],
+      [
+        "test/asm.c",
+        0.4
       ],
       [
         "test/fib.s",
@@ -22,23 +26,19 @@
         0.30000000000000004
       ],
       [
+        "test/globals.c",
+        0.30000000000000004
+      ],
+      [
+        "test/argv.c",
+        0.2
+      ],
+      [
         "test/argv.s",
         0.2
       ],
       [
         "test/chain.c",
-        0.2
-      ],
-      [
-        "test/loop.s",
-        0.2
-      ],
-      [
-        "test/movslq.s",
-        0.2
-      ],
-      [
-        "test/start.s",
         0.2
       ]
     ],
@@ -47,7 +47,8 @@
     "suggested_questions": [
       "What does ld.c depend on, and what depends on it? (0 connections)",
       "What does run_tests.sh depend on, and what depends on it? (0 connections)",
-      "What does fib.s depend on, and what depends on it? (0 connections)",
+      "What does asm.c depend on, and what depends on it? (0 connections)",
+      "What is Sym in ld.c and how is it used?",
       "What is the overall architecture of this codebase?"
     ]
   },
@@ -57,6 +58,7 @@
     "ld.c": "utility",
     "test/argv.c": "testing",
     "test/argv.s": "testing",
+    "test/asm.c": "testing",
     "test/chain.c": "testing",
     "test/fib.s": "testing",
     "test/fib2.s": "testing",
@@ -67,6 +69,7 @@
     "test/loop.s": "testing",
     "test/movslq.s": "testing",
     "test/mutate.sh": "testing",
+    "test/priv.s": "testing",
     "test/run_tests.sh": "testing",
     "test/start.s": "testing",
     "test/t1.c": "testing",

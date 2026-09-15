@@ -193,9 +193,31 @@ if [ -x "$MINIGCC" ]; then
     run_chain chain
     run_chain fmt
     run_chain globals
+    run_chain asm
     elf_structure_check "$WORK/chain.elf"
 else
     echo "SKIP minigcc chain (minigcc binary not found)"
+fi
+
+echo "=== privileged asm: elf encodes, cvm rejects ==="
+if "$LD_TOOL" -f elf -o "$WORK/priv.elf" "$HERE/priv.s" 2>/dev/null; then
+    echo "PASS priv (elf): cli/sti/hlt assembled"
+    PASS=$((PASS + 1))
+else
+    echo "FAIL priv (elf): cli/sti/hlt rejected"
+    note_fail "priv(elf)"
+fi
+if "$LD_TOOL" -f cvm -o "$WORK/priv.cvm" "$HERE/priv.s" 2>"$WORK/priv.err"; then
+    echo "FAIL priv (cvm): raw machine asm accepted for virtualization"
+    note_fail "priv(cvm-accept)"
+else
+    if grep -q "unsupported instruction 'cli'" "$WORK/priv.err"; then
+        echo "PASS priv (cvm): cli rejected fail-closed"
+        PASS=$((PASS + 1))
+    else
+        echo "FAIL priv (cvm): wrong diagnostic"
+        note_fail "priv(cvm-diag)"
+    fi
 fi
 
 if [ "$RUN_SLOW" = "1" ] && [ -x "$MINIGCC" ] && [ -f "$ROOT/../miniGCC/minigcc.c" ]; then

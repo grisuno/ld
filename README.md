@@ -96,6 +96,7 @@ See `CLAUDE.md` for the full contract (SDD + TDD + BDD + mutation testing).
 
 ```
 gcc -std=c99 -Wall -Wextra -Wpedantic -O2 -o ld ld.c
+make test          # same, then: tests/run_tests.sh (cvm + elf + minigcc chain)
 tests/run_tests.sh     # behavioral suite: cvm + elf + minigcc chain
 tests/mutate.sh        # mutation testing (every mutant must be killed)
 ```
@@ -109,13 +110,18 @@ pristine sources.
 ## Knowledge Base
 
 This project has been analyzed by [ReadMenator](https://github.com/grisuno/ReadMenator),
-a zero-token polyglot static analysis tool. A comprehensive knowledge base is available:
+a zero-token polyglot static analysis tool. Analysis outputs are available:
 
-- **[KNOWLEDGE_BASE.md](./KNOWLEDGE_BASE.md)** -- Architecture reference with all
+- **[KNOWLEDGE_BASE.md](./KNOWLEDGE_BASE.md)** -- Full architecture reference with all
   classes, functions, imports, dependency graphs, UML class diagrams, security
   audit findings, community analysis, and more.
+- **[readmenator-agent/](./readmenator-agent/)** -- Agent-friendly, grep-optimized index.
+  - `INDEX.md` -- Quick reference: what each file does
+  - `API.md` -- Public function contracts
+  - `GOTCHAS.md` -- Change warnings
+  - `SECURITY.md` -- Findings by severity
 
-AI agents and developers: Read `KNOWLEDGE_BASE.md` for full project context
-without LLM token cost.
+AI agents: Read `readmenator-agent/INDEX.md` for fast project context.
+Developers: Read `KNOWLEDGE_BASE.md` for full architecture reference.
 <!-- /readmenator-kb-link -->
 

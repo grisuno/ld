@@ -235,6 +235,7 @@ typedef struct {
 
 typedef struct {
     long pos;
+    long addend;
     char name[CFG_NAME_MAX];
 } Fixup;
 
@@ -1473,6 +1474,42 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
         epush_reg(o1->reg);
         e1(OP_NOT);
         estore_reg(o1->reg);
+        return;
+    }
+    if (strcmp(mn, "incq") == 0) {
+        if (o1->kind == K_REG) {
+            epush_reg(o1->reg);
+            eimm(1);
+            e1(OP_ADD);
+            estore_reg(o1->reg);
+        } else if (o1->kind == K_MEM || o1->kind == K_SYM) {
+            elea_operand(o1);
+            e1(OP_LOAD64);
+            eimm(1);
+            e1(OP_ADD);
+            estore_local(CFG_SLOT_S0);
+            elea_operand(o1);
+            epush_local(CFG_SLOT_S0);
+            e1(OP_STORE64);
+        } else die("invalid operand");
+        return;
+    }
+    if (strcmp(mn, "decq") == 0) {
+        if (o1->kind == K_REG) {
+            epush_reg(o1->reg);
+            eimm(1);
+            e1(OP_SUB);
+            estore_reg(o1->reg);
+        } else if (o1->kind == K_MEM || o1->kind == K_SYM) {
+            elea_operand(o1);
+            e1(OP_LOAD64);
+            eimm(1);
+            e1(OP_SUB);
+            estore_local(CFG_SLOT_S0);
+            elea_operand(o1);
+            epush_local(CFG_SLOT_S0);
+            e1(OP_STORE64);
+        } else die("invalid operand");
         return;
     }
     if (strcmp(mn, "andq") == 0) {
@@ -2892,9 +2929,15 @@ static void x64(unsigned long long v) {
 static void xfix32(const char *sym) {
     fixup_reserve();
     fixups[n_fixups].pos = code_len;
+    fixups[n_fixups].addend = 0;
     name_copy(fixups[n_fixups].name, sym);
     n_fixups++;
     x32(0);
+}
+
+static void fixup_trail(long t) {
+    if (n_fixups > 0)
+        fixups[n_fixups - 1].addend = t;
 }
 
 static void emit_rex(int w, int r, int x, int b) {
@@ -3064,6 +3107,7 @@ static void elf_mov(int size, const Op *s, const Op *d) {
             ea_grp(size == 1 ? 0xC6 : 0xC7, size, d, 0);
             if (size == 1) x8((int)(s->imm & 255));
             else x32(s->imm);
+            if (d->is_rip) fixup_trail(size == 1 ? 1 : 4);
         } else {
             die("invalid mov source");
         }
@@ -3209,16 +3253,19 @@ static void elf_alu(int g1, int size, const Op *s, const Op *d) {
                 x8(0x80);
                 x86_ea_modrm(d, (g1 >> 3) & 7);
                 x8((int)(v & 255));
+                if (d->is_rip) fixup_trail(1);
             } else if ((long long)(signed char)v == v) {
                 x86_ea_rex(d, (g1 >> 3) & 7, rexw, 0);
                 x8(0x83);
                 x86_ea_modrm(d, (g1 >> 3) & 7);
                 x8((int)(v & 255));
+                if (d->is_rip) fixup_trail(1);
             } else {
                 x86_ea_rex(d, (g1 >> 3) & 7, rexw, 0);
                 x8(0x81);
                 x86_ea_modrm(d, (g1 >> 3) & 7);
                 x32(v);
+                if (d->is_rip) fixup_trail(4);
             }
         } else {
             die("invalid arithmetic operand");
@@ -3294,6 +3341,20 @@ static void elf_grp3(const Op *o, int ext) {
     } else if (o->kind == K_MEM || o->kind == K_SYM) {
         x86_ea_rex(o, ext, 1, 0);
         x8(0xF7);
+        x86_ea_modrm(o, ext);
+    } else {
+        die("invalid operand");
+    }
+}
+
+static void elf_grp_ff(const Op *o, int ext) {
+    if (o->kind == K_REG) {
+        emit_rex(1, 0, 0, (o->reg >> 3) & 1);
+        x8(0xFF);
+        emit_modrm(3, ext, o->reg & 7);
+    } else if (o->kind == K_MEM || o->kind == K_SYM) {
+        x86_ea_rex(o, ext, 1, 0);
+        x8(0xFF);
         x86_ea_modrm(o, ext);
     } else {
         die("invalid operand");
@@ -3396,16 +3457,19 @@ static void elf_cmp(int size, const Op *s, const Op *d) {
                 x8(0x80);
                 x86_ea_modrm(d, 7);
                 x8((int)(v & 255));
+                if (d->is_rip) fixup_trail(1);
             } else if ((long long)(signed char)v == v) {
                 x86_ea_rex(d, 7, rexw, 0);
                 x8(0x83);
                 x86_ea_modrm(d, 7);
                 x8((int)(v & 255));
+                if (d->is_rip) fixup_trail(1);
             } else {
                 x86_ea_rex(d, 7, rexw, 0);
                 x8(0x81);
                 x86_ea_modrm(d, 7);
                 x32(v);
+                if (d->is_rip) fixup_trail(4);
             }
         } else {
             die("invalid compare operand");
@@ -3469,6 +3533,8 @@ static void elf_ins(const char *mn, const Op *o1, const Op *o2) {
     if (strcmp(mn, "imull") == 0) { elf_imull(o1, o2); return; }
     if (strcmp(mn, "negq") == 0) { elf_grp3(o1, 3); return; }
     if (strcmp(mn, "notq") == 0) { elf_grp3(o1, 2); return; }
+    if (strcmp(mn, "incq") == 0) { elf_grp_ff(o1, 0); return; }
+    if (strcmp(mn, "decq") == 0) { elf_grp_ff(o1, 1); return; }
     if (strcmp(mn, "idivq") == 0) { elf_grp3(o1, 7); return; }
     if (strcmp(mn, "salq") == 0) { elf_shift_cl(o1, o2, 4); return; }
     if (strcmp(mn, "shll") == 0) { elf_shift_cl32(o1, o2, 4); return; }
@@ -3510,6 +3576,9 @@ static void elf_ins(const char *mn, const Op *o1, const Op *o2) {
     if (strcmp(mn, "cdqe") == 0) { x8(0x48); x8(0x98); return; }
     if (strcmp(mn, "syscall") == 0) { x8(0x0F); x8(0x05); return; }
     if (strcmp(mn, "nop") == 0) { x8(0x90); return; }
+    if (strcmp(mn, "cli") == 0) { x8(0xFA); return; }
+    if (strcmp(mn, "sti") == 0) { x8(0xFB); return; }
+    if (strcmp(mn, "hlt") == 0) { x8(0xF4); return; }
     fprintf(stderr, "ld: %s:%ld: unsupported instruction '%s'\n", cur_file, cur_line, mn);
     error_count++;
 }
@@ -3536,7 +3605,7 @@ static void elf_resolve_fixups(void) {
             continue;
         }
         long addr = elf_sym_addr(&syms[si]);
-        long rel = addr - (elf_text_base + fixups[i].pos + 4);
+        long rel = addr - (elf_text_base + fixups[i].pos + 4 + fixups[i].addend);
         long p = fixups[i].pos;
         code[p]     = (unsigned char)(rel & 255);
         code[p + 1] = (unsigned char)((rel >> 8) & 255);
