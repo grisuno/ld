@@ -87,6 +87,10 @@ Layers:
   entry point has left: `printf` 5, `fprintf` and `sprintf` 4, `snprintf` 3.
   Every slot beyond the last argument is zeroed, so an over-long format
   never reads a live register or an adjacent frame slot.
+- `%d` reads its argument as 32-bit signed (glibc parity: `movslq` at the
+  conversion site); the neg flag lives at frame+8 and is set, tested and
+  cleared through that one slot (a clear addressed past the digit buffer
+  made every argument after a negative print negated).
 - Any change to the formatter must be covered by `tests/fmt.c`, which pins
   each conversion, the width and zero-fill flags, and the argument capacity.
 - `snprintf` truncates: it returns the number of characters actually written,

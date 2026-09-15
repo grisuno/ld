@@ -21,6 +21,7 @@
 | `test/priv.s` | - | test | 2 |
 | `test/run_tests.sh` | BDD suite for the ld tool (miniGCC asm -> CVM / ELF). Every fixture is assembled | test | 6 |
 | `test/start.s` | - | test | 2 |
+| `test/stdint.c` | include <stdio.h> include <stdint.h> | test | 7 |
 | `test/t1.c` | - | test | 1 |
 | `test/t1.s` | - | test | 2 |
 | `test/w1.c` | - | test | 2 |

@@ -560,6 +560,26 @@
 ### _start (function)
 - Defined: `test/start.s:8`
 
+## test/stdint.c
+
+### loads_u8 (function) `uint8_t loads_u8(uint8_t v)`
+- Defined: `test/stdint.c:21`
+
+### loads_s16 (function) `int16_t loads_s16(int16_t v)`
+- Defined: `test/stdint.c:25`
+
+### loads_u32 (function) `uint32_t loads_u32(uint32_t v)`
+- Defined: `test/stdint.c:29`
+
+### add_shorts (function) `short add_shorts(short a, short b)`
+- Defined: `test/stdint.c:33`
+
+### main (function) `int main(void)`
+- Defined: `test/stdint.c:37`
+
+### printf (function) `printf("%d %d %d\n", gu8, gi8, gu16);`
+- Defined: `test/stdint.c:49`
+
 ## test/t1.c
 
 ### main (function) `int main(void)`

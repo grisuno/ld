@@ -6,6 +6,10 @@
         30.200000000000003
       ],
       [
+        "test/stdint.c",
+        0.7000000000000001
+      ],
+      [
         "test/run_tests.sh",
         0.6000000000000001
       ],
@@ -36,18 +40,14 @@
       [
         "test/argv.s",
         0.2
-      ],
-      [
-        "test/chain.c",
-        0.2
       ]
     ],
     "communities": [],
     "surprising_connections": [],
     "suggested_questions": [
       "What does ld.c depend on, and what depends on it? (0 connections)",
+      "What does stdint.c depend on, and what depends on it? (0 connections)",
       "What does run_tests.sh depend on, and what depends on it? (0 connections)",
-      "What does asm.c depend on, and what depends on it? (0 connections)",
       "What is Sym in ld.c and how is it used?",
       "What is the overall architecture of this codebase?"
     ]
@@ -72,6 +72,7 @@
     "test/priv.s": "testing",
     "test/run_tests.sh": "testing",
     "test/start.s": "testing",
+    "test/stdint.c": "infrastructure",
     "test/t1.c": "testing",
     "test/t1.s": "testing",
     "test/w1.c": "testing",

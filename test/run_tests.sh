@@ -194,6 +194,7 @@ if [ -x "$MINIGCC" ]; then
     run_chain fmt
     run_chain globals
     run_chain asm
+    run_chain stdint
     elf_structure_check "$WORK/chain.elf"
 else
     echo "SKIP minigcc chain (minigcc binary not found)"

@@ -344,6 +344,13 @@
 | `run_prog` | function | `test/run_tests.sh:40` | `` |
 | `_start` | function | `test/start.s:8` | `` |
 | `main` | function | `test/start.s:3` | `` |
+| `add_shorts` | function | `test/stdint.c:33` | `short add_shorts(short a, short b)` |
+| `idtr_t` | struct | `test/stdint.c:4` | `` |
+| `loads_s16` | function | `test/stdint.c:25` | `int16_t loads_s16(int16_t v)` |
+| `loads_u32` | function | `test/stdint.c:29` | `uint32_t loads_u32(uint32_t v)` |
+| `loads_u8` | function | `test/stdint.c:21` | `uint8_t loads_u8(uint8_t v)` |
+| `main` | function | `test/stdint.c:37` | `int main(void)` |
+| `printf` | function | `test/stdint.c:49` | `printf("%d %d %d\n", gu8, gi8, gu16);` |
 | `main` | function | `test/t1.c:1` | `int main(void)` |
 | `_start` | function | `test/t1.s:14` | `` |
 | `main` | function | `test/t1.s:3` | `` |
