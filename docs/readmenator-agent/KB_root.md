@@ -1,0 +1,320 @@
+# Subsystem: root
+
+## app.py
+- Layer: utility
+- Doc: _*_ coding: utf8 _*_
+- Language: py
+
+## install.sh
+- Layer: utility
+- Language: sh
+
+## ld.c
+- Layer: utility
+- Language: c
+- Symbols:
+  - `Sym` (struct, line 209)
+  - `Op` (struct, line 221)
+  - `Fixup` (struct, line 236)
+  - `LineSrc` (struct, line 242)
+  - `Func` (struct, line 250)
+  - `GVar` (struct, line 257)
+  - `Blob` (struct, line 264)
+  - `Nat` (struct, line 271)
+  - `Label` (struct, line 275)
+  - `die` (function, line 340) `static void die(const char *msg)`
+  - `breserve` (function, line 349) `static void breserve(unsigned char **p, long *cap, long need)`
+  - `fixup_reserve` (function, line 369) `static void fixup_reserve(void)`
+  - `creserve` (function, line 384) `static void creserve(char **p, long *cap, long need)`
+  - `parse_num` (function, line 400) `static long parse_num(const char *s)`
+  - `trim` (function, line 432) `static char *trim(char *s)`
+  - `strip_comment` (function, line 443) `static void strip_comment(char *s)`
+  - `name_copy` (function, line 457) `static void name_copy(char *dst, const char *src)`
+  - `split_word` (function, line 464) `static void split_word(char *line, char *word, long wcap, char **rest)`
+  - `hexval` (function, line 477) `static int hexval(char c)`
+  - `find_sym` (function, line 484) `static int find_sym(const char *name)`
+  - `add_sym` (function, line 490) `static int add_sym(const char *name, int kind, int sec)`
+  - `parse_reg` (function, line 526) `static int parse_reg(const char *s, int *reg, int *sz)`
+  - `parse_mem` (function, line 538) `static void parse_mem(char *s, Op *op)`
+  - `parse_operand` (function, line 591) `static void parse_operand(char *s, Op *op)`
+  - `split_operands` (function, line 622) `static int split_operands(char *rest, char *o1, char *o2)`
+  - `ls_open_file` (function, line 647) `static void ls_open_file(LineSrc *s, const char *path)`
+  - `ls_open_mem` (function, line 659) `static void ls_open_mem(LineSrc *s, const char *text)`
+  - `ls_getline` (function, line 667) `static int ls_getline(LineSrc *s, char *buf, size_t n)`
+  - `ls_close` (function, line 683) `static void ls_close(LineSrc *s)`
+  - `data_put` (function, line 691) `static void data_put(unsigned char b)`
+  - `data_fill` (function, line 696) `static void data_fill(long n, unsigned char b)`
+  - `data_align` (function, line 703) `static void data_align(long a)`
+  - `blob_put` (function, line 707) `static void blob_put(unsigned char b)`
+  - `blob_append_str` (function, line 712) `static void blob_append_str(char *s)`
+  - `set_section` (function, line 751) `static int set_section(char *line)`
+  - `scan_directive` (function, line 774) `static void scan_directive(char *line, int *section, int pending_global,
+                        ...`
+  - `scan_src` (function, line 870) `static void scan_src(LineSrc *src, int from_stubs)`
+  - `cvm_find_func` (function, line 941) `static int cvm_find_func(const char *name)`
+  - `cvm_find_global` (function, line 947) `static int cvm_find_global(const char *name)`
+  - `cvm_find_blob` (function, line 953) `static int cvm_find_blob(const char *name)`
+  - `cvm_find_nat` (function, line 959) `static int cvm_find_nat(const char *name)`
+  - `cvm_add_nat` (function, line 965) `static int cvm_add_nat(const char *name)`
+  - `e1` (function, line 974) `static void e1(int b)`
+  - `e4` (function, line 979) `static void e4(long v)`
+  - `e8` (function, line 987) `static void e8(unsigned long long v)`
+  - `eimm` (function, line 995) `static void eimm(long long v)`
+  - `epush_local` (function, line 1008) `static void epush_local(int slot)`
+  - `estore_local` (function, line 1010) `static void estore_local(int slot)`
+  - `epush_global` (function, line 1011) `static void epush_global(int slot)`
+  - `estore_global` (function, line 1012) `static void estore_global(int slot)`
+  - `cvm_slot` (function, line 1013) `static int cvm_slot(int std)`
+  - `epush_reg` (function, line 1020) `static void epush_reg(int r)`
+  - `estore_reg` (function, line 1026) `static void estore_reg(int r)`
+  - `pool_add` (function, line 1032) `static long pool_add(const char *s)`
+  - `cvm_fixup_add` (function, line 1041) `static void cvm_fixup_add(long pos, const char *name)`
+  - `ejmp` (function, line 1048) `static void ejmp(const char *lbl)`
+  - `ejz` (function, line 1050) `static void ejz(const char *lbl)`
+  - `ejnz` (function, line 1051) `static void ejnz(const char *lbl)`
+  - `find_label` (function, line 1052) `static long find_label(const char *name)`
+  - `add_label` (function, line 1058) `static void add_label(const char *name, long off)`
+  - `resolve_fixups` (function, line 1066) `static void resolve_fixups(void)`
+  - `push_mask32` (function, line 1085) `static void push_mask32(void)`
+  - `push_mask8` (function, line 1087) `static void push_mask8(void)`
+  - `push_mask16` (function, line 1088) `static void push_mask16(void)`
+  - `elea_mem` (function, line 1089) `static void elea_mem(Op *op)`
+  - `elea_operand` (function, line 1104) `static void elea_operand(Op *op)`
+  - `epush_value` (function, line 1138) `static void epush_value(Op *op, int size)`
+  - `signext8` (function, line 1164) `static void signext8(void)`
+  - `signext32` (function, line 1170) `static void signext32(void)`
+  - `signext16` (function, line 1176) `static void signext16(void)`
+  - `mov` (function, line 1182) `static void mov(int size, Op *s, Op *d)`
+  - `arith_mem` (function, line 1242) `static void arith_mem(int opc, int size, Op *d, Op *s)`
+  - `arith_reg` (function, line 1259) `static void arith_reg(int opc, int size, Op *d, Op *s)`
+  - `cvm_push_cmpval` (function, line 1287) `static void cvm_push_cmpval(Op *o, int size)`
+  - `cvm_cmp` (function, line 1293) `static void cvm_cmp(int size, Op *o1, Op *o2)`
+  - `cvm_translate` (function, line 1300) `static void cvm_translate(const char *mn, Op *o1, Op *o2)`
+  - `cvm_prepare_tables` (function, line 1866) `static void cvm_prepare_tables(void)`
+  - `cvm_layout_data` (function, line 1898) `static void cvm_layout_data(void)`
+  - `func_glue` (function, line 1943) `static void func_glue(void)`
+  - `entry_glue` (function, line 1952) `static void entry_glue(void)`
+  - `cvm_encode` (function, line 1966) `static void cvm_encode(LineSrc *src)`
+  - `w32` (function, line 2040) `static void w32(unsigned char *p, long v)`
+  - `w16` (function, line 2047) `static void w16(unsigned char *p, long v)`
+  - `w64_at` (function, line 2052) `static void w64_at(unsigned char *p, unsigned long long v)`
+  - `cvm_write_module` (function, line 2059) `static void cvm_write_module(const char *path)`
+  - `x86_align_up` (function, line 2897) `static long x86_align_up(long v, long a)`
+  - `x8` (function, line 2901) `static void x8(int b)`
+  - `x16` (function, line 2906) `static void x16(long v)`
+  - `x32` (function, line 2912) `static void x32(long v)`
+  - `x64` (function, line 2920) `static void x64(unsigned long long v)`
+  - `xfix32` (function, line 2928) `static void xfix32(const char *sym)`
+  - `fixup_trail` (function, line 2937) `static void fixup_trail(long t)`
+  - `emit_rex` (function, line 2942) `static void emit_rex(int w, int r, int x, int b)`
+  - `emit_modrm` (function, line 2947) `static void emit_modrm(int mod, int reg, int rm)`
+  - `emit_sib` (function, line 2951) `static void emit_sib(int scale, int index, int base)`
+  - `x86_ea_rex` (function, line 2955) `static void x86_ea_rex(const Op *op, int regfield, int rexw, int force)`
+  - `x86_ea_modrm` (function, line 2963) `static void x86_ea_modrm(const Op *op, int regfield)`
+  - `x86_rex_reg` (function, line 3016) `static void x86_rex_reg(int w, int regfield, int rm)`
+  - `x86_rex8` (function, line 3020) `static void x86_rex8(int regfield, int rm)`
+  - `ea_mov` (function, line 3027) `static void ea_mov(int size, const Op *o, int regfield)`
+  - `ea_mov_to` (function, line 3033) `static void ea_mov_to(int size, const Op *o, int regfield)`
+  - `ea_alu` (function, line 3039) `static void ea_alu(int g1, int size, const Op *o, int regfield, int from_mem)`
+  - `ea_cmp` (function, line 3045) `static void ea_cmp(int size, const Op *o, int regfield, int from_mem)`
+  - `ea_grp` (function, line 3051) `static void ea_grp(int opc, int size, const Op *o, int regfield)`
+  - `elf_mov` (function, line 3057) `static void elf_mov(int size, const Op *s, const Op *d)`
+  - `elf_movzx` (function, line 3118) `static void elf_movzx(const Op *s, const Op *d, int opc, int rexw, int has_0f)`
+  - `elf_movw` (function, line 3135) `static void elf_movw(const Op *s, const Op *d)`
+  - `elf_lea` (function, line 3170) `static void elf_lea(const Op *s, const Op *d)`
+  - `elf_push` (function, line 3177) `static void elf_push(const Op *o)`
+  - `elf_pop` (function, line 3201) `static void elf_pop(const Op *o)`
+  - `elf_alu` (function, line 3214) `static void elf_alu(int g1, int size, const Op *s, const Op *d)`
+  - `elf_imul` (function, line 3277) `static void elf_imul(const Op *s, const Op *d)`
+  - `elf_imull` (function, line 3306) `static void elf_imull(const Op *s, const Op *d)`
+  - `elf_grp3` (function, line 3335) `static void elf_grp3(const Op *o, int ext)`
+  - `elf_xadd` (function, line 3349) `static void elf_xadd(const Op *s, const Op *d)`
+  - `elf_xchg` (function, line 3366) `static void elf_xchg(const Op *s, const Op *d)`
+  - `elf_grp_ff` (function, line 3383) `static void elf_grp_ff(const Op *o, int ext)`
+  - `elf_shift_cl` (function, line 3397) `static void elf_shift_cl(const Op *s, const Op *d, int ext)`
+  - `elf_shift_cl32` (function, line 3405) `static void elf_shift_cl32(const Op *s, const Op *d, int ext)`
+  - `elf_testl` (function, line 3413) `static void elf_testl(const Op *s, const Op *d)`
+  - `elf_test` (function, line 3430) `static void elf_test(const Op *s, const Op *d)`
+  - `elf_cmp` (function, line 3447) `static void elf_cmp(int size, const Op *s, const Op *d)`
+  - `elf_set` (function, line 3515) `static void elf_set(int cc, const Op *o)`
+  - `elf_branch` (function, line 3523) `static void elf_branch(int opc, const Op *o)`
+  - `elf_ins` (function, line 3534) `static void elf_ins(const char *mn, const Op *o1, const Op *o2)`
+  - `elf_sym_addr` (function, line 3624) `static long elf_sym_addr(const Sym *s)`
+  - `elf_resolve_fixups` (function, line 3637) `static void elf_resolve_fixups(void)`
+  - `elf_encode_src` (function, line 3656) `static void elf_encode_src(LineSrc *src)`
+  - `elf_layout` (function, line 3712) `static void elf_layout(void)`
+  - `elf_write` (function, line 3744) `static void elf_write(const char *path)`
+  - `elf_build` (function, line 3862) `static void elf_build(const char *in_path, const char *out_path)`
+  - `usage` (function, line 3938) `static void usage(void)`
+  - `main` (function, line 3949) `int main(int argc, char **argv)`
+  - `fprintf` (function, line 342) `fprintf(stderr, "ld: %s:%ld: %s\n", cur_file, cur_line, msg);`
+  - `exit` (function, line 346) `exit(1);`
+  - `memcpy` (function, line 461) `memcpy(dst, src, (size_t)n);`
+  - `memset` (function, line 496) `memset(&syms[i], 0, sizeof(syms[i]));`
+  - `strncpy` (function, line 637) `strncpy(o1, trim(rest), CFG_LINE_MAX - 1);`
+  - `sprintf` (function, line 1835) `sprintf(l1, "..S%lda", synth_n);`
+  - `fwrite` (function, line 2096) `fwrite(hdr, 1, CFG_CVM_HDR_SIZE, f);`
+  - `fputc` (function, line 2127) `fputc((int)(z - 1), f);`
+  - `fclose` (function, line 2139) `fclose(f);`
+  - `free` (function, line 2140) `free(func_name_off);`
+  - `strncat` (function, line 3985) `strncat(out, ext, CFG_NAME_MAX - strlen(out) - 1);`
+  - `CFG_MAX_SYMBOLS` (macro, line 24) `#define CFG_MAX_SYMBOLS`
+  - `CFG_MAX_FIXUPS` (macro, line 26) `#define CFG_MAX_FIXUPS`
+  - `CFG_FIXUP_INIT` (macro, line 27) `#define CFG_FIXUP_INIT`
+  - `CFG_LINE_MAX` (macro, line 28) `#define CFG_LINE_MAX`
+  - `CFG_NAME_MAX` (macro, line 29) `#define CFG_NAME_MAX`
+  - `CFG_MAX_NATS` (macro, line 30) `#define CFG_MAX_NATS`
+  - `CFG_MAX_ERRORS` (macro, line 31) `#define CFG_MAX_ERRORS`
+  - `CFG_GROW_UNIT` (macro, line 32) `#define CFG_GROW_UNIT`
+  - `CFG_ABI_BYTES` (macro, line 33) `#define CFG_ABI_BYTES`
+  - `CFG_STACK_BASE` (macro, line 35) `#define CFG_STACK_BASE`
+  - `CFG_XSTACK_DEF` (macro, line 36) `#define CFG_XSTACK_DEF`
+  - `CFG_MAX_ARGS` (macro, line 40) `#define CFG_MAX_ARGS`
+  - `CFG_REG_LOCALS` (macro, line 41) `#define CFG_REG_LOCALS`
+  - `CFG_SLOT_FLAGS_A` (macro, line 43) `#define CFG_SLOT_FLAGS_A`
+  - `CFG_SLOT_FLAGS_B` (macro, line 44) `#define CFG_SLOT_FLAGS_B`
+  - `CFG_SLOT_S0` (macro, line 45) `#define CFG_SLOT_S0`
+  - `CFG_SLOT_S1` (macro, line 46) `#define CFG_SLOT_S1`
+  - `CFG_GSLOT_RSP` (macro, line 47) `#define CFG_GSLOT_RSP`
+  - `CFG_GSLOT_RBP` (macro, line 49) `#define CFG_GSLOT_RBP`
+  - `CFG_GSLOT_ARGS` (macro, line 50) `#define CFG_GSLOT_ARGS`
+  - `CFG_GSLOT_RET` (macro, line 51) `#define CFG_GSLOT_RET`
+  - `CFG_CVM_MAGIC_0` (macro, line 52) `#define CFG_CVM_MAGIC_0`
+  - `CFG_CVM_MAGIC_1` (macro, line 54) `#define CFG_CVM_MAGIC_1`
+  - `CFG_CVM_MAGIC_2` (macro, line 55) `#define CFG_CVM_MAGIC_2`
+  - `CFG_CVM_MAGIC_3` (macro, line 56) `#define CFG_CVM_MAGIC_3`
+  - `CFG_CVM_VER_MAJ` (macro, line 57) `#define CFG_CVM_VER_MAJ`
+  - `CFG_CVM_VER_MIN` (macro, line 58) `#define CFG_CVM_VER_MIN`
+  - `CFG_CVM_HDR_SIZE` (macro, line 59) `#define CFG_CVM_HDR_SIZE`
+  - `CFG_ELF_PAGE` (macro, line 60) `#define CFG_ELF_PAGE`
+  - `CFG_ELF_HSIZE` (macro, line 62) `#define CFG_ELF_HSIZE`
+  - `CFG_ELF_PHENTSZ` (macro, line 63) `#define CFG_ELF_PHENTSZ`
+  - `CFG_ELF_PHNUM` (macro, line 64) `#define CFG_ELF_PHNUM`
+  - `CFG_ELF_SHENTSZ` (macro, line 65) `#define CFG_ELF_SHENTSZ`
+  - `CFG_ELF_SHNUM` (macro, line 66) `#define CFG_ELF_SHNUM`
+  - `CFG_ELF_SHSTRNDX` (macro, line 67) `#define CFG_ELF_SHSTRNDX`
+  - `CFG_ELF_ET_DYN` (macro, line 68) `#define CFG_ELF_ET_DYN`
+  - `CFG_ELF_EM_X8664` (macro, line 69) `#define CFG_ELF_EM_X8664`
+  - `CFG_ELF_PF_R` (macro, line 70) `#define CFG_ELF_PF_R`
+  - `CFG_ELF_PF_W` (macro, line 71) `#define CFG_ELF_PF_W`
+  - `CFG_ELF_PF_X` (macro, line 72) `#define CFG_ELF_PF_X`
+  - `CFG_ELF_PT_LOAD` (macro, line 73) `#define CFG_ELF_PT_LOAD`
+  - `CFG_ELF_SHT_PROGBITS` (macro, line 74) `#define CFG_ELF_SHT_PROGBITS`
+  - `CFG_ELF_SHT_NOBITS` (macro, line 75) `#define CFG_ELF_SHT_NOBITS`
+  - `CFG_ELF_SHT_STRTAB` (macro, line 76) `#define CFG_ELF_SHT_STRTAB`
+  - `CFG_ELF_SHF_A` (macro, line 77) `#define CFG_ELF_SHF_A`
+  - `CFG_ELF_SHF_X` (macro, line 78) `#define CFG_ELF_SHF_X`
+  - `CFG_ELF_SHF_W` (macro, line 79) `#define CFG_ELF_SHF_W`
+  - `CFG_ELF_TEXT_BASE` (macro, line 80) `#define CFG_ELF_TEXT_BASE`
+  - `CFG_FMT_CVM` (macro, line 81) `#define CFG_FMT_CVM`
+  - `CFG_FMT_ELF` (macro, line 83) `#define CFG_FMT_ELF`
+  - `X86_G1_ADD` (macro, line 86) `#define X86_G1_ADD`
+  - `X86_G1_OR` (macro, line 87) `#define X86_G1_OR`
+  - `X86_G1_AND` (macro, line 88) `#define X86_G1_AND`
+  - `X86_G1_SUB` (macro, line 89) `#define X86_G1_SUB`
+  - `X86_G1_XOR` (macro, line 90) `#define X86_G1_XOR`
+  - `X86_G1_CMP` (macro, line 91) `#define X86_G1_CMP`
+  - `X86_JCC_JE` (macro, line 92) `#define X86_JCC_JE`
+  - `X86_JCC_JNE` (macro, line 94) `#define X86_JCC_JNE`
+  - `X86_JCC_JL` (macro, line 95) `#define X86_JCC_JL`
+  - `X86_JCC_JG` (macro, line 96) `#define X86_JCC_JG`
+  - `X86_JCC_JLE` (macro, line 97) `#define X86_JCC_JLE`
+  - `X86_JCC_JGE` (macro, line 98) `#define X86_JCC_JGE`
+  - `X86_JCC_JA` (macro, line 99) `#define X86_JCC_JA`
+  - `X86_JCC_JAE` (macro, line 100) `#define X86_JCC_JAE`
+  - `X86_JCC_JB` (macro, line 101) `#define X86_JCC_JB`
+  - `X86_JCC_JBE` (macro, line 102) `#define X86_JCC_JBE`
+  - `X86_SET_E` (macro, line 103) `#define X86_SET_E`
+  - `X86_SET_NE` (macro, line 105) `#define X86_SET_NE`
+  - `X86_SET_L` (macro, line 106) `#define X86_SET_L`
+  - `X86_SET_G` (macro, line 107) `#define X86_SET_G`
+  - `X86_SET_LE` (macro, line 108) `#define X86_SET_LE`
+  - `X86_SET_GE` (macro, line 109) `#define X86_SET_GE`
+  - `X86_SET_A` (macro, line 110) `#define X86_SET_A`
+  - `X86_SET_AE` (macro, line 111) `#define X86_SET_AE`
+  - `X86_SET_B` (macro, line 112) `#define X86_SET_B`
+  - `X86_SET_BE` (macro, line 113) `#define X86_SET_BE`
+  - `X86_SYS_WRITE` (macro, line 114) `#define X86_SYS_WRITE`
+  - `X86_SYS_READ` (macro, line 116) `#define X86_SYS_READ`
+  - `X86_SYS_OPEN` (macro, line 117) `#define X86_SYS_OPEN`
+  - `X86_SYS_CLOSE` (macro, line 118) `#define X86_SYS_CLOSE`
+  - `X86_SYS_LSEEK` (macro, line 119) `#define X86_SYS_LSEEK`
+  - `X86_SYS_BRK` (macro, line 120) `#define X86_SYS_BRK`
+  - `X86_SYS_EXIT` (macro, line 121) `#define X86_SYS_EXIT`
+  - `X86_SYS_EXIT_GROUP` (macro, line 122) `#define X86_SYS_EXIT_GROUP`
+  - `REG_RAX` (macro, line 123) `#define REG_RAX`
+  - `REG_RCX` (macro, line 125) `#define REG_RCX`
+  - `REG_RDX` (macro, line 126) `#define REG_RDX`
+  - `REG_RBX` (macro, line 127) `#define REG_RBX`
+  - `REG_RSP` (macro, line 128) `#define REG_RSP`
+  - `REG_RBP` (macro, line 129) `#define REG_RBP`
+  - `REG_RSI` (macro, line 130) `#define REG_RSI`
+  - `REG_RDI` (macro, line 131) `#define REG_RDI`
+  - `SEC_TEXT` (macro, line 132) `#define SEC_TEXT`
+  - `SEC_BSS` (macro, line 134) `#define SEC_BSS`
+  - `SEC_DATA` (macro, line 135) `#define SEC_DATA`
+  - `SEC_RODATA` (macro, line 136) `#define SEC_RODATA`
+  - `SYM_FUNC` (macro, line 137) `#define SYM_FUNC`
+  - `SYM_LABEL` (macro, line 139) `#define SYM_LABEL`
+  - `SYM_GLOBAL` (macro, line 140) `#define SYM_GLOBAL`
+  - `SYM_BLOB` (macro, line 141) `#define SYM_BLOB`
+  - `K_REG` (macro, line 142) `#define K_REG`
+  - `K_IMM` (macro, line 144) `#define K_IMM`
+  - `K_MEM` (macro, line 145) `#define K_MEM`
+  - `K_SYM` (macro, line 146) `#define K_SYM`
+  - `K_SYM_IMM` (macro, line 147) `#define K_SYM_IMM`
+  - `OP_NOP` (macro, line 148) `#define OP_NOP`
+  - `OP_PUSH_IMM64` (macro, line 150) `#define OP_PUSH_IMM64`
+  - `OP_PUSH_IMM32` (macro, line 151) `#define OP_PUSH_IMM32`
+  - `OP_PUSH_IMM8` (macro, line 152) `#define OP_PUSH_IMM8`
+  - `OP_PUSH_ZERO` (macro, line 153) `#define OP_PUSH_ZERO`
+  - `OP_PUSH_ONE` (macro, line 154) `#define OP_PUSH_ONE`
+  - `OP_PUSH_LOCAL` (macro, line 155) `#define OP_PUSH_LOCAL`
+  - `OP_STORE_LOCAL` (macro, line 156) `#define OP_STORE_LOCAL`
+  - `OP_PUSH_GLOBAL` (macro, line 157) `#define OP_PUSH_GLOBAL`
+  - `OP_STORE_GLOBAL` (macro, line 158) `#define OP_STORE_GLOBAL`
+  - `OP_ADD` (macro, line 159) `#define OP_ADD`
+  - `OP_SUB` (macro, line 160) `#define OP_SUB`
+  - `OP_MUL` (macro, line 161) `#define OP_MUL`
+  - `OP_DIV` (macro, line 162) `#define OP_DIV`
+  - `OP_MOD` (macro, line 163) `#define OP_MOD`
+  - `OP_NEG` (macro, line 164) `#define OP_NEG`
+  - `OP_AND` (macro, line 165) `#define OP_AND`
+  - `OP_OR` (macro, line 166) `#define OP_OR`
+  - `OP_XOR` (macro, line 167) `#define OP_XOR`
+  - `OP_NOT` (macro, line 168) `#define OP_NOT`
+  - `OP_SHL` (macro, line 169) `#define OP_SHL`
+  - `OP_SHR` (macro, line 170) `#define OP_SHR`
+  - `OP_USHR` (macro, line 171) `#define OP_USHR`
+  - `OP_CMP_EQ` (macro, line 172) `#define OP_CMP_EQ`
+  - `OP_CMP_NE` (macro, line 173) `#define OP_CMP_NE`
+  - `OP_CMP_LT` (macro, line 174) `#define OP_CMP_LT`
+  - `OP_CMP_LE` (macro, line 175) `#define OP_CMP_LE`
+  - `OP_CMP_GT` (macro, line 176) `#define OP_CMP_GT`
+  - `OP_CMP_GE` (macro, line 177) `#define OP_CMP_GE`
+  - `OP_LNOT` (macro, line 178) `#define OP_LNOT`
+  - `OP_CMP_ULT` (macro, line 179) `#define OP_CMP_ULT`
+  - `OP_CMP_ULE` (macro, line 180) `#define OP_CMP_ULE`
+  - `OP_CMP_UGT` (macro, line 181) `#define OP_CMP_UGT`
+  - `OP_CMP_UGE` (macro, line 182) `#define OP_CMP_UGE`
+  - `OP_JMP` (macro, line 183) `#define OP_JMP`
+  - `OP_JZ` (macro, line 184) `#define OP_JZ`
+  - `OP_JNZ` (macro, line 185) `#define OP_JNZ`
+  - `OP_CALL` (macro, line 186) `#define OP_CALL`
+  - `OP_RET` (macro, line 187) `#define OP_RET`
+  - `OP_CALL_NATIVE` (macro, line 188) `#define OP_CALL_NATIVE`
+  - `OP_LOAD8` (macro, line 189) `#define OP_LOAD8`
+  - `OP_LOAD16` (macro, line 190) `#define OP_LOAD16`
+  - `OP_LOAD32` (macro, line 191) `#define OP_LOAD32`
+  - `OP_LOAD64` (macro, line 192) `#define OP_LOAD64`
+  - `OP_STORE8` (macro, line 193) `#define OP_STORE8`
+  - `OP_STORE16` (macro, line 194) `#define OP_STORE16`
+  - `OP_STORE32` (macro, line 195) `#define OP_STORE32`
+  - `OP_STORE64` (macro, line 196) `#define OP_STORE64`
+  - `OP_LEA_LOCAL` (macro, line 197) `#define OP_LEA_LOCAL`
+  - `OP_LEA_GLOBAL` (macro, line 198) `#define OP_LEA_GLOBAL`
+  - `OP_ALLOC` (macro, line 199) `#define OP_ALLOC`
+  - `OP_FREE` (macro, line 200) `#define OP_FREE`
+  - `OP_LEA_DATA` (macro, line 201) `#define OP_LEA_DATA`
+  - `OP_SYSCALL` (macro, line 202) `#define OP_SYSCALL`
+  - `OP_HALT` (macro, line 203) `#define OP_HALT`
