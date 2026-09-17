@@ -61,6 +61,20 @@
   - `main` (function, line 2) `int main(void)`
   - `printf` (function, line 1) `int printf();`
 
+## test/fnptr.c
+- Layer: testing
+- Language: c
+- Symbols:
+  - `ops_t` (struct, line 15)
+  - `add2` (function, line 2) `int add2(int a, int b)`
+  - `mul2` (function, line 6) `int mul2(int a, int b)`
+  - `apply2` (function, line 10) `int apply2(int (*f)(int, int), int x, int y)`
+  - `run_op` (function, line 21) `int run_op(ops_t *o, int x, int y)`
+  - `main` (function, line 25) `int main(void)`
+  - `printf` (function, line 1) `int printf();`
+  - `f` (function, line 12) `return f(x, y);`
+  - `int` (function, line 16) `int (*op)(int, int);`
+
 ## test/globals.c
 - Layer: testing
 - Language: c

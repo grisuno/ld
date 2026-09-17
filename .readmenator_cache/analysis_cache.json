@@ -3,7 +3,11 @@
     "god_nodes": [
       [
         "ld.c",
-        30.400000000000002
+        30.700000000000003
+      ],
+      [
+        "test/fnptr.c",
+        0.9
       ],
       [
         "test/stdint.c",
@@ -36,18 +40,14 @@
       [
         "test/globals.c",
         0.30000000000000004
-      ],
-      [
-        "test/argv.c",
-        0.2
       ]
     ],
     "communities": [],
     "surprising_connections": [],
     "suggested_questions": [
       "What does ld.c depend on, and what depends on it? (0 connections)",
+      "What does fnptr.c depend on, and what depends on it? (0 connections)",
       "What does stdint.c depend on, and what depends on it? (0 connections)",
-      "What does run_tests.sh depend on, and what depends on it? (0 connections)",
       "What is Sym in ld.c and how is it used?",
       "What is the overall architecture of this codebase?"
     ]
@@ -64,6 +64,7 @@
     "test/fib2.s": "testing",
     "test/fib3.s": "testing",
     "test/fmt.c": "testing",
+    "test/fnptr.c": "testing",
     "test/globals.c": "testing",
     "test/hello.c": "testing",
     "test/loop.s": "testing",
@@ -80,6 +81,79 @@
     "test/w1.s": "testing"
   },
   "security": {
-    "findings": []
+    "findings": [
+      {
+        "file_path": "test/mutate.sh",
+        "line": 69,
+        "severity": "critical",
+        "rule_id": "S001",
+        "description": "Command injection via eval \u2014 can execute arbitrary commands",
+        "snippet": "if ! eval \"sed -i '$expr' '$dir/$file'\" 2>/dev/null; then",
+        "cwe": "CWE-78"
+      },
+      {
+        "file_path": "ld.c",
+        "line": 1859,
+        "severity": "high",
+        "rule_id": "C004",
+        "description": "Buffer overflow risk: sprintf \u2014 use snprintf instead",
+        "snippet": "sprintf(l1, \"..S%lda\", synth_n);",
+        "cwe": "CWE-121"
+      },
+      {
+        "file_path": "ld.c",
+        "line": 1860,
+        "severity": "high",
+        "rule_id": "C004",
+        "description": "Buffer overflow risk: sprintf \u2014 use snprintf instead",
+        "snippet": "sprintf(l2, \"..S%ldb\", synth_n);",
+        "cwe": "CWE-121"
+      },
+      {
+        "file_path": "ld.c",
+        "line": 1861,
+        "severity": "high",
+        "rule_id": "C004",
+        "description": "Buffer overflow risk: sprintf \u2014 use snprintf instead",
+        "snippet": "sprintf(l3, \"..S%ldc\", synth_n);",
+        "cwe": "CWE-121"
+      },
+      {
+        "file_path": "ld.c",
+        "line": 1862,
+        "severity": "high",
+        "rule_id": "C004",
+        "description": "Buffer overflow risk: sprintf \u2014 use snprintf instead",
+        "snippet": "sprintf(lend, \"..S%ldd\", synth_n);",
+        "cwe": "CWE-121"
+      },
+      {
+        "file_path": "test/mutate.sh",
+        "line": 16,
+        "severity": "medium",
+        "rule_id": "S003",
+        "description": "Command substitution with user input \u2014 potential injection",
+        "snippet": "WORK=\"$(mktemp -d \"${TMPDIR:-/tmp}/ld_mut.XXXXXX\")\" || exit 1",
+        "cwe": "CWE-78"
+      },
+      {
+        "file_path": "test/mutate.sh",
+        "line": 61,
+        "severity": "medium",
+        "rule_id": "S003",
+        "description": "Command substitution with user input \u2014 potential injection",
+        "snippet": "file=\"$(echo \"${rest#*|}\" | tr -d ' ')\"",
+        "cwe": "CWE-78"
+      },
+      {
+        "file_path": "test/run_tests.sh",
+        "line": 22,
+        "severity": "medium",
+        "rule_id": "S003",
+        "description": "Command substitution with user input \u2014 potential injection",
+        "snippet": "WORK=\"$(mktemp -d \"${TMPDIR:-/tmp}/ld_tests.XXXXXX\")\" || exit 1",
+        "cwe": "CWE-78"
+      }
+    ]
   }
 }

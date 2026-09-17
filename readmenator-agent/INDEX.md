@@ -2,9 +2,9 @@
 
 | File | Purpose | Subsystem | Symbols |
 |------|---------|-----------|---------|
-| `app.py` | _*_ coding: utf8 _*_ | root | 0 |
+| `app.py` | app.py  Autor: Gris Iscomeback Correo electrónico: grisiscomeback[at]gmail[dot]c | root | 0 |
 | `install.sh` | - | root | 0 |
-| `ld.c` | - | root | 304 |
+| `ld.c` | - | root | 307 |
 | `test/argv.c` | - | test | 2 |
 | `test/argv.s` | - | test | 2 |
 | `test/asm.c` | - | test | 4 |
@@ -13,6 +13,7 @@
 | `test/fib2.s` | - | test | 3 |
 | `test/fib3.s` | - | test | 3 |
 | `test/fmt.c` | - | test | 2 |
+| `test/fnptr.c` | - | test | 9 |
 | `test/globals.c` | - | test | 3 |
 | `test/hello.c` | - | test | 1 |
 | `test/loop.s` | - | test | 2 |

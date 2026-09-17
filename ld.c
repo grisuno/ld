@@ -145,6 +145,7 @@
 #define K_MEM 2
 #define K_SYM 3
 #define K_SYM_IMM 4
+#define K_IND 5
 
 #define OP_NOP          0
 #define OP_PUSH_IMM64   1
@@ -186,6 +187,7 @@
 #define OP_CALL         96
 #define OP_RET          97
 #define OP_CALL_NATIVE  98
+#define OP_CALL_INDIRECT 99
 #define OP_LOAD8        112
 #define OP_LOAD16       111
 #define OP_LOAD32       113
@@ -593,6 +595,14 @@ static void parse_operand(char *s, Op *op) {
     memset(op, 0, sizeof(*op));
     s = trim(s);
     if (!*s) { die("missing operand"); return; }
+    if (s[0] == '*' && s[1] == '%') {
+        int r, z;
+        if (!parse_reg(s + 1, &r, &z)) { die("bad indirect register"); return; }
+        op->kind = K_IND;
+        op->reg = r;
+        op->regsz = z;
+        return;
+    }
     if (s[0] == '$') {
         char *name = trim(s + 1);
         if (*name != '-' && *name != '+' && !(*name >= '0' && *name <= '9')) {
@@ -1117,8 +1127,9 @@ static void elea_operand(Op *op) {
             else if (strcmp(op->sym, "stdin") == 0) off = extern_off[2];
         }
         if (off < 0) {
-            if (cvm_find_func(op->sym) >= 0) {
-                die("address of function not supported");
+            int f = cvm_find_func(op->sym);
+            if (f >= 0) {
+                eimm(f);
                 return;
             }
             fprintf(stderr, "ld: undefined symbol %s\n", op->sym);
@@ -1740,6 +1751,19 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
     }
     if (strcmp(mn, "jmp") == 0) { ejmp(o1->sym); return; }
     if (strcmp(mn, "call") == 0) {
+        if (o1->kind == K_IND) {
+            epush_local(5); estore_global(CFG_GSLOT_ARGS + 0);
+            epush_local(4); estore_global(CFG_GSLOT_ARGS + 1);
+            epush_local(2); estore_global(CFG_GSLOT_ARGS + 2);
+            epush_local(1); estore_global(CFG_GSLOT_ARGS + 3);
+            epush_local(6); estore_global(CFG_GSLOT_ARGS + 4);
+            epush_local(7); estore_global(CFG_GSLOT_ARGS + 5);
+            epush_reg(o1->reg);
+            e1(OP_CALL_INDIRECT);
+            epush_global(CFG_GSLOT_RET);
+            estore_local(0);
+            return;
+        }
         int f = cvm_find_func(o1->sym);
         if (f >= 0) {
             epush_local(5); estore_global(CFG_GSLOT_ARGS + 0);
@@ -3532,6 +3556,13 @@ static void elf_branch(int opc, const Op *o) {
     xfix32(o->sym);
 }
 
+static void elf_call_ind(const Op *o) {
+    if (o->kind != K_IND) { die("invalid call target"); return; }
+    emit_rex(0, 0, 0, (o->reg >> 3) & 1);
+    x8(0xFF);
+    emit_modrm(3, 2, o->reg & 7);
+}
+
 static void elf_ins(const char *mn, const Op *o1, const Op *o2) {
     if (strcmp(mn, "movq") == 0) { elf_mov(8, o1, o2); return; }
     if (strcmp(mn, "movl") == 0) { elf_mov(4, o1, o2); return; }
@@ -3601,7 +3632,11 @@ static void elf_ins(const char *mn, const Op *o1, const Op *o2) {
     if (strcmp(mn, "jb") == 0) { elf_branch(X86_JCC_JB, o1); return; }
     if (strcmp(mn, "jbe") == 0) { elf_branch(X86_JCC_JBE, o1); return; }
     if (strcmp(mn, "jmp") == 0) { elf_branch(0xE9, o1); return; }
-    if (strcmp(mn, "call") == 0) { elf_branch(0xE8, o1); return; }
+    if (strcmp(mn, "call") == 0) {
+        if (o1->kind == K_IND) { elf_call_ind(o1); return; }
+        elf_branch(0xE8, o1);
+        return;
+    }
     if (strcmp(mn, "ret") == 0) { x8(0xC3); return; }
     if (strcmp(mn, "leave") == 0) { x8(0xC9); return; }
     if (strcmp(mn, "cqto") == 0) { x8(0x48); x8(0x99); return; }

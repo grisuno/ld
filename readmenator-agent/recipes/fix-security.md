@@ -1,7 +1,10 @@
 # Recipe: Fix a Security Finding
 
-1. Read findings: `grep -n '<file>' readmenator-agent/SECURITY.md`
-2. Check API contract: `grep -A10 '<function>' readmenator-agent/API.md`
-3. Apply fix
-4. Verify: `readmenator . --audit && grep -c 'CRITICAL\|HIGH' readmenator-agent/SECURITY.md`
+- `test/mutate.sh:69` [critical] S001: Command injection via eval — can execute arbitrary commands
+  Fix: Avoid shell=True and string-built commands; use argument arrays and input allowlists.
+- `ld.c:1859` [high] C004: Buffer overflow risk: sprintf — use snprintf instead
+  Fix: Use bounded functions (strncpy, snprintf) with explicit sizes and NUL termination.
+- `ld.c:1860` [high] C004: Buffer overflow risk: sprintf — use snprintf instead
+  Fix: Use bounded functions (strncpy, snprintf) with explicit sizes and NUL termination.
 
+Verify: `readmenator . --audit && grep -c 'CRITICAL\|HIGH' readmenator-agent/SECURITY.md`
