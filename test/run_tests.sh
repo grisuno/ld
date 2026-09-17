@@ -196,6 +196,7 @@ if [ -x "$MINIGCC" ]; then
     run_chain asm
     run_chain stdint
     run_chain fnptr
+    run_chain udiv
     elf_structure_check "$WORK/chain.elf"
 else
     echo "SKIP minigcc chain (minigcc binary not found)"

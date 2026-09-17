@@ -98,6 +98,24 @@ Layers:
   and must produce identical stdout on `.cvm` and `.elf` (see
   `test/fnptr.expect`).
 
+## Unsigned Division Contract
+- Source form (miniGCC lowering): `divq`/`divl` (with a preceding
+  `xorl %edx,%edx`) means unsigned; `idivq`/`idivl` (with `cqto`/`cltd`)
+  means signed. The two pairs never mix.
+- ELF backend: `divq` encodes `F7 /6` (64-bit), `divl` the 32-bit form,
+  `idivl` the 32-bit `F7 /7` (previously missing: 32-bit compound
+  assignment did not assemble). `xorl` is the generic ALU path.
+- CVM backend: `divq` maps to `OP_UDIV` (0x26) / `OP_UMOD` (0x27),
+  `divl` to the same pair with 32-bit masking (matching the `idivl`
+  shape); `idivq`/`idivl` keep the signed `OP_DIV`/`OP_MOD`. The
+  interpreter, JIT (`DIV` + zeroed `edx` instead of `CQO`) and validator
+  treat all four identically except for signedness; divide-by-zero is
+  fail-closed in both.
+- Coverage: `test/udiv.c` goes through miniGCC first (`run_chain udiv`)
+  with values above 2^63 (built as `4000000000ul * 4000000000ul`, so no
+  reliance on literal folding) and must produce identical stdout on
+  `.cvm` (interpreter and `--jit`) and `.elf` (see `test/udiv.expect`).
+
 ## Mini libc Contract (ELF backend)
 - One formatter core, `.Lstub_vfmt(out, size, fmt, args)`, reads its variadic
   arguments from an array rather than from registers. `printf`, `fprintf`,

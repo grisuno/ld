@@ -163,6 +163,8 @@
 #define OP_DIV          35
 #define OP_MOD          36
 #define OP_NEG          37
+#define OP_UDIV         38
+#define OP_UMOD         39
 #define OP_AND          48
 #define OP_OR           49
 #define OP_XOR          50
@@ -1819,6 +1821,13 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
         epush_local(CFG_SLOT_S0); epush_local(CFG_SLOT_S1); e1(OP_MOD); estore_local(2);
         return;
     }
+    if (strcmp(mn, "divq") == 0) {
+        epush_local(0); estore_local(CFG_SLOT_S0);
+        epush_value(o1, 8); estore_local(CFG_SLOT_S1);
+        epush_local(CFG_SLOT_S0); epush_local(CFG_SLOT_S1); e1(OP_UDIV); estore_local(0);
+        epush_local(CFG_SLOT_S0); epush_local(CFG_SLOT_S1); e1(OP_UMOD); estore_local(2);
+        return;
+    }
     if (strcmp(mn, "cqto") == 0) {
         epush_local(0);
         eimm(63);
@@ -1852,6 +1861,13 @@ static void cvm_translate(const char *mn, Op *o1, Op *o2) {
         epush_value(o1, 4); signext32(); estore_local(CFG_SLOT_S1);
         epush_local(CFG_SLOT_S0); epush_local(CFG_SLOT_S1); e1(OP_DIV); push_mask32(); estore_local(0);
         epush_local(CFG_SLOT_S0); epush_local(CFG_SLOT_S1); e1(OP_MOD); push_mask32(); estore_local(2);
+        return;
+    }
+    if (strcmp(mn, "divl") == 0) {
+        epush_local(0); push_mask32(); estore_local(CFG_SLOT_S0);
+        epush_value(o1, 4); push_mask32(); estore_local(CFG_SLOT_S1);
+        epush_local(CFG_SLOT_S0); epush_local(CFG_SLOT_S1); e1(OP_UDIV); push_mask32(); estore_local(0);
+        epush_local(CFG_SLOT_S0); epush_local(CFG_SLOT_S1); e1(OP_UMOD); push_mask32(); estore_local(2);
         return;
     }
     if (strcmp(mn, "syscall") == 0) {
@@ -3371,6 +3387,20 @@ static void elf_grp3(const Op *o, int ext) {
     }
 }
 
+static void elf_grp3_32(const Op *o, int ext) {
+    if (o->kind == K_REG) {
+        emit_rex(0, 0, 0, (o->reg >> 3) & 1);
+        x8(0xF7);
+        emit_modrm(3, ext, o->reg & 7);
+    } else if (o->kind == K_MEM || o->kind == K_SYM) {
+        x86_ea_rex(o, ext, 0, 0);
+        x8(0xF7);
+        x86_ea_modrm(o, ext);
+    } else {
+        die("invalid operand");
+    }
+}
+
 static void elf_xadd(const Op *s, const Op *d) {
     if (s->kind != K_REG) { die("invalid xadd source"); return; }
     if (d->kind == K_REG) {
@@ -3601,6 +3631,9 @@ static void elf_ins(const char *mn, const Op *o1, const Op *o2) {
     if (strcmp(mn, "incq") == 0) { elf_grp_ff(o1, 0); return; }
     if (strcmp(mn, "decq") == 0) { elf_grp_ff(o1, 1); return; }
     if (strcmp(mn, "idivq") == 0) { elf_grp3(o1, 7); return; }
+    if (strcmp(mn, "divq") == 0) { elf_grp3(o1, 6); return; }
+    if (strcmp(mn, "idivl") == 0) { elf_grp3_32(o1, 7); return; }
+    if (strcmp(mn, "divl") == 0) { elf_grp3_32(o1, 6); return; }
     if (strcmp(mn, "salq") == 0) { elf_shift_cl(o1, o2, 4); return; }
     if (strcmp(mn, "shll") == 0) { elf_shift_cl32(o1, o2, 4); return; }
     if (strcmp(mn, "sall") == 0) { elf_shift_cl32(o1, o2, 4); return; }
