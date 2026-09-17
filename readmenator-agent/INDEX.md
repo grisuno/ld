@@ -4,16 +4,16 @@
 |------|---------|-----------|---------|
 | `app.py` | app.py  Autor: Gris Iscomeback Correo electrónico: grisiscomeback[at]gmail[dot]c | root | 0 |
 | `install.sh` | - | root | 0 |
-| `ld.c` | - | root | 307 |
+| `ld.c` | - | root | 296 |
 | `test/argv.c` | - | test | 2 |
 | `test/argv.s` | - | test | 2 |
-| `test/asm.c` | - | test | 4 |
+| `test/asm.c` | - | test | 2 |
 | `test/chain.c` | - | test | 2 |
 | `test/fib.s` | - | test | 3 |
 | `test/fib2.s` | - | test | 3 |
 | `test/fib3.s` | - | test | 3 |
 | `test/fmt.c` | - | test | 2 |
-| `test/fnptr.c` | - | test | 9 |
+| `test/fnptr.c` | - | test | 7 |
 | `test/globals.c` | - | test | 3 |
 | `test/hello.c` | - | test | 1 |
 | `test/loop.s` | - | test | 2 |
@@ -22,8 +22,8 @@
 | `test/priv.s` | - | test | 2 |
 | `test/run_tests.sh` | BDD suite for the ld tool (miniGCC asm -> CVM / ELF). Every fixture is assembled | test | 6 |
 | `test/start.s` | - | test | 2 |
-| `test/stdint.c` | include <stdio.h> include <stdint.h> | test | 7 |
-| `test/sync.c` | - | test | 4 |
+| `test/stdint.c` | - | test | 6 |
+| `test/sync.c` | - | test | 2 |
 | `test/t1.c` | - | test | 1 |
 | `test/t1.s` | - | test | 2 |
 | `test/w1.c` | - | test | 2 |

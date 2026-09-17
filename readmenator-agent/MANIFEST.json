@@ -1,12 +1,12 @@
 {
   "tool": "readmenator",
-  "generated_at": "2026-09-17T03:26:17Z",
-  "project_root": "/home/grisun0/src_note/c/boot/repo/ld",
+  "generated_at": "2026-09-17T04:01:59Z",
+  "project_root": "/tmp/push_ld_20260917_010128",
   "files": 26,
-  "symbols": 373,
+  "symbols": 355,
   "imports": 5,
   "resolved_imports": 0,
-  "security_findings": 8,
+  "security_findings": 0,
   "languages": {
     "py": 1,
     "sh": 3,

@@ -20,8 +20,6 @@
 - Symbols:
   - `main` (function, line 4) `int main(void)`
   - `printf` (function, line 1) `int printf();`
-  - `volatile` (function, line 6) `__asm__ volatile("nop");`
-  - `__asm` (function, line 7) `__asm("nop");`
 
 ## test/chain.c
 - Layer: testing
@@ -72,8 +70,6 @@
   - `run_op` (function, line 21) `int run_op(ops_t *o, int x, int y)`
   - `main` (function, line 25) `int main(void)`
   - `printf` (function, line 1) `int printf();`
-  - `f` (function, line 12) `return f(x, y);`
-  - `int` (function, line 16) `int (*op)(int, int);`
 
 ## test/globals.c
 - Layer: testing
@@ -136,7 +132,6 @@
 
 ## test/stdint.c
 - Layer: infrastructure
-- Doc: include <stdio.h> include <stdint.h>
 - Language: c
 - Symbols:
   - `idtr_t` (struct, line 4)
@@ -145,7 +140,6 @@
   - `loads_u32` (function, line 29) `uint32_t loads_u32(uint32_t v)`
   - `add_shorts` (function, line 33) `short add_shorts(short a, short b)`
   - `main` (function, line 37) `int main(void)`
-  - `printf` (function, line 49) `printf("%d %d %d\n", gu8, gi8, gu16);`
 
 ## test/sync.c
 - Layer: testing
@@ -153,8 +147,6 @@
 - Symbols:
   - `main` (function, line 5) `int main(void)`
   - `printf` (function, line 1) `int printf();`
-  - `__sync_lock_release` (function, line 14) `__sync_lock_release(&flag);`
-  - `__sync_synchronize` (function, line 16) `__sync_synchronize();`
 
 ## test/t1.c
 - Layer: testing

@@ -385,39 +385,6 @@
 ### main (function) `int main(int argc, char **argv)`
 - Defined: `ld.c:3984`
 
-### fprintf (function) `fprintf(stderr, "ld: %s:%ld: %s\n", cur_file, cur_line, msg);`
-- Defined: `ld.c:344`
-
-### exit (function) `exit(1);`
-- Defined: `ld.c:348`
-
-### memcpy (function) `memcpy(dst, src, (size_t)n);`
-- Defined: `ld.c:463`
-
-### memset (function) `memset(&syms[i], 0, sizeof(syms[i]));`
-- Defined: `ld.c:498`
-
-### strncpy (function) `strncpy(o1, trim(rest), CFG_LINE_MAX - 1);`
-- Defined: `ld.c:647`
-
-### sprintf (function) `sprintf(l1, "..S%lda", synth_n);`
-- Defined: `ld.c:1859`
-
-### fwrite (function) `fwrite(hdr, 1, CFG_CVM_HDR_SIZE, f);`
-- Defined: `ld.c:2120`
-
-### fputc (function) `fputc((int)(z - 1), f);`
-- Defined: `ld.c:2151`
-
-### fclose (function) `fclose(f);`
-- Defined: `ld.c:2163`
-
-### free (function) `free(func_name_off);`
-- Defined: `ld.c:2164`
-
-### strncat (function) `strncat(out, ext, CFG_NAME_MAX - strlen(out) - 1);`
-- Defined: `ld.c:4020`
-
 ## test/argv.c
 
 ### main (function) `int main(int argc, char **argv)`
@@ -441,12 +408,6 @@
 
 ### printf (function) `int printf();`
 - Defined: `test/asm.c:1`
-
-### volatile (function) `__asm__ volatile("nop");`
-- Defined: `test/asm.c:6`
-
-### __asm (function) `__asm("nop");`
-- Defined: `test/asm.c:7`
 
 ## test/chain.c
 
@@ -516,12 +477,6 @@
 
 ### printf (function) `int printf();`
 - Defined: `test/fnptr.c:1`
-
-### f (function) `return f(x, y);`
-- Defined: `test/fnptr.c:12`
-
-### int (function) `int (*op)(int, int);`
-- Defined: `test/fnptr.c:16`
 
 ## test/globals.c
 
@@ -612,9 +567,6 @@
 ### main (function) `int main(void)`
 - Defined: `test/stdint.c:37`
 
-### printf (function) `printf("%d %d %d\n", gu8, gi8, gu16);`
-- Defined: `test/stdint.c:49`
-
 ## test/sync.c
 
 ### main (function) `int main(void)`
@@ -622,12 +574,6 @@
 
 ### printf (function) `int printf();`
 - Defined: `test/sync.c:1`
-
-### __sync_lock_release (function) `__sync_lock_release(&flag);`
-- Defined: `test/sync.c:14`
-
-### __sync_synchronize (function) `__sync_synchronize();`
-- Defined: `test/sync.c:16`
 
 ## test/t1.c
 

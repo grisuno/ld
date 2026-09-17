@@ -252,25 +252,17 @@
 | `estore_global` | function | `ld.c:1022` | `static void estore_global(int slot)` |
 | `estore_local` | function | `ld.c:1020` | `static void estore_local(int slot)` |
 | `estore_reg` | function | `ld.c:1036` | `static void estore_reg(int r)` |
-| `exit` | function | `ld.c:348` | `exit(1);` |
-| `fclose` | function | `ld.c:2163` | `fclose(f);` |
 | `find_label` | function | `ld.c:1062` | `static long find_label(const char *name)` |
 | `find_sym` | function | `ld.c:486` | `static int find_sym(const char *name)` |
 | `fixup_reserve` | function | `ld.c:371` | `static void fixup_reserve(void)` |
 | `fixup_trail` | function | `ld.c:2961` | `static void fixup_trail(long t)` |
-| `fprintf` | function | `ld.c:344` | `fprintf(stderr, "ld: %s:%ld: %s\n", cur_file, cur_line, msg);` |
-| `fputc` | function | `ld.c:2151` | `fputc((int)(z - 1), f);` |
-| `free` | function | `ld.c:2164` | `free(func_name_off);` |
 | `func_glue` | function | `ld.c:1967` | `static void func_glue(void)` |
-| `fwrite` | function | `ld.c:2120` | `fwrite(hdr, 1, CFG_CVM_HDR_SIZE, f);` |
 | `hexval` | function | `ld.c:479` | `static int hexval(char c)` |
 | `ls_close` | function | `ld.c:693` | `static void ls_close(LineSrc *s)` |
 | `ls_getline` | function | `ld.c:677` | `static int ls_getline(LineSrc *s, char *buf, size_t n)` |
 | `ls_open_file` | function | `ld.c:657` | `static void ls_open_file(LineSrc *s, const char *path)` |
 | `ls_open_mem` | function | `ld.c:669` | `static void ls_open_mem(LineSrc *s, const char *text)` |
 | `main` | function | `ld.c:3984` | `int main(int argc, char **argv)` |
-| `memcpy` | function | `ld.c:463` | `memcpy(dst, src, (size_t)n);` |
-| `memset` | function | `ld.c:498` | `memset(&syms[i], 0, sizeof(syms[i]));` |
 | `mov` | function | `ld.c:1193` | `static void mov(int size, Op *s, Op *d)` |
 | `name_copy` | function | `ld.c:459` | `static void name_copy(char *dst, const char *src)` |
 | `parse_mem` | function | `ld.c:540` | `static void parse_mem(char *s, Op *op)` |
@@ -291,10 +283,7 @@
 | `signext8` | function | `ld.c:1175` | `static void signext8(void)` |
 | `split_operands` | function | `ld.c:632` | `static int split_operands(char *rest, char *o1, char *o2)` |
 | `split_word` | function | `ld.c:466` | `static void split_word(char *line, char *word, long wcap, char **rest)` |
-| `sprintf` | function | `ld.c:1859` | `sprintf(l1, "..S%lda", synth_n);` |
 | `strip_comment` | function | `ld.c:445` | `static void strip_comment(char *s)` |
-| `strncat` | function | `ld.c:4020` | `strncat(out, ext, CFG_NAME_MAX - strlen(out) - 1);` |
-| `strncpy` | function | `ld.c:647` | `strncpy(o1, trim(rest), CFG_LINE_MAX - 1);` |
 | `trim` | function | `ld.c:434` | `static char *trim(char *s)` |
 | `usage` | function | `ld.c:3973` | `static void usage(void)` |
 | `w16` | function | `ld.c:2071` | `static void w16(unsigned char *p, long v)` |
@@ -314,10 +303,8 @@
 | `write` | function | `test/argv.c:1` | `int write(int fd, char *buf, int n);` |
 | `_start` | function | `test/argv.s:98` | `` |
 | `main` | function | `test/argv.s:3` | `` |
-| `__asm` | function | `test/asm.c:7` | `__asm("nop");` |
 | `main` | function | `test/asm.c:4` | `int main(void)` |
 | `printf` | function | `test/asm.c:1` | `int printf();` |
-| `volatile` | function | `test/asm.c:6` | `__asm__ volatile("nop");` |
 | `fib` | function | `test/chain.c:1` | `int fib(int n)` |
 | `main` | function | `test/chain.c:5` | `int main(void)` |
 | `_start` | function | `test/fib.s:82` | `` |
@@ -333,8 +320,6 @@
 | `printf` | function | `test/fmt.c:1` | `int printf();` |
 | `add2` | function | `test/fnptr.c:2` | `int add2(int a, int b)` |
 | `apply2` | function | `test/fnptr.c:10` | `int apply2(int (*f)(int, int), int x, int y)` |
-| `f` | function | `test/fnptr.c:12` | `return f(x, y);` |
-| `int` | function | `test/fnptr.c:16` | `int (*op)(int, int);` |
 | `main` | function | `test/fnptr.c:25` | `int main(void)` |
 | `mul2` | function | `test/fnptr.c:6` | `int mul2(int a, int b)` |
 | `ops_t` | struct | `test/fnptr.c:15` | `` |
@@ -364,9 +349,6 @@
 | `loads_u32` | function | `test/stdint.c:29` | `uint32_t loads_u32(uint32_t v)` |
 | `loads_u8` | function | `test/stdint.c:21` | `uint8_t loads_u8(uint8_t v)` |
 | `main` | function | `test/stdint.c:37` | `int main(void)` |
-| `printf` | function | `test/stdint.c:49` | `printf("%d %d %d\n", gu8, gi8, gu16);` |
-| `__sync_lock_release` | function | `test/sync.c:14` | `__sync_lock_release(&flag);` |
-| `__sync_synchronize` | function | `test/sync.c:16` | `__sync_synchronize();` |
 | `main` | function | `test/sync.c:5` | `int main(void)` |
 | `printf` | function | `test/sync.c:1` | `int printf();` |
 | `main` | function | `test/t1.c:1` | `int main(void)` |
