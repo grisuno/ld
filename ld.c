@@ -338,6 +338,42 @@ static long elf_bss_base;
 
 static long synth_n;
 
+/* Release every heap arena the link built. On Unix exit() reclaims them,
+ * but MiniOS runs ET_REL objects in-kernel and returns from main into the
+ * persistent heap, so a link that never frees bleeds ~0.5 MB per run. */
+static void ld_release(void) {
+    free(blob_data);
+    blob_data = 0;
+    blob_len = 0;
+    blob_cap = 0;
+    free(data_region);
+    data_region = 0;
+    data_len = 0;
+    data_cap = 0;
+    free(code);
+    code = 0;
+    code_len = 0;
+    code_cap = 0;
+    term_pos = -1;
+    free(pool);
+    pool = 0;
+    pool_len = 0;
+    pool_cap = 0;
+    free(fixups);
+    fixups = 0;
+    n_fixups = 0;
+    cap_fixups = 0;
+    n_syms = 0;
+    n_funcs = 0;
+    n_globals = 0;
+    n_blobs = 0;
+    n_nats = 0;
+    n_labels = 0;
+    entry_func = 0;
+    entry_sym = 0;
+    error_count = 0;
+}
+
 /* ================================================================
  *  Diagnostics and memory
  * ================================================================ */
@@ -347,6 +383,7 @@ static void die(const char *msg) {
     error_count++;
     if (error_count > CFG_MAX_ERRORS) {
         fprintf(stderr, "ld: too many errors, aborting\n");
+        ld_release();
         exit(1);
     }
 }
@@ -3958,6 +3995,7 @@ static void elf_build(const char *in_path, const char *out_path) {
     if (start_idx < 0) start_idx = find_sym("main");
     if (start_idx < 0) {
         fprintf(stderr, "ld: no entry point (need _start or main)\n");
+        ld_release();
         exit(1);
     }
     entry_sym = start_idx;
@@ -3988,6 +4026,7 @@ static void elf_build(const char *in_path, const char *out_path) {
 
     if (error_count) {
         fprintf(stderr, "ld: %d error(s)\n", error_count);
+        ld_release();
         exit(1);
     }
 
@@ -3995,9 +4034,11 @@ static void elf_build(const char *in_path, const char *out_path) {
     elf_resolve_fixups();
     if (error_count) {
         fprintf(stderr, "ld: %d error(s)\n", error_count);
+        ld_release();
         exit(1);
     }
     elf_write(out_path);
+    ld_release();
 }
 
 /* ================================================================
@@ -4079,6 +4120,7 @@ int main(int argc, char **argv) {
         }
         if (start_idx < 0) {
             fprintf(stderr, "ld: no entry point (need _start or main)\n");
+            ld_release();
             exit(1);
         }
         entry_func = (int)syms[start_idx].fidx;
@@ -4094,7 +4136,9 @@ int main(int argc, char **argv) {
         cvm_write_module(out);
         fprintf(stderr, "ld: %s -> %s (%d funcs, %d globals, %d natives, %ld code bytes, %ld data bytes)\n",
                 in, out, n_funcs, n_globals, n_nats, code_len, data_len);
+        ld_release();
         return 0;
     }
+    ld_release();
     return 0;
 }
