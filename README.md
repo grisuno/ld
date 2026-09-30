@@ -1,4 +1,4 @@
-# ld — miniGCC assembler and linker
+# ld is a miniGCC assembler and linker
 
 `ld` assembles the x86-64 AT&T dialect emitted by the
 [miniGCC](https://github.com/grisuno/miniGCC) C compiler into executable
