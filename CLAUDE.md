@@ -71,10 +71,14 @@ Layers:
   strings `strlen strcmp strncmp strcpy strncpy strchr`,
   stdio `fopen fclose fread fwrite fseek ftell rewind fputc fputs
   fprintf printf sprintf puts putchar snprintf` plus the `stdin stdout
-  stderr` stream slots. `FILE*` is either a raw fd (0-2) or a pointer to
+  stderr` stream slots and the `errno` cell. `FILE*` is either a raw fd (0-2) or a pointer to
   an internal stream slot. The built-in formatter supports `%s %d %o %%`
   with width, zero-fill and the `l` modifier. Any other undefined symbol
-  is a hard link error (never silently resolved).
+  is a hard link error (never silently resolved). Failure-reporting
+  stubs (`open read write fopen malloc`) store the negated syscall code
+  (or ENOMEM) into `errno` without changing their returns, so toolchain
+  programs read real POSIX codes; the remaining stubs leave it alone.
+  ELF-only surface: CVM programs naming `errno` still fail to link.
 - Fixed-size encodings per instruction guarantee a single encode pass.
 
 ## Function Pointer Contract

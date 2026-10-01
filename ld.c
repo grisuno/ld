@@ -2229,11 +2229,23 @@ static const char ELF_STUBS_SRC[] =
     "write:\n"
     "    movq $1, %rax\n"
     "    syscall\n"
+    "    cmpq $0, %rax\n"
+    "    jge .Lstub_write_ok\n"
+    "    negq %rax\n"
+    "    movl %eax, errno(%rip)\n"
+    "    negq %rax\n"
+    ".Lstub_write_ok:\n"
     "    ret\n"
     ".globl read\n"
     "read:\n"
     "    movq $0, %rax\n"
     "    syscall\n"
+    "    cmpq $0, %rax\n"
+    "    jge .Lstub_read_ok\n"
+    "    negq %rax\n"
+    "    movl %eax, errno(%rip)\n"
+    "    negq %rax\n"
+    ".Lstub_read_ok:\n"
     "    ret\n"
     ".globl exit\n"
     "exit:\n"
@@ -2249,6 +2261,12 @@ static const char ELF_STUBS_SRC[] =
     "open:\n"
     "    movq $2, %rax\n"
     "    syscall\n"
+    "    cmpq $0, %rax\n"
+    "    jge .Lstub_open_ok\n"
+    "    negq %rax\n"
+    "    movl %eax, errno(%rip)\n"
+    "    negq %rax\n"
+    ".Lstub_open_ok:\n"
     "    ret\n"
     ".globl close\n"
     "close:\n"
@@ -2349,8 +2367,11 @@ static const char ELF_STUBS_SRC[] =
     "    .quad 2\n"
     "stdin:\n"
     "    .quad 0\n"
+    "errno:\n"
+    "    .long 0\n"
     "__stdio_slots:\n"
-    "    .zero 40\n"
+    "    .zero 40\n";
+static const char ELF_STUBS_SRC_E[] =
     ".text\n"
     ".globl malloc\n"
     "malloc:\n"
@@ -2378,6 +2399,7 @@ static const char ELF_STUBS_SRC[] =
     "    movq %r10, %rax\n"
     "    ret\n"
     ".Lstub_malloc_fail:\n"
+    "    movl $12, errno(%rip)\n"
     "    movq $0, %rax\n"
     "    ret\n"
     ".globl free\n"
@@ -2399,7 +2421,7 @@ static const char ELF_STUBS_SRC[] =
     "    syscall\n"
     ".Lstub_fopen_reg:\n"
     "    cmpq $0, %rax\n"
-    "    jl .Lstub_fopen_fail\n"
+    "    jl .Lstub_fopen_syserr\n"
     "    movq %rax, %r8\n"
     "    leaq __stdio_slots(%rip), %r9\n"
     "    movq $0, %r10\n"
@@ -2415,6 +2437,9 @@ static const char ELF_STUBS_SRC[] =
     "    movq %r8, (%r9,%r10,1)\n"
     "    leaq (%r9,%r10,1), %rax\n"
     "    ret\n"
+    ".Lstub_fopen_syserr:\n"
+    "    negq %rax\n"
+    "    movl %eax, errno(%rip)\n"
     ".Lstub_fopen_fail:\n"
     "    movq $0, %rax\n"
     "    ret\n"
@@ -3991,6 +4016,11 @@ static void elf_build(const char *in_path, const char *out_path) {
     scan_src(&stub_d, 1);
     ls_close(&stub_d);
 
+    LineSrc stub_e;
+    ls_open_mem(&stub_e, ELF_STUBS_SRC_E);
+    scan_src(&stub_e, 1);
+    ls_close(&stub_e);
+
     int start_idx = find_sym("_start");
     if (start_idx < 0) start_idx = find_sym("main");
     if (start_idx < 0) {
@@ -4023,6 +4053,11 @@ static void elf_build(const char *in_path, const char *out_path) {
     ls_open_mem(&stub2_d, ELF_STUBS_SRC_D);
     elf_encode_src(&stub2_d);
     ls_close(&stub2_d);
+
+    LineSrc stub2_e;
+    ls_open_mem(&stub2_e, ELF_STUBS_SRC_E);
+    elf_encode_src(&stub2_e);
+    ls_close(&stub2_e);
 
     if (error_count) {
         fprintf(stderr, "ld: %d error(s)\n", error_count);
