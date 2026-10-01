@@ -4390,7 +4390,13 @@ static void elf_write(const char *path) {
     w64_at(ph + 72, (unsigned long long)elf_data_base);
     w64_at(ph + 80, (unsigned long long)elf_data_base);
     w64_at(ph + 88, (unsigned long long)elf_data_size);
-    w64_at(ph + 96, (unsigned long long)(elf_data_size + elf_bss_size));
+    /* memsz runs to the BSS end, not data+bss: the data-to-BSS
+     * alignment padding belongs to the segment, or the BSS tail
+     * (the GOT for -d executables) sticks out past the mapping and
+     * any exact loader refuses the image (glibc only survives on
+     * page slack). */
+    w64_at(ph + 96, (unsigned long long)((elf_bss_base + elf_bss_size) -
+        elf_data_base));
     w64_at(ph + 104, CFG_ELF_PAGE);
     if (elf_has_dyn()) {
         w32(ph + 112, CFG_ELF_PT_DYNAMIC);
