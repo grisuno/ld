@@ -202,6 +202,57 @@ else
     echo "SKIP minigcc chain (minigcc binary not found)"
 fi
 
+# run_shared_dynlib: minigcc compiles test/dynlib.c (no main), ld links
+# it -shared, then structural checks (SONAME, exported names, PT_DYNAMIC
+# present) plus the live proof (host dlopen + dlsym + call through the
+# harness). A broken dynamic table fails loudly here, never silently.
+run_shared_dynlib() {
+    if [ ! -x "$MINIGCC" ]; then
+        echo "SKIP shared (minigcc binary not found)"
+        return
+    fi
+    if ! "$MINIGCC" "$WORK/dynlib.c" > "$WORK/dynlib.s" 2>/dev/null; then
+        echo "FAIL shared: minigcc could not compile dynlib.c"
+        note_fail "shared(minigcc)"
+        return
+    fi
+    if ! "$LD_TOOL" -shared -o "$WORK/libdynlib.so" "$WORK/dynlib.s" 2>/dev/null; then
+        echo "FAIL shared: -shared link failed"
+        note_fail "shared(link)"
+        return
+    fi
+    if command -v readelf >/dev/null 2>&1; then
+        if readelf -d "$WORK/libdynlib.so" 2>/dev/null | grep -q "SONAME.*libdynlib.so" && \
+           readelf --dyn-syms "$WORK/libdynlib.so" 2>/dev/null | grep -q "dynadd" && \
+           readelf --dyn-syms "$WORK/libdynlib.so" 2>/dev/null | grep -q "dynlen" && \
+           readelf -l "$WORK/libdynlib.so" 2>/dev/null | grep -q DYNAMIC; then
+            echo "PASS shared structure (SONAME, exports, PT_DYNAMIC)"
+            PASS=$((PASS + 1))
+        else
+            echo "FAIL shared structure (SONAME, exports, PT_DYNAMIC)"
+            note_fail "shared(structure)"
+            return
+        fi
+    else
+        echo "SKIP shared structure (readelf not found)"
+    fi
+    if ! $CC -o "$WORK/dynlib_host" "$HERE/dynlib_host.c" -ldl 2>/dev/null; then
+        echo "FAIL shared: host harness did not compile"
+        note_fail "shared(harness)"
+        return
+    fi
+    if "$WORK/dynlib_host" "$WORK/libdynlib.so" 2>/dev/null | grep -q "dynlib: 42 5"; then
+        echo "PASS shared live (dlopen, dlsym, call)"
+        PASS=$((PASS + 1))
+    else
+        echo "FAIL shared live (dlopen, dlsym, call)"
+        note_fail "shared(live)"
+    fi
+}
+
+echo "=== shared library (-shared + host dlopen) ==="
+run_shared_dynlib
+
 echo "=== privileged asm: elf encodes, cvm rejects ==="
 if "$LD_TOOL" -f elf -o "$WORK/priv.elf" "$HERE/priv.s" 2>/dev/null; then
     echo "PASS priv (elf): cli/sti/hlt assembled"

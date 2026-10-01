@@ -71,9 +71,25 @@
 #define CFG_ELF_PF_W     2
 #define CFG_ELF_PF_X     1
 #define CFG_ELF_PT_LOAD  1
+#define CFG_ELF_PT_DYNAMIC 2
+#define CFG_ELF_PT_GNU_STACK 0x6474e551
 #define CFG_ELF_SHT_PROGBITS 1
 #define CFG_ELF_SHT_NOBITS   8
 #define CFG_ELF_SHT_STRTAB   3
+#define CFG_ELF_SHT_HASH     5
+#define CFG_ELF_SHT_DYNAMIC  6
+#define CFG_ELF_SHT_DYNSYM   11
+#define CFG_ELF_DT_NULL   0
+#define CFG_ELF_DT_HASH   4
+#define CFG_ELF_DT_STRTAB 5
+#define CFG_ELF_DT_SYMTAB 6
+#define CFG_ELF_DT_STRSZ  10
+#define CFG_ELF_DT_SYMENT 11
+#define CFG_ELF_DT_SONAME 14
+#define CFG_ELF_STB_GLOBAL 1
+#define CFG_ELF_STT_FUNC   2
+#define CFG_ELF_DYN_NENTRY 7
+#define CFG_ELF_DYNSYM_ENT 24
 #define CFG_ELF_SHF_A     2
 #define CFG_ELF_SHF_X     4
 #define CFG_ELF_SHF_W     1
@@ -336,6 +352,37 @@ static long elf_rodata_base;
 static long elf_data_base;
 static long elf_bss_base;
 
+/* Shared-library mode (-shared): ET_DYN with SONAME plus dynamic
+ * tables. Bases and sizes below are link addresses (zero-based,
+ * like the rest of the layout); the count of exported function
+ * symbols drives the dynsym/dynstr/hash sizes. The dynstr pool and
+ * per-symbol name offsets live until ld_release. */
+static int   g_shared;
+static long  elf_dyn_base;
+static long  elf_dynsym_base;
+static long  elf_dynstr_base;
+static long  elf_dynstr_size;
+static long  elf_hash_base;
+static long  elf_hash_size;
+static long elf_ndyn;
+static char *elf_dynstr;
+static long *elf_dynoff;
+static char elf_soname[CFG_NAME_MAX];
+
+/* Basename without directories, for the DT_SONAME tag. */
+static void ld_soname_of(const char *path, char *out) {
+    const char *b = path;
+    const char *q = path;
+    while (*q) {
+        if (*q == '/') b = q + 1;
+        q++;
+    }
+    size_t n = strlen(b);
+    if (n >= CFG_NAME_MAX) n = CFG_NAME_MAX - 1;
+    memcpy(out, b, n);
+    out[n] = 0;
+}
+
 static long synth_n;
 
 /* Release every heap arena the link built. On Unix exit() reclaims them,
@@ -361,6 +408,10 @@ static void ld_release(void) {
     pool_cap = 0;
     free(fixups);
     fixups = 0;
+    free(elf_dynstr);
+    elf_dynstr = 0;
+    free(elf_dynoff);
+    elf_dynoff = 0;
     n_fixups = 0;
     cap_fixups = 0;
     n_syms = 0;
@@ -3801,8 +3852,9 @@ static void elf_encode_src(LineSrc *src) {
             if (section == SEC_TEXT) {
                 int si = find_sym(t);
                 if (si >= 0 && syms[si].kind == SYM_FUNC) {
-                    skip_until_next_func = syms[si].shadowed;
-                    if (!syms[si].shadowed) syms[si].off = code_len;
+                    skip_until_next_func = syms[si].shadowed ||
+                        (g_shared && strcmp(t, "_start") == 0);
+                    if (!skip_until_next_func) syms[si].off = code_len;
                 } else if (si >= 0 && syms[si].kind == SYM_LABEL) {
                     if (!skip_until_next_func) syms[si].off = code_len;
                 } else if (si < 0 && !skip_until_next_func) {
@@ -3840,8 +3892,54 @@ static void elf_encode_src(LineSrc *src) {
     }
 }
 
+/* Build the dynamic string pool (leading NUL, SONAME, one name per
+ * exported function) and record per-symbol offsets, then place the
+ * dynamic tables after the data blobs and push .bss past them. The
+ * exported set is every defined function symbol; undefined ones
+ * already failed in resolve_fixups, which is the self-containment
+ * rule. Callers keep the pool until ld_release. */
+static void elf_dyn_prepare(void) {
+    long total = 1 + (long)strlen(elf_soname) + 1;
+    int i;
+    long off;
+    elf_ndyn = 0;
+    for (i = 0; i < n_syms; i++)
+        if (syms[i].kind == SYM_FUNC && !syms[i].shadowed &&
+                !(g_shared && strcmp(syms[i].name, "_start") == 0)) elf_ndyn++;
+    for (i = 0; i < n_syms; i++)
+        if (syms[i].kind == SYM_FUNC && !syms[i].shadowed &&
+                !(g_shared && strcmp(syms[i].name, "_start") == 0))
+            total += (long)strlen(syms[i].name) + 1;
+    elf_dynstr = (char *)malloc((size_t)total);
+    elf_dynoff = (long *)malloc(sizeof(long) * (size_t)(n_syms > 0 ? n_syms : 1));
+    if (!elf_dynstr || !elf_dynoff) {
+        fprintf(stderr, "ld: out of memory\n");
+        exit(1);
+    }
+    for (i = 0; i < n_syms; i++) elf_dynoff[i] = -1;
+    elf_dynstr[0] = 0;
+    off = 1;
+    memcpy(elf_dynstr + off, elf_soname, strlen(elf_soname) + 1);
+    off += (long)strlen(elf_soname) + 1;
+    for (i = 0; i < n_syms; i++) {
+        if (syms[i].kind != SYM_FUNC || syms[i].shadowed ||
+                (g_shared && strcmp(syms[i].name, "_start") == 0)) continue;
+        elf_dynoff[i] = off;
+        memcpy(elf_dynstr + off, syms[i].name, strlen(syms[i].name) + 1);
+        off += (long)strlen(syms[i].name) + 1;
+    }
+    elf_dynstr_size = off;
+    elf_dyn_base = x86_align_up(elf_data_base + elf_data_size, 8);
+    elf_dynsym_base = elf_dyn_base + CFG_ELF_DYN_NENTRY * 16L;
+    elf_dynstr_base = x86_align_up(elf_dynsym_base + (elf_ndyn + 1) * CFG_ELF_DYNSYM_ENT, 8);
+    elf_hash_base = x86_align_up(elf_dynstr_base + elf_dynstr_size, 8);
+    elf_hash_size = 8 + 4L * (1 + (elf_ndyn + 1));
+    elf_data_size = (elf_hash_base + elf_hash_size) - elf_data_base;
+    elf_bss_base = x86_align_up(elf_data_base + elf_data_size, 16);
+}
 static void elf_layout(void) {
-    elf_text_base = CFG_ELF_TEXT_BASE;
+    elf_text_base = CFG_ELF_HSIZE +
+        (g_shared ? CFG_ELF_PHNUM + 2 : CFG_ELF_PHNUM) * CFG_ELF_PHENTSZ;
     elf_text_size = code_len;
     elf_rodata_base = x86_align_up(elf_text_base + elf_text_size, 16);
     long rc = 0;
@@ -3870,6 +3968,96 @@ static void elf_layout(void) {
     elf_bss_size = bc;
     elf_data_base = x86_align_up(elf_rodata_base + elf_rodata_size, CFG_ELF_PAGE);
     elf_bss_base = x86_align_up(elf_data_base + elf_data_size, 16);
+    elf_ndyn = 0;
+    elf_dynstr = 0;
+    elf_dynoff = 0;
+    if (g_shared) elf_dyn_prepare();
+}
+
+/* Emit one dynamic table entry (tag + value, 16 bytes). */
+static void elf_dyn_emit(unsigned char *d, long tag, unsigned long long val) {
+    w64_at(d, (unsigned long long)tag);
+    w64_at(d + 8, val);
+}
+
+/* Write the .dynamic table at its link address (caller padded there).
+ * SONAME plus the tables a loader and host dlopen need; no NEEDED
+ * (shared libs stay self-contained) and no INIT/FINI (miniGCC emits
+ * no constructors). */
+static void elf_write_dynamic(FILE *f) {
+    unsigned char d[CFG_ELF_DYN_NENTRY * 16];
+    memset(d, 0, sizeof(d));
+    elf_dyn_emit(d + 0 * 16, CFG_ELF_DT_HASH, (unsigned long long)elf_hash_base);
+    elf_dyn_emit(d + 1 * 16, CFG_ELF_DT_STRTAB, (unsigned long long)elf_dynstr_base);
+    elf_dyn_emit(d + 2 * 16, CFG_ELF_DT_SYMTAB, (unsigned long long)elf_dynsym_base);
+    elf_dyn_emit(d + 3 * 16, CFG_ELF_DT_STRSZ, (unsigned long long)elf_dynstr_size);
+    elf_dyn_emit(d + 4 * 16, CFG_ELF_DT_SYMENT, (unsigned long long)CFG_ELF_DYNSYM_ENT);
+    elf_dyn_emit(d + 5 * 16, CFG_ELF_DT_SONAME, 1ULL);
+    elf_dyn_emit(d + 6 * 16, CFG_ELF_DT_NULL, 0ULL);
+    while (ftell(f) < elf_dyn_base) fputc(0, f);
+    fwrite(d, 1, sizeof(d), f);
+}
+
+/* Write the .dynsym table: null entry plus every defined,
+ * non-shadowed function (shadowed bodies were skipped at encode,
+ * so their offsets are stale). Values are link addresses; the
+ * loader adds its slide. */
+static void elf_write_dynsym(FILE *f) {
+    long n = elf_ndyn + 1;
+    unsigned char *tab = (unsigned char *)malloc((size_t)n * CFG_ELF_DYNSYM_ENT);
+    long k = 1;
+    int i;
+    if (!tab) {
+        fprintf(stderr, "ld: out of memory\n");
+        exit(1);
+    }
+    memset(tab, 0, (size_t)n * CFG_ELF_DYNSYM_ENT);
+    for (i = 0; i < n_syms; i++) {
+        unsigned char *e;
+        if (syms[i].kind != SYM_FUNC || syms[i].shadowed ||
+                (g_shared && strcmp(syms[i].name, "_start") == 0)) continue;
+        e = tab + k * CFG_ELF_DYNSYM_ENT;
+        w32(e + 0, (unsigned)elf_dynoff[i]);
+        e[4] = (unsigned char)((CFG_ELF_STB_GLOBAL << 4) | CFG_ELF_STT_FUNC);
+        e[5] = 0;
+        w16(e + 6, 1);
+        w64_at(e + 8, (unsigned long long)elf_sym_addr(&syms[i]));
+        w64_at(e + 16, 0ULL);
+        k++;
+    }
+    while (ftell(f) < elf_dynsym_base) fputc(0, f);
+    fwrite(tab, 1, (size_t)n * CFG_ELF_DYNSYM_ENT, f);
+    free(tab);
+}
+
+/* Write the .dynstr pool built in layout. */
+static void elf_write_dynstr(FILE *f) {
+    while (ftell(f) < elf_dynstr_base) fputc(0, f);
+    fwrite(elf_dynstr, 1, (size_t)elf_dynstr_size, f);
+}
+
+/* Write the SYSV hash over the dynamic symbols: one bucket plus
+ * the chain table (chain[0] unused, chain[k] links k to k+1).
+ * Single bucket keeps it honest and small; the loader walks names
+ * linearly off bucket[0]. Complete enough for host dlopen. */
+static void elf_write_hash(FILE *f) {
+    long n = elf_ndyn + 1;
+    long words = 2 + 1 + n;
+    unsigned char *tab = (unsigned char *)malloc((size_t)words * 4);
+    long k;
+    if (!tab) {
+        fprintf(stderr, "ld: out of memory\n");
+        exit(1);
+    }
+    memset(tab, 0, (size_t)words * 4);
+    w32(tab + 0, 1);
+    w32(tab + 4, (unsigned)n);
+    w32(tab + 8, n > 1 ? 1 : 0);
+    for (k = 1; k < n; k++)
+        w32(tab + 12 + (size_t)k * 4, (unsigned)(k + 1 < n ? k + 1 : 0));
+    while (ftell(f) < elf_hash_base) fputc(0, f);
+    fwrite(tab, 1, (size_t)words * 4, f);
+    free(tab);
 }
 
 static void elf_write(const char *path) {
@@ -3894,18 +4082,19 @@ static void elf_write(const char *path) {
     w16(eh + 16, CFG_ELF_ET_DYN);
     w16(eh + 18, CFG_ELF_EM_X8664);
     w32(eh + 20, 1);
-    w64_at(eh + 24, (unsigned long long)elf_sym_addr(&syms[entry_sym]));
+    w64_at(eh + 24, entry_sym >= 0 ?
+        (unsigned long long)elf_sym_addr(&syms[entry_sym]) : 0);
     w64_at(eh + 32, CFG_ELF_HSIZE);
     w64_at(eh + 40, shoff);
     w16(eh + 52, CFG_ELF_HSIZE);
     w16(eh + 54, CFG_ELF_PHENTSZ);
-    w16(eh + 56, CFG_ELF_PHNUM);
+    w16(eh + 56, g_shared ? CFG_ELF_PHNUM + 2 : CFG_ELF_PHNUM);
     w16(eh + 58, CFG_ELF_SHENTSZ);
-    w16(eh + 60, CFG_ELF_SHNUM);
-    w16(eh + 62, CFG_ELF_SHSTRNDX);
+    w16(eh + 60, g_shared ? CFG_ELF_SHNUM + 5 : CFG_ELF_SHNUM);
+    w16(eh + 62, g_shared ? CFG_ELF_SHSTRNDX + 4 : CFG_ELF_SHSTRNDX);
     fwrite(eh, 1, sizeof(eh), f);
 
-    unsigned char ph[CFG_ELF_PHENTSZ * CFG_ELF_PHNUM];
+    unsigned char ph[CFG_ELF_PHENTSZ * (CFG_ELF_PHNUM + 2)];
     memset(ph, 0, sizeof(ph));
     w32(ph + 0, CFG_ELF_PT_LOAD);
     w32(ph + 4, CFG_ELF_PF_R | CFG_ELF_PF_X);
@@ -3923,10 +4112,28 @@ static void elf_write(const char *path) {
     w64_at(ph + 88, (unsigned long long)elf_data_size);
     w64_at(ph + 96, (unsigned long long)(elf_data_size + elf_bss_size));
     w64_at(ph + 104, CFG_ELF_PAGE);
-    fwrite(ph, 1, sizeof(ph), f);
+    if (g_shared) {
+        w32(ph + 112, CFG_ELF_PT_DYNAMIC);
+        w32(ph + 116, CFG_ELF_PF_R | CFG_ELF_PF_W);
+        w64_at(ph + 120, (unsigned long long)elf_dyn_base);
+        w64_at(ph + 128, (unsigned long long)elf_dyn_base);
+        w64_at(ph + 136, (unsigned long long)elf_dyn_base);
+        w64_at(ph + 144, (unsigned long long)(CFG_ELF_DYN_NENTRY * 16L));
+        w64_at(ph + 152, (unsigned long long)(CFG_ELF_DYN_NENTRY * 16L));
+        w64_at(ph + 160, 8);
+        w32(ph + 168, CFG_ELF_PT_GNU_STACK);
+        w32(ph + 172, CFG_ELF_PF_R | CFG_ELF_PF_W);
+        w64_at(ph + 176, 0ULL);
+        w64_at(ph + 184, 0ULL);
+        w64_at(ph + 192, 0ULL);
+        w64_at(ph + 200, 0ULL);
+        w64_at(ph + 208, 0ULL);
+        w64_at(ph + 216, 8);
+    }
+    fwrite(ph, 1, (size_t)(g_shared ? 4 : CFG_ELF_PHNUM) * CFG_ELF_PHENTSZ, f);
 
-    if (elf_text_base > (long)sizeof(eh) + (long)sizeof(ph)) {
-        for (long i = (long)sizeof(eh) + (long)sizeof(ph); i < elf_text_base; i++)
+    if (elf_text_base > (long)sizeof(eh) + (long)(g_shared ? 4 : CFG_ELF_PHNUM) * CFG_ELF_PHENTSZ) {
+        for (long i = (long)sizeof(eh) + (long)(g_shared ? 4 : CFG_ELF_PHNUM) * CFG_ELF_PHENTSZ; i < elf_text_base; i++)
             fputc(0, f);
     }
     fwrite(code, 1, (size_t)code_len, f);
@@ -3946,10 +4153,25 @@ static void elf_write(const char *path) {
         if (sz <= 0) continue;
         fwrite(blob_data + s->base, 1, (size_t)sz, f);
     }
+    if (g_shared) {
+        elf_write_dynamic(f);
+        elf_write_dynsym(f);
+        elf_write_dynstr(f);
+        elf_write_hash(f);
+    }
     while (ftell(f) < shoff) fputc(0, f);
 
-    static const char shstr[] = "\0.text\0.rodata\0.data\0.bss\0.shstrtab\0";
-    unsigned char sh[CFG_ELF_SHENTSZ * CFG_ELF_SHNUM];
+    static const char shstr_base[] = "\0.text\0.rodata\0.data\0.bss\0.shstrtab\0";
+    static const char shstr_ext[] = ".dynamic\0.dynsym\0.dynstr\0.hash\0";
+    char shstr[96];
+    long shstr_size = (long)sizeof(shstr_base) - 1;
+    long shnum = g_shared ? CFG_ELF_SHNUM + 5 : CFG_ELF_SHNUM;
+    unsigned char sh[CFG_ELF_SHENTSZ * (CFG_ELF_SHNUM + 5)];
+    memcpy(shstr, shstr_base, (size_t)shstr_size);
+    if (g_shared) {
+        memcpy(shstr + shstr_size, shstr_ext, sizeof(shstr_ext) - 1);
+        shstr_size += (long)sizeof(shstr_ext) - 1;
+    }
     memset(sh, 0, sizeof(sh));
     w32(sh + 0 * CFG_ELF_SHENTSZ + 4, 0);
     w32(sh + 1 * CFG_ELF_SHENTSZ + 0, 1);
@@ -3980,18 +4202,60 @@ static void elf_write(const char *path) {
     w64_at(sh + 4 * CFG_ELF_SHENTSZ + 24, (unsigned long long)(elf_data_base + elf_data_size));
     w64_at(sh + 4 * CFG_ELF_SHENTSZ + 32, (unsigned long long)elf_bss_size);
     w64_at(sh + 4 * CFG_ELF_SHENTSZ + 48, 8);
-    w32(sh + 5 * CFG_ELF_SHENTSZ + 0, 26);
-    w32(sh + 5 * CFG_ELF_SHENTSZ + 4, CFG_ELF_SHT_STRTAB);
-    w64_at(sh + 5 * CFG_ELF_SHENTSZ + 24, (unsigned long long)(shoff + CFG_ELF_SHENTSZ * CFG_ELF_SHNUM));
-    w64_at(sh + 5 * CFG_ELF_SHENTSZ + 32, sizeof(shstr) - 1);
-    w64_at(sh + 5 * CFG_ELF_SHENTSZ + 48, 1);
-    fwrite(sh, 1, sizeof(sh), f);
-    fwrite(shstr, 1, sizeof(shstr) - 1, f);
+    if (g_shared) {
+        w32(sh + 5 * CFG_ELF_SHENTSZ + 0, 0);
+        w32(sh + 5 * CFG_ELF_SHENTSZ + 4, 0);
+        w32(sh + 6 * CFG_ELF_SHENTSZ + 0, 36);
+        w32(sh + 6 * CFG_ELF_SHENTSZ + 4, CFG_ELF_SHT_DYNAMIC);
+        w64_at(sh + 6 * CFG_ELF_SHENTSZ + 8, CFG_ELF_SHF_A | CFG_ELF_SHF_W);
+        w64_at(sh + 6 * CFG_ELF_SHENTSZ + 16, (unsigned long long)elf_dyn_base);
+        w64_at(sh + 6 * CFG_ELF_SHENTSZ + 24, (unsigned long long)elf_dyn_base);
+        w64_at(sh + 6 * CFG_ELF_SHENTSZ + 32, (unsigned long long)(CFG_ELF_DYN_NENTRY * 16L));
+        w32(sh + 6 * CFG_ELF_SHENTSZ + 40, 8);
+        w32(sh + 6 * CFG_ELF_SHENTSZ + 44, 0);
+        w64_at(sh + 6 * CFG_ELF_SHENTSZ + 48, 8);
+        w64_at(sh + 6 * CFG_ELF_SHENTSZ + 56, 16);
+        w32(sh + 7 * CFG_ELF_SHENTSZ + 0, 45);
+        w32(sh + 7 * CFG_ELF_SHENTSZ + 4, CFG_ELF_SHT_DYNSYM);
+        w64_at(sh + 7 * CFG_ELF_SHENTSZ + 8, CFG_ELF_SHF_A);
+        w64_at(sh + 7 * CFG_ELF_SHENTSZ + 16, (unsigned long long)elf_dynsym_base);
+        w64_at(sh + 7 * CFG_ELF_SHENTSZ + 24, (unsigned long long)elf_dynsym_base);
+        w64_at(sh + 7 * CFG_ELF_SHENTSZ + 32, (unsigned long long)(elf_ndyn + 1) * CFG_ELF_DYNSYM_ENT);
+        w32(sh + 7 * CFG_ELF_SHENTSZ + 40, 8);
+        w32(sh + 7 * CFG_ELF_SHENTSZ + 44, 1);
+        w64_at(sh + 7 * CFG_ELF_SHENTSZ + 48, 8);
+        w64_at(sh + 7 * CFG_ELF_SHENTSZ + 56, CFG_ELF_DYNSYM_ENT);
+        w32(sh + 8 * CFG_ELF_SHENTSZ + 0, 53);
+        w32(sh + 8 * CFG_ELF_SHENTSZ + 4, CFG_ELF_SHT_STRTAB);
+        w64_at(sh + 8 * CFG_ELF_SHENTSZ + 8, CFG_ELF_SHF_A);
+        w64_at(sh + 8 * CFG_ELF_SHENTSZ + 16, (unsigned long long)elf_dynstr_base);
+        w64_at(sh + 8 * CFG_ELF_SHENTSZ + 24, (unsigned long long)elf_dynstr_base);
+        w64_at(sh + 8 * CFG_ELF_SHENTSZ + 32, (unsigned long long)elf_dynstr_size);
+        w64_at(sh + 8 * CFG_ELF_SHENTSZ + 48, 1);
+        w32(sh + 9 * CFG_ELF_SHENTSZ + 0, 61);
+        w32(sh + 9 * CFG_ELF_SHENTSZ + 4, CFG_ELF_SHT_HASH);
+        w64_at(sh + 9 * CFG_ELF_SHENTSZ + 8, CFG_ELF_SHF_A);
+        w64_at(sh + 9 * CFG_ELF_SHENTSZ + 16, (unsigned long long)elf_hash_base);
+        w64_at(sh + 9 * CFG_ELF_SHENTSZ + 24, (unsigned long long)elf_hash_base);
+        w64_at(sh + 9 * CFG_ELF_SHENTSZ + 32, (unsigned long long)elf_hash_size);
+        w32(sh + 9 * CFG_ELF_SHENTSZ + 40, 7);
+        w32(sh + 9 * CFG_ELF_SHENTSZ + 44, 0);
+        w64_at(sh + 9 * CFG_ELF_SHENTSZ + 48, 4);
+        w64_at(sh + 9 * CFG_ELF_SHENTSZ + 56, 4);
+        w32(sh + 10 * CFG_ELF_SHENTSZ + 0, 26);
+        w32(sh + 10 * CFG_ELF_SHENTSZ + 4, CFG_ELF_SHT_STRTAB);
+        w64_at(sh + 10 * CFG_ELF_SHENTSZ + 24, (unsigned long long)(shoff + CFG_ELF_SHENTSZ * shnum));
+        w64_at(sh + 10 * CFG_ELF_SHENTSZ + 32, (unsigned long long)shstr_size);
+        w64_at(sh + 10 * CFG_ELF_SHENTSZ + 48, 1);
+    }
+    fwrite(sh, 1, (size_t)CFG_ELF_SHENTSZ * (size_t)shnum, f);
+    fwrite(shstr, 1, (size_t)shstr_size, f);
     fclose(f);
 }
 
 static void elf_build(const char *in_path, const char *out_path) {
     LineSrc src;
+    ld_soname_of(out_path, elf_soname);
     ls_open_file(&src, in_path);
     scan_src(&src, 0);
     ls_close(&src);
@@ -4023,7 +4287,7 @@ static void elf_build(const char *in_path, const char *out_path) {
 
     int start_idx = find_sym("_start");
     if (start_idx < 0) start_idx = find_sym("main");
-    if (start_idx < 0) {
+    if (start_idx < 0 && !g_shared) {
         fprintf(stderr, "ld: no entry point (need _start or main)\n");
         ld_release();
         exit(1);
@@ -4082,9 +4346,12 @@ static void elf_build(const char *in_path, const char *out_path) {
 
 static void usage(void) {
     fprintf(stderr,
-        "usage: ld [-f cvm|elf] [-o out] [-xstack N] input.s\n"
+        "usage: ld [-f cvm|elf] [-shared] [-o out] [-xstack N] input.s\n"
         "  -f cvm     CVM v2 module (default)\n"
         "  -f elf     static PIE Linux ELF executable\n"
+        "  -shared    shared library (implies ELF: ET_DYN plus SONAME\n"
+        "             and dynsym/dynstr/hash tables; no entry needed,\n"
+        "             undefined functions stay hard errors)\n"
         "  -o out     output path (default: input.cvm / input.elf)\n"
         "  -xstack N  x86 stack size in bytes for the CVM backend (default %d)\n",
         CFG_XSTACK_DEF);
@@ -4112,6 +4379,9 @@ int main(int argc, char **argv) {
                 fprintf(stderr, "ld: stack size too small\n");
                 exit(1);
             }
+        } else if (strcmp(argv[i], "-shared") == 0) {
+            g_shared = 1;
+            fmt = CFG_FMT_ELF;
         } else if (argv[i][0] == '-') {
             usage();
         } else if (!in) {
@@ -4138,6 +4408,10 @@ int main(int argc, char **argv) {
     if (fmt == CFG_FMT_ELF) {
         elf_build(in, out);
     } else {
+        if (g_shared) {
+            fprintf(stderr, "ld: -shared needs ELF (-f cvm takes no shared libraries)\n");
+            exit(1);
+        }
         LineSrc src;
         ls_open_file(&src, in);
         scan_src(&src, 0);
