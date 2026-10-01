@@ -363,6 +363,31 @@ echo "=== library definition overrides built-in stubs ==="
 cp "$HERE/libstr.c" "$HERE/usestr.c" "$WORK/" 2>/dev/null
 run_shared_override
 
+# run_runtime: -runtime emits the built-in C runtime (syscall stubs and
+# libc fallbacks) as assembly; each chunk resets .text so a -shared build
+# over it keeps every routine a function and exports it. This is the
+# primitive a shared libc is built from.
+run_runtime() {
+    "$LD_TOOL" -runtime > "$WORK/runtime.s" 2>/dev/null
+    if [ ! -s "$WORK/runtime.s" ]; then
+        echo "FAIL runtime: empty emission"
+        note_fail "runtime(empty)"
+        return
+    fi
+    if "$LD_TOOL" -shared -o "$WORK/libcmini.so" "$WORK/runtime.s" 2>/dev/null && \
+       readelf --dyn-syms "$WORK/libcmini.so" 2>/dev/null | grep -q "printf" && \
+       readelf --dyn-syms "$WORK/libcmini.so" 2>/dev/null | grep -q "malloc" && \
+       readelf --dyn-syms "$WORK/libcmini.so" 2>/dev/null | grep -q "strlen"; then
+        echo "PASS runtime lib exports runtime functions"
+        PASS=$((PASS + 1))
+    else
+        echo "FAIL runtime lib exports runtime functions"
+        note_fail "runtime(export)"
+    fi
+}
+echo "=== -runtime emits a buildable shared-libc source ==="
+run_runtime
+
 echo "=== privileged asm: elf encodes, cvm rejects ==="
 if "$LD_TOOL" -f elf -o "$WORK/priv.elf" "$HERE/priv.s" 2>/dev/null; then
     echo "PASS priv (elf): cli/sti/hlt assembled"

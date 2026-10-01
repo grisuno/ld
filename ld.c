@@ -4953,6 +4953,23 @@ int main(int argc, char **argv) {
     int fmt = CFG_FMT_CVM;
     g_xstack = CFG_XSTACK_DEF;
     for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-runtime") == 0) {
+            /* Each chunk is scanned independently in the linker (its
+             * own section state); concatenated they would inherit the
+             * previous chunk's .data/.bss and land labels there. A
+             * .text reset before every chunk keeps them functions. */
+            fputs(".text\n", stdout);
+            fputs(ELF_STUBS_SRC, stdout);
+            fputs(".text\n", stdout);
+            fputs(ELF_STUBS_SRC_B, stdout);
+            fputs(".text\n", stdout);
+            fputs(ELF_STUBS_SRC_C, stdout);
+            fputs(".text\n", stdout);
+            fputs(ELF_STUBS_SRC_D, stdout);
+            fputs(".text\n", stdout);
+            fputs(ELF_STUBS_SRC_E, stdout);
+            return 0;
+        }
         if (strcmp(argv[i], "-o") == 0 && i + 1 < argc) {
             strncpy(out, argv[++i], CFG_NAME_MAX - 1);
             out[CFG_NAME_MAX - 1] = 0;
