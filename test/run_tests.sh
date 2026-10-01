@@ -253,6 +253,62 @@ run_shared_dynlib() {
 echo "=== shared library (-shared + host dlopen) ==="
 run_shared_dynlib
 
+# run_shared_dynuse: -f elf -d links dynuse.c against the fresh
+# libdynlib.so; structural checks (DT_NEEDED, GLOB_DAT rows, disjoint
+# .rela/.got) plus the live proof (host ld-linux runs the PLT/GOT
+# stubs, exit code 47 = dynadd(40,2) + dynlen("hello")). A broken
+# layout (e.g. .rela/.got overlap) dies here, never silently.
+run_shared_dynuse() {
+    local interp=""
+    if [ ! -x "$MINIGCC" ]; then
+        echo "SKIP dynuse (minigcc binary not found)"
+        return
+    fi
+    for interp in /lib64/ld-linux-x86-64.so.2 /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2; do
+        [ -x "$interp" ] && break
+        interp=""
+    done
+    if [ -z "$interp" ]; then
+        echo "SKIP dynuse (no host ld-linux found)"
+        return
+    fi
+    cp "$HERE/dynuse.c" "$WORK/" 2>/dev/null || return
+    if ! "$MINIGCC" "$WORK/dynuse.c" > "$WORK/dynuse.s" 2>/dev/null; then
+        echo "FAIL dynuse: minigcc could not compile dynuse.c"
+        note_fail "dynuse(minigcc)"
+        return
+    fi
+    if ! "$LD_TOOL" -f elf -d "$WORK/libdynlib.so" -o "$WORK/dynuse.elf" "$WORK/dynuse.s" 2>/dev/null; then
+        echo "FAIL dynuse: -d link failed"
+        note_fail "dynuse(link)"
+        return
+    fi
+    if command -v readelf >/dev/null 2>&1; then
+        if readelf -d "$WORK/dynuse.elf" 2>/dev/null | grep -q "NEEDED.*libdynlib.so" && \
+           readelf -r "$WORK/dynuse.elf" 2>/dev/null | grep -q "R_X86_64_GLOB_DAT"; then
+            echo "PASS dynuse structure (NEEDED, GLOB_DAT)"
+            PASS=$((PASS + 1))
+        else
+            echo "FAIL dynuse structure (NEEDED, GLOB_DAT)"
+            note_fail "dynuse(structure)"
+            return
+        fi
+    else
+        echo "SKIP dynuse structure (readelf not found)"
+    fi
+    ( cd "$WORK" && LD_LIBRARY_PATH="$WORK" run_prog "$WORK/dynuse.out" "$interp" "./dynuse.elf" )
+    local code=$?
+    if [ "$code" = "47" ]; then
+        echo "PASS dynuse live (ld-linux, exit 47)"
+        PASS=$((PASS + 1))
+    else
+        echo "FAIL dynuse live (exit $code, expected 47)"
+        note_fail "dynuse(live)"
+    fi
+}
+echo "=== dynamic executable (-d + host ld-linux) ==="
+run_shared_dynuse
+
 echo "=== privileged asm: elf encodes, cvm rejects ==="
 if "$LD_TOOL" -f elf -o "$WORK/priv.elf" "$HERE/priv.s" 2>/dev/null; then
     echo "PASS priv (elf): cli/sti/hlt assembled"

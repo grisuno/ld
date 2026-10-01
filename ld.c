@@ -79,7 +79,12 @@
 #define CFG_ELF_SHT_HASH     5
 #define CFG_ELF_SHT_DYNAMIC  6
 #define CFG_ELF_SHT_DYNSYM   11
+#define CFG_ELF_SHT_RELA     4
 #define CFG_ELF_DT_NULL   0
+#define CFG_ELF_DT_NEEDED 1
+#define CFG_ELF_DT_RELA   7
+#define CFG_ELF_DT_RELASZ 8
+#define CFG_ELF_DT_RELAENT 9
 #define CFG_ELF_DT_HASH   4
 #define CFG_ELF_DT_STRTAB 5
 #define CFG_ELF_DT_SYMTAB 6
@@ -87,7 +92,14 @@
 #define CFG_ELF_DT_SYMENT 11
 #define CFG_ELF_DT_SONAME 14
 #define CFG_ELF_STB_GLOBAL 1
+#define CFG_ELF_STT_NOTYPE 0
 #define CFG_ELF_STT_FUNC   2
+#define CFG_ELF_R_GLOB_DAT   6
+#define CFG_ELF_R_RELATIVE   8
+#define CFG_ELF_SHN_UNDEF  0
+#define CFG_LD_MAXLIBS     8
+#define CFG_LD_MAXIMPORTS  512
+#define CFG_LD_LIB_MAXSZ   (4 * 1024 * 1024)
 #define CFG_ELF_DYN_NENTRY 7
 #define CFG_ELF_DYNSYM_ENT 24
 #define CFG_ELF_SHF_A     2
@@ -369,9 +381,36 @@ static char *elf_dynstr;
 static long *elf_dynoff;
 static char elf_soname[CFG_NAME_MAX];
 
+/* -d libraries (L2): verified import names plus the SONAMEs the
+ * executable records as DT_NEEDED. Parsed eagerly after argument
+ * parsing so link errors name the missing library, never a raw
+ * offset. */
+typedef struct {
+    char name[CFG_NAME_MAX];
+    int is_func;
+    long value;
+} LdImport;
+
+/* RELATIVE rows derive straight from the import table (one GOT slot
+ * each), so no carried relocation list exists. */
+
+static char ld_lib_paths[CFG_LD_MAXLIBS][CFG_NAME_MAX];
+static char ld_lib_sonames[CFG_LD_MAXLIBS][CFG_NAME_MAX];
+static int ld_nlibs;
+static LdImport ld_imports[CFG_LD_MAXIMPORTS];
+static int ld_nimports;
+static long elf_plt_base;
+static long elf_got_base;
+static long elf_got_size;
+static long *elf_impoff;
+static long *elf_needoff;
+static long elf_dyn_tags[24];
+static unsigned long long elf_dyn_vals[24];
+static long elf_dyn_nentry;
+static long elf_rela_base;
+
 /* Basename without directories, for the DT_SONAME tag. */
-static void ld_soname_of(const char *path, char *out) {
-    const char *b = path;
+static void ld_soname_of(const char *path, char *out) {    const char *b = path;
     const char *q = path;
     while (*q) {
         if (*q == '/') b = q + 1;
@@ -412,6 +451,10 @@ static void ld_release(void) {
     elf_dynstr = 0;
     free(elf_dynoff);
     elf_dynoff = 0;
+    free(elf_impoff);
+    elf_impoff = 0;
+    free(elf_needoff);
+    elf_needoff = 0;
     n_fixups = 0;
     cap_fixups = 0;
     n_syms = 0;
@@ -3816,12 +3859,46 @@ static long elf_sym_addr(const Sym *s) {
     return -1;
 }
 
+static int elf_has_dyn(void);
+static int elf_has_rela(void);
+
 static void elf_resolve_fixups(void) {
     for (int i = 0; i < n_fixups; i++) {
         int si = find_sym(fixups[i].name);
         if (si < 0) {
-            fprintf(stderr, "ld: %s: undefined symbol %s\n", cur_file, fixups[i].name);
-            error_count++;
+            int li;
+            int found = 0;
+            for (li = 0; li < ld_nimports; li++) {
+                if (strcmp(ld_imports[li].name, fixups[i].name) != 0)
+                    continue;
+                found = 1;
+                if (!ld_imports[li].is_func) {
+                    fprintf(stderr, "ld: %s: data import %s unsupported (functions only)\n",
+                        cur_file, fixups[i].name);
+                    error_count++;
+                    break;
+                }
+                if (!elf_has_rela()) {
+                    fprintf(stderr, "ld: %s: cannot import %s here\n",
+                        cur_file, fixups[i].name);
+                    error_count++;
+                    break;
+                }
+                {
+                    long stub = elf_plt_base + (long)li * 16L;
+                    long disp = stub - (elf_text_base + fixups[i].pos + 4 + fixups[i].addend);
+                    long q = fixups[i].pos;
+                    code[q] = (unsigned char)(disp & 255);
+                    code[q + 1] = (unsigned char)((disp >> 8) & 255);
+                    code[q + 2] = (unsigned char)((disp >> 16) & 255);
+                    code[q + 3] = (unsigned char)((disp >> 24) & 255);
+                }
+                break;
+            }
+            if (!found) {
+                fprintf(stderr, "ld: %s: undefined symbol %s\n", cur_file, fixups[i].name);
+                error_count++;
+            }
             continue;
         }
         long addr = elf_sym_addr(&syms[si]);
@@ -3929,18 +4006,144 @@ static void elf_dyn_prepare(void) {
         off += (long)strlen(syms[i].name) + 1;
     }
     elf_dynstr_size = off;
+    elf_dyn_nentry = CFG_ELF_DYN_NENTRY;
+    elf_dyn_tags[0] = CFG_ELF_DT_HASH;
+    elf_dyn_vals[0] = 0;
+    elf_dyn_tags[1] = CFG_ELF_DT_STRTAB;
+    elf_dyn_vals[1] = 0;
+    elf_dyn_tags[2] = CFG_ELF_DT_SYMTAB;
+    elf_dyn_vals[2] = 0;
+    elf_dyn_tags[3] = CFG_ELF_DT_STRSZ;
+    elf_dyn_vals[3] = (unsigned long long)elf_dynstr_size;
+    elf_dyn_tags[4] = CFG_ELF_DT_SYMENT;
+    elf_dyn_vals[4] = (unsigned long long)CFG_ELF_DYNSYM_ENT;
+    elf_dyn_tags[5] = CFG_ELF_DT_SONAME;
+    elf_dyn_vals[5] = 1ULL;
+    elf_dyn_tags[6] = CFG_ELF_DT_NULL;
+    elf_dyn_vals[6] = 0ULL;
     elf_dyn_base = x86_align_up(elf_data_base + elf_data_size, 8);
-    elf_dynsym_base = elf_dyn_base + CFG_ELF_DYN_NENTRY * 16L;
+    elf_dynsym_base = elf_dyn_base + elf_dyn_nentry * 16L;
     elf_dynstr_base = x86_align_up(elf_dynsym_base + (elf_ndyn + 1) * CFG_ELF_DYNSYM_ENT, 8);
     elf_hash_base = x86_align_up(elf_dynstr_base + elf_dynstr_size, 8);
     elf_hash_size = 8 + 4L * (1 + (elf_ndyn + 1));
     elf_data_size = (elf_hash_base + elf_hash_size) - elf_data_base;
     elf_bss_base = x86_align_up(elf_data_base + elf_data_size, 16);
 }
+/* Build the executable import tables (L2): dynstr pool holding a
+ * leading NUL, one SONAME per -d library, then every imported name,
+ * with per-import and per-soname offsets recorded. Layout globals
+ * follow the same shape as the shared path so the emitters stay
+ * common; the section count grows by the extra .rela. */
+static void elf_imp_prepare(void) {
+    long total = 1;
+    int i;
+    long off;
+    elf_ndyn = ld_nimports;
+    for (i = 0; i < ld_nlibs; i++)
+        total += (long)strlen(ld_lib_sonames[i]) + 1;
+    for (i = 0; i < ld_nimports; i++)
+        total += (long)strlen(ld_imports[i].name) + 1;
+    elf_dynstr = (char *)malloc((size_t)total);
+    elf_dynoff = (long *)malloc(sizeof(long) * (size_t)(ld_nimports > 0 ? ld_nimports : 1));
+    elf_impoff = (long *)malloc(sizeof(long) * (size_t)(ld_nimports > 0 ? ld_nimports : 1));
+    elf_needoff = (long *)malloc(sizeof(long) * (size_t)(ld_nlibs > 0 ? ld_nlibs : 1));
+    if (!elf_dynstr || !elf_dynoff || !elf_impoff || !elf_needoff) {
+        fprintf(stderr, "ld: out of memory\n");
+        exit(1);
+    }
+    elf_dynstr[0] = 0;
+    off = 1;
+    for (i = 0; i < ld_nlibs; i++) {
+        elf_needoff[i] = off;
+        memcpy(elf_dynstr + off, ld_lib_sonames[i],
+            strlen(ld_lib_sonames[i]) + 1);
+        off += (long)strlen(ld_lib_sonames[i]) + 1;
+    }
+    for (i = 0; i < ld_nimports; i++) {
+        elf_impoff[i] = off;
+        elf_dynoff[i] = off;
+        memcpy(elf_dynstr + off, ld_imports[i].name,
+            strlen(ld_imports[i].name) + 1);
+        off += (long)strlen(ld_imports[i].name) + 1;
+    }
+    elf_dynstr_size = off;
+    elf_dyn_nentry = 9L + ld_nlibs;
+    {
+        int ti = 0;
+        int li;
+        for (li = 0; li < ld_nlibs; li++) {
+            elf_dyn_tags[ti] = CFG_ELF_DT_NEEDED;
+            elf_dyn_vals[ti] = (unsigned long long)elf_needoff[li];
+            ti++;
+        }
+        elf_dyn_tags[ti] = CFG_ELF_DT_HASH;
+        elf_dyn_vals[ti] = 0;
+        ti++;
+        elf_dyn_tags[ti] = CFG_ELF_DT_STRTAB;
+        elf_dyn_vals[ti] = 0;
+        ti++;
+        elf_dyn_tags[ti] = CFG_ELF_DT_SYMTAB;
+        elf_dyn_vals[ti] = 0;
+        ti++;
+        elf_dyn_tags[ti] = CFG_ELF_DT_STRSZ;
+        elf_dyn_vals[ti] = (unsigned long long)elf_dynstr_size;
+        ti++;
+        elf_dyn_tags[ti] = CFG_ELF_DT_SYMENT;
+        elf_dyn_vals[ti] = (unsigned long long)CFG_ELF_DYNSYM_ENT;
+        ti++;
+        elf_dyn_tags[ti] = CFG_ELF_DT_RELA;
+        elf_dyn_vals[ti] = 0ULL;
+        ti++;
+        elf_dyn_tags[ti] = CFG_ELF_DT_RELASZ;
+        elf_dyn_vals[ti] = 0ULL;
+        ti++;
+        elf_dyn_tags[ti] = CFG_ELF_DT_RELAENT;
+        elf_dyn_vals[ti] = 24ULL;
+        ti++;
+        elf_dyn_tags[ti] = CFG_ELF_DT_NULL;
+        elf_dyn_vals[ti] = 0ULL;
+        ti++;
+        (void)ti;
+    }
+    elf_dyn_base = x86_align_up(elf_data_base + elf_data_size, 8);
+    elf_dynsym_base = elf_dyn_base + elf_dyn_nentry * 16L;
+    elf_dynstr_base = x86_align_up(elf_dynsym_base + (elf_ndyn + 1) * CFG_ELF_DYNSYM_ENT, 8);
+    elf_hash_base = x86_align_up(elf_dynstr_base + elf_dynstr_size, 8);
+    elf_hash_size = 8 + 4L * (1 + (elf_ndyn + 1));
+    elf_data_size = (elf_hash_base + elf_hash_size) - elf_data_base;
+    elf_rela_base = x86_align_up(elf_data_base + elf_data_size, 8);
+    elf_data_size = (elf_rela_base + (long)ld_nimports * 24L) - elf_data_base;
+    elf_bss_base = x86_align_up(elf_data_base + elf_data_size, 16);
+    elf_got_base = 0;
+    elf_got_size = 0;
+    if (elf_has_rela()) {
+        elf_got_base = x86_align_up(elf_bss_base + elf_bss_size, 8);
+        elf_got_size = 8L * ld_nimports;
+        elf_bss_size = (elf_got_base - elf_bss_base) + elf_got_size;
+    }
+}
+
+/* Dynamic tables exist for shared libraries and for executables
+ * linked against them; plain executables stay byte-identical. */
+static int elf_has_dyn(void) {
+    return g_shared || ld_nlibs > 0;
+}
+
+/* Extra .rela section only for executables with imports (shared
+ * libraries are self-contained by construction). */
+static int elf_has_rela(void) {
+    return !g_shared && ld_nlibs > 0;
+}
+
 static void elf_layout(void) {
     elf_text_base = CFG_ELF_HSIZE +
-        (g_shared ? CFG_ELF_PHNUM + 2 : CFG_ELF_PHNUM) * CFG_ELF_PHENTSZ;
+        (elf_has_dyn() ? CFG_ELF_PHNUM + 2 : CFG_ELF_PHNUM) * CFG_ELF_PHENTSZ;
     elf_text_size = code_len;
+    elf_plt_base = 0;
+    if (elf_has_rela()) {
+        elf_plt_base = x86_align_up(elf_text_base + code_len, 16);
+        elf_text_size = (elf_plt_base - elf_text_base) + 16L * ld_nimports;
+    }
     elf_rodata_base = x86_align_up(elf_text_base + elf_text_size, 16);
     long rc = 0;
     long dc = 0;
@@ -3972,6 +4175,7 @@ static void elf_layout(void) {
     elf_dynstr = 0;
     elf_dynoff = 0;
     if (g_shared) elf_dyn_prepare();
+    else if (ld_nlibs > 0) elf_imp_prepare();
 }
 
 /* Emit one dynamic table entry (tag + value, 16 bytes). */
@@ -3980,22 +4184,95 @@ static void elf_dyn_emit(unsigned char *d, long tag, unsigned long long val) {
     w64_at(d + 8, val);
 }
 
+/* Place the .rela table after resolve (its count is only known
+ * once every fixup routed): extends the data region and pushes
+ * .bss, and fills the RELA tag values the prepare could not know. */
+static void elf_layout_rela(void) {
+    int ti;
+    if (!elf_has_rela()) return;
+    for (ti = 0; ti < elf_dyn_nentry; ti++) {
+        if (elf_dyn_tags[ti] == CFG_ELF_DT_RELA)
+            elf_dyn_vals[ti] = (unsigned long long)elf_rela_base;
+        else if (elf_dyn_tags[ti] == CFG_ELF_DT_RELASZ)
+            elf_dyn_vals[ti] = (unsigned long long)ld_nimports * 24ULL;
+    }
+}
+
+/* Write the executable import tables: null plus one UNDEF entry
+ * per -d import (names via the import offsets), and one RELA row
+ * per recorded fixup (offset, import-indexed info, call addend). */
+static void elf_write_idynsym(FILE *f) {
+    long n = (long)ld_nimports + 1;
+    unsigned char *tab = (unsigned char *)malloc((size_t)n * CFG_ELF_DYNSYM_ENT);
+    int i;
+    if (!tab) {
+        fprintf(stderr, "ld: out of memory\n");
+        exit(1);
+    }
+    memset(tab, 0, (size_t)n * CFG_ELF_DYNSYM_ENT);
+    for (i = 0; i < ld_nimports; i++) {
+        unsigned char *e = tab + (size_t)(i + 1) * CFG_ELF_DYNSYM_ENT;
+        w32(e + 0, (unsigned)elf_impoff[i]);
+        e[4] = (unsigned char)((CFG_ELF_STB_GLOBAL << 4) |
+            (ld_imports[i].is_func ? CFG_ELF_STT_FUNC : CFG_ELF_STT_NOTYPE));
+        e[5] = 0;
+        w16(e + 6, CFG_ELF_SHN_UNDEF);
+        w64_at(e + 8, 0ULL);
+        w64_at(e + 16, 0ULL);
+    }
+    while (ftell(f) < elf_dynsym_base) fputc(0, f);
+    fwrite(tab, 1, (size_t)n * CFG_ELF_DYNSYM_ENT, f);
+    free(tab);
+}
+
+static void elf_write_rela(FILE *f) {
+    int i;
+    while (ftell(f) < elf_rela_base) fputc(0, f);
+    for (i = 0; i < ld_nimports; i++) {
+        unsigned char e[24];
+        memset(e, 0, sizeof(e));
+        w64_at(e + 0, (unsigned long long)elf_got_base + (unsigned long long)i * 8ULL);
+        w64_at(e + 8, ((unsigned long long)(i + 1) << 32) |
+            (unsigned long long)CFG_ELF_R_GLOB_DAT);
+        w64_at(e + 16, 0ULL);
+        fwrite(e, 1, sizeof(e), f);
+    }
+}
+
+/* Write one PLT stub (jmp through its GOT slot) plus fail-closed
+ * padding: control must never fall through into the next stub. */
+static void elf_write_plt(FILE *f, long stub, long got) {
+    long disp = got - (stub + 6);
+    fputc(0xFF, f);
+    fputc(0x25, f);
+    fputc((int)(disp & 255), f);
+    fputc((int)((disp >> 8) & 255), f);
+    fputc((int)((disp >> 16) & 255), f);
+    fputc((int)((disp >> 24) & 255), f);
+    {
+        int k;
+        for (k = 0; k < 10; k++) fputc(0xCC, f);
+    }
+}
+
 /* Write the .dynamic table at its link address (caller padded there).
  * SONAME plus the tables a loader and host dlopen need; no NEEDED
  * (shared libs stay self-contained) and no INIT/FINI (miniGCC emits
  * no constructors). */
 static void elf_write_dynamic(FILE *f) {
-    unsigned char d[CFG_ELF_DYN_NENTRY * 16];
+    unsigned char d[16 * 16];
+    long i;
     memset(d, 0, sizeof(d));
-    elf_dyn_emit(d + 0 * 16, CFG_ELF_DT_HASH, (unsigned long long)elf_hash_base);
-    elf_dyn_emit(d + 1 * 16, CFG_ELF_DT_STRTAB, (unsigned long long)elf_dynstr_base);
-    elf_dyn_emit(d + 2 * 16, CFG_ELF_DT_SYMTAB, (unsigned long long)elf_dynsym_base);
-    elf_dyn_emit(d + 3 * 16, CFG_ELF_DT_STRSZ, (unsigned long long)elf_dynstr_size);
-    elf_dyn_emit(d + 4 * 16, CFG_ELF_DT_SYMENT, (unsigned long long)CFG_ELF_DYNSYM_ENT);
-    elf_dyn_emit(d + 5 * 16, CFG_ELF_DT_SONAME, 1ULL);
-    elf_dyn_emit(d + 6 * 16, CFG_ELF_DT_NULL, 0ULL);
+    for (i = 0; i < elf_dyn_nentry; i++) {
+        unsigned long long v = elf_dyn_vals[i];
+        long tag = elf_dyn_tags[i];
+        if (tag == CFG_ELF_DT_HASH) v = (unsigned long long)elf_hash_base;
+        else if (tag == CFG_ELF_DT_STRTAB) v = (unsigned long long)elf_dynstr_base;
+        else if (tag == CFG_ELF_DT_SYMTAB) v = (unsigned long long)elf_dynsym_base;
+        elf_dyn_emit(d + (size_t)i * 16, tag, v);
+    }
     while (ftell(f) < elf_dyn_base) fputc(0, f);
-    fwrite(d, 1, sizeof(d), f);
+    fwrite(d, 1, (size_t)elf_dyn_nentry * 16, f);
 }
 
 /* Write the .dynsym table: null entry plus every defined,
@@ -4068,6 +4345,9 @@ static void elf_write(const char *path) {
     }
 
     long shoff = x86_align_up(elf_data_base + elf_data_size, 8);
+    long phnum = elf_has_dyn() ? CFG_ELF_PHNUM + 2 : CFG_ELF_PHNUM;
+    long shnum = 6 + (elf_has_dyn() ? 5 : 0) + (elf_has_rela() ? 1 : 0);
+    long shstrndx = 5 + (elf_has_dyn() ? 5 : 0) + (elf_has_rela() ? 1 : 0);
 
     unsigned char eh[CFG_ELF_HSIZE];
     memset(eh, 0, sizeof(eh));
@@ -4088,10 +4368,10 @@ static void elf_write(const char *path) {
     w64_at(eh + 40, shoff);
     w16(eh + 52, CFG_ELF_HSIZE);
     w16(eh + 54, CFG_ELF_PHENTSZ);
-    w16(eh + 56, g_shared ? CFG_ELF_PHNUM + 2 : CFG_ELF_PHNUM);
+    w16(eh + 56, (unsigned)phnum);
     w16(eh + 58, CFG_ELF_SHENTSZ);
-    w16(eh + 60, g_shared ? CFG_ELF_SHNUM + 5 : CFG_ELF_SHNUM);
-    w16(eh + 62, g_shared ? CFG_ELF_SHSTRNDX + 4 : CFG_ELF_SHSTRNDX);
+    w16(eh + 60, (unsigned)shnum);
+    w16(eh + 62, (unsigned)shstrndx);
     fwrite(eh, 1, sizeof(eh), f);
 
     unsigned char ph[CFG_ELF_PHENTSZ * (CFG_ELF_PHNUM + 2)];
@@ -4112,14 +4392,14 @@ static void elf_write(const char *path) {
     w64_at(ph + 88, (unsigned long long)elf_data_size);
     w64_at(ph + 96, (unsigned long long)(elf_data_size + elf_bss_size));
     w64_at(ph + 104, CFG_ELF_PAGE);
-    if (g_shared) {
+    if (elf_has_dyn()) {
         w32(ph + 112, CFG_ELF_PT_DYNAMIC);
         w32(ph + 116, CFG_ELF_PF_R | CFG_ELF_PF_W);
         w64_at(ph + 120, (unsigned long long)elf_dyn_base);
         w64_at(ph + 128, (unsigned long long)elf_dyn_base);
         w64_at(ph + 136, (unsigned long long)elf_dyn_base);
-        w64_at(ph + 144, (unsigned long long)(CFG_ELF_DYN_NENTRY * 16L));
-        w64_at(ph + 152, (unsigned long long)(CFG_ELF_DYN_NENTRY * 16L));
+        w64_at(ph + 144, (unsigned long long)elf_dyn_nentry * 16ULL);
+        w64_at(ph + 152, (unsigned long long)elf_dyn_nentry * 16ULL);
         w64_at(ph + 160, 8);
         w32(ph + 168, CFG_ELF_PT_GNU_STACK);
         w32(ph + 172, CFG_ELF_PF_R | CFG_ELF_PF_W);
@@ -4130,13 +4410,20 @@ static void elf_write(const char *path) {
         w64_at(ph + 208, 0ULL);
         w64_at(ph + 216, 8);
     }
-    fwrite(ph, 1, (size_t)(g_shared ? 4 : CFG_ELF_PHNUM) * CFG_ELF_PHENTSZ, f);
+    fwrite(ph, 1, (size_t)phnum * CFG_ELF_PHENTSZ, f);
 
-    if (elf_text_base > (long)sizeof(eh) + (long)(g_shared ? 4 : CFG_ELF_PHNUM) * CFG_ELF_PHENTSZ) {
-        for (long i = (long)sizeof(eh) + (long)(g_shared ? 4 : CFG_ELF_PHNUM) * CFG_ELF_PHENTSZ; i < elf_text_base; i++)
+    if (elf_text_base > (long)sizeof(eh) + (long)phnum * CFG_ELF_PHENTSZ) {
+        for (long i = (long)sizeof(eh) + (long)phnum * CFG_ELF_PHENTSZ; i < elf_text_base; i++)
             fputc(0, f);
     }
     fwrite(code, 1, (size_t)code_len, f);
+    if (elf_has_rela()) {
+        int i;
+        while (ftell(f) < elf_plt_base) fputc(0, f);
+        for (i = 0; i < ld_nimports; i++)
+            elf_write_plt(f, elf_plt_base + (long)i * 16L,
+                elf_got_base + (long)i * 8L);
+    }
     while (ftell(f) < elf_rodata_base) fputc(0, f);
     for (int i = 0; i < n_syms; i++) {
         Sym *s = &syms[i];
@@ -4153,24 +4440,27 @@ static void elf_write(const char *path) {
         if (sz <= 0) continue;
         fwrite(blob_data + s->base, 1, (size_t)sz, f);
     }
-    if (g_shared) {
+    if (elf_has_dyn()) {
         elf_write_dynamic(f);
-        elf_write_dynsym(f);
+        if (g_shared) elf_write_dynsym(f);
+        else elf_write_idynsym(f);
         elf_write_dynstr(f);
         elf_write_hash(f);
+        if (elf_has_rela()) elf_write_rela(f);
     }
     while (ftell(f) < shoff) fputc(0, f);
 
     static const char shstr_base[] = "\0.text\0.rodata\0.data\0.bss\0.shstrtab\0";
-    static const char shstr_ext[] = ".dynamic\0.dynsym\0.dynstr\0.hash\0";
+    static const char shstr_ext[] = ".dynamic\0.dynsym\0.dynstr\0.hash\0.rela\0";
     char shstr[96];
     long shstr_size = (long)sizeof(shstr_base) - 1;
-    long shnum = g_shared ? CFG_ELF_SHNUM + 5 : CFG_ELF_SHNUM;
-    unsigned char sh[CFG_ELF_SHENTSZ * (CFG_ELF_SHNUM + 5)];
+    unsigned char sh[CFG_ELF_SHENTSZ * (CFG_ELF_SHNUM + 6)];
     memcpy(shstr, shstr_base, (size_t)shstr_size);
-    if (g_shared) {
+    if (elf_has_dyn()) {
         memcpy(shstr + shstr_size, shstr_ext, sizeof(shstr_ext) - 1);
         shstr_size += (long)sizeof(shstr_ext) - 1;
+        if (!elf_has_rela())
+            shstr_size -= (long)sizeof(".rela") - 1;
     }
     memset(sh, 0, sizeof(sh));
     w32(sh + 0 * CFG_ELF_SHENTSZ + 4, 0);
@@ -4202,15 +4492,13 @@ static void elf_write(const char *path) {
     w64_at(sh + 4 * CFG_ELF_SHENTSZ + 24, (unsigned long long)(elf_data_base + elf_data_size));
     w64_at(sh + 4 * CFG_ELF_SHENTSZ + 32, (unsigned long long)elf_bss_size);
     w64_at(sh + 4 * CFG_ELF_SHENTSZ + 48, 8);
-    if (g_shared) {
-        w32(sh + 5 * CFG_ELF_SHENTSZ + 0, 0);
-        w32(sh + 5 * CFG_ELF_SHENTSZ + 4, 0);
+    if (elf_has_dyn()) {
         w32(sh + 6 * CFG_ELF_SHENTSZ + 0, 36);
         w32(sh + 6 * CFG_ELF_SHENTSZ + 4, CFG_ELF_SHT_DYNAMIC);
         w64_at(sh + 6 * CFG_ELF_SHENTSZ + 8, CFG_ELF_SHF_A | CFG_ELF_SHF_W);
         w64_at(sh + 6 * CFG_ELF_SHENTSZ + 16, (unsigned long long)elf_dyn_base);
         w64_at(sh + 6 * CFG_ELF_SHENTSZ + 24, (unsigned long long)elf_dyn_base);
-        w64_at(sh + 6 * CFG_ELF_SHENTSZ + 32, (unsigned long long)(CFG_ELF_DYN_NENTRY * 16L));
+        w64_at(sh + 6 * CFG_ELF_SHENTSZ + 32, (unsigned long long)elf_dyn_nentry * 16ULL);
         w32(sh + 6 * CFG_ELF_SHENTSZ + 40, 8);
         w32(sh + 6 * CFG_ELF_SHENTSZ + 44, 0);
         w64_at(sh + 6 * CFG_ELF_SHENTSZ + 48, 8);
@@ -4242,15 +4530,255 @@ static void elf_write(const char *path) {
         w32(sh + 9 * CFG_ELF_SHENTSZ + 44, 0);
         w64_at(sh + 9 * CFG_ELF_SHENTSZ + 48, 4);
         w64_at(sh + 9 * CFG_ELF_SHENTSZ + 56, 4);
-        w32(sh + 10 * CFG_ELF_SHENTSZ + 0, 26);
-        w32(sh + 10 * CFG_ELF_SHENTSZ + 4, CFG_ELF_SHT_STRTAB);
-        w64_at(sh + 10 * CFG_ELF_SHENTSZ + 24, (unsigned long long)(shoff + CFG_ELF_SHENTSZ * shnum));
-        w64_at(sh + 10 * CFG_ELF_SHENTSZ + 32, (unsigned long long)shstr_size);
-        w64_at(sh + 10 * CFG_ELF_SHENTSZ + 48, 1);
+        w32(sh + 10 * CFG_ELF_SHENTSZ + 48, 1);
+    }
+    if (elf_has_rela()) {
+        w32(sh + 10 * CFG_ELF_SHENTSZ + 0, 67);
+        w32(sh + 10 * CFG_ELF_SHENTSZ + 4, CFG_ELF_SHT_RELA);
+        w64_at(sh + 10 * CFG_ELF_SHENTSZ + 8, CFG_ELF_SHF_A);
+        w64_at(sh + 10 * CFG_ELF_SHENTSZ + 16, (unsigned long long)elf_rela_base);
+        w64_at(sh + 10 * CFG_ELF_SHENTSZ + 24, (unsigned long long)elf_rela_base);
+        w64_at(sh + 10 * CFG_ELF_SHENTSZ + 32, (unsigned long long)ld_nimports * 24ULL);
+        w32(sh + 10 * CFG_ELF_SHENTSZ + 40, 7);
+        w32(sh + 10 * CFG_ELF_SHENTSZ + 44, 0);
+        w64_at(sh + 10 * CFG_ELF_SHENTSZ + 48, 8);
+        w64_at(sh + 10 * CFG_ELF_SHENTSZ + 56, 24);
+    }
+    {
+        long sidx = shstrndx;
+        w32(sh + sidx * CFG_ELF_SHENTSZ + 0, 26);
+        w32(sh + sidx * CFG_ELF_SHENTSZ + 4, CFG_ELF_SHT_STRTAB);
+        w64_at(sh + sidx * CFG_ELF_SHENTSZ + 24, (unsigned long long)(shoff + CFG_ELF_SHENTSZ * shnum));
+        w64_at(sh + sidx * CFG_ELF_SHENTSZ + 32, (unsigned long long)shstr_size);
+        w64_at(sh + sidx * CFG_ELF_SHENTSZ + 48, 1);
     }
     fwrite(sh, 1, (size_t)CFG_ELF_SHENTSZ * (size_t)shnum, f);
     fwrite(shstr, 1, (size_t)shstr_size, f);
     fclose(f);
+}
+
+static unsigned r16at(const unsigned char *p) {
+    return (unsigned)p[0] | ((unsigned)p[1] << 8);
+}
+
+static unsigned long r64at(const unsigned char *p) {
+    unsigned long v = 0;
+    int i;
+    for (i = 7; i >= 0; i--) v = (v << 8) | p[i];
+    return v;
+}
+
+/* Read one ET_DYN library: verify the header, collect global
+ * function symbols (plus non-function globals, so a data import
+ * fails with "unsupported" instead of "undefined") and the SONAME
+ * for DT_NEEDED. Every bound is checked before use; any violation
+ * is a hard link error, never a partial table. */
+static int ld_read_lib(const char *path, int libidx) {
+    FILE *f;
+    long fsize;
+    unsigned char eh[64];
+    unsigned long shoff;
+    unsigned shentsz;
+    unsigned shnum;
+    unsigned i;
+    unsigned dynsym = 0;
+    unsigned dynsym_n = 0;
+    unsigned dynstr = 0;
+    unsigned dynstr_n = 0;
+    unsigned dynamic = 0;
+    unsigned dynamic_n = 0;
+    unsigned char *sec = 0;
+    int have_soname = 0;
+    f = fopen(path, "rb");
+    if (!f) {
+        fprintf(stderr, "ld: cannot open library %s\n", path);
+        return -1;
+    }
+    if (fseek(f, 0, SEEK_END) != 0) {
+        fprintf(stderr, "ld: cannot size library %s\n", path);
+        fclose(f);
+        return -1;
+    }
+    fsize = ftell(f);
+    if (fsize < 64 || fsize > CFG_LD_LIB_MAXSZ) {
+        fprintf(stderr, "ld: bad library size %s\n", path);
+        fclose(f);
+        return -1;
+    }
+    rewind(f);
+    if (fread(eh, 1, 64, f) != 64) {
+        fprintf(stderr, "ld: cannot read library %s\n", path);
+        fclose(f);
+        return -1;
+    }
+    if (eh[0] != 0x7F || eh[1] != 'E' || eh[2] != 'L' || eh[3] != 'F' ||
+            eh[4] != 2 || r16at(eh + 16) != 3) {
+        fprintf(stderr, "ld: %s is not a 64-bit ET_DYN library\n", path);
+        fclose(f);
+        return -1;
+    }
+    shoff = r64at(eh + 40);
+    shentsz = r16at(eh + 58);
+    shnum = r16at(eh + 60);
+    if (shentsz != 64 || shnum == 0 || shnum > 64 ||
+            shoff > (unsigned long)fsize ||
+            shnum > ((unsigned long)fsize - shoff) / 64) {
+        fprintf(stderr, "ld: bad section table %s\n", path);
+        fclose(f);
+        return -1;
+    }
+    sec = (unsigned char *)malloc((size_t)shnum * 64);
+    if (!sec) {
+        fprintf(stderr, "ld: out of memory\n");
+        fclose(f);
+        return -1;
+    }
+    if (fseek(f, (long)shoff, SEEK_SET) != 0 ||
+            fread(sec, 64, shnum, f) != shnum) {
+        fprintf(stderr, "ld: cannot read sections %s\n", path);
+        free(sec);
+        fclose(f);
+        return -1;
+    }
+    for (i = 0; i < shnum; i++) {
+        unsigned type = (unsigned)(sec[i * 64 + 4] |
+            ((unsigned)sec[i * 64 + 5] << 8) |
+            ((unsigned)sec[i * 64 + 6] << 16) |
+            ((unsigned)sec[i * 64 + 7] << 24));
+        unsigned long off = r64at(sec + i * 64 + 24);
+        unsigned long size = r64at(sec + i * 64 + 32);
+        unsigned link = (unsigned)(sec[i * 64 + 40] |
+            ((unsigned)sec[i * 64 + 41] << 8) |
+            ((unsigned)sec[i * 64 + 42] << 16) |
+            ((unsigned)sec[i * 64 + 43] << 24));
+        if (off > (unsigned long)fsize || size > (unsigned long)fsize - off)
+            continue;
+        if (type == 11 && link < shnum) {
+            dynsym = (unsigned)off;
+            dynsym_n = (unsigned)(size / 24);
+            {
+                unsigned long soff;
+                unsigned long ssize;
+                if (fseek(f, 0, SEEK_END) == 0) { (void)0; }
+                soff = r64at(sec + link * 64 + 24);
+                ssize = r64at(sec + link * 64 + 32);
+                if (soff <= (unsigned long)fsize &&
+                        ssize <= (unsigned long)fsize - soff) {
+                    dynstr = (unsigned)soff;
+                    dynstr_n = (unsigned)ssize;
+                }
+            }
+        } else if (type == 6) {
+            dynamic = (unsigned)off;
+            dynamic_n = (unsigned)(size / 16);
+        }
+    }
+    if (dynsym_n == 0 || dynstr_n == 0 || dynamic == 0) {
+        fprintf(stderr, "ld: %s has no dynamic symbols\n", path);
+        free(sec);
+        fclose(f);
+        return -1;
+    }
+    {
+        unsigned char *dp = (unsigned char *)malloc(16);
+        unsigned k;
+        if (!dp) {
+            fprintf(stderr, "ld: out of memory\n");
+            free(sec);
+            fclose(f);
+            return -1;
+        }
+        for (k = 0; k < dynamic_n; k++) {
+            long at = (long)dynamic + (long)k * 16;
+            if (at < 0 || (unsigned long)at + 16 > (unsigned long)fsize)
+                break;
+            if (fseek(f, at, SEEK_SET) != 0) break;
+            if (fread(dp, 1, 16, f) != 16) break;
+            if (r64at(dp) == 14) {
+                unsigned long so = r64at(dp + 8);
+                unsigned long m = 0;
+                if (so >= dynstr_n) break;
+                while (so + m < dynstr_n && m + 1 < CFG_NAME_MAX) {
+                    long at2 = (long)dynstr + (long)so + (long)m;
+                    unsigned char c;
+                    if (at2 < 0 || (unsigned long)at2 >= (unsigned long)fsize)
+                        break;
+                    if (fseek(f, at2, SEEK_SET) != 0) break;
+                    if (fread(&c, 1, 1, f) != 1) break;
+                    ld_lib_sonames[libidx][m] = (char)c;
+                    if (!c) break;
+                    m++;
+                }
+                ld_lib_sonames[libidx][CFG_NAME_MAX - 1] = 0;
+                if (m > 0) have_soname = 1;
+                break;
+            }
+            if (r64at(dp) == 0) break;
+        }
+        free(dp);
+    }
+    if (!have_soname) {
+        fprintf(stderr, "ld: %s has no SONAME\n", path);
+        free(sec);
+        fclose(f);
+        return -1;
+    }
+    {
+        unsigned char sym[24];
+        unsigned char *pool;
+        unsigned k;
+        pool = (unsigned char *)malloc(dynstr_n ? dynstr_n : 1);
+        if (!pool) {
+            fprintf(stderr, "ld: out of memory\n");
+            free(sec);
+            fclose(f);
+            return -1;
+        }
+        if (fseek(f, (long)dynstr, SEEK_SET) != 0 ||
+                fread(pool, 1, dynstr_n, f) != dynstr_n) {
+            fprintf(stderr, "ld: cannot read strings %s\n", path);
+            free(pool);
+            free(sec);
+            fclose(f);
+            return -1;
+        }
+        for (k = 1; k < dynsym_n; k++) {
+            long at = (long)dynsym + (long)k * 24;
+            unsigned info;
+            unsigned shndx;
+            unsigned name;
+            unsigned m;
+            if (at < 0 || (unsigned long)at + 24 > (unsigned long)fsize)
+                break;
+            if (fseek(f, at, SEEK_SET) != 0) break;
+            if (fread(sym, 1, 24, f) != 24) break;
+            if ((sym[4] >> 4) != 1) continue;
+            shndx = (unsigned)sym[6] | ((unsigned)sym[7] << 8);
+            if (shndx == 0) continue;
+            if (ld_nimports >= CFG_LD_MAXIMPORTS) {
+                fprintf(stderr, "ld: too many imports from %s\n", path);
+                free(pool);
+                free(sec);
+                fclose(f);
+                return -1;
+            }
+            info = sym[4] & 0xF;
+            name = (unsigned)sym[0] | ((unsigned)sym[1] << 8) |
+                ((unsigned)sym[2] << 16) | ((unsigned)sym[3] << 24);
+            for (m = 0; m + 1 < CFG_NAME_MAX && name + m < dynstr_n; m++) {
+                ld_imports[ld_nimports].name[m] = (char)pool[name + m];
+                if (!pool[name + m]) break;
+            }
+            ld_imports[ld_nimports].name[CFG_NAME_MAX - 1] = 0;
+            ld_imports[ld_nimports].is_func = (info == 2);
+            ld_imports[ld_nimports].value = (long)r64at(sym + 8);
+            if (ld_imports[ld_nimports].name[0]) ld_nimports++;
+        }
+        free(pool);
+    }
+    free(sec);
+    fclose(f);
+    return 0;
 }
 
 static void elf_build(const char *in_path, const char *out_path) {
@@ -4336,6 +4864,7 @@ static void elf_build(const char *in_path, const char *out_path) {
         ld_release();
         exit(1);
     }
+    elf_layout_rela();
     elf_write(out_path);
     ld_release();
 }
@@ -4352,6 +4881,9 @@ static void usage(void) {
         "  -shared    shared library (implies ELF: ET_DYN plus SONAME\n"
         "             and dynsym/dynstr/hash tables; no entry needed,\n"
         "             undefined functions stay hard errors)\n"
+        "  -d lib.so  link undefined functions against a shared\n"
+        "             library (repeatable): verifies every extern and\n"
+        "             records RELA PC32 fixups plus DT_NEEDED\n"
         "  -o out     output path (default: input.cvm / input.elf)\n"
         "  -xstack N  x86 stack size in bytes for the CVM backend (default %d)\n",
         CFG_XSTACK_DEF);
@@ -4382,6 +4914,14 @@ int main(int argc, char **argv) {
         } else if (strcmp(argv[i], "-shared") == 0) {
             g_shared = 1;
             fmt = CFG_FMT_ELF;
+        } else if (strcmp(argv[i], "-d") == 0 && i + 1 < argc) {
+            if (ld_nlibs >= CFG_LD_MAXLIBS) {
+                fprintf(stderr, "ld: too many -d libraries\n");
+                exit(1);
+            }
+            strncpy(ld_lib_paths[ld_nlibs], argv[++i], CFG_NAME_MAX - 1);
+            ld_lib_paths[ld_nlibs][CFG_NAME_MAX - 1] = 0;
+            ld_nlibs++;
         } else if (argv[i][0] == '-') {
             usage();
         } else if (!in) {
@@ -4406,10 +4946,18 @@ int main(int argc, char **argv) {
     cur_file[CFG_NAME_MAX - 1] = 0;
 
     if (fmt == CFG_FMT_ELF) {
+        int li;
+        if (g_shared && ld_nlibs > 0) {
+            fprintf(stderr, "ld: -shared takes no -d libraries (leaf-only)\n");
+            exit(1);
+        }
+        for (li = 0; li < ld_nlibs; li++) {
+            if (ld_read_lib(ld_lib_paths[li], li) != 0) exit(1);
+        }
         elf_build(in, out);
     } else {
-        if (g_shared) {
-            fprintf(stderr, "ld: -shared needs ELF (-f cvm takes no shared libraries)\n");
+        if (ld_nlibs > 0 || g_shared) {
+            fprintf(stderr, "ld: -d and -shared need ELF (-f cvm takes neither)\n");
             exit(1);
         }
         LineSrc src;
