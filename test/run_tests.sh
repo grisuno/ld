@@ -388,6 +388,31 @@ run_runtime() {
 echo "=== -runtime emits a buildable shared-libc source ==="
 run_runtime
 
+# run_import_prune: linking -d a library that exports many routines
+# must import only the ones the program calls, so the GOT/PLT/RELA
+# tables carry no dead rows. usestr calls strlen + memcmp (and _start
+# calls exit); over libcmini's ~49 exports the import count must stay
+# small, never the whole surface.
+run_import_prune() {
+    if [ ! -x "$MINIGCC" ]; then return; fi
+    "$LD_TOOL" -runtime > "$WORK/rt.s" 2>/dev/null
+    "$LD_TOOL" -shared -o "$WORK/libcmini.so" "$WORK/rt.s" 2>/dev/null || return
+    cp "$HERE/usestr.c" "$WORK/" 2>/dev/null
+    "$MINIGCC" "$WORK/usestr.c" > "$WORK/usestr.s" 2>/dev/null || return
+    "$LD_TOOL" -f elf -d "$WORK/libcmini.so" -o "$WORK/prune.elf" "$WORK/usestr.s" 2>/dev/null || return
+    local n
+    n=$(readelf -r "$WORK/prune.elf" 2>/dev/null | grep -c GLOB_DAT)
+    if [ "$n" -ge 1 ] && [ "$n" -le 8 ]; then
+        echo "PASS import prune ($n GLOB_DAT rows, not the full surface)"
+        PASS=$((PASS + 1))
+    else
+        echo "FAIL import prune ($n GLOB_DAT rows)"
+        note_fail "import-prune"
+    fi
+}
+echo "=== -d imports only what the program calls ==="
+run_import_prune
+
 echo "=== privileged asm: elf encodes, cvm rejects ==="
 if "$LD_TOOL" -f elf -o "$WORK/priv.elf" "$HERE/priv.s" 2>/dev/null; then
     echo "PASS priv (elf): cli/sti/hlt assembled"

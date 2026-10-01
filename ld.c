@@ -250,6 +250,7 @@ typedef struct {
     int  shadowed;
     int  is_import;
     int  import_idx;
+    int  is_stub;
 } Sym;
 
 typedef struct {
@@ -1037,7 +1038,10 @@ static void scan_src(LineSrc *src, int from_stubs) {
                         if (from_stubs) syms[existing].shadowed = 1;
                     } else {
                         int i = add_sym(t, SYM_FUNC, SEC_TEXT);
-                        if (i >= 0) syms[i].shadowed = 0;
+                        if (i >= 0) {
+                            syms[i].shadowed = 0;
+                            if (from_stubs) syms[i].is_stub = 1;
+                        }
                     }
                 } else if (find_sym(t) < 0) {
                     add_sym(t, SYM_LABEL, SEC_TEXT);
@@ -3877,23 +3881,54 @@ static void elf_route_import(long li, long pos, long addend) {
     code[q + 3] = (unsigned char)((disp >> 24) & 255);
 }
 
-/* Pre-register one placeholder symbol per -d import that the user
- * source does not define. The placeholder exists so the built-in stubs
- * scanned next see a name collision and shadow themselves, letting the
- * library definition win over the local fallback stub. The resolver
- * recognizes the placeholder (is_import) and routes calls through the
- * PLT instead of taking elf_sym_addr. A name the user defines stays
- * local (no placeholder), so the source still overrides the library. */
-static void elf_register_import_placeholders(void) {
-    int li;
-    if (ld_nlibs == 0) return;
-    for (li = 0; li < ld_nimports; li++) {
-        int i;
-        if (find_sym(ld_imports[li].name) >= 0) continue;
-        i = add_sym(ld_imports[li].name, SYM_FUNC, SEC_TEXT);
-        if (i < 0) continue;
-        syms[i].is_import = 1;
-        syms[i].import_idx = li;
+/* True when some call fixup names `n` (the program references it). */
+static int name_is_called(const char *n) {
+    int i;
+    for (i = 0; i < n_fixups; i++)
+        if (strcmp(fixups[i].name, n) == 0) return 1;
+    return 0;
+}
+
+/* Import pruning, run after the user source is encoded (fixups known)
+ * and before the stub bodies are encoded: keep only the library
+ * exports the program actually calls, so the GOT/PLT/RELA tables list
+ * no dead rows and the executable does not pay for the whole library
+ * surface. Each kept import is marked on its symbol (or a placeholder
+ * when no stub shares the name) so the resolver routes through the
+ * PLT and the colliding stub body is skipped; a name the user defines
+ * stays local. Body pruning (dropping unreferenced stubs) is NOT done:
+ * runtime routines share local helper labels (.Lstub_vfmt,
+ * .Lstub_resolve_fd) that sit between .globl functions, so skipping a
+ * function body can swallow a helper another routine still calls;
+ * safe function-level pruning needs block-level helper tracking
+ * first. The measured file-size effect is small (a 2 KB stub cut is
+ * absorbed by the segment page padding), so it is not worth the risk
+ * yet. */
+static void elf_prune(void) {
+    int i;
+    int kept = 0;
+    if (ld_nlibs > 0) {
+        for (i = 0; i < ld_nimports; i++) {
+            const char *nm = ld_imports[i].name;
+            int si = find_sym(nm);
+            int referenced;
+            if (si >= 0) referenced = syms[si].is_stub && name_is_called(nm);
+            else referenced = name_is_called(nm);
+            if (!referenced) continue;
+            if (kept != i) ld_imports[kept] = ld_imports[i];
+            kept++;
+        }
+        ld_nimports = kept;
+    }
+    for (i = 0; i < ld_nimports; i++) {
+        int si = find_sym(ld_imports[i].name);
+        if (si < 0)
+            si = add_sym(ld_imports[i].name, SYM_FUNC, SEC_TEXT);
+        if (si >= 0) {
+            syms[si].is_import = 1;
+            syms[si].import_idx = i;
+            syms[si].shadowed = 1;
+        }
     }
 }
 
@@ -4832,10 +4867,6 @@ static void elf_build(const char *in_path, const char *out_path) {
     scan_src(&src, 0);
     ls_close(&src);
 
-    /* -d imports must beat the built-in stubs: register them before the
-     * stub scans so the colliding stub bodies shadow themselves. */
-    elf_register_import_placeholders();
-
     /* A shared library is self-contained by contract (L1): the stubs
      * would both shadow the library's own definitions and wrap syscalls
      * into the shared image, so -shared injects none. Any syscall the
@@ -4879,6 +4910,11 @@ static void elf_build(const char *in_path, const char *out_path) {
     ls_open_file(&src, in_path);
     elf_encode_src(&src);
     ls_close(&src);
+
+    /* The user's calls are now known as fixups: prune imports and keep
+     * only the runtime routines this program actually runs, before any
+     * stub body is encoded. */
+    elf_prune();
 
     if (!g_shared) {
     LineSrc stub2;
