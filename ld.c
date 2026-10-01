@@ -248,6 +248,8 @@ typedef struct {
     long end;
     long fidx;
     int  shadowed;
+    int  is_import;
+    int  import_idx;
 } Sym;
 
 typedef struct {
@@ -3862,9 +3864,53 @@ static long elf_sym_addr(const Sym *s) {
 static int elf_has_dyn(void);
 static int elf_has_rela(void);
 
+/* Route one call fixup through the PLT slot of import li. Shared by the
+ * fixup resolver so a name defined in a -d library binds through the
+ * stub exactly like a bare undefined reference. */
+static void elf_route_import(long li, long pos, long addend) {
+    long stub = elf_plt_base + li * 16L;
+    long disp = stub - (elf_text_base + pos + 4 + addend);
+    long q = pos;
+    code[q]     = (unsigned char)(disp & 255);
+    code[q + 1] = (unsigned char)((disp >> 8) & 255);
+    code[q + 2] = (unsigned char)((disp >> 16) & 255);
+    code[q + 3] = (unsigned char)((disp >> 24) & 255);
+}
+
+/* Pre-register one placeholder symbol per -d import that the user
+ * source does not define. The placeholder exists so the built-in stubs
+ * scanned next see a name collision and shadow themselves, letting the
+ * library definition win over the local fallback stub. The resolver
+ * recognizes the placeholder (is_import) and routes calls through the
+ * PLT instead of taking elf_sym_addr. A name the user defines stays
+ * local (no placeholder), so the source still overrides the library. */
+static void elf_register_import_placeholders(void) {
+    int li;
+    if (ld_nlibs == 0) return;
+    for (li = 0; li < ld_nimports; li++) {
+        int i;
+        if (find_sym(ld_imports[li].name) >= 0) continue;
+        i = add_sym(ld_imports[li].name, SYM_FUNC, SEC_TEXT);
+        if (i < 0) continue;
+        syms[i].is_import = 1;
+        syms[i].import_idx = li;
+    }
+}
+
 static void elf_resolve_fixups(void) {
     for (int i = 0; i < n_fixups; i++) {
         int si = find_sym(fixups[i].name);
+        if (si >= 0 && syms[si].is_import) {
+            if (!elf_has_rela()) {
+                fprintf(stderr, "ld: %s: cannot import %s here\n",
+                    cur_file, fixups[i].name);
+                error_count++;
+                continue;
+            }
+            elf_route_import(syms[si].import_idx, fixups[i].pos,
+                fixups[i].addend);
+            continue;
+        }
         if (si < 0) {
             int li;
             int found = 0;
@@ -3884,15 +3930,7 @@ static void elf_resolve_fixups(void) {
                     error_count++;
                     break;
                 }
-                {
-                    long stub = elf_plt_base + (long)li * 16L;
-                    long disp = stub - (elf_text_base + fixups[i].pos + 4 + fixups[i].addend);
-                    long q = fixups[i].pos;
-                    code[q] = (unsigned char)(disp & 255);
-                    code[q + 1] = (unsigned char)((disp >> 8) & 255);
-                    code[q + 2] = (unsigned char)((disp >> 16) & 255);
-                    code[q + 3] = (unsigned char)((disp >> 24) & 255);
-                }
+                elf_route_import(li, fixups[i].pos, fixups[i].addend);
                 break;
             }
             if (!found) {
@@ -4794,6 +4832,15 @@ static void elf_build(const char *in_path, const char *out_path) {
     scan_src(&src, 0);
     ls_close(&src);
 
+    /* -d imports must beat the built-in stubs: register them before the
+     * stub scans so the colliding stub bodies shadow themselves. */
+    elf_register_import_placeholders();
+
+    /* A shared library is self-contained by contract (L1): the stubs
+     * would both shadow the library's own definitions and wrap syscalls
+     * into the shared image, so -shared injects none. Any syscall the
+     * library needs must be defined by its source. */
+    if (!g_shared) {
     LineSrc stub;
     ls_open_mem(&stub, ELF_STUBS_SRC);
     scan_src(&stub, 1);
@@ -4818,6 +4865,7 @@ static void elf_build(const char *in_path, const char *out_path) {
     ls_open_mem(&stub_e, ELF_STUBS_SRC_E);
     scan_src(&stub_e, 1);
     ls_close(&stub_e);
+    }
 
     int start_idx = find_sym("_start");
     if (start_idx < 0) start_idx = find_sym("main");
@@ -4832,6 +4880,7 @@ static void elf_build(const char *in_path, const char *out_path) {
     elf_encode_src(&src);
     ls_close(&src);
 
+    if (!g_shared) {
     LineSrc stub2;
     ls_open_mem(&stub2, ELF_STUBS_SRC);
     elf_encode_src(&stub2);
@@ -4856,6 +4905,7 @@ static void elf_build(const char *in_path, const char *out_path) {
     ls_open_mem(&stub2_e, ELF_STUBS_SRC_E);
     elf_encode_src(&stub2_e);
     ls_close(&stub2_e);
+    }
 
     if (error_count) {
         fprintf(stderr, "ld: %d error(s)\n", error_count);

@@ -309,6 +309,60 @@ run_shared_dynuse() {
 echo "=== dynamic executable (-d + host ld-linux) ==="
 run_shared_dynuse
 
+# run_shared_override: a -shared library may define names that the
+# built-in stubs also provide (strlen, memcmp). The library must export
+# them (stubs skipped for -shared) and a -d executable must import them
+# through GLOB_DAT instead of keeping the local stub body, proving the
+# library definition wins. The live host run returns 5 (strlen length).
+run_shared_override() {
+    local interp=""
+    if [ ! -x "$MINIGCC" ]; then return; fi
+    for interp in /lib64/ld-linux-x86-64.so.2 /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2; do
+        [ -x "$interp" ] && break
+        interp=""
+    done
+    [ -z "$interp" ] && return
+    if ! "$MINIGCC" "$WORK/libstr.c" > "$WORK/libstr.s" 2>/dev/null; then
+        echo "FAIL override: minigcc libstr"; note_fail "override(minigcc)"; return
+    fi
+    if ! "$LD_TOOL" -shared -o "$WORK/libstr.so" "$WORK/libstr.s" 2>/dev/null; then
+        echo "FAIL override: -shared link"; note_fail "override(link)"; return
+    fi
+    if readelf --dyn-syms "$WORK/libstr.so" 2>/dev/null | grep -q "strlen" && \
+       readelf --dyn-syms "$WORK/libstr.so" 2>/dev/null | grep -q "memcmp"; then
+        echo "PASS override lib exports stub-named functions"
+        PASS=$((PASS + 1))
+    else
+        echo "FAIL override lib exports stub-named functions"
+        note_fail "override(export)"
+    fi
+    if ! "$MINIGCC" "$WORK/usestr.c" > "$WORK/usestr.s" 2>/dev/null; then
+        echo "FAIL override: minigcc usestr"; note_fail "override(minigcc2)"; return
+    fi
+    if ! "$LD_TOOL" -f elf -d "$WORK/libstr.so" -o "$WORK/usestr.elf" "$WORK/usestr.s" 2>/dev/null; then
+        echo "FAIL override: -d link"; note_fail "override(dlink)"; return
+    fi
+    if readelf -r "$WORK/usestr.elf" 2>/dev/null | grep -q "R_X86_64_GLOB_DAT.*strlen"; then
+        echo "PASS override exe imports the library symbol"
+        PASS=$((PASS + 1))
+    else
+        echo "FAIL override exe imports the library symbol"
+        note_fail "override(import)"
+    fi
+    ( cd "$WORK" && LD_LIBRARY_PATH="$WORK" run_prog "$WORK/usestr.out" "$interp" "./usestr.elf" )
+    local code=$?
+    if [ "$code" = "5" ]; then
+        echo "PASS override live (ld-linux, exit 5)"
+        PASS=$((PASS + 1))
+    else
+        echo "FAIL override live (exit $code, expected 5)"
+        note_fail "override(live)"
+    fi
+}
+echo "=== library definition overrides built-in stubs ==="
+cp "$HERE/libstr.c" "$HERE/usestr.c" "$WORK/" 2>/dev/null
+run_shared_override
+
 echo "=== privileged asm: elf encodes, cvm rejects ==="
 if "$LD_TOOL" -f elf -o "$WORK/priv.elf" "$HERE/priv.s" 2>/dev/null; then
     echo "PASS priv (elf): cli/sti/hlt assembled"
