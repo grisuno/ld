@@ -6,8 +6,6 @@
 
 ## External Imports
 
-- `ld.c` -> `stdio.h`
-- `ld.c` -> `stdlib.h`
-- `ld.c` -> `string.h`
-- `test/stdint.c` -> `stdint.h`
-- `test/stdint.c` -> `stdio.h`
+- `ld.c` -> stdio.h, stdlib.h, string.h
+- `test/dynlib_host.c` -> dlfcn.h, stdio.h
+- `test/stdint.c` -> stdio.h

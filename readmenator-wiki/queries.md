@@ -8,11 +8,11 @@ Log each answered question here so the wiki compounds. Format: question, answer,
 
 - Status: unanswered
 
-### Q: What does fnptr.c depend on, and what depends on it? (0 connections)
+### Q: What does run_tests.sh depend on, and what depends on it? (0 connections)
 
 - Status: unanswered
 
-### Q: What does stdint.c depend on, and what depends on it? (0 connections)
+### Q: What does fnptr.c depend on, and what depends on it? (0 connections)
 
 - Status: unanswered
 

@@ -1,0 +1,63 @@
+# Second Brain
+
+*Last synthesized: 2026-10-16 | 31 files | 1 concept pages | offline, zero tokens*
+
+> Raw sources -> readmenator wiki -> links (Karpathy LLM Wiki Pattern, deterministic).
+> Start here, then open one community page. Prefer grep over full reads.
+
+## Vault Overview
+
+The codebase centres on `ld.c`, `run_tests.sh`, `fnptr.c`. Architecturally it is 2 layers, dominant testing (28 files) across 1 import-based communities. Recorded risk surface: 0 security findings and 0 dependency cycles.
+
+Communities are self-contained in the resolved import graph; no cross-boundary bridges were recorded.
+
+Open work clusters around documentation (13% file coverage), 0 security findings, 0 taint paths, and 5 suggested exploration questions in `queries.md`.
+
+## Stats
+
+| Metric | Value |
+|--------|-------|
+| Files | 31 |
+| Symbols | 423 |
+| Resolved imports | 0 |
+| Languages | c, py, s, sh |
+| Communities | 1 |
+| Doc coverage | 13% (4/31 files) |
+| Security findings | 0 |
+| Estimated read cost | ~3826 tokens (chars/4, offline so $0) |
+
+## Reading Order
+
+1. Skim Stats and God Nodes below for blast radius.
+2. Open the largest community page first, then follow Connections.
+3. Use `queries.md` for the next question; log the answer there.
+
+```
+grep -rn '<keyword>' index.md community_*.md
+readmenator query "<question>" --target ld
+```
+
+## Concept Wiki
+
+- [root (31 files, cohesion 1.00)](./community_0_root.md)
+
+## God Nodes
+
+| File | Score |
+|------|-------|
+| `ld.c` | 34.9 |
+| `test/run_tests.sh` | 1.1 |
+| `test/fnptr.c` | 0.7 |
+| `test/stdint.c` | 0.6 |
+| `test/dynuse.c` | 0.3 |
+
+## Strongest Connections
+
+- No cross-community connections recorded.
+
+## Navigation Tips
+
+- Obsidian Graph View works: every community page links back here.
+- `connections.json` is machine-readable for GraphRAG pipelines.
+- `REPORT.md` states what was extracted vs inferred and current limits.
+- Regenerate offline: `readmenator . --rebuild` (no network, no tokens).

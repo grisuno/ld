@@ -1,0 +1,561 @@
+{"confidence": "INFERRED", "description": "concept add appears in ld.c", "relation": "documents", "source": "concept:add", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept add appears in stdint.c", "relation": "documents", "source": "concept:add", "target": "file:test/stdint.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept against appears in ld.c", "relation": "documents", "source": "concept:against", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept against appears in mutate.sh", "relation": "documents", "source": "concept:against", "target": "file:test/mutate.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept against appears in run_tests.sh", "relation": "documents", "source": "concept:against", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept build appears in ld.c", "relation": "documents", "source": "concept:build", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept build appears in run_tests.sh", "relation": "documents", "source": "concept:build", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept built appears in ld.c", "relation": "documents", "source": "concept:built", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept built appears in run_tests.sh", "relation": "documents", "source": "concept:built", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept call appears in ld.c", "relation": "documents", "source": "concept:call", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept call appears in run_tests.sh", "relation": "documents", "source": "concept:call", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept calls appears in ld.c", "relation": "documents", "source": "concept:calls", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept calls appears in run_tests.sh", "relation": "documents", "source": "concept:calls", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept chain appears in ld.c", "relation": "documents", "source": "concept:chain", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept chain appears in chain.c", "relation": "documents", "source": "concept:chain", "target": "file:test/chain.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept chain appears in run_tests.sh", "relation": "documents", "source": "concept:chain", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept code appears in ld.c", "relation": "documents", "source": "concept:code", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept code appears in run_tests.sh", "relation": "documents", "source": "concept:code", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept cvm appears in ld.c", "relation": "documents", "source": "concept:cvm", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept cvm appears in run_tests.sh", "relation": "documents", "source": "concept:cvm", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dlopen appears in ld.c", "relation": "documents", "source": "concept:dlopen", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dlopen appears in dynlib_host.c", "relation": "documents", "source": "concept:dlopen", "target": "file:test/dynlib_host.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dlopen appears in run_tests.sh", "relation": "documents", "source": "concept:dlopen", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dynadd appears in dynlib.c", "relation": "documents", "source": "concept:dynadd", "target": "file:test/dynlib.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dynadd appears in dynuse.c", "relation": "documents", "source": "concept:dynadd", "target": "file:test/dynuse.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dynadd appears in run_tests.sh", "relation": "documents", "source": "concept:dynadd", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dynamic appears in ld.c", "relation": "documents", "source": "concept:dynamic", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dynamic appears in run_tests.sh", "relation": "documents", "source": "concept:dynamic", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dynlen appears in dynlib.c", "relation": "documents", "source": "concept:dynlen", "target": "file:test/dynlib.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dynlen appears in dynuse.c", "relation": "documents", "source": "concept:dynlen", "target": "file:test/dynuse.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dynlen appears in run_tests.sh", "relation": "documents", "source": "concept:dynlen", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dynlib appears in dynlib.c", "relation": "documents", "source": "concept:dynlib", "target": "file:test/dynlib.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dynlib appears in dynlib_host.c", "relation": "documents", "source": "concept:dynlib", "target": "file:test/dynlib_host.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dynlib appears in run_tests.sh", "relation": "documents", "source": "concept:dynlib", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dynuse appears in dynuse.c", "relation": "documents", "source": "concept:dynuse", "target": "file:test/dynuse.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept dynuse appears in run_tests.sh", "relation": "documents", "source": "concept:dynuse", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept elf appears in ld.c", "relation": "documents", "source": "concept:elf", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept elf appears in run_tests.sh", "relation": "documents", "source": "concept:elf", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept every appears in ld.c", "relation": "documents", "source": "concept:every", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept every appears in mutate.sh", "relation": "documents", "source": "concept:every", "target": "file:test/mutate.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept every appears in run_tests.sh", "relation": "documents", "source": "concept:every", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept exit appears in ld.c", "relation": "documents", "source": "concept:exit", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept exit appears in run_tests.sh", "relation": "documents", "source": "concept:exit", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept fib appears in chain.c", "relation": "documents", "source": "concept:fib", "target": "file:test/chain.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept fib appears in fib.s", "relation": "documents", "source": "concept:fib", "target": "file:test/fib.s", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept fib appears in fib2.s", "relation": "documents", "source": "concept:fib", "target": "file:test/fib2.s", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept fib appears in fib3.s", "relation": "documents", "source": "concept:fib", "target": "file:test/fib3.s", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept file appears in ld.c", "relation": "documents", "source": "concept:file", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept file appears in mutate.sh", "relation": "documents", "source": "concept:file", "target": "file:test/mutate.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept file appears in run_tests.sh", "relation": "documents", "source": "concept:file", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept fmt appears in ld.c", "relation": "documents", "source": "concept:fmt", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept fmt appears in fmt.c", "relation": "documents", "source": "concept:fmt", "target": "file:test/fmt.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept fmt appears in run_tests.sh", "relation": "documents", "source": "concept:fmt", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept function appears in ld.c", "relation": "documents", "source": "concept:function", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept function appears in run_tests.sh", "relation": "documents", "source": "concept:function", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept got appears in ld.c", "relation": "documents", "source": "concept:got", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept got appears in run_tests.sh", "relation": "documents", "source": "concept:got", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept host appears in ld.c", "relation": "documents", "source": "concept:host", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept host appears in dynlib_host.c", "relation": "documents", "source": "concept:host", "target": "file:test/dynlib_host.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept host appears in run_tests.sh", "relation": "documents", "source": "concept:host", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept import appears in ld.c", "relation": "documents", "source": "concept:import", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept import appears in run_tests.sh", "relation": "documents", "source": "concept:import", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept layout appears in ld.c", "relation": "documents", "source": "concept:layout", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept layout appears in run_tests.sh", "relation": "documents", "source": "concept:layout", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept library appears in ld.c", "relation": "documents", "source": "concept:library", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept library appears in run_tests.sh", "relation": "documents", "source": "concept:library", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept local appears in ld.c", "relation": "documents", "source": "concept:local", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept local appears in run_tests.sh", "relation": "documents", "source": "concept:local", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept mini appears in ld.c", "relation": "documents", "source": "concept:mini", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept mini appears in run_tests.sh", "relation": "documents", "source": "concept:mini", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept must appears in ld.c", "relation": "documents", "source": "concept:must", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept must appears in run_tests.sh", "relation": "documents", "source": "concept:must", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept name appears in ld.c", "relation": "documents", "source": "concept:name", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept name appears in mutate.sh", "relation": "documents", "source": "concept:name", "target": "file:test/mutate.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept name appears in run_tests.sh", "relation": "documents", "source": "concept:name", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept names appears in ld.c", "relation": "documents", "source": "concept:names", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept names appears in run_tests.sh", "relation": "documents", "source": "concept:names", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept needed appears in ld.c", "relation": "documents", "source": "concept:needed", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept needed appears in run_tests.sh", "relation": "documents", "source": "concept:needed", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept never appears in ld.c", "relation": "documents", "source": "concept:never", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept never appears in run_tests.sh", "relation": "documents", "source": "concept:never", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept per appears in ld.c", "relation": "documents", "source": "concept:per", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept per appears in run_tests.sh", "relation": "documents", "source": "concept:per", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept plt appears in ld.c", "relation": "documents", "source": "concept:plt", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept plt appears in run_tests.sh", "relation": "documents", "source": "concept:plt", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept plus appears in ld.c", "relation": "documents", "source": "concept:plus", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept plus appears in run_tests.sh", "relation": "documents", "source": "concept:plus", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept printf appears in asm.c", "relation": "documents", "source": "concept:printf", "target": "file:test/asm.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept printf appears in fmt.c", "relation": "documents", "source": "concept:printf", "target": "file:test/fmt.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept printf appears in fnptr.c", "relation": "documents", "source": "concept:printf", "target": "file:test/fnptr.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept printf appears in globals.c", "relation": "documents", "source": "concept:printf", "target": "file:test/globals.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept printf appears in sync.c", "relation": "documents", "source": "concept:printf", "target": "file:test/sync.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept printf appears in udiv.c", "relation": "documents", "source": "concept:printf", "target": "file:test/udiv.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept program appears in ld.c", "relation": "documents", "source": "concept:program", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept program appears in mutate.sh", "relation": "documents", "source": "concept:program", "target": "file:test/mutate.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept program appears in run_tests.sh", "relation": "documents", "source": "concept:program", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept rela appears in ld.c", "relation": "documents", "source": "concept:rela", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept rela appears in run_tests.sh", "relation": "documents", "source": "concept:rela", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept run appears in ld.c", "relation": "documents", "source": "concept:run", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept run appears in dynlib_host.c", "relation": "documents", "source": "concept:run", "target": "file:test/dynlib_host.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept run appears in fnptr.c", "relation": "documents", "source": "concept:run", "target": "file:test/fnptr.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept run appears in mutate.sh", "relation": "documents", "source": "concept:run", "target": "file:test/mutate.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept run appears in run_tests.sh", "relation": "documents", "source": "concept:run", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept runtime appears in ld.c", "relation": "documents", "source": "concept:runtime", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept runtime appears in run_tests.sh", "relation": "documents", "source": "concept:runtime", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept shared appears in ld.c", "relation": "documents", "source": "concept:shared", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept shared appears in dynlib_host.c", "relation": "documents", "source": "concept:shared", "target": "file:test/dynlib_host.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept shared appears in run_tests.sh", "relation": "documents", "source": "concept:shared", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept soname appears in ld.c", "relation": "documents", "source": "concept:soname", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept soname appears in run_tests.sh", "relation": "documents", "source": "concept:soname", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept start appears in argv.s", "relation": "documents", "source": "concept:start", "target": "file:test/argv.s", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept start appears in fib.s", "relation": "documents", "source": "concept:start", "target": "file:test/fib.s", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept start appears in fib2.s", "relation": "documents", "source": "concept:start", "target": "file:test/fib2.s", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept start appears in fib3.s", "relation": "documents", "source": "concept:start", "target": "file:test/fib3.s", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept start appears in loop.s", "relation": "documents", "source": "concept:start", "target": "file:test/loop.s", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept start appears in movslq.s", "relation": "documents", "source": "concept:start", "target": "file:test/movslq.s", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept start appears in priv.s", "relation": "documents", "source": "concept:start", "target": "file:test/priv.s", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept start appears in run_tests.sh", "relation": "documents", "source": "concept:start", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept start appears in start.s", "relation": "documents", "source": "concept:start", "target": "file:test/start.s", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept start appears in t1.s", "relation": "documents", "source": "concept:start", "target": "file:test/t1.s", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept start appears in w1.s", "relation": "documents", "source": "concept:start", "target": "file:test/w1.s", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept stub appears in ld.c", "relation": "documents", "source": "concept:stub", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept stub appears in run_tests.sh", "relation": "documents", "source": "concept:stub", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept table appears in ld.c", "relation": "documents", "source": "concept:table", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept table appears in run_tests.sh", "relation": "documents", "source": "concept:table", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept tables appears in ld.c", "relation": "documents", "source": "concept:tables", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept tables appears in run_tests.sh", "relation": "documents", "source": "concept:tables", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept through appears in ld.c", "relation": "documents", "source": "concept:through", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept through appears in run_tests.sh", "relation": "documents", "source": "concept:through", "target": "file:test/run_tests.sh", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept write appears in ld.c", "relation": "documents", "source": "concept:write", "target": "file:ld.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept write appears in argv.c", "relation": "documents", "source": "concept:write", "target": "file:test/argv.c", "weight": 0.45}
+{"confidence": "INFERRED", "description": "concept write appears in w1.c", "relation": "documents", "source": "concept:write", "target": "file:test/w1.c", "weight": 0.45}
+{"confidence": "EXTRACTED", "description": "ld.c imports external stdio.h", "relation": "imports", "source": "file:ld.c", "target": "ext:stdio.h", "weight": 0.85}
+{"confidence": "EXTRACTED", "description": "ld.c imports external stdlib.h", "relation": "imports", "source": "file:ld.c", "target": "ext:stdlib.h", "weight": 0.85}
+{"confidence": "EXTRACTED", "description": "ld.c imports external string.h", "relation": "imports", "source": "file:ld.c", "target": "ext:string.h", "weight": 0.85}
+{"confidence": "EXTRACTED", "description": "ld.c defines struct Blob", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::Blob@299", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ABI_BYTES", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ABI_BYTES@34", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_CVM_HDR_SIZE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_CVM_HDR_SIZE@59", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_CVM_MAGIC_0", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_CVM_MAGIC_0@53", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_CVM_MAGIC_1", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_CVM_MAGIC_1@54", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_CVM_MAGIC_2", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_CVM_MAGIC_2@55", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_CVM_MAGIC_3", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_CVM_MAGIC_3@56", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_CVM_VER_MAJ", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_CVM_VER_MAJ@57", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_CVM_VER_MIN", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_CVM_VER_MIN@58", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_DT_HASH", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_DT_HASH@88", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_DT_NEEDED", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_DT_NEEDED@84", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_DT_NULL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_DT_NULL@83", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_DT_RELA", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_DT_RELA@85", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_DT_RELAENT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_DT_RELAENT@87", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_DT_RELASZ", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_DT_RELASZ@86", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_DT_SONAME", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_DT_SONAME@93", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_DT_STRSZ", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_DT_STRSZ@91", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_DT_STRTAB", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_DT_STRTAB@89", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_DT_SYMENT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_DT_SYMENT@92", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_DT_SYMTAB", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_DT_SYMTAB@90", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_DYNSYM_ENT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_DYNSYM_ENT@104", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_DYN_NENTRY", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_DYN_NENTRY@103", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_EM_X8664", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_EM_X8664@69", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_ET_DYN", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_ET_DYN@68", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_HSIZE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_HSIZE@62", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_PAGE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_PAGE@61", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_PF_R", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_PF_R@70", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_PF_W", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_PF_W@71", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_PF_X", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_PF_X@72", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_PHENTSZ", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_PHENTSZ@63", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_PHNUM", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_PHNUM@64", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_PT_DYNAMIC", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_PT_DYNAMIC@74", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_PT_GNU_STACK", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_PT_GNU_STACK@75", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_PT_LOAD", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_PT_LOAD@73", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_R_GLOB_DAT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_R_GLOB_DAT@97", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_R_RELATIVE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_R_RELATIVE@98", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHENTSZ", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHENTSZ@65", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHF_A", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHF_A@105", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHF_W", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHF_W@107", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHF_X", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHF_X@106", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHNUM", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHNUM@66", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHN_UNDEF", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHN_UNDEF@99", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHSTRNDX", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHSTRNDX@67", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHT_DYNAMIC", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHT_DYNAMIC@80", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHT_DYNSYM", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHT_DYNSYM@81", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHT_HASH", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHT_HASH@79", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHT_NOBITS", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHT_NOBITS@77", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHT_PROGBITS", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHT_PROGBITS@76", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHT_RELA", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHT_RELA@82", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_SHT_STRTAB", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_SHT_STRTAB@78", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_STB_GLOBAL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_STB_GLOBAL@94", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_STT_FUNC", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_STT_FUNC@96", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_STT_NOTYPE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_STT_NOTYPE@95", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_ELF_TEXT_BASE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_ELF_TEXT_BASE@108", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_FIXUP_INIT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_FIXUP_INIT@27", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_FMT_CVM", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_FMT_CVM@110", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_FMT_ELF", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_FMT_ELF@111", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_GROW_UNIT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_GROW_UNIT@32", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_GSLOT_ARGS", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_GSLOT_ARGS@50", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_GSLOT_RBP", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_GSLOT_RBP@49", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_GSLOT_RET", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_GSLOT_RET@51", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_GSLOT_RSP", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_GSLOT_RSP@48", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_LD_LIB_MAXSZ", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_LD_LIB_MAXSZ@102", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_LD_MAXIMPORTS", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_LD_MAXIMPORTS@101", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_LD_MAXLIBS", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_LD_MAXLIBS@100", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_LINE_MAX", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_LINE_MAX@28", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_MAX_ARGS", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_MAX_ARGS@40", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_MAX_ERRORS", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_MAX_ERRORS@31", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_MAX_FIXUPS", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_MAX_FIXUPS@26", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_MAX_NATS", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_MAX_NATS@30", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_MAX_SYMBOLS", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_MAX_SYMBOLS@25", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_NAME_MAX", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_NAME_MAX@29", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_REG_LOCALS", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_REG_LOCALS@42", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_SLOT_FLAGS_A", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_SLOT_FLAGS_A@43", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_SLOT_FLAGS_B", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_SLOT_FLAGS_B@44", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_SLOT_S0", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_SLOT_S0@45", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_SLOT_S1", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_SLOT_S1@46", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_STACK_BASE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_STACK_BASE@35", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro CFG_XSTACK_DEF", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::CFG_XSTACK_DEF@36", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines struct Fixup", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::Fixup@271", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines struct Func", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::Func@285", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines struct GVar", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::GVar@292", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro K_IMM", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::K_IMM@172", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro K_IND", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::K_IND@176", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro K_MEM", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::K_MEM@173", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro K_REG", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::K_REG@171", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro K_SYM", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::K_SYM@174", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro K_SYM_IMM", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::K_SYM_IMM@175", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines struct Label", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::Label@310", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines struct LdImport", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::LdImport@391", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines struct LineSrc", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::LineSrc@277", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines struct Nat", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::Nat@306", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_ADD", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_ADD@188", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_ALLOC", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_ALLOC@231", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_AND", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_AND@196", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_CALL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_CALL@217", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_CALL_INDIRECT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_CALL_INDIRECT@220", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_CALL_NATIVE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_CALL_NATIVE@219", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_CMP_EQ", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_CMP_EQ@203", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_CMP_GE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_CMP_GE@208", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_CMP_GT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_CMP_GT@207", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_CMP_LE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_CMP_LE@206", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_CMP_LT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_CMP_LT@205", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_CMP_NE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_CMP_NE@204", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_CMP_UGE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_CMP_UGE@213", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_CMP_UGT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_CMP_UGT@212", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_CMP_ULE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_CMP_ULE@211", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_CMP_ULT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_CMP_ULT@210", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_DIV", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_DIV@191", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_FREE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_FREE@232", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_HALT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_HALT@235", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_JMP", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_JMP@214", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_JNZ", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_JNZ@216", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_JZ", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_JZ@215", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_LEA_DATA", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_LEA_DATA@233", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_LEA_GLOBAL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_LEA_GLOBAL@230", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_LEA_LOCAL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_LEA_LOCAL@229", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_LNOT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_LNOT@209", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_LOAD16", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_LOAD16@222", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_LOAD32", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_LOAD32@223", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_LOAD64", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_LOAD64@224", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_LOAD8", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_LOAD8@221", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_MOD", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_MOD@192", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_MUL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_MUL@190", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_NEG", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_NEG@193", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_NOP", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_NOP@178", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_NOT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_NOT@199", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_OR", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_OR@197", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_PUSH_GLOBAL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_PUSH_GLOBAL@186", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_PUSH_IMM32", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_PUSH_IMM32@180", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_PUSH_IMM64", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_PUSH_IMM64@179", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_PUSH_IMM8", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_PUSH_IMM8@181", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_PUSH_LOCAL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_PUSH_LOCAL@184", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_PUSH_ONE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_PUSH_ONE@183", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_PUSH_ZERO", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_PUSH_ZERO@182", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_RET", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_RET@218", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_SHL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_SHL@200", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_SHR", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_SHR@201", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_STORE16", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_STORE16@226", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_STORE32", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_STORE32@227", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_STORE64", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_STORE64@228", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_STORE8", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_STORE8@225", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_STORE_GLOBAL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_STORE_GLOBAL@187", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_STORE_LOCAL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_STORE_LOCAL@185", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_SUB", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_SUB@189", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_SYSCALL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_SYSCALL@234", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_UDIV", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_UDIV@194", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_UMOD", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_UMOD@195", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_USHR", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_USHR@202", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro OP_XOR", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::OP_XOR@198", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines struct Op", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::Op@256", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro REG_RAX", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::REG_RAX@152", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro REG_RBP", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::REG_RBP@157", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro REG_RBX", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::REG_RBX@155", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro REG_RCX", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::REG_RCX@153", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro REG_RDI", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::REG_RDI@159", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro REG_RDX", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::REG_RDX@154", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro REG_RSI", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::REG_RSI@158", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro REG_RSP", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::REG_RSP@156", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro SEC_BSS", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::SEC_BSS@162", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro SEC_DATA", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::SEC_DATA@163", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro SEC_RODATA", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::SEC_RODATA@164", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro SEC_TEXT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::SEC_TEXT@161", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro SYM_BLOB", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::SYM_BLOB@169", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro SYM_FUNC", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::SYM_FUNC@166", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro SYM_GLOBAL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::SYM_GLOBAL@168", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro SYM_LABEL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::SYM_LABEL@167", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines struct Sym", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::Sym@241", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_G1_ADD", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_G1_ADD@114", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_G1_AND", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_G1_AND@116", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_G1_CMP", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_G1_CMP@119", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_G1_OR", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_G1_OR@115", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_G1_SUB", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_G1_SUB@117", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_G1_XOR", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_G1_XOR@118", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_JCC_JA", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_JCC_JA@127", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_JCC_JAE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_JCC_JAE@128", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_JCC_JB", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_JCC_JB@129", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_JCC_JBE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_JCC_JBE@130", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_JCC_JE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_JCC_JE@121", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_JCC_JG", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_JCC_JG@124", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_JCC_JGE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_JCC_JGE@126", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_JCC_JL", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_JCC_JL@123", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_JCC_JLE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_JCC_JLE@125", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_JCC_JNE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_JCC_JNE@122", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SET_A", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SET_A@138", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SET_AE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SET_AE@139", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SET_B", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SET_B@140", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SET_BE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SET_BE@141", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SET_E", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SET_E@132", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SET_G", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SET_G@135", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SET_GE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SET_GE@137", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SET_L", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SET_L@134", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SET_LE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SET_LE@136", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SET_NE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SET_NE@133", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SYS_BRK", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SYS_BRK@148", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SYS_CLOSE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SYS_CLOSE@146", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SYS_EXIT", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SYS_EXIT@149", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SYS_EXIT_GROUP", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SYS_EXIT_GROUP@150", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SYS_LSEEK", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SYS_LSEEK@147", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SYS_OPEN", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SYS_OPEN@145", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SYS_READ", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SYS_READ@144", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines macro X86_SYS_WRITE", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::X86_SYS_WRITE@143", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function add_label", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::add_label@1208", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function add_sym", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::add_sym@629", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function arith_mem", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::arith_mem@1393", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function arith_reg", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::arith_reg@1410", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function blob_append_str", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::blob_append_str@859", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function blob_put", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::blob_put@854", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function breserve", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::breserve@488", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function creserve", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::creserve@523", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_add_nat", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_add_nat@1115", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_cmp", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_cmp@1444", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_encode", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_encode@2144", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_find_blob", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_find_blob@1103", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_find_func", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_find_func@1091", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_find_global", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_find_global@1097", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_find_nat", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_find_nat@1109", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_fixup_add", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_fixup_add@1191", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_layout_data", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_layout_data@2076", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_prepare_tables", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_prepare_tables@2044", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_push_cmpval", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_push_cmpval@1438", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_slot", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_slot@1163", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_translate", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_translate@1451", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function cvm_write_module", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::cvm_write_module@2237", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function data_align", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::data_align@850", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function data_fill", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::data_fill@843", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function data_put", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::data_put@838", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function die", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::die@478", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function e1", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::e1@1124", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function e4", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::e4@1129", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function e8", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::e8@1137", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ea_alu", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ea_alu@3242", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ea_cmp", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ea_cmp@3248", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ea_grp", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ea_grp@3254", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ea_mov", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ea_mov@3230", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ea_mov_to", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ea_mov_to@3236", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function eimm", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::eimm@1145", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ejmp", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ejmp@1198", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ejnz", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ejnz@1200", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ejz", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ejz@1199", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elea_mem", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elea_mem@1239", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elea_operand", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elea_operand@1254", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_alu", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_alu@3417", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_branch", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_branch@3740", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_build", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_build@4863", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_call_ind", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_call_ind@3751", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_cmp", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_cmp@3664", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_dyn_emit", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_dyn_emit@4255", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_dyn_prepare", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_dyn_prepare@4051", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_encode_src", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_encode_src@3988", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_grp3", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_grp3@3538", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_grp3_32", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_grp3_32@3552", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_grp_ff", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_grp_ff@3600", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_has_dyn", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_has_dyn@4201", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_has_rela", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_has_rela@4207", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_imp_prepare", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_imp_prepare@4110", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_imul", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_imul@3480", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_imull", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_imull@3509", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_ins", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_ins@3758", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_layout", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_layout@4211", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_layout_rela", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_layout_rela@4263", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_lea", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_lea@3373", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_mov", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_mov@3260", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_movw", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_movw@3338", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_movzx", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_movzx@3321", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_pop", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_pop@3404", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_prune", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_prune@3907", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_push", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_push@3380", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_resolve_fixups", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_resolve_fixups@3935", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_route_import", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_route_import@3874", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_set", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_set@3732", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_shift_cl32", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_shift_cl32@3622", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_shift_cl", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_shift_cl@3614", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_sym_addr", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_sym_addr@3855", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_test", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_test@3647", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_testl", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_testl@3630", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_write", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_write@4413", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_write_dynamic", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_write_dynamic@4335", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_write_dynstr", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_write_dynstr@4384", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_write_dynsym", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_write_dynsym@4355", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_write_hash", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_write_hash@4393", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_write_plt", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_write_plt@4317", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_write_rela", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_write_rela@4301", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_xadd", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_xadd@3566", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function elf_xchg", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::elf_xchg@3583", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function emit_modrm", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::emit_modrm@3150", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function emit_rex", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::emit_rex@3145", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function emit_sib", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::emit_sib@3154", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function entry_glue", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::entry_glue@2130", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function epush_global", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::epush_global@1160", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function epush_local", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::epush_local@1158", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function epush_reg", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::epush_reg@1170", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function epush_value", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::epush_value@1289", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function estore_global", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::estore_global@1161", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function estore_local", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::estore_local@1159", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function estore_reg", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::estore_reg@1176", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function find_label", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::find_label@1202", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function find_sym", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::find_sym@623", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function fixup_reserve", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::fixup_reserve@507", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function fixup_trail", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::fixup_trail@3140", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function func_glue", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::func_glue@2121", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function hexval", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::hexval@616", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function image", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::image@4469", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ld_read_lib", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ld_read_lib@4655", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ld_release", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ld_release@433", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ld_soname_of", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ld_soname_of@416", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ls_close", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ls_close@830", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ls_getline", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ls_getline@814", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ls_open_file", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ls_open_file@794", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function ls_open_mem", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::ls_open_mem@806", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function main", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::main@4985", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function mov", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::mov@1333", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function name_copy", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::name_copy@596", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function name_is_called", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::name_is_called@3885", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function parse_mem", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::parse_mem@677", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function parse_num", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::parse_num@539", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function parse_operand", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::parse_operand@730", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function parse_reg", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::parse_reg@665", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function pool_add", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::pool_add@1182", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function push_mask16", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::push_mask16@1237", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function push_mask32", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::push_mask32@1235", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function push_mask8", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::push_mask8@1236", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function r16at", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::r16at@4639", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function r64at", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::r64at@4643", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function resolve_fixups", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::resolve_fixups@1216", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function scan_directive", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::scan_directive@921", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function scan_src", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::scan_src@1017", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function set_section", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::set_section@898", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function signext16", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::signext16@1327", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function signext32", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::signext32@1321", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function signext8", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::signext8@1315", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function split_operands", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::split_operands@769", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function split_word", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::split_word@603", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function strip_comment", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::strip_comment@581", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function trim", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::trim@571", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function usage", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::usage@4968", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function w16", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::w16@2225", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function w32", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::w32@2218", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function w64_at", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::w64_at@2230", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function x16", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::x16@3109", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function x32", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::x32@3115", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function x64", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::x64@3123", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function x86_align_up", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::x86_align_up@3100", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function x86_ea_modrm", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::x86_ea_modrm@3166", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function x86_ea_rex", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::x86_ea_rex@3158", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function x86_rex8", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::x86_rex8@3223", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function x86_rex_reg", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::x86_rex_reg@3219", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function x8", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::x8@3104", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "ld.c defines function xfix32", "relation": "defines", "source": "file:ld.c", "target": "sym:ld.c::xfix32@3131", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "argv.c defines function main", "relation": "defines", "source": "file:test/argv.c", "target": "sym:test/argv.c::main@2", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "argv.c defines function write", "relation": "defines", "source": "file:test/argv.c", "target": "sym:test/argv.c::write@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "argv.s defines function _start", "relation": "defines", "source": "file:test/argv.s", "target": "sym:test/argv.s::_start@98", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "argv.s defines function main", "relation": "defines", "source": "file:test/argv.s", "target": "sym:test/argv.s::main@3", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "asm.c defines function main", "relation": "defines", "source": "file:test/asm.c", "target": "sym:test/asm.c::main@5", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "asm.c defines function printf", "relation": "defines", "source": "file:test/asm.c", "target": "sym:test/asm.c::printf@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "chain.c defines function fib", "relation": "defines", "source": "file:test/chain.c", "target": "sym:test/chain.c::fib@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "chain.c defines function main", "relation": "defines", "source": "file:test/chain.c", "target": "sym:test/chain.c::main@6", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "dynlib.c defines function dynadd", "relation": "defines", "source": "file:test/dynlib.c", "target": "sym:test/dynlib.c::dynadd@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "dynlib.c defines function dynlen", "relation": "defines", "source": "file:test/dynlib.c", "target": "sym:test/dynlib.c::dynlen@5", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "dynlib_host.c imports external dlfcn.h", "relation": "imports", "source": "file:test/dynlib_host.c", "target": "ext:dlfcn.h", "weight": 0.85}
+{"confidence": "EXTRACTED", "description": "dynlib_host.c imports external stdio.h", "relation": "imports", "source": "file:test/dynlib_host.c", "target": "ext:stdio.h", "weight": 0.85}
+{"confidence": "EXTRACTED", "description": "dynuse.c defines function dynadd", "relation": "defines", "source": "file:test/dynuse.c", "target": "sym:test/dynuse.c::dynadd@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "dynuse.c defines function dynlen", "relation": "defines", "source": "file:test/dynuse.c", "target": "sym:test/dynuse.c::dynlen@2", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "dynuse.c defines function main", "relation": "defines", "source": "file:test/dynuse.c", "target": "sym:test/dynuse.c::main@4", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fib.s defines function _start", "relation": "defines", "source": "file:test/fib.s", "target": "sym:test/fib.s::_start@82", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fib.s defines function fib", "relation": "defines", "source": "file:test/fib.s", "target": "sym:test/fib.s::fib@3", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fib.s defines function main", "relation": "defines", "source": "file:test/fib.s", "target": "sym:test/fib.s::main@61", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fib2.s defines function _start", "relation": "defines", "source": "file:test/fib2.s", "target": "sym:test/fib2.s::_start@82", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fib2.s defines function fib", "relation": "defines", "source": "file:test/fib2.s", "target": "sym:test/fib2.s::fib@3", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fib2.s defines function main", "relation": "defines", "source": "file:test/fib2.s", "target": "sym:test/fib2.s::main@61", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fib3.s defines function _start", "relation": "defines", "source": "file:test/fib3.s", "target": "sym:test/fib3.s::_start@82", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fib3.s defines function fib", "relation": "defines", "source": "file:test/fib3.s", "target": "sym:test/fib3.s::fib@3", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fib3.s defines function main", "relation": "defines", "source": "file:test/fib3.s", "target": "sym:test/fib3.s::main@61", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fmt.c defines function main", "relation": "defines", "source": "file:test/fmt.c", "target": "sym:test/fmt.c::main@3", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fmt.c defines function printf", "relation": "defines", "source": "file:test/fmt.c", "target": "sym:test/fmt.c::printf@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fnptr.c defines function add2", "relation": "defines", "source": "file:test/fnptr.c", "target": "sym:test/fnptr.c::add2@3", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fnptr.c defines function apply2", "relation": "defines", "source": "file:test/fnptr.c", "target": "sym:test/fnptr.c::apply2@11", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fnptr.c defines function main", "relation": "defines", "source": "file:test/fnptr.c", "target": "sym:test/fnptr.c::main@26", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fnptr.c defines function mul2", "relation": "defines", "source": "file:test/fnptr.c", "target": "sym:test/fnptr.c::mul2@7", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fnptr.c defines struct ops_t", "relation": "defines", "source": "file:test/fnptr.c", "target": "sym:test/fnptr.c::ops_t@15", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fnptr.c defines function printf", "relation": "defines", "source": "file:test/fnptr.c", "target": "sym:test/fnptr.c::printf@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "fnptr.c defines function run_op", "relation": "defines", "source": "file:test/fnptr.c", "target": "sym:test/fnptr.c::run_op@22", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "globals.c defines function main", "relation": "defines", "source": "file:test/globals.c", "target": "sym:test/globals.c::main@11", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "globals.c defines function printf", "relation": "defines", "source": "file:test/globals.c", "target": "sym:test/globals.c::printf@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "globals.c defines function puts", "relation": "defines", "source": "file:test/globals.c", "target": "sym:test/globals.c::puts@2", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "hello.c defines function main", "relation": "defines", "source": "file:test/hello.c", "target": "sym:test/hello.c::main@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "loop.s defines function _start", "relation": "defines", "source": "file:test/loop.s", "target": "sym:test/loop.s::_start@21", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "loop.s defines function main", "relation": "defines", "source": "file:test/loop.s", "target": "sym:test/loop.s::main@3", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "movslq.s defines function _start", "relation": "defines", "source": "file:test/movslq.s", "target": "sym:test/movslq.s::_start@14", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "movslq.s defines function main", "relation": "defines", "source": "file:test/movslq.s", "target": "sym:test/movslq.s::main@3", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "priv.s defines function _start", "relation": "defines", "source": "file:test/priv.s", "target": "sym:test/priv.s::_start@13", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "priv.s defines function main", "relation": "defines", "source": "file:test/priv.s", "target": "sym:test/priv.s::main@3", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "run_tests.sh defines function check", "relation": "defines", "source": "file:test/run_tests.sh", "target": "sym:test/run_tests.sh::check@53", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "run_tests.sh defines function elf_structure_check", "relation": "defines", "source": "file:test/run_tests.sh", "target": "sym:test/run_tests.sh::elf_structure_check@139", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "run_tests.sh defines function note_fail", "relation": "defines", "source": "file:test/run_tests.sh", "target": "sym:test/run_tests.sh::note_fail@47", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "run_tests.sh defines function run_chain", "relation": "defines", "source": "file:test/run_tests.sh", "target": "sym:test/run_tests.sh::run_chain@107", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "run_tests.sh defines function run_fixture", "relation": "defines", "source": "file:test/run_tests.sh", "target": "sym:test/run_tests.sh::run_fixture@78", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "run_tests.sh defines function run_import_prune", "relation": "defines", "source": "file:test/run_tests.sh", "target": "sym:test/run_tests.sh::run_import_prune@396", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "run_tests.sh defines function run_prog", "relation": "defines", "source": "file:test/run_tests.sh", "target": "sym:test/run_tests.sh::run_prog@40", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "run_tests.sh defines function run_runtime", "relation": "defines", "source": "file:test/run_tests.sh", "target": "sym:test/run_tests.sh::run_runtime@370", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "run_tests.sh defines function run_shared_dynlib", "relation": "defines", "source": "file:test/run_tests.sh", "target": "sym:test/run_tests.sh::run_shared_dynlib@209", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "run_tests.sh defines function run_shared_dynuse", "relation": "defines", "source": "file:test/run_tests.sh", "target": "sym:test/run_tests.sh::run_shared_dynuse@261", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "run_tests.sh defines function run_shared_override", "relation": "defines", "source": "file:test/run_tests.sh", "target": "sym:test/run_tests.sh::run_shared_override@317", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "start.s defines function _start", "relation": "defines", "source": "file:test/start.s", "target": "sym:test/start.s::_start@8", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "start.s defines function main", "relation": "defines", "source": "file:test/start.s", "target": "sym:test/start.s::main@3", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "stdint.c imports external stdio.h", "relation": "imports", "source": "file:test/stdint.c", "target": "ext:stdio.h", "weight": 0.85}
+{"confidence": "EXTRACTED", "description": "stdint.c defines function add_shorts", "relation": "defines", "source": "file:test/stdint.c", "target": "sym:test/stdint.c::add_shorts@34", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "stdint.c defines struct idtr_t", "relation": "defines", "source": "file:test/stdint.c", "target": "sym:test/stdint.c::idtr_t@4", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "stdint.c defines function loads_s16", "relation": "defines", "source": "file:test/stdint.c", "target": "sym:test/stdint.c::loads_s16@26", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "stdint.c defines function loads_u32", "relation": "defines", "source": "file:test/stdint.c", "target": "sym:test/stdint.c::loads_u32@30", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "stdint.c defines function loads_u8", "relation": "defines", "source": "file:test/stdint.c", "target": "sym:test/stdint.c::loads_u8@22", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "stdint.c defines function main", "relation": "defines", "source": "file:test/stdint.c", "target": "sym:test/stdint.c::main@38", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "sync.c defines function main", "relation": "defines", "source": "file:test/sync.c", "target": "sym:test/sync.c::main@6", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "sync.c defines function printf", "relation": "defines", "source": "file:test/sync.c", "target": "sym:test/sync.c::printf@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "t1.c defines function main", "relation": "defines", "source": "file:test/t1.c", "target": "sym:test/t1.c::main@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "t1.s defines function _start", "relation": "defines", "source": "file:test/t1.s", "target": "sym:test/t1.s::_start@14", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "t1.s defines function main", "relation": "defines", "source": "file:test/t1.s", "target": "sym:test/t1.s::main@3", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "udiv.c defines function main", "relation": "defines", "source": "file:test/udiv.c", "target": "sym:test/udiv.c::main@3", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "udiv.c defines function printf", "relation": "defines", "source": "file:test/udiv.c", "target": "sym:test/udiv.c::printf@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "usestr.c defines function main", "relation": "defines", "source": "file:test/usestr.c", "target": "sym:test/usestr.c::main@4", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "usestr.c defines function memcmp", "relation": "defines", "source": "file:test/usestr.c", "target": "sym:test/usestr.c::memcmp@2", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "usestr.c defines function strlen", "relation": "defines", "source": "file:test/usestr.c", "target": "sym:test/usestr.c::strlen@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "w1.c defines function main", "relation": "defines", "source": "file:test/w1.c", "target": "sym:test/w1.c::main@2", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "w1.c defines function write", "relation": "defines", "source": "file:test/w1.c", "target": "sym:test/w1.c::write@1", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "w1.s defines function _start", "relation": "defines", "source": "file:test/w1.s", "target": "sym:test/w1.s::_start@37", "weight": 0.7}
+{"confidence": "EXTRACTED", "description": "w1.s defines function main", "relation": "defines", "source": "file:test/w1.s", "target": "sym:test/w1.s::main@3", "weight": 0.7}

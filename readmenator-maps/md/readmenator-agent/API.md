@@ -1,0 +1,151 @@
+# API
+
+## ld.c
+- `ld_soname_of` (function) `ld.c:416` `static void ld_soname_of(const char *path, char *out)` -- static int ld_nlibs; static LdImport ld_imports[CFG_LD_MAXIMPORTS]; static int ld_nimports; static long...
+- `ld_release` (function) `ld.c:433` `static void ld_release(void)` -- Release every heap arena the link built.
+- `die` (function) `ld.c:478` `static void die(const char *msg)`
+- `breserve` (function) `ld.c:488` `static void breserve(unsigned char **p, long *cap, long need)`
+- `fixup_reserve` (function) `ld.c:507` `static void fixup_reserve(void)` -- Grow the fixup table so that one more entry fits.
+- `creserve` (function) `ld.c:523` `static void creserve(char **p, long *cap, long need)`
+- `parse_num` (function) `ld.c:539` `static long parse_num(const char *s)`
+- `trim` (function) `ld.c:571` `static char *trim(char *s)`
+- `strip_comment` (function) `ld.c:581` `static void strip_comment(char *s)` -- Truncate at the first '#' outside a double-quoted string: '#' is the * comment character, but a string literal may...
+- `name_copy` (function) `ld.c:596` `static void name_copy(char *dst, const char *src)`
+- `split_word` (function) `ld.c:603` `static void split_word(char *line, char *word, long wcap, char **rest)`
+- `hexval` (function) `ld.c:616` `static int hexval(char c)`
+- `find_sym` (function) `ld.c:623` `static int find_sym(const char *name)`
+- `add_sym` (function) `ld.c:629` `static int add_sym(const char *name, int kind, int sec)`
+- `parse_reg` (function) `ld.c:665` `static int parse_reg(const char *s, int *reg, int *sz)`
+- `parse_mem` (function) `ld.c:677` `static void parse_mem(char *s, Op *op)`
+- `parse_operand` (function) `ld.c:730` `static void parse_operand(char *s, Op *op)`
+- `split_operands` (function) `ld.c:769` `static int split_operands(char *rest, char *o1, char *o2)`
+- `ls_open_file` (function) `ld.c:794` `static void ls_open_file(LineSrc *s, const char *path)`
+- `ls_open_mem` (function) `ld.c:806` `static void ls_open_mem(LineSrc *s, const char *text)`
+- `ls_getline` (function) `ld.c:814` `static int ls_getline(LineSrc *s, char *buf, size_t n)`
+- `ls_close` (function) `ld.c:830` `static void ls_close(LineSrc *s)`
+- `data_put` (function) `ld.c:838` `static void data_put(unsigned char b)`
+- `data_fill` (function) `ld.c:843` `static void data_fill(long n, unsigned char b)`
+- `data_align` (function) `ld.c:850` `static void data_align(long a)`
+- `blob_put` (function) `ld.c:854` `static void blob_put(unsigned char b)`
+- `blob_append_str` (function) `ld.c:859` `static void blob_append_str(char *s)`
+- `set_section` (function) `ld.c:898` `static int set_section(char *line)`
+- `scan_directive` (function) `ld.c:921` `static void scan_directive(char *line, int *section, int pending_global,
+                        ...`
+- `scan_src` (function) `ld.c:1017` `static void scan_src(LineSrc *src, int from_stubs)`
+- `cvm_find_func` (function) `ld.c:1091` `static int cvm_find_func(const char *name)`
+- `cvm_find_global` (function) `ld.c:1097` `static int cvm_find_global(const char *name)`
+- `cvm_find_blob` (function) `ld.c:1103` `static int cvm_find_blob(const char *name)`
+- `cvm_find_nat` (function) `ld.c:1109` `static int cvm_find_nat(const char *name)`
+- `cvm_add_nat` (function) `ld.c:1115` `static int cvm_add_nat(const char *name)`
+- `e1` (function) `ld.c:1124` `static void e1(int b)`
+- `e4` (function) `ld.c:1129` `static void e4(long v)`
+- `e8` (function) `ld.c:1137` `static void e8(unsigned long long v)`
+- `eimm` (function) `ld.c:1145` `static void eimm(long long v)`
+- `epush_local` (function) `ld.c:1158` `static void epush_local(int slot)`
+- `estore_local` (function) `ld.c:1159` `static void estore_local(int slot)`
+- `epush_global` (function) `ld.c:1160` `static void epush_global(int slot)`
+- `estore_global` (function) `ld.c:1161` `static void estore_global(int slot)`
+- `cvm_slot` (function) `ld.c:1163` `static int cvm_slot(int std)`
+- `epush_reg` (function) `ld.c:1170` `static void epush_reg(int r)`
+- `estore_reg` (function) `ld.c:1176` `static void estore_reg(int r)`
+- `pool_add` (function) `ld.c:1182` `static long pool_add(const char *s)`
+- `cvm_fixup_add` (function) `ld.c:1191` `static void cvm_fixup_add(long pos, const char *name)`
+- `ejmp` (function) `ld.c:1198` `static void ejmp(const char *lbl)`
+- `ejz` (function) `ld.c:1199` `static void ejz(const char *lbl)`
+- `ejnz` (function) `ld.c:1200` `static void ejnz(const char *lbl)`
+- `find_label` (function) `ld.c:1202` `static long find_label(const char *name)`
+- `add_label` (function) `ld.c:1208` `static void add_label(const char *name, long off)`
+- `resolve_fixups` (function) `ld.c:1216` `static void resolve_fixups(void)`
+- `push_mask32` (function) `ld.c:1235` `static void push_mask32(void)`
+- `push_mask8` (function) `ld.c:1236` `static void push_mask8(void)`
+- `push_mask16` (function) `ld.c:1237` `static void push_mask16(void)`
+- `elea_mem` (function) `ld.c:1239` `static void elea_mem(Op *op)`
+- `elea_operand` (function) `ld.c:1254` `static void elea_operand(Op *op)`
+- `epush_value` (function) `ld.c:1289` `static void epush_value(Op *op, int size)`
+- `signext8` (function) `ld.c:1315` `static void signext8(void)`
+- `signext32` (function) `ld.c:1321` `static void signext32(void)`
+- `signext16` (function) `ld.c:1327` `static void signext16(void)`
+- `mov` (function) `ld.c:1333` `static void mov(int size, Op *s, Op *d)`
+- `arith_mem` (function) `ld.c:1393` `static void arith_mem(int opc, int size, Op *d, Op *s)`
+- `arith_reg` (function) `ld.c:1410` `static void arith_reg(int opc, int size, Op *d, Op *s)`
+- `cvm_push_cmpval` (function) `ld.c:1438` `static void cvm_push_cmpval(Op *o, int size)`
+- `cvm_cmp` (function) `ld.c:1444` `static void cvm_cmp(int size, Op *o1, Op *o2)`
+- `cvm_translate` (function) `ld.c:1451` `static void cvm_translate(const char *mn, Op *o1, Op *o2)`
+- `cvm_prepare_tables` (function) `ld.c:2044` `static void cvm_prepare_tables(void)`
+- `cvm_layout_data` (function) `ld.c:2076` `static void cvm_layout_data(void)`
+- `func_glue` (function) `ld.c:2121` `static void func_glue(void)`
+- `entry_glue` (function) `ld.c:2130` `static void entry_glue(void)`
+- `cvm_encode` (function) `ld.c:2144` `static void cvm_encode(LineSrc *src)`
+- `w32` (function) `ld.c:2218` `static void w32(unsigned char *p, long v)`
+- `w16` (function) `ld.c:2225` `static void w16(unsigned char *p, long v)`
+- `w64_at` (function) `ld.c:2230` `static void w64_at(unsigned char *p, unsigned long long v)`
+- `cvm_write_module` (function) `ld.c:2237` `static void cvm_write_module(const char *path)`
+- `x86_align_up` (function) `ld.c:3100` `static long x86_align_up(long v, long a)`
+- `x8` (function) `ld.c:3104` `static void x8(int b)`
+- `x16` (function) `ld.c:3109` `static void x16(long v)`
+- `x32` (function) `ld.c:3115` `static void x32(long v)`
+- `x64` (function) `ld.c:3123` `static void x64(unsigned long long v)`
+- `xfix32` (function) `ld.c:3131` `static void xfix32(const char *sym)`
+- `fixup_trail` (function) `ld.c:3140` `static void fixup_trail(long t)`
+- `emit_rex` (function) `ld.c:3145` `static void emit_rex(int w, int r, int x, int b)`
+- `emit_modrm` (function) `ld.c:3150` `static void emit_modrm(int mod, int reg, int rm)`
+- `emit_sib` (function) `ld.c:3154` `static void emit_sib(int scale, int index, int base)`
+- `x86_ea_rex` (function) `ld.c:3158` `static void x86_ea_rex(const Op *op, int regfield, int rexw, int force)`
+- `x86_ea_modrm` (function) `ld.c:3166` `static void x86_ea_modrm(const Op *op, int regfield)`
+- `x86_rex_reg` (function) `ld.c:3219` `static void x86_rex_reg(int w, int regfield, int rm)`
+- `x86_rex8` (function) `ld.c:3223` `static void x86_rex8(int regfield, int rm)`
+- `ea_mov` (function) `ld.c:3230` `static void ea_mov(int size, const Op *o, int regfield)`
+- `ea_mov_to` (function) `ld.c:3236` `static void ea_mov_to(int size, const Op *o, int regfield)`
+- `ea_alu` (function) `ld.c:3242` `static void ea_alu(int g1, int size, const Op *o, int regfield, int from_mem)`
+- `ea_cmp` (function) `ld.c:3248` `static void ea_cmp(int size, const Op *o, int regfield, int from_mem)`
+- `ea_grp` (function) `ld.c:3254` `static void ea_grp(int opc, int size, const Op *o, int regfield)`
+- `elf_mov` (function) `ld.c:3260` `static void elf_mov(int size, const Op *s, const Op *d)`
+- `elf_movzx` (function) `ld.c:3321` `static void elf_movzx(const Op *s, const Op *d, int opc, int rexw, int has_0f)`
+- `elf_movw` (function) `ld.c:3338` `static void elf_movw(const Op *s, const Op *d)`
+- `elf_lea` (function) `ld.c:3373` `static void elf_lea(const Op *s, const Op *d)`
+- `elf_push` (function) `ld.c:3380` `static void elf_push(const Op *o)`
+- `elf_pop` (function) `ld.c:3404` `static void elf_pop(const Op *o)`
+- `elf_alu` (function) `ld.c:3417` `static void elf_alu(int g1, int size, const Op *s, const Op *d)`
+- `elf_imul` (function) `ld.c:3480` `static void elf_imul(const Op *s, const Op *d)`
+- `elf_imull` (function) `ld.c:3509` `static void elf_imull(const Op *s, const Op *d)`
+- `elf_grp3` (function) `ld.c:3538` `static void elf_grp3(const Op *o, int ext)`
+- `elf_grp3_32` (function) `ld.c:3552` `static void elf_grp3_32(const Op *o, int ext)`
+- `elf_xadd` (function) `ld.c:3566` `static void elf_xadd(const Op *s, const Op *d)`
+- `elf_xchg` (function) `ld.c:3583` `static void elf_xchg(const Op *s, const Op *d)`
+- `elf_grp_ff` (function) `ld.c:3600` `static void elf_grp_ff(const Op *o, int ext)`
+- `elf_shift_cl` (function) `ld.c:3614` `static void elf_shift_cl(const Op *s, const Op *d, int ext)`
+- `elf_shift_cl32` (function) `ld.c:3622` `static void elf_shift_cl32(const Op *s, const Op *d, int ext)`
+- `elf_testl` (function) `ld.c:3630` `static void elf_testl(const Op *s, const Op *d)`
+- `elf_test` (function) `ld.c:3647` `static void elf_test(const Op *s, const Op *d)`
+- `elf_cmp` (function) `ld.c:3664` `static void elf_cmp(int size, const Op *s, const Op *d)`
+- `elf_set` (function) `ld.c:3732` `static void elf_set(int cc, const Op *o)`
+- `elf_branch` (function) `ld.c:3740` `static void elf_branch(int opc, const Op *o)`
+- `elf_call_ind` (function) `ld.c:3751` `static void elf_call_ind(const Op *o)`
+- `elf_ins` (function) `ld.c:3758` `static void elf_ins(const char *mn, const Op *o1, const Op *o2)`
+- `elf_sym_addr` (function) `ld.c:3855` `static long elf_sym_addr(const Sym *s)`
+- `elf_route_import` (function) `ld.c:3874` `static void elf_route_import(long li, long pos, long addend)` -- Route one call fixup through the PLT slot of import li.
+- `name_is_called` (function) `ld.c:3885` `static int name_is_called(const char *n)` -- Route one call fixup through the PLT slot of import li.
+- `elf_prune` (function) `ld.c:3907` `static void elf_prune(void)` -- and before the stub bodies are encoded: keep only the library exports the program actually calls, so the...
+- `elf_resolve_fixups` (function) `ld.c:3935` `static void elf_resolve_fixups(void)`
+- `elf_encode_src` (function) `ld.c:3988` `static void elf_encode_src(LineSrc *src)`
+- `elf_dyn_prepare` (function) `ld.c:4051` `static void elf_dyn_prepare(void)` -- Build the dynamic string pool (leading NUL, SONAME, one name per exported function) and record per-symbol offsets...
+- `elf_imp_prepare` (function) `ld.c:4110` `static void elf_imp_prepare(void)` -- Build the executable import tables (L2): dynstr pool holding a leading NUL, one SONAME per -d library, then every...
+- `elf_has_dyn` (function) `ld.c:4201` `static int elf_has_dyn(void)` -- Dynamic tables exist for shared libraries and for executables * linked against them; plain executables stay...
+- `elf_has_rela` (function) `ld.c:4207` `static int elf_has_rela(void)` -- Extra .rela section only for executables with imports (shared * libraries are self-contained by construction).
+- `elf_layout` (function) `ld.c:4211` `static void elf_layout(void)`
+- `elf_dyn_emit` (function) `ld.c:4255` `static void elf_dyn_emit(unsigned char *d, long tag, unsigned long long val)` -- } elf_rodata_size = rc; elf_data_size = dc; elf_bss_size = bc; elf_data_base = x86_align_up(elf_rodata_base +...
+- `elf_layout_rela` (function) `ld.c:4263` `static void elf_layout_rela(void)` -- Place the .rela table after resolve (its count is only known once every fixup routed): extends the data region and...
+- `elf_write_rela` (function) `ld.c:4301` `static void elf_write_rela(FILE *f)`
+- `elf_write_plt` (function) `ld.c:4317` `static void elf_write_plt(FILE *f, long stub, long got)` -- Write one PLT stub (jmp through its GOT slot) plus fail-closed * padding: control must never fall through into the...
+- `elf_write_dynamic` (function) `ld.c:4335` `static void elf_write_dynamic(FILE *f)` -- Write the .dynamic table at its link address (caller padded there).
+- `elf_write_dynsym` (function) `ld.c:4355` `static void elf_write_dynsym(FILE *f)` -- Write the .dynsym table: null entry plus every defined, non-shadowed function (shadowed bodies were skipped at...
+- `elf_write_dynstr` (function) `ld.c:4384` `static void elf_write_dynstr(FILE *f)` -- w32(e + 0, (unsigned)elf_dynoff[i]); e[4] = (unsigned char)((CFG_ELF_STB_GLOBAL << 4) | CFG_ELF_STT_FUNC); e[5] = 0...
+- `elf_write_hash` (function) `ld.c:4393` `static void elf_write_hash(FILE *f)` -- Write the SYSV hash over the dynamic symbols: one bucket plus the chain table (chain[0] unused, chain[k] links k to...
+- `elf_write` (function) `ld.c:4413` `static void elf_write(const char *path)`
+- `image` (function) `ld.c:4469` `* any exact loader refuses the image (glibc only survives on * page slack). */ w64_at(ph + 96, (unsigned long...`
+- `r16at` (function) `ld.c:4639` `static unsigned r16at(const unsigned char *p)`
+- `r64at` (function) `ld.c:4643` `static unsigned long r64at(const unsigned char *p)`
+- `ld_read_lib` (function) `ld.c:4655` `static int ld_read_lib(const char *path, int libidx)` -- Read one ET_DYN library: verify the header, collect global function symbols (plus non-function globals, so a data...
+- `elf_build` (function) `ld.c:4863` `static void elf_build(const char *in_path, const char *out_path)`
+- `usage` (function) `ld.c:4968` `static void usage(void)`
+- `main` (function) `ld.c:4985` `int main(int argc, char **argv)`
