@@ -1,10 +1,10 @@
 {
   "tool": "readmenator",
   "schema_version": 2,
-  "generated_at": "2026-10-16T23:43:14Z",
+  "generated_at": "2026-10-16T23:53:38Z",
   "project_root": ".",
   "project_name": "ld",
-  "git_commit": "72eaf152c04c1aa683e26af56cdee3bc0c720c18",
+  "git_commit": "60b2235f964d0156a9c2dce9d728f8b85c2beff1",
   "git_branch": "main",
   "source_fingerprint": "aa7027ec50b4d38d1c5f61157b715d1fc5f86fd8262538f6e8bce97566c467f8",
   "freshness_check": "readmenator . fresh  # exit 0 = docs match sources, exit 1 = run: readmenator . --rebuild",
@@ -78,6 +78,11 @@
       "path": "KB_test.md",
       "lines": 216,
       "approx_tokens": 1305
+    },
+    {
+      "path": "MEMORY.md",
+      "lines": 79,
+      "approx_tokens": 1076
     },
     {
       "path": "SECURITY.md",

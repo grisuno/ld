@@ -1,0 +1,95 @@
+{
+ "schema_version": 1,
+ "format": "jsonl",
+ "meta": {
+  "modules": 3,
+  "entities": 207,
+  "languages": {
+   "c": 1,
+   "py": 1,
+   "sh": 1
+  },
+  "kinds": {
+   "function": 2,
+   "macro": 192,
+   "module": 3,
+   "struct": 10
+  },
+  "truncated": false,
+  "skipped_files": 28,
+  "privacy_mode": false
+ },
+ "coverage": {
+  "overall": {
+   "documented": 4,
+   "total": 207,
+   "percent": 1.9
+  },
+  "by_kind": {
+   "function": {
+    "documented": 0,
+    "total": 2,
+    "percent": 0.0
+   },
+   "macro": {
+    "documented": 2,
+    "total": 192,
+    "percent": 1.0
+   },
+   "module": {
+    "documented": 1,
+    "total": 3,
+    "percent": 33.3
+   },
+   "struct": {
+    "documented": 1,
+    "total": 10,
+    "percent": 10.0
+   }
+  },
+  "by_module": {
+   "app.py": {
+    "documented": 1,
+    "total": 1,
+    "percent": 100.0
+   },
+   "install.sh": {
+    "documented": 0,
+    "total": 1,
+    "percent": 0.0
+   },
+   "ld.c": {
+    "documented": 3,
+    "total": 205,
+    "percent": 1.5
+   }
+  }
+ },
+ "modules": [
+  {
+   "uid": "app.py",
+   "path": "modules/app.py.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "install.sh",
+   "path": "modules/install.sh.jsonl",
+   "entities": 1
+  },
+  {
+   "uid": "ld.c",
+   "path": "modules/ld.c.jsonl",
+   "entities": 205
+  }
+ ],
+ "warnings": {
+  "path": "warnings.jsonl",
+  "total": 203
+ },
+ "usage": [
+  "grep -h '\"name\":\"<Name>\"' readmenator-apidocs/api/modules/*.jsonl",
+  "grep -h '\"qualname\":\"<Owner.method>\"' readmenator-apidocs/api/modules/*.jsonl",
+  "cat readmenator-apidocs/api/modules/<module-slug>.jsonl",
+  "grep -h '\"code\":\"DOC001\"' readmenator-apidocs/api/warnings.jsonl"
+ ]
+}

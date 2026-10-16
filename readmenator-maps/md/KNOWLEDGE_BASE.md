@@ -11,28 +11,29 @@
 
 **Total Files Parsed:** 31 | **Total Symbols Extracted:** 423 | **Total Imports:** 7
 
-<!-- ranking_model: v1.0 | weights: {ppr:0.45,auth:0.2,test:0.15,doc:0.1,fresh:0.1} | alpha:0.85 | commit:72eaf15 | date:2026-07-18 -->
+<!-- ranking_model: v1.0 | weights: {ppr:0.45,auth:0.2,test:0.15,doc:0.1,fresh:0.1} | alpha:0.85 | commit:60b2235 | date:2026-07-18 -->
 
 
 ## Table of Contents
 
 1. [Statistics Dashboard](#statistics-dashboard)
 2. [Architectural Layers](#architectural-layers)
-3. [Ranked Context](#ranked-context)
-4. [God Nodes](#god-nodes)
-5. [Suggested Questions](#suggested-questions)
-6. [Force-Graph Explorer](#force-graph-explorer)
-7. [Corpus Analytics](#corpus-analytics)
-8. [Hotspot Analysis](#hotspot-analysis)
-9. [Change Impact Analysis](#change-impact-analysis)
-10. [Suggested Linting Rules](#suggested-linting-rules)
-11. [Concept Graph](#concept-graph)
-12. [Orphans](#orphans)
-13. [Query Recipes](#query-recipes)
-14. [Structural Knowledge Map](#structural-knowledge-map)
-15. [UML Class Diagram](#uml-class-diagram)
-16. [Code Property Graph](#code-property-graph)
-17. [Architecture Reference](#architecture-reference)
+3. [Architecture Overview](#architecture-overview)
+4. [Ranked Context](#ranked-context)
+5. [God Nodes](#god-nodes)
+6. [Suggested Questions](#suggested-questions)
+7. [Force-Graph Explorer](#force-graph-explorer)
+8. [Corpus Analytics](#corpus-analytics)
+9. [Hotspot Analysis](#hotspot-analysis)
+10. [Change Impact Analysis](#change-impact-analysis)
+11. [Suggested Linting Rules](#suggested-linting-rules)
+12. [Concept Graph](#concept-graph)
+13. [Orphans](#orphans)
+14. [Query Recipes](#query-recipes)
+15. [Structural Knowledge Map](#structural-knowledge-map)
+16. [UML Class Diagram](#uml-class-diagram)
+17. [Code Property Graph](#code-property-graph)
+18. [Architecture Reference](#architecture-reference)
     - [C (17 files)](#c-17-files)
     - [PY (1 files)](#py-1-files)
     - [S (10 files)](#s-10-files)
@@ -96,6 +97,21 @@ Auto-detected from path patterns, naming conventions, and imported frameworks.
 - `hello.c` (c, 1 symbols)
 - `loop.s` (s, 2 symbols)
 - *... and 13 more*
+
+---
+
+## Architecture Overview
+
+1 components stacked in 1 dependency tiers (weighted Eades-Lin-Smyth ordering: arrows point from dependent to dependency, top to bottom). Labels are import counts, thick arrows the top quartile; 0 transitively implied edges are omitted. Dashed red arrows are upward dependencies: the smallest set of imports that closes every cycle and breaks the layering. Cyan components hold entry points. Interactive version: `readmenator-apidocs/index.html#/flows`.
+
+```mermaid
+flowchart TB
+    classDef entry fill:#0e7490,stroke:#22d3ee,color:#ecfeff,stroke-width:2px;
+    subgraph lane_0["Tier 1"]
+        direction LR
+        n_d__root_["(root)<br/>3 files, 349 symbols<br/>Core / utility"]:::entry
+    end
+```
 
 ---
 
@@ -349,7 +365,7 @@ Results include score decomposition and justification paths for each ranked item
 ## Structural Knowledge Map
 
 ```mermaid
-graph TD
+graph LR
     classDef mod fill:#1e1e1e,stroke:#ff6666,stroke-width:2px,color:#fff;
     classDef cls fill:#2d2d2d,stroke:#4ec9b0,stroke-width:2px,color:#fff;
     classDef fn fill:#333,stroke:#dcdcaa,stroke-width:1px,color:#dcdcaa;
@@ -431,6 +447,31 @@ graph TD
     class install_sh mod;
     test_mutate_sh["mutate.sh (sh)"]
     class test_mutate_sh mod;
+    ld_c ~~~ test_fib_s
+    test_stdint_c ~~~ test_fib2_s
+    test_dynlib_host_c ~~~ test_fib3_s
+    test_run_tests_sh ~~~ test_globals_c
+    test_fnptr_c ~~~ test_usestr_c
+    test_dynuse_c ~~~ test_argv_c
+    test_fib_s ~~~ test_argv_s
+    test_fib2_s ~~~ test_asm_c
+    test_fib3_s ~~~ test_chain_c
+    test_globals_c ~~~ test_dynlib_c
+    test_usestr_c ~~~ test_fmt_c
+    test_argv_c ~~~ test_loop_s
+    test_argv_s ~~~ test_movslq_s
+    test_asm_c ~~~ test_priv_s
+    test_chain_c ~~~ test_start_s
+    test_dynlib_c ~~~ test_sync_c
+    test_fmt_c ~~~ test_t1_s
+    test_loop_s ~~~ test_udiv_c
+    test_movslq_s ~~~ test_w1_c
+    test_priv_s ~~~ test_w1_s
+    test_start_s ~~~ test_hello_c
+    test_sync_c ~~~ test_t1_c
+    test_t1_s ~~~ app_py
+    test_udiv_c ~~~ install_sh
+    test_w1_c ~~~ test_mutate_sh
     ext_stdio_h["stdio.h"]
     class ext_stdio_h ext;
     ld_c -.->|imports| ext_stdio_h
@@ -454,10 +495,13 @@ graph TD
 
 ## UML Class Diagram
 
-Auto-generated Mermaid class diagram from parsed class-level symbols. Shows classes, structs, interfaces, traits, and their methods with inheritance and dependency relationships.
+Auto-generated Mermaid class diagrams from parsed class-level symbols, split into groups of at most 6 classes so each diagram stays readable. Per-module class diagrams with exact members live in `readmenator-apidocs/modules/`.
+
+#### `ld.c`
 
 ```mermaid
 classDiagram
+  direction LR
   class ld_c_Sym {
     <<struct>>
     +ld_soname_of(const char *path, char *out)
@@ -588,6 +632,13 @@ classDiagram
     +strip_comment(char *s)
     +name_copy(char *dst, const char *src)
   }
+```
+
+#### `test/fnptr.c`, `test/stdint.c`
+
+```mermaid
+classDiagram
+  direction LR
   class fnptr_c_ops_t {
     <<struct>>
     +add2(int a, int b)

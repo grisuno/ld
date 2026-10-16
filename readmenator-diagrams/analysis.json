@@ -1,0 +1,5288 @@
+{
+ "metadata": {
+  "generated_at": "2026-10-16T23:54:11.442495+00:00",
+  "source_tree_hash": "aa7027ec50b4d38d1c5f61157b715d1fc5f86fd8262538f6e8bce97566c467f8",
+  "repo_name": "ld",
+  "depth_level": 2,
+  "depth_cap": 3,
+  "file_coverage_summary": {
+   "total_files": 31,
+   "analyzed": 31,
+   "not_analyzed": 0,
+   "not_analyzed_by_reason": {}
+  },
+  "tree_spec": {}
+ },
+ "description": "Static architecture map of 31 files (c, py, s, sh) in 1 components: project. Structure is extracted statically without LLM calls; component prose may be enriched locally.",
+ "files": {
+  "app.py": {
+   "language": "py",
+   "symbols": 0
+  },
+  "install.sh": {
+   "language": "sh",
+   "symbols": 0
+  },
+  "ld.c": {
+   "language": "c",
+   "symbols": 349
+  },
+  "test/argv.c": {
+   "language": "c",
+   "symbols": 2
+  },
+  "test/argv.s": {
+   "language": "s",
+   "symbols": 2
+  },
+  "test/asm.c": {
+   "language": "c",
+   "symbols": 2
+  },
+  "test/chain.c": {
+   "language": "c",
+   "symbols": 2
+  },
+  "test/dynlib.c": {
+   "language": "c",
+   "symbols": 2
+  },
+  "test/dynlib_host.c": {
+   "language": "c",
+   "symbols": 0
+  },
+  "test/dynuse.c": {
+   "language": "c",
+   "symbols": 3
+  },
+  "test/fib.s": {
+   "language": "s",
+   "symbols": 3
+  },
+  "test/fib2.s": {
+   "language": "s",
+   "symbols": 3
+  },
+  "test/fib3.s": {
+   "language": "s",
+   "symbols": 3
+  },
+  "test/fmt.c": {
+   "language": "c",
+   "symbols": 2
+  },
+  "test/fnptr.c": {
+   "language": "c",
+   "symbols": 7
+  },
+  "test/globals.c": {
+   "language": "c",
+   "symbols": 3
+  },
+  "test/hello.c": {
+   "language": "c",
+   "symbols": 1
+  },
+  "test/loop.s": {
+   "language": "s",
+   "symbols": 2
+  },
+  "test/movslq.s": {
+   "language": "s",
+   "symbols": 2
+  },
+  "test/mutate.sh": {
+   "language": "sh",
+   "symbols": 0
+  },
+  "test/priv.s": {
+   "language": "s",
+   "symbols": 2
+  },
+  "test/run_tests.sh": {
+   "language": "sh",
+   "symbols": 11
+  },
+  "test/start.s": {
+   "language": "s",
+   "symbols": 2
+  },
+  "test/stdint.c": {
+   "language": "c",
+   "symbols": 6
+  },
+  "test/sync.c": {
+   "language": "c",
+   "symbols": 2
+  },
+  "test/t1.c": {
+   "language": "c",
+   "symbols": 1
+  },
+  "test/t1.s": {
+   "language": "s",
+   "symbols": 2
+  },
+  "test/udiv.c": {
+   "language": "c",
+   "symbols": 2
+  },
+  "test/usestr.c": {
+   "language": "c",
+   "symbols": 3
+  },
+  "test/w1.c": {
+   "language": "c",
+   "symbols": 2
+  },
+  "test/w1.s": {
+   "language": "s",
+   "symbols": 2
+  }
+ },
+ "methods_index": {
+  "ld.c|ld.c::CFG_MAX_SYMBOLS": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_MAX_SYMBOLS",
+   "start_line": 25,
+   "end_line": 25,
+   "type": "FUNCTION",
+   "content_hash": "ab4666fdea2e3dcb"
+  },
+  "ld.c|ld.c::CFG_MAX_FIXUPS": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_MAX_FIXUPS",
+   "start_line": 26,
+   "end_line": 26,
+   "type": "FUNCTION",
+   "content_hash": "8cb6ab7df6321932"
+  },
+  "ld.c|ld.c::CFG_FIXUP_INIT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_FIXUP_INIT",
+   "start_line": 27,
+   "end_line": 27,
+   "type": "FUNCTION",
+   "content_hash": "d05c208a64ba6a20"
+  },
+  "ld.c|ld.c::CFG_LINE_MAX": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_LINE_MAX",
+   "start_line": 28,
+   "end_line": 28,
+   "type": "FUNCTION",
+   "content_hash": "3dd6bfd815151615"
+  },
+  "ld.c|ld.c::CFG_NAME_MAX": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_NAME_MAX",
+   "start_line": 29,
+   "end_line": 29,
+   "type": "FUNCTION",
+   "content_hash": "8c0ff1d824218749"
+  },
+  "ld.c|ld.c::CFG_MAX_NATS": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_MAX_NATS",
+   "start_line": 30,
+   "end_line": 30,
+   "type": "FUNCTION",
+   "content_hash": "b1944ef3afc09003"
+  },
+  "ld.c|ld.c::CFG_MAX_ERRORS": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_MAX_ERRORS",
+   "start_line": 31,
+   "end_line": 31,
+   "type": "FUNCTION",
+   "content_hash": "c608fff1bc405529"
+  },
+  "ld.c|ld.c::CFG_GROW_UNIT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_GROW_UNIT",
+   "start_line": 32,
+   "end_line": 33,
+   "type": "FUNCTION",
+   "content_hash": "7641fb5934fc90d9"
+  },
+  "ld.c|ld.c::CFG_ABI_BYTES": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ABI_BYTES",
+   "start_line": 34,
+   "end_line": 34,
+   "type": "FUNCTION",
+   "content_hash": "2b3763c4d5a81667"
+  },
+  "ld.c|ld.c::CFG_STACK_BASE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_STACK_BASE",
+   "start_line": 35,
+   "end_line": 35,
+   "type": "FUNCTION",
+   "content_hash": "7c9bca31476e6424"
+  },
+  "ld.c|ld.c::CFG_XSTACK_DEF": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_XSTACK_DEF",
+   "start_line": 36,
+   "end_line": 39,
+   "type": "FUNCTION",
+   "content_hash": "ca2896887c8d4225"
+  },
+  "ld.c|ld.c::CFG_MAX_ARGS": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_MAX_ARGS",
+   "start_line": 40,
+   "end_line": 41,
+   "type": "FUNCTION",
+   "content_hash": "689dd0ede7c2cf6c"
+  },
+  "ld.c|ld.c::CFG_REG_LOCALS": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_REG_LOCALS",
+   "start_line": 42,
+   "end_line": 42,
+   "type": "FUNCTION",
+   "content_hash": "5803f70287ae847c"
+  },
+  "ld.c|ld.c::CFG_SLOT_FLAGS_A": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_SLOT_FLAGS_A",
+   "start_line": 43,
+   "end_line": 43,
+   "type": "FUNCTION",
+   "content_hash": "49b86c05fa6e0768"
+  },
+  "ld.c|ld.c::CFG_SLOT_FLAGS_B": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_SLOT_FLAGS_B",
+   "start_line": 44,
+   "end_line": 44,
+   "type": "FUNCTION",
+   "content_hash": "2bed060ddb9ddcfc"
+  },
+  "ld.c|ld.c::CFG_SLOT_S0": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_SLOT_S0",
+   "start_line": 45,
+   "end_line": 45,
+   "type": "FUNCTION",
+   "content_hash": "e53552400f3501f2"
+  },
+  "ld.c|ld.c::CFG_SLOT_S1": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_SLOT_S1",
+   "start_line": 46,
+   "end_line": 47,
+   "type": "FUNCTION",
+   "content_hash": "f9c84c4b98283e2d"
+  },
+  "ld.c|ld.c::CFG_GSLOT_RSP": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_GSLOT_RSP",
+   "start_line": 48,
+   "end_line": 48,
+   "type": "FUNCTION",
+   "content_hash": "b73c3e623c555e61"
+  },
+  "ld.c|ld.c::CFG_GSLOT_RBP": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_GSLOT_RBP",
+   "start_line": 49,
+   "end_line": 49,
+   "type": "FUNCTION",
+   "content_hash": "cde54515b82479ce"
+  },
+  "ld.c|ld.c::CFG_GSLOT_ARGS": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_GSLOT_ARGS",
+   "start_line": 50,
+   "end_line": 50,
+   "type": "FUNCTION",
+   "content_hash": "1b3f78ec65b59d64"
+  },
+  "ld.c|ld.c::CFG_GSLOT_RET": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_GSLOT_RET",
+   "start_line": 51,
+   "end_line": 52,
+   "type": "FUNCTION",
+   "content_hash": "d72079674e20525b"
+  },
+  "ld.c|ld.c::CFG_CVM_MAGIC_0": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_CVM_MAGIC_0",
+   "start_line": 53,
+   "end_line": 53,
+   "type": "FUNCTION",
+   "content_hash": "c70375e59699c19c"
+  },
+  "ld.c|ld.c::CFG_CVM_MAGIC_1": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_CVM_MAGIC_1",
+   "start_line": 54,
+   "end_line": 54,
+   "type": "FUNCTION",
+   "content_hash": "a9f922cab2ddeca6"
+  },
+  "ld.c|ld.c::CFG_CVM_MAGIC_2": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_CVM_MAGIC_2",
+   "start_line": 55,
+   "end_line": 55,
+   "type": "FUNCTION",
+   "content_hash": "961a9e3533eb850a"
+  },
+  "ld.c|ld.c::CFG_CVM_MAGIC_3": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_CVM_MAGIC_3",
+   "start_line": 56,
+   "end_line": 56,
+   "type": "FUNCTION",
+   "content_hash": "cf49e536ee4a92ab"
+  },
+  "ld.c|ld.c::CFG_CVM_VER_MAJ": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_CVM_VER_MAJ",
+   "start_line": 57,
+   "end_line": 57,
+   "type": "FUNCTION",
+   "content_hash": "436ffcbb668987f6"
+  },
+  "ld.c|ld.c::CFG_CVM_VER_MIN": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_CVM_VER_MIN",
+   "start_line": 58,
+   "end_line": 58,
+   "type": "FUNCTION",
+   "content_hash": "d10e4b211768a61a"
+  },
+  "ld.c|ld.c::CFG_CVM_HDR_SIZE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_CVM_HDR_SIZE",
+   "start_line": 59,
+   "end_line": 60,
+   "type": "FUNCTION",
+   "content_hash": "9d80b715d69918e5"
+  },
+  "ld.c|ld.c::CFG_ELF_PAGE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_PAGE",
+   "start_line": 61,
+   "end_line": 61,
+   "type": "FUNCTION",
+   "content_hash": "06e9e5d690845cc5"
+  },
+  "ld.c|ld.c::CFG_ELF_HSIZE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_HSIZE",
+   "start_line": 62,
+   "end_line": 62,
+   "type": "FUNCTION",
+   "content_hash": "ab83fb42afcc1946"
+  },
+  "ld.c|ld.c::CFG_ELF_PHENTSZ": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_PHENTSZ",
+   "start_line": 63,
+   "end_line": 63,
+   "type": "FUNCTION",
+   "content_hash": "430667f14b6f40d7"
+  },
+  "ld.c|ld.c::CFG_ELF_PHNUM": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_PHNUM",
+   "start_line": 64,
+   "end_line": 64,
+   "type": "FUNCTION",
+   "content_hash": "9a339ee716507ae9"
+  },
+  "ld.c|ld.c::CFG_ELF_SHENTSZ": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHENTSZ",
+   "start_line": 65,
+   "end_line": 65,
+   "type": "FUNCTION",
+   "content_hash": "e63cbf36872c81f8"
+  },
+  "ld.c|ld.c::CFG_ELF_SHNUM": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHNUM",
+   "start_line": 66,
+   "end_line": 66,
+   "type": "FUNCTION",
+   "content_hash": "14a0f5afcea9bd96"
+  },
+  "ld.c|ld.c::CFG_ELF_SHSTRNDX": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHSTRNDX",
+   "start_line": 67,
+   "end_line": 67,
+   "type": "FUNCTION",
+   "content_hash": "5368e93327603489"
+  },
+  "ld.c|ld.c::CFG_ELF_ET_DYN": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_ET_DYN",
+   "start_line": 68,
+   "end_line": 68,
+   "type": "FUNCTION",
+   "content_hash": "d5f55f9df338b983"
+  },
+  "ld.c|ld.c::CFG_ELF_EM_X8664": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_EM_X8664",
+   "start_line": 69,
+   "end_line": 69,
+   "type": "FUNCTION",
+   "content_hash": "b76b0847183160ef"
+  },
+  "ld.c|ld.c::CFG_ELF_PF_R": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_PF_R",
+   "start_line": 70,
+   "end_line": 70,
+   "type": "FUNCTION",
+   "content_hash": "03d65b96b09d7e42"
+  },
+  "ld.c|ld.c::CFG_ELF_PF_W": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_PF_W",
+   "start_line": 71,
+   "end_line": 71,
+   "type": "FUNCTION",
+   "content_hash": "d1ec1345c83b05a3"
+  },
+  "ld.c|ld.c::CFG_ELF_PF_X": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_PF_X",
+   "start_line": 72,
+   "end_line": 72,
+   "type": "FUNCTION",
+   "content_hash": "04d87ed950dbc164"
+  },
+  "ld.c|ld.c::CFG_ELF_PT_LOAD": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_PT_LOAD",
+   "start_line": 73,
+   "end_line": 73,
+   "type": "FUNCTION",
+   "content_hash": "f327112abfbdc4d8"
+  },
+  "ld.c|ld.c::CFG_ELF_PT_DYNAMIC": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_PT_DYNAMIC",
+   "start_line": 74,
+   "end_line": 74,
+   "type": "FUNCTION",
+   "content_hash": "ece0bf4b6d03be66"
+  },
+  "ld.c|ld.c::CFG_ELF_PT_GNU_STACK": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_PT_GNU_STACK",
+   "start_line": 75,
+   "end_line": 75,
+   "type": "FUNCTION",
+   "content_hash": "b445ddf2745c6a6b"
+  },
+  "ld.c|ld.c::CFG_ELF_SHT_PROGBITS": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHT_PROGBITS",
+   "start_line": 76,
+   "end_line": 76,
+   "type": "FUNCTION",
+   "content_hash": "f55aea3d3645a418"
+  },
+  "ld.c|ld.c::CFG_ELF_SHT_NOBITS": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHT_NOBITS",
+   "start_line": 77,
+   "end_line": 77,
+   "type": "FUNCTION",
+   "content_hash": "78805c0db837f15f"
+  },
+  "ld.c|ld.c::CFG_ELF_SHT_STRTAB": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHT_STRTAB",
+   "start_line": 78,
+   "end_line": 78,
+   "type": "FUNCTION",
+   "content_hash": "c804ad978bde2907"
+  },
+  "ld.c|ld.c::CFG_ELF_SHT_HASH": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHT_HASH",
+   "start_line": 79,
+   "end_line": 79,
+   "type": "FUNCTION",
+   "content_hash": "9e4026d495d60b5c"
+  },
+  "ld.c|ld.c::CFG_ELF_SHT_DYNAMIC": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHT_DYNAMIC",
+   "start_line": 80,
+   "end_line": 80,
+   "type": "FUNCTION",
+   "content_hash": "e44b386a0b295e51"
+  },
+  "ld.c|ld.c::CFG_ELF_SHT_DYNSYM": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHT_DYNSYM",
+   "start_line": 81,
+   "end_line": 81,
+   "type": "FUNCTION",
+   "content_hash": "3a2f635967665ace"
+  },
+  "ld.c|ld.c::CFG_ELF_SHT_RELA": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHT_RELA",
+   "start_line": 82,
+   "end_line": 82,
+   "type": "FUNCTION",
+   "content_hash": "1edc248b66d746fd"
+  },
+  "ld.c|ld.c::CFG_ELF_DT_NULL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_DT_NULL",
+   "start_line": 83,
+   "end_line": 83,
+   "type": "FUNCTION",
+   "content_hash": "bf657f512d0ae6f6"
+  },
+  "ld.c|ld.c::CFG_ELF_DT_NEEDED": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_DT_NEEDED",
+   "start_line": 84,
+   "end_line": 84,
+   "type": "FUNCTION",
+   "content_hash": "90ab7c47d04fb6ff"
+  },
+  "ld.c|ld.c::CFG_ELF_DT_RELA": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_DT_RELA",
+   "start_line": 85,
+   "end_line": 85,
+   "type": "FUNCTION",
+   "content_hash": "54b565bf95aa3530"
+  },
+  "ld.c|ld.c::CFG_ELF_DT_RELASZ": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_DT_RELASZ",
+   "start_line": 86,
+   "end_line": 86,
+   "type": "FUNCTION",
+   "content_hash": "3e4d38da75e5a7ae"
+  },
+  "ld.c|ld.c::CFG_ELF_DT_RELAENT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_DT_RELAENT",
+   "start_line": 87,
+   "end_line": 87,
+   "type": "FUNCTION",
+   "content_hash": "de8312aa13d83f35"
+  },
+  "ld.c|ld.c::CFG_ELF_DT_HASH": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_DT_HASH",
+   "start_line": 88,
+   "end_line": 88,
+   "type": "FUNCTION",
+   "content_hash": "c5fd730c91050902"
+  },
+  "ld.c|ld.c::CFG_ELF_DT_STRTAB": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_DT_STRTAB",
+   "start_line": 89,
+   "end_line": 89,
+   "type": "FUNCTION",
+   "content_hash": "75aef632791f09f9"
+  },
+  "ld.c|ld.c::CFG_ELF_DT_SYMTAB": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_DT_SYMTAB",
+   "start_line": 90,
+   "end_line": 90,
+   "type": "FUNCTION",
+   "content_hash": "87d263d4b2612119"
+  },
+  "ld.c|ld.c::CFG_ELF_DT_STRSZ": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_DT_STRSZ",
+   "start_line": 91,
+   "end_line": 91,
+   "type": "FUNCTION",
+   "content_hash": "dfe4524a5682a89b"
+  },
+  "ld.c|ld.c::CFG_ELF_DT_SYMENT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_DT_SYMENT",
+   "start_line": 92,
+   "end_line": 92,
+   "type": "FUNCTION",
+   "content_hash": "b1ba26e1d6c1ebba"
+  },
+  "ld.c|ld.c::CFG_ELF_DT_SONAME": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_DT_SONAME",
+   "start_line": 93,
+   "end_line": 93,
+   "type": "FUNCTION",
+   "content_hash": "e77b4910e5d760ee"
+  },
+  "ld.c|ld.c::CFG_ELF_STB_GLOBAL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_STB_GLOBAL",
+   "start_line": 94,
+   "end_line": 94,
+   "type": "FUNCTION",
+   "content_hash": "62a8f5bb8481819b"
+  },
+  "ld.c|ld.c::CFG_ELF_STT_NOTYPE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_STT_NOTYPE",
+   "start_line": 95,
+   "end_line": 95,
+   "type": "FUNCTION",
+   "content_hash": "fc9e53384c6b9dbb"
+  },
+  "ld.c|ld.c::CFG_ELF_STT_FUNC": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_STT_FUNC",
+   "start_line": 96,
+   "end_line": 96,
+   "type": "FUNCTION",
+   "content_hash": "668da95dffe80751"
+  },
+  "ld.c|ld.c::CFG_ELF_R_GLOB_DAT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_R_GLOB_DAT",
+   "start_line": 97,
+   "end_line": 97,
+   "type": "FUNCTION",
+   "content_hash": "54c5eff051c2d9b9"
+  },
+  "ld.c|ld.c::CFG_ELF_R_RELATIVE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_R_RELATIVE",
+   "start_line": 98,
+   "end_line": 98,
+   "type": "FUNCTION",
+   "content_hash": "9316a6580efe2360"
+  },
+  "ld.c|ld.c::CFG_ELF_SHN_UNDEF": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHN_UNDEF",
+   "start_line": 99,
+   "end_line": 99,
+   "type": "FUNCTION",
+   "content_hash": "44025b007ed17c53"
+  },
+  "ld.c|ld.c::CFG_LD_MAXLIBS": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_LD_MAXLIBS",
+   "start_line": 100,
+   "end_line": 100,
+   "type": "FUNCTION",
+   "content_hash": "61d1f516585fe957"
+  },
+  "ld.c|ld.c::CFG_LD_MAXIMPORTS": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_LD_MAXIMPORTS",
+   "start_line": 101,
+   "end_line": 101,
+   "type": "FUNCTION",
+   "content_hash": "d40dff42f64bb1fe"
+  },
+  "ld.c|ld.c::CFG_LD_LIB_MAXSZ": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_LD_LIB_MAXSZ",
+   "start_line": 102,
+   "end_line": 102,
+   "type": "FUNCTION",
+   "content_hash": "51abb1cff59313b7"
+  },
+  "ld.c|ld.c::CFG_ELF_DYN_NENTRY": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_DYN_NENTRY",
+   "start_line": 103,
+   "end_line": 103,
+   "type": "FUNCTION",
+   "content_hash": "0133b0382a0e800a"
+  },
+  "ld.c|ld.c::CFG_ELF_DYNSYM_ENT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_DYNSYM_ENT",
+   "start_line": 104,
+   "end_line": 104,
+   "type": "FUNCTION",
+   "content_hash": "81065fc0ae920283"
+  },
+  "ld.c|ld.c::CFG_ELF_SHF_A": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHF_A",
+   "start_line": 105,
+   "end_line": 105,
+   "type": "FUNCTION",
+   "content_hash": "5bc303cc3ebdf8f0"
+  },
+  "ld.c|ld.c::CFG_ELF_SHF_X": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHF_X",
+   "start_line": 106,
+   "end_line": 106,
+   "type": "FUNCTION",
+   "content_hash": "5dd4dc35a31dbaf3"
+  },
+  "ld.c|ld.c::CFG_ELF_SHF_W": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_SHF_W",
+   "start_line": 107,
+   "end_line": 107,
+   "type": "FUNCTION",
+   "content_hash": "9bd0f55f96fb7831"
+  },
+  "ld.c|ld.c::CFG_ELF_TEXT_BASE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_ELF_TEXT_BASE",
+   "start_line": 108,
+   "end_line": 109,
+   "type": "FUNCTION",
+   "content_hash": "520df6e718952700"
+  },
+  "ld.c|ld.c::CFG_FMT_CVM": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_FMT_CVM",
+   "start_line": 110,
+   "end_line": 110,
+   "type": "FUNCTION",
+   "content_hash": "3df839c0b77e5260"
+  },
+  "ld.c|ld.c::CFG_FMT_ELF": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::CFG_FMT_ELF",
+   "start_line": 111,
+   "end_line": 113,
+   "type": "FUNCTION",
+   "content_hash": "523ae8368a828658"
+  },
+  "ld.c|ld.c::X86_G1_ADD": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_G1_ADD",
+   "start_line": 114,
+   "end_line": 114,
+   "type": "FUNCTION",
+   "content_hash": "a3ec0aee0710efad"
+  },
+  "ld.c|ld.c::X86_G1_OR": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_G1_OR",
+   "start_line": 115,
+   "end_line": 115,
+   "type": "FUNCTION",
+   "content_hash": "107723a8f0a608dc"
+  },
+  "ld.c|ld.c::X86_G1_AND": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_G1_AND",
+   "start_line": 116,
+   "end_line": 116,
+   "type": "FUNCTION",
+   "content_hash": "a5deac83940bccdf"
+  },
+  "ld.c|ld.c::X86_G1_SUB": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_G1_SUB",
+   "start_line": 117,
+   "end_line": 117,
+   "type": "FUNCTION",
+   "content_hash": "c5e0765b07db6f50"
+  },
+  "ld.c|ld.c::X86_G1_XOR": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_G1_XOR",
+   "start_line": 118,
+   "end_line": 118,
+   "type": "FUNCTION",
+   "content_hash": "81d8c8a2ec03cf58"
+  },
+  "ld.c|ld.c::X86_G1_CMP": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_G1_CMP",
+   "start_line": 119,
+   "end_line": 120,
+   "type": "FUNCTION",
+   "content_hash": "c84fc170289d85de"
+  },
+  "ld.c|ld.c::X86_JCC_JE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_JCC_JE",
+   "start_line": 121,
+   "end_line": 121,
+   "type": "FUNCTION",
+   "content_hash": "6aed580be0086955"
+  },
+  "ld.c|ld.c::X86_JCC_JNE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_JCC_JNE",
+   "start_line": 122,
+   "end_line": 122,
+   "type": "FUNCTION",
+   "content_hash": "55b274fce47eb9e2"
+  },
+  "ld.c|ld.c::X86_JCC_JL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_JCC_JL",
+   "start_line": 123,
+   "end_line": 123,
+   "type": "FUNCTION",
+   "content_hash": "0f895173c14098ca"
+  },
+  "ld.c|ld.c::X86_JCC_JG": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_JCC_JG",
+   "start_line": 124,
+   "end_line": 124,
+   "type": "FUNCTION",
+   "content_hash": "01a5f64cf407b145"
+  },
+  "ld.c|ld.c::X86_JCC_JLE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_JCC_JLE",
+   "start_line": 125,
+   "end_line": 125,
+   "type": "FUNCTION",
+   "content_hash": "d8a17433ce71b7ab"
+  },
+  "ld.c|ld.c::X86_JCC_JGE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_JCC_JGE",
+   "start_line": 126,
+   "end_line": 126,
+   "type": "FUNCTION",
+   "content_hash": "17ee508e1a66876e"
+  },
+  "ld.c|ld.c::X86_JCC_JA": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_JCC_JA",
+   "start_line": 127,
+   "end_line": 127,
+   "type": "FUNCTION",
+   "content_hash": "aca24b6c7e5ff128"
+  },
+  "ld.c|ld.c::X86_JCC_JAE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_JCC_JAE",
+   "start_line": 128,
+   "end_line": 128,
+   "type": "FUNCTION",
+   "content_hash": "f9f6b0c2a32723be"
+  },
+  "ld.c|ld.c::X86_JCC_JB": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_JCC_JB",
+   "start_line": 129,
+   "end_line": 129,
+   "type": "FUNCTION",
+   "content_hash": "96badf940925f999"
+  },
+  "ld.c|ld.c::X86_JCC_JBE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_JCC_JBE",
+   "start_line": 130,
+   "end_line": 131,
+   "type": "FUNCTION",
+   "content_hash": "2578de0b9e3f9064"
+  },
+  "ld.c|ld.c::X86_SET_E": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SET_E",
+   "start_line": 132,
+   "end_line": 132,
+   "type": "FUNCTION",
+   "content_hash": "5a92fe40b5f79cae"
+  },
+  "ld.c|ld.c::X86_SET_NE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SET_NE",
+   "start_line": 133,
+   "end_line": 133,
+   "type": "FUNCTION",
+   "content_hash": "5d4b6c6acc9565c9"
+  },
+  "ld.c|ld.c::X86_SET_L": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SET_L",
+   "start_line": 134,
+   "end_line": 134,
+   "type": "FUNCTION",
+   "content_hash": "635cc8bbc63112c2"
+  },
+  "ld.c|ld.c::X86_SET_G": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SET_G",
+   "start_line": 135,
+   "end_line": 135,
+   "type": "FUNCTION",
+   "content_hash": "6729933fefb74d03"
+  },
+  "ld.c|ld.c::X86_SET_LE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SET_LE",
+   "start_line": 136,
+   "end_line": 136,
+   "type": "FUNCTION",
+   "content_hash": "fe4f4fecff2bef78"
+  },
+  "ld.c|ld.c::X86_SET_GE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SET_GE",
+   "start_line": 137,
+   "end_line": 137,
+   "type": "FUNCTION",
+   "content_hash": "95cbd504a8c27d09"
+  },
+  "ld.c|ld.c::X86_SET_A": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SET_A",
+   "start_line": 138,
+   "end_line": 138,
+   "type": "FUNCTION",
+   "content_hash": "8a6210a13500f0d4"
+  },
+  "ld.c|ld.c::X86_SET_AE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SET_AE",
+   "start_line": 139,
+   "end_line": 139,
+   "type": "FUNCTION",
+   "content_hash": "6d525011682db178"
+  },
+  "ld.c|ld.c::X86_SET_B": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SET_B",
+   "start_line": 140,
+   "end_line": 140,
+   "type": "FUNCTION",
+   "content_hash": "58ed469dc1612002"
+  },
+  "ld.c|ld.c::X86_SET_BE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SET_BE",
+   "start_line": 141,
+   "end_line": 142,
+   "type": "FUNCTION",
+   "content_hash": "bc48309b77e66c9f"
+  },
+  "ld.c|ld.c::X86_SYS_WRITE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SYS_WRITE",
+   "start_line": 143,
+   "end_line": 143,
+   "type": "FUNCTION",
+   "content_hash": "14b491236590273b"
+  },
+  "ld.c|ld.c::X86_SYS_READ": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SYS_READ",
+   "start_line": 144,
+   "end_line": 144,
+   "type": "FUNCTION",
+   "content_hash": "58b52281e8dc3a79"
+  },
+  "ld.c|ld.c::X86_SYS_OPEN": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SYS_OPEN",
+   "start_line": 145,
+   "end_line": 145,
+   "type": "FUNCTION",
+   "content_hash": "9e3ef6101df399e2"
+  },
+  "ld.c|ld.c::X86_SYS_CLOSE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SYS_CLOSE",
+   "start_line": 146,
+   "end_line": 146,
+   "type": "FUNCTION",
+   "content_hash": "53ce032d0c6704b9"
+  },
+  "ld.c|ld.c::X86_SYS_LSEEK": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SYS_LSEEK",
+   "start_line": 147,
+   "end_line": 147,
+   "type": "FUNCTION",
+   "content_hash": "a59d6c2a91d246fd"
+  },
+  "ld.c|ld.c::X86_SYS_BRK": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SYS_BRK",
+   "start_line": 148,
+   "end_line": 148,
+   "type": "FUNCTION",
+   "content_hash": "82af4b4d2a488e7b"
+  },
+  "ld.c|ld.c::X86_SYS_EXIT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SYS_EXIT",
+   "start_line": 149,
+   "end_line": 149,
+   "type": "FUNCTION",
+   "content_hash": "677570fb2dd4c739"
+  },
+  "ld.c|ld.c::X86_SYS_EXIT_GROUP": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::X86_SYS_EXIT_GROUP",
+   "start_line": 150,
+   "end_line": 151,
+   "type": "FUNCTION",
+   "content_hash": "13590fb794b1b126"
+  },
+  "ld.c|ld.c::REG_RAX": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::REG_RAX",
+   "start_line": 152,
+   "end_line": 152,
+   "type": "FUNCTION",
+   "content_hash": "fc977c15c9a2eee6"
+  },
+  "ld.c|ld.c::REG_RCX": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::REG_RCX",
+   "start_line": 153,
+   "end_line": 153,
+   "type": "FUNCTION",
+   "content_hash": "fcc2ead7bfae3d35"
+  },
+  "ld.c|ld.c::REG_RDX": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::REG_RDX",
+   "start_line": 154,
+   "end_line": 154,
+   "type": "FUNCTION",
+   "content_hash": "a03395314460b540"
+  },
+  "ld.c|ld.c::REG_RBX": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::REG_RBX",
+   "start_line": 155,
+   "end_line": 155,
+   "type": "FUNCTION",
+   "content_hash": "38fdfee3dd4c8c38"
+  },
+  "ld.c|ld.c::REG_RSP": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::REG_RSP",
+   "start_line": 156,
+   "end_line": 156,
+   "type": "FUNCTION",
+   "content_hash": "007218b9dc45d508"
+  },
+  "ld.c|ld.c::REG_RBP": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::REG_RBP",
+   "start_line": 157,
+   "end_line": 157,
+   "type": "FUNCTION",
+   "content_hash": "7aebcfa799f09d03"
+  },
+  "ld.c|ld.c::REG_RSI": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::REG_RSI",
+   "start_line": 158,
+   "end_line": 158,
+   "type": "FUNCTION",
+   "content_hash": "9d690c7dc4eb8cd5"
+  },
+  "ld.c|ld.c::REG_RDI": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::REG_RDI",
+   "start_line": 159,
+   "end_line": 160,
+   "type": "FUNCTION",
+   "content_hash": "e4afcd66ba0b9e12"
+  },
+  "ld.c|ld.c::SEC_TEXT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::SEC_TEXT",
+   "start_line": 161,
+   "end_line": 161,
+   "type": "FUNCTION",
+   "content_hash": "73c870000d15893b"
+  },
+  "ld.c|ld.c::SEC_BSS": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::SEC_BSS",
+   "start_line": 162,
+   "end_line": 162,
+   "type": "FUNCTION",
+   "content_hash": "e830fdb63c080672"
+  },
+  "ld.c|ld.c::SEC_DATA": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::SEC_DATA",
+   "start_line": 163,
+   "end_line": 163,
+   "type": "FUNCTION",
+   "content_hash": "826da57aa23c60f4"
+  },
+  "ld.c|ld.c::SEC_RODATA": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::SEC_RODATA",
+   "start_line": 164,
+   "end_line": 165,
+   "type": "FUNCTION",
+   "content_hash": "dc4a91d6fa84175d"
+  },
+  "ld.c|ld.c::SYM_FUNC": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::SYM_FUNC",
+   "start_line": 166,
+   "end_line": 166,
+   "type": "FUNCTION",
+   "content_hash": "ae7db8876c9c2927"
+  },
+  "ld.c|ld.c::SYM_LABEL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::SYM_LABEL",
+   "start_line": 167,
+   "end_line": 167,
+   "type": "FUNCTION",
+   "content_hash": "cd068dd81ff8604a"
+  },
+  "ld.c|ld.c::SYM_GLOBAL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::SYM_GLOBAL",
+   "start_line": 168,
+   "end_line": 168,
+   "type": "FUNCTION",
+   "content_hash": "b8d5ba41d617d128"
+  },
+  "ld.c|ld.c::SYM_BLOB": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::SYM_BLOB",
+   "start_line": 169,
+   "end_line": 170,
+   "type": "FUNCTION",
+   "content_hash": "5af3b14e05e9beff"
+  },
+  "ld.c|ld.c::K_REG": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::K_REG",
+   "start_line": 171,
+   "end_line": 171,
+   "type": "FUNCTION",
+   "content_hash": "01011f7dbcb4486a"
+  },
+  "ld.c|ld.c::K_IMM": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::K_IMM",
+   "start_line": 172,
+   "end_line": 172,
+   "type": "FUNCTION",
+   "content_hash": "6fcccf99ad502b93"
+  },
+  "ld.c|ld.c::K_MEM": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::K_MEM",
+   "start_line": 173,
+   "end_line": 173,
+   "type": "FUNCTION",
+   "content_hash": "b270c5511be6d3c9"
+  },
+  "ld.c|ld.c::K_SYM": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::K_SYM",
+   "start_line": 174,
+   "end_line": 174,
+   "type": "FUNCTION",
+   "content_hash": "dcee4a03778bb7ab"
+  },
+  "ld.c|ld.c::K_SYM_IMM": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::K_SYM_IMM",
+   "start_line": 175,
+   "end_line": 175,
+   "type": "FUNCTION",
+   "content_hash": "afdc57be52789830"
+  },
+  "ld.c|ld.c::K_IND": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::K_IND",
+   "start_line": 176,
+   "end_line": 177,
+   "type": "FUNCTION",
+   "content_hash": "66b50ab5e2aacf30"
+  },
+  "ld.c|ld.c::OP_NOP": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_NOP",
+   "start_line": 178,
+   "end_line": 178,
+   "type": "FUNCTION",
+   "content_hash": "097156631dd3cee5"
+  },
+  "ld.c|ld.c::OP_PUSH_IMM64": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_PUSH_IMM64",
+   "start_line": 179,
+   "end_line": 179,
+   "type": "FUNCTION",
+   "content_hash": "207a3eafe88498f2"
+  },
+  "ld.c|ld.c::OP_PUSH_IMM32": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_PUSH_IMM32",
+   "start_line": 180,
+   "end_line": 180,
+   "type": "FUNCTION",
+   "content_hash": "02afbf3acda5c559"
+  },
+  "ld.c|ld.c::OP_PUSH_IMM8": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_PUSH_IMM8",
+   "start_line": 181,
+   "end_line": 181,
+   "type": "FUNCTION",
+   "content_hash": "2a2b0422e20b8b1a"
+  },
+  "ld.c|ld.c::OP_PUSH_ZERO": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_PUSH_ZERO",
+   "start_line": 182,
+   "end_line": 182,
+   "type": "FUNCTION",
+   "content_hash": "b8aa1de8d6906555"
+  },
+  "ld.c|ld.c::OP_PUSH_ONE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_PUSH_ONE",
+   "start_line": 183,
+   "end_line": 183,
+   "type": "FUNCTION",
+   "content_hash": "8460dc9c8c00f211"
+  },
+  "ld.c|ld.c::OP_PUSH_LOCAL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_PUSH_LOCAL",
+   "start_line": 184,
+   "end_line": 184,
+   "type": "FUNCTION",
+   "content_hash": "953d7d7e17a703c5"
+  },
+  "ld.c|ld.c::OP_STORE_LOCAL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_STORE_LOCAL",
+   "start_line": 185,
+   "end_line": 185,
+   "type": "FUNCTION",
+   "content_hash": "6622491f1d465405"
+  },
+  "ld.c|ld.c::OP_PUSH_GLOBAL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_PUSH_GLOBAL",
+   "start_line": 186,
+   "end_line": 186,
+   "type": "FUNCTION",
+   "content_hash": "692d280c23f57a97"
+  },
+  "ld.c|ld.c::OP_STORE_GLOBAL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_STORE_GLOBAL",
+   "start_line": 187,
+   "end_line": 187,
+   "type": "FUNCTION",
+   "content_hash": "c4e5e5e522a00767"
+  },
+  "ld.c|ld.c::OP_ADD": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_ADD",
+   "start_line": 188,
+   "end_line": 188,
+   "type": "FUNCTION",
+   "content_hash": "47ce250d117dc310"
+  },
+  "ld.c|ld.c::OP_SUB": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_SUB",
+   "start_line": 189,
+   "end_line": 189,
+   "type": "FUNCTION",
+   "content_hash": "2139f821196306cf"
+  },
+  "ld.c|ld.c::OP_MUL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_MUL",
+   "start_line": 190,
+   "end_line": 190,
+   "type": "FUNCTION",
+   "content_hash": "e46c9b49ee431366"
+  },
+  "ld.c|ld.c::OP_DIV": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_DIV",
+   "start_line": 191,
+   "end_line": 191,
+   "type": "FUNCTION",
+   "content_hash": "ecbae3fcd59d7a45"
+  },
+  "ld.c|ld.c::OP_MOD": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_MOD",
+   "start_line": 192,
+   "end_line": 192,
+   "type": "FUNCTION",
+   "content_hash": "3bf80bf0506bf09a"
+  },
+  "ld.c|ld.c::OP_NEG": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_NEG",
+   "start_line": 193,
+   "end_line": 193,
+   "type": "FUNCTION",
+   "content_hash": "30acf6dd6e95580d"
+  },
+  "ld.c|ld.c::OP_UDIV": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_UDIV",
+   "start_line": 194,
+   "end_line": 194,
+   "type": "FUNCTION",
+   "content_hash": "8412a3be54611aa9"
+  },
+  "ld.c|ld.c::OP_UMOD": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_UMOD",
+   "start_line": 195,
+   "end_line": 195,
+   "type": "FUNCTION",
+   "content_hash": "51670c94ee672781"
+  },
+  "ld.c|ld.c::OP_AND": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_AND",
+   "start_line": 196,
+   "end_line": 196,
+   "type": "FUNCTION",
+   "content_hash": "f5bf641b73e14834"
+  },
+  "ld.c|ld.c::OP_OR": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_OR",
+   "start_line": 197,
+   "end_line": 197,
+   "type": "FUNCTION",
+   "content_hash": "e9a03b704c5ca11d"
+  },
+  "ld.c|ld.c::OP_XOR": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_XOR",
+   "start_line": 198,
+   "end_line": 198,
+   "type": "FUNCTION",
+   "content_hash": "b20883eee95bb7a2"
+  },
+  "ld.c|ld.c::OP_NOT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_NOT",
+   "start_line": 199,
+   "end_line": 199,
+   "type": "FUNCTION",
+   "content_hash": "4e7f0b74a592071b"
+  },
+  "ld.c|ld.c::OP_SHL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_SHL",
+   "start_line": 200,
+   "end_line": 200,
+   "type": "FUNCTION",
+   "content_hash": "ff0d4cc94998a978"
+  },
+  "ld.c|ld.c::OP_SHR": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_SHR",
+   "start_line": 201,
+   "end_line": 201,
+   "type": "FUNCTION",
+   "content_hash": "608aea35ed16e259"
+  },
+  "ld.c|ld.c::OP_USHR": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_USHR",
+   "start_line": 202,
+   "end_line": 202,
+   "type": "FUNCTION",
+   "content_hash": "01629036f41dada5"
+  },
+  "ld.c|ld.c::OP_CMP_EQ": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_CMP_EQ",
+   "start_line": 203,
+   "end_line": 203,
+   "type": "FUNCTION",
+   "content_hash": "2f4b3799d82a09c6"
+  },
+  "ld.c|ld.c::OP_CMP_NE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_CMP_NE",
+   "start_line": 204,
+   "end_line": 204,
+   "type": "FUNCTION",
+   "content_hash": "12d31feb8ec56adb"
+  },
+  "ld.c|ld.c::OP_CMP_LT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_CMP_LT",
+   "start_line": 205,
+   "end_line": 205,
+   "type": "FUNCTION",
+   "content_hash": "74ef2a1dc5802aac"
+  },
+  "ld.c|ld.c::OP_CMP_LE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_CMP_LE",
+   "start_line": 206,
+   "end_line": 206,
+   "type": "FUNCTION",
+   "content_hash": "7761d3c7d6abaed5"
+  },
+  "ld.c|ld.c::OP_CMP_GT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_CMP_GT",
+   "start_line": 207,
+   "end_line": 207,
+   "type": "FUNCTION",
+   "content_hash": "663c0e4da22616ec"
+  },
+  "ld.c|ld.c::OP_CMP_GE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_CMP_GE",
+   "start_line": 208,
+   "end_line": 208,
+   "type": "FUNCTION",
+   "content_hash": "9903583920112c22"
+  },
+  "ld.c|ld.c::OP_LNOT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_LNOT",
+   "start_line": 209,
+   "end_line": 209,
+   "type": "FUNCTION",
+   "content_hash": "0c0f14834ce1717c"
+  },
+  "ld.c|ld.c::OP_CMP_ULT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_CMP_ULT",
+   "start_line": 210,
+   "end_line": 210,
+   "type": "FUNCTION",
+   "content_hash": "7e2f306af56eb2d1"
+  },
+  "ld.c|ld.c::OP_CMP_ULE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_CMP_ULE",
+   "start_line": 211,
+   "end_line": 211,
+   "type": "FUNCTION",
+   "content_hash": "88a0e3ec78167dd9"
+  },
+  "ld.c|ld.c::OP_CMP_UGT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_CMP_UGT",
+   "start_line": 212,
+   "end_line": 212,
+   "type": "FUNCTION",
+   "content_hash": "6277f56a49279a7e"
+  },
+  "ld.c|ld.c::OP_CMP_UGE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_CMP_UGE",
+   "start_line": 213,
+   "end_line": 213,
+   "type": "FUNCTION",
+   "content_hash": "8bb5751c300451b8"
+  },
+  "ld.c|ld.c::OP_JMP": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_JMP",
+   "start_line": 214,
+   "end_line": 214,
+   "type": "FUNCTION",
+   "content_hash": "1e045ad316dd0df4"
+  },
+  "ld.c|ld.c::OP_JZ": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_JZ",
+   "start_line": 215,
+   "end_line": 215,
+   "type": "FUNCTION",
+   "content_hash": "316a704470da0dfe"
+  },
+  "ld.c|ld.c::OP_JNZ": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_JNZ",
+   "start_line": 216,
+   "end_line": 216,
+   "type": "FUNCTION",
+   "content_hash": "e9289abc900c3472"
+  },
+  "ld.c|ld.c::OP_CALL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_CALL",
+   "start_line": 217,
+   "end_line": 217,
+   "type": "FUNCTION",
+   "content_hash": "df6d32b3433fa83c"
+  },
+  "ld.c|ld.c::OP_RET": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_RET",
+   "start_line": 218,
+   "end_line": 218,
+   "type": "FUNCTION",
+   "content_hash": "e78169b89651a984"
+  },
+  "ld.c|ld.c::OP_CALL_NATIVE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_CALL_NATIVE",
+   "start_line": 219,
+   "end_line": 219,
+   "type": "FUNCTION",
+   "content_hash": "7fc6238a27af2ae3"
+  },
+  "ld.c|ld.c::OP_CALL_INDIRECT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_CALL_INDIRECT",
+   "start_line": 220,
+   "end_line": 220,
+   "type": "FUNCTION",
+   "content_hash": "5e306b78ec9ca5a2"
+  },
+  "ld.c|ld.c::OP_LOAD8": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_LOAD8",
+   "start_line": 221,
+   "end_line": 221,
+   "type": "FUNCTION",
+   "content_hash": "5b6b60b3f976e15a"
+  },
+  "ld.c|ld.c::OP_LOAD16": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_LOAD16",
+   "start_line": 222,
+   "end_line": 222,
+   "type": "FUNCTION",
+   "content_hash": "30335aada104c32f"
+  },
+  "ld.c|ld.c::OP_LOAD32": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_LOAD32",
+   "start_line": 223,
+   "end_line": 223,
+   "type": "FUNCTION",
+   "content_hash": "1aee319f20fa1f5a"
+  },
+  "ld.c|ld.c::OP_LOAD64": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_LOAD64",
+   "start_line": 224,
+   "end_line": 224,
+   "type": "FUNCTION",
+   "content_hash": "aa7728206b72e71e"
+  },
+  "ld.c|ld.c::OP_STORE8": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_STORE8",
+   "start_line": 225,
+   "end_line": 225,
+   "type": "FUNCTION",
+   "content_hash": "a7772a341b336c48"
+  },
+  "ld.c|ld.c::OP_STORE16": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_STORE16",
+   "start_line": 226,
+   "end_line": 226,
+   "type": "FUNCTION",
+   "content_hash": "fdc4fabcff5faf01"
+  },
+  "ld.c|ld.c::OP_STORE32": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_STORE32",
+   "start_line": 227,
+   "end_line": 227,
+   "type": "FUNCTION",
+   "content_hash": "3f202a4efa582dec"
+  },
+  "ld.c|ld.c::OP_STORE64": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_STORE64",
+   "start_line": 228,
+   "end_line": 228,
+   "type": "FUNCTION",
+   "content_hash": "b9cc282f1b26e108"
+  },
+  "ld.c|ld.c::OP_LEA_LOCAL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_LEA_LOCAL",
+   "start_line": 229,
+   "end_line": 229,
+   "type": "FUNCTION",
+   "content_hash": "223e0e0720ae5921"
+  },
+  "ld.c|ld.c::OP_LEA_GLOBAL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_LEA_GLOBAL",
+   "start_line": 230,
+   "end_line": 230,
+   "type": "FUNCTION",
+   "content_hash": "c28141000f1c4583"
+  },
+  "ld.c|ld.c::OP_ALLOC": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_ALLOC",
+   "start_line": 231,
+   "end_line": 231,
+   "type": "FUNCTION",
+   "content_hash": "cb79b89b75593b61"
+  },
+  "ld.c|ld.c::OP_FREE": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_FREE",
+   "start_line": 232,
+   "end_line": 232,
+   "type": "FUNCTION",
+   "content_hash": "498be5256ea4b602"
+  },
+  "ld.c|ld.c::OP_LEA_DATA": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_LEA_DATA",
+   "start_line": 233,
+   "end_line": 233,
+   "type": "FUNCTION",
+   "content_hash": "f880a52240626bbc"
+  },
+  "ld.c|ld.c::OP_SYSCALL": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_SYSCALL",
+   "start_line": 234,
+   "end_line": 234,
+   "type": "FUNCTION",
+   "content_hash": "b09841bb5b948843"
+  },
+  "ld.c|ld.c::OP_HALT": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::OP_HALT",
+   "start_line": 235,
+   "end_line": 240,
+   "type": "FUNCTION",
+   "content_hash": "c0f4c3c5d1a0c092"
+  },
+  "ld.c|ld.c::Sym": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::Sym",
+   "start_line": 241,
+   "end_line": 255,
+   "type": "CLASS",
+   "content_hash": "5842c3fa2b0261a8"
+  },
+  "ld.c|ld.c::Op": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::Op",
+   "start_line": 256,
+   "end_line": 270,
+   "type": "CLASS",
+   "content_hash": "d79b605f1101e3d8"
+  },
+  "ld.c|ld.c::Fixup": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::Fixup",
+   "start_line": 271,
+   "end_line": 276,
+   "type": "CLASS",
+   "content_hash": "cc26a59677c5da1d"
+  },
+  "ld.c|ld.c::LineSrc": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::LineSrc",
+   "start_line": 277,
+   "end_line": 284,
+   "type": "CLASS",
+   "content_hash": "07700f4e4a156472"
+  },
+  "ld.c|ld.c::Func": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::Func",
+   "start_line": 285,
+   "end_line": 291,
+   "type": "CLASS",
+   "content_hash": "95c774c49fcb71f1"
+  },
+  "ld.c|ld.c::GVar": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::GVar",
+   "start_line": 292,
+   "end_line": 298,
+   "type": "CLASS",
+   "content_hash": "5312445cc9a566a0"
+  },
+  "ld.c|ld.c::Blob": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::Blob",
+   "start_line": 299,
+   "end_line": 305,
+   "type": "CLASS",
+   "content_hash": "288f1e8f369fb125"
+  },
+  "ld.c|ld.c::Nat": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::Nat",
+   "start_line": 306,
+   "end_line": 309,
+   "type": "CLASS",
+   "content_hash": "bc3fa68f5724d6f7"
+  },
+  "ld.c|ld.c::Label": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::Label",
+   "start_line": 310,
+   "end_line": 390,
+   "type": "CLASS",
+   "content_hash": "87176f37fee9186f"
+  },
+  "ld.c|ld.c::LdImport": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::LdImport",
+   "start_line": 391,
+   "end_line": 415,
+   "type": "CLASS",
+   "content_hash": "4682ccfef157c39d"
+  },
+  "ld.c|ld.c::ld_soname_of": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ld_soname_of",
+   "start_line": 416,
+   "end_line": 432,
+   "type": "FUNCTION",
+   "content_hash": "6d1cff98b5d90369"
+  },
+  "ld.c|ld.c::ld_release": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ld_release",
+   "start_line": 433,
+   "end_line": 477,
+   "type": "FUNCTION",
+   "content_hash": "34b5f31e495d9a22"
+  },
+  "ld.c|ld.c::die": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::die",
+   "start_line": 478,
+   "end_line": 487,
+   "type": "FUNCTION",
+   "content_hash": "3ffbeae716201d29"
+  },
+  "ld.c|ld.c::breserve": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::breserve",
+   "start_line": 488,
+   "end_line": 506,
+   "type": "FUNCTION",
+   "content_hash": "6f5442b7f8845c64"
+  },
+  "ld.c|ld.c::fixup_reserve": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::fixup_reserve",
+   "start_line": 507,
+   "end_line": 522,
+   "type": "FUNCTION",
+   "content_hash": "465caf528da261c5"
+  },
+  "ld.c|ld.c::creserve": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::creserve",
+   "start_line": 523,
+   "end_line": 538,
+   "type": "FUNCTION",
+   "content_hash": "a983a709337c135f"
+  },
+  "ld.c|ld.c::parse_num": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::parse_num",
+   "start_line": 539,
+   "end_line": 570,
+   "type": "FUNCTION",
+   "content_hash": "ef147379409d6488"
+  },
+  "ld.c|ld.c::trim": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::trim",
+   "start_line": 571,
+   "end_line": 580,
+   "type": "FUNCTION",
+   "content_hash": "fbd2c8d287e5124d"
+  },
+  "ld.c|ld.c::strip_comment": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::strip_comment",
+   "start_line": 581,
+   "end_line": 595,
+   "type": "FUNCTION",
+   "content_hash": "d8135b7b965164d9"
+  },
+  "ld.c|ld.c::name_copy": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::name_copy",
+   "start_line": 596,
+   "end_line": 602,
+   "type": "FUNCTION",
+   "content_hash": "b5208245975817b6"
+  },
+  "ld.c|ld.c::split_word": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::split_word",
+   "start_line": 603,
+   "end_line": 615,
+   "type": "FUNCTION",
+   "content_hash": "8cfeb2ac91326b67"
+  },
+  "ld.c|ld.c::hexval": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::hexval",
+   "start_line": 616,
+   "end_line": 622,
+   "type": "FUNCTION",
+   "content_hash": "6fe6b6e1751fb47a"
+  },
+  "ld.c|ld.c::find_sym": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::find_sym",
+   "start_line": 623,
+   "end_line": 628,
+   "type": "FUNCTION",
+   "content_hash": "501f18cc164700b7"
+  },
+  "ld.c|ld.c::add_sym": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::add_sym",
+   "start_line": 629,
+   "end_line": 664,
+   "type": "FUNCTION",
+   "content_hash": "5de0982fd619f17f"
+  },
+  "ld.c|ld.c::parse_reg": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::parse_reg",
+   "start_line": 665,
+   "end_line": 676,
+   "type": "FUNCTION",
+   "content_hash": "c9b7c34416da3203"
+  },
+  "ld.c|ld.c::parse_mem": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::parse_mem",
+   "start_line": 677,
+   "end_line": 729,
+   "type": "FUNCTION",
+   "content_hash": "2f483241c0c8c9d4"
+  },
+  "ld.c|ld.c::parse_operand": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::parse_operand",
+   "start_line": 730,
+   "end_line": 768,
+   "type": "FUNCTION",
+   "content_hash": "ff3ae5a3b21ee6c4"
+  },
+  "ld.c|ld.c::split_operands": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::split_operands",
+   "start_line": 769,
+   "end_line": 793,
+   "type": "FUNCTION",
+   "content_hash": "51b7f83a0b636db2"
+  },
+  "ld.c|ld.c::ls_open_file": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ls_open_file",
+   "start_line": 794,
+   "end_line": 805,
+   "type": "FUNCTION",
+   "content_hash": "8f5c9c4f5484fae2"
+  },
+  "ld.c|ld.c::ls_open_mem": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ls_open_mem",
+   "start_line": 806,
+   "end_line": 813,
+   "type": "FUNCTION",
+   "content_hash": "fbd15c966858705f"
+  },
+  "ld.c|ld.c::ls_getline": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ls_getline",
+   "start_line": 814,
+   "end_line": 829,
+   "type": "FUNCTION",
+   "content_hash": "ba6d8a3195fcd3ee"
+  },
+  "ld.c|ld.c::ls_close": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ls_close",
+   "start_line": 830,
+   "end_line": 837,
+   "type": "FUNCTION",
+   "content_hash": "ecb595c5ec622d54"
+  },
+  "ld.c|ld.c::data_put": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::data_put",
+   "start_line": 838,
+   "end_line": 842,
+   "type": "FUNCTION",
+   "content_hash": "27c04d6e94ee00b2"
+  },
+  "ld.c|ld.c::data_fill": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::data_fill",
+   "start_line": 843,
+   "end_line": 849,
+   "type": "FUNCTION",
+   "content_hash": "6b4a2e29639dc814"
+  },
+  "ld.c|ld.c::data_align": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::data_align",
+   "start_line": 850,
+   "end_line": 853,
+   "type": "FUNCTION",
+   "content_hash": "16ff0d7caca9a50f"
+  },
+  "ld.c|ld.c::blob_put": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::blob_put",
+   "start_line": 854,
+   "end_line": 858,
+   "type": "FUNCTION",
+   "content_hash": "01f36e52de580e8e"
+  },
+  "ld.c|ld.c::blob_append_str": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::blob_append_str",
+   "start_line": 859,
+   "end_line": 897,
+   "type": "FUNCTION",
+   "content_hash": "4d4bf6df84d898a4"
+  },
+  "ld.c|ld.c::set_section": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::set_section",
+   "start_line": 898,
+   "end_line": 920,
+   "type": "FUNCTION",
+   "content_hash": "78b9336a5544a32e"
+  },
+  "ld.c|ld.c::scan_directive": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::scan_directive",
+   "start_line": 921,
+   "end_line": 1016,
+   "type": "FUNCTION",
+   "content_hash": "175c776e082379dc"
+  },
+  "ld.c|ld.c::scan_src": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::scan_src",
+   "start_line": 1017,
+   "end_line": 1090,
+   "type": "FUNCTION",
+   "content_hash": "18c2414fef80a135"
+  },
+  "ld.c|ld.c::cvm_find_func": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_find_func",
+   "start_line": 1091,
+   "end_line": 1096,
+   "type": "FUNCTION",
+   "content_hash": "d1568bfc252b59ba"
+  },
+  "ld.c|ld.c::cvm_find_global": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_find_global",
+   "start_line": 1097,
+   "end_line": 1102,
+   "type": "FUNCTION",
+   "content_hash": "c029722e85582ccd"
+  },
+  "ld.c|ld.c::cvm_find_blob": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_find_blob",
+   "start_line": 1103,
+   "end_line": 1108,
+   "type": "FUNCTION",
+   "content_hash": "af51cfed6a27df49"
+  },
+  "ld.c|ld.c::cvm_find_nat": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_find_nat",
+   "start_line": 1109,
+   "end_line": 1114,
+   "type": "FUNCTION",
+   "content_hash": "dd8e906afc1bf37d"
+  },
+  "ld.c|ld.c::cvm_add_nat": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_add_nat",
+   "start_line": 1115,
+   "end_line": 1123,
+   "type": "FUNCTION",
+   "content_hash": "50c3530ab728adf6"
+  },
+  "ld.c|ld.c::e1": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::e1",
+   "start_line": 1124,
+   "end_line": 1128,
+   "type": "FUNCTION",
+   "content_hash": "a44a48930175f068"
+  },
+  "ld.c|ld.c::e4": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::e4",
+   "start_line": 1129,
+   "end_line": 1136,
+   "type": "FUNCTION",
+   "content_hash": "69b30c5d299edf86"
+  },
+  "ld.c|ld.c::e8": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::e8",
+   "start_line": 1137,
+   "end_line": 1144,
+   "type": "FUNCTION",
+   "content_hash": "781f4ac67988af9b"
+  },
+  "ld.c|ld.c::eimm": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::eimm",
+   "start_line": 1145,
+   "end_line": 1157,
+   "type": "FUNCTION",
+   "content_hash": "ebb2939fffafd520"
+  },
+  "ld.c|ld.c::epush_local": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::epush_local",
+   "start_line": 1158,
+   "end_line": 1158,
+   "type": "FUNCTION",
+   "content_hash": "354bb1daa18ea0c7"
+  },
+  "ld.c|ld.c::estore_local": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::estore_local",
+   "start_line": 1159,
+   "end_line": 1159,
+   "type": "FUNCTION",
+   "content_hash": "bb7a804120e74e0c"
+  },
+  "ld.c|ld.c::epush_global": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::epush_global",
+   "start_line": 1160,
+   "end_line": 1160,
+   "type": "FUNCTION",
+   "content_hash": "5d15ca685d26d7bd"
+  },
+  "ld.c|ld.c::estore_global": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::estore_global",
+   "start_line": 1161,
+   "end_line": 1162,
+   "type": "FUNCTION",
+   "content_hash": "fd1f9e95b292fa24"
+  },
+  "ld.c|ld.c::cvm_slot": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_slot",
+   "start_line": 1163,
+   "end_line": 1169,
+   "type": "FUNCTION",
+   "content_hash": "89565f40a7937e67"
+  },
+  "ld.c|ld.c::epush_reg": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::epush_reg",
+   "start_line": 1170,
+   "end_line": 1175,
+   "type": "FUNCTION",
+   "content_hash": "111c00a256806eeb"
+  },
+  "ld.c|ld.c::estore_reg": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::estore_reg",
+   "start_line": 1176,
+   "end_line": 1181,
+   "type": "FUNCTION",
+   "content_hash": "541f6c483cb9e349"
+  },
+  "ld.c|ld.c::pool_add": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::pool_add",
+   "start_line": 1182,
+   "end_line": 1190,
+   "type": "FUNCTION",
+   "content_hash": "7de6373cf9e2ddfe"
+  },
+  "ld.c|ld.c::cvm_fixup_add": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_fixup_add",
+   "start_line": 1191,
+   "end_line": 1197,
+   "type": "FUNCTION",
+   "content_hash": "d26a57244f42d2b1"
+  },
+  "ld.c|ld.c::ejmp": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ejmp",
+   "start_line": 1198,
+   "end_line": 1198,
+   "type": "FUNCTION",
+   "content_hash": "7ff6ba18577ac62d"
+  },
+  "ld.c|ld.c::ejz": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ejz",
+   "start_line": 1199,
+   "end_line": 1199,
+   "type": "FUNCTION",
+   "content_hash": "25c5a646e62c43f6"
+  },
+  "ld.c|ld.c::ejnz": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ejnz",
+   "start_line": 1200,
+   "end_line": 1201,
+   "type": "FUNCTION",
+   "content_hash": "c3e70666a206a178"
+  },
+  "ld.c|ld.c::find_label": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::find_label",
+   "start_line": 1202,
+   "end_line": 1207,
+   "type": "FUNCTION",
+   "content_hash": "3c50a82ceb5ad366"
+  },
+  "ld.c|ld.c::add_label": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::add_label",
+   "start_line": 1208,
+   "end_line": 1215,
+   "type": "FUNCTION",
+   "content_hash": "26ac13736f256944"
+  },
+  "ld.c|ld.c::resolve_fixups": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::resolve_fixups",
+   "start_line": 1216,
+   "end_line": 1234,
+   "type": "FUNCTION",
+   "content_hash": "70164020e4f6d06b"
+  },
+  "ld.c|ld.c::push_mask32": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::push_mask32",
+   "start_line": 1235,
+   "end_line": 1235,
+   "type": "FUNCTION",
+   "content_hash": "fc4f1e7b80dc24a6"
+  },
+  "ld.c|ld.c::push_mask8": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::push_mask8",
+   "start_line": 1236,
+   "end_line": 1236,
+   "type": "FUNCTION",
+   "content_hash": "2e90e39d6bf14df4"
+  },
+  "ld.c|ld.c::push_mask16": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::push_mask16",
+   "start_line": 1237,
+   "end_line": 1238,
+   "type": "FUNCTION",
+   "content_hash": "5b5609a68934e6d2"
+  },
+  "ld.c|ld.c::elea_mem": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elea_mem",
+   "start_line": 1239,
+   "end_line": 1253,
+   "type": "FUNCTION",
+   "content_hash": "4bca69c07e3771f1"
+  },
+  "ld.c|ld.c::elea_operand": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elea_operand",
+   "start_line": 1254,
+   "end_line": 1288,
+   "type": "FUNCTION",
+   "content_hash": "087e76981cdeb829"
+  },
+  "ld.c|ld.c::epush_value": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::epush_value",
+   "start_line": 1289,
+   "end_line": 1314,
+   "type": "FUNCTION",
+   "content_hash": "647c607687cf3497"
+  },
+  "ld.c|ld.c::signext8": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::signext8",
+   "start_line": 1315,
+   "end_line": 1320,
+   "type": "FUNCTION",
+   "content_hash": "613d5adfc0d1feb5"
+  },
+  "ld.c|ld.c::signext32": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::signext32",
+   "start_line": 1321,
+   "end_line": 1326,
+   "type": "FUNCTION",
+   "content_hash": "7311f45bc7491be8"
+  },
+  "ld.c|ld.c::signext16": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::signext16",
+   "start_line": 1327,
+   "end_line": 1332,
+   "type": "FUNCTION",
+   "content_hash": "588a963d1e31e948"
+  },
+  "ld.c|ld.c::mov": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::mov",
+   "start_line": 1333,
+   "end_line": 1392,
+   "type": "FUNCTION",
+   "content_hash": "7d2b1e173775b87c"
+  },
+  "ld.c|ld.c::arith_mem": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::arith_mem",
+   "start_line": 1393,
+   "end_line": 1409,
+   "type": "FUNCTION",
+   "content_hash": "b3bd0c445257c7fa"
+  },
+  "ld.c|ld.c::arith_reg": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::arith_reg",
+   "start_line": 1410,
+   "end_line": 1437,
+   "type": "FUNCTION",
+   "content_hash": "9b3c86c468fde34b"
+  },
+  "ld.c|ld.c::cvm_push_cmpval": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_push_cmpval",
+   "start_line": 1438,
+   "end_line": 1443,
+   "type": "FUNCTION",
+   "content_hash": "3004e9f2832aa1ab"
+  },
+  "ld.c|ld.c::cvm_cmp": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_cmp",
+   "start_line": 1444,
+   "end_line": 1450,
+   "type": "FUNCTION",
+   "content_hash": "e80076d49d788175"
+  },
+  "ld.c|ld.c::cvm_translate": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_translate",
+   "start_line": 1451,
+   "end_line": 2043,
+   "type": "FUNCTION",
+   "content_hash": "2fd2432036d15e87"
+  },
+  "ld.c|ld.c::cvm_prepare_tables": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_prepare_tables",
+   "start_line": 2044,
+   "end_line": 2075,
+   "type": "FUNCTION",
+   "content_hash": "2da14d3e30825ff7"
+  },
+  "ld.c|ld.c::cvm_layout_data": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_layout_data",
+   "start_line": 2076,
+   "end_line": 2120,
+   "type": "FUNCTION",
+   "content_hash": "73dbc0211446bcc2"
+  },
+  "ld.c|ld.c::func_glue": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::func_glue",
+   "start_line": 2121,
+   "end_line": 2129,
+   "type": "FUNCTION",
+   "content_hash": "71177159c206838f"
+  },
+  "ld.c|ld.c::entry_glue": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::entry_glue",
+   "start_line": 2130,
+   "end_line": 2143,
+   "type": "FUNCTION",
+   "content_hash": "56a5169d0c9a757a"
+  },
+  "ld.c|ld.c::cvm_encode": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_encode",
+   "start_line": 2144,
+   "end_line": 2217,
+   "type": "FUNCTION",
+   "content_hash": "fe5f1f3d95d27207"
+  },
+  "ld.c|ld.c::w32": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::w32",
+   "start_line": 2218,
+   "end_line": 2224,
+   "type": "FUNCTION",
+   "content_hash": "bef9a48c999dea1d"
+  },
+  "ld.c|ld.c::w16": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::w16",
+   "start_line": 2225,
+   "end_line": 2229,
+   "type": "FUNCTION",
+   "content_hash": "2f17a46259aff3af"
+  },
+  "ld.c|ld.c::w64_at": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::w64_at",
+   "start_line": 2230,
+   "end_line": 2236,
+   "type": "FUNCTION",
+   "content_hash": "fe757de7480eb68c"
+  },
+  "ld.c|ld.c::cvm_write_module": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::cvm_write_module",
+   "start_line": 2237,
+   "end_line": 3099,
+   "type": "FUNCTION",
+   "content_hash": "752038750b209907"
+  },
+  "ld.c|ld.c::x86_align_up": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::x86_align_up",
+   "start_line": 3100,
+   "end_line": 3103,
+   "type": "FUNCTION",
+   "content_hash": "77f42e00d2a8ddac"
+  },
+  "ld.c|ld.c::x8": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::x8",
+   "start_line": 3104,
+   "end_line": 3108,
+   "type": "FUNCTION",
+   "content_hash": "60f1400b2993fbdd"
+  },
+  "ld.c|ld.c::x16": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::x16",
+   "start_line": 3109,
+   "end_line": 3114,
+   "type": "FUNCTION",
+   "content_hash": "d2cbeeb199455516"
+  },
+  "ld.c|ld.c::x32": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::x32",
+   "start_line": 3115,
+   "end_line": 3122,
+   "type": "FUNCTION",
+   "content_hash": "fc3b1ab7553cc8d9"
+  },
+  "ld.c|ld.c::x64": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::x64",
+   "start_line": 3123,
+   "end_line": 3130,
+   "type": "FUNCTION",
+   "content_hash": "52bc07a79b141d68"
+  },
+  "ld.c|ld.c::xfix32": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::xfix32",
+   "start_line": 3131,
+   "end_line": 3139,
+   "type": "FUNCTION",
+   "content_hash": "536d3952aeadcf36"
+  },
+  "ld.c|ld.c::fixup_trail": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::fixup_trail",
+   "start_line": 3140,
+   "end_line": 3144,
+   "type": "FUNCTION",
+   "content_hash": "3d05d843263a2c82"
+  },
+  "ld.c|ld.c::emit_rex": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::emit_rex",
+   "start_line": 3145,
+   "end_line": 3149,
+   "type": "FUNCTION",
+   "content_hash": "8524c6c4d64ac6b3"
+  },
+  "ld.c|ld.c::emit_modrm": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::emit_modrm",
+   "start_line": 3150,
+   "end_line": 3153,
+   "type": "FUNCTION",
+   "content_hash": "67187d403805193a"
+  },
+  "ld.c|ld.c::emit_sib": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::emit_sib",
+   "start_line": 3154,
+   "end_line": 3157,
+   "type": "FUNCTION",
+   "content_hash": "d10e3c7e79b75284"
+  },
+  "ld.c|ld.c::x86_ea_rex": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::x86_ea_rex",
+   "start_line": 3158,
+   "end_line": 3165,
+   "type": "FUNCTION",
+   "content_hash": "1a1a32e62c441058"
+  },
+  "ld.c|ld.c::x86_ea_modrm": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::x86_ea_modrm",
+   "start_line": 3166,
+   "end_line": 3218,
+   "type": "FUNCTION",
+   "content_hash": "2559c7452569141e"
+  },
+  "ld.c|ld.c::x86_rex_reg": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::x86_rex_reg",
+   "start_line": 3219,
+   "end_line": 3222,
+   "type": "FUNCTION",
+   "content_hash": "1790b47a74cc9ed1"
+  },
+  "ld.c|ld.c::x86_rex8": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::x86_rex8",
+   "start_line": 3223,
+   "end_line": 3229,
+   "type": "FUNCTION",
+   "content_hash": "31ad1a67cea458aa"
+  },
+  "ld.c|ld.c::ea_mov": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ea_mov",
+   "start_line": 3230,
+   "end_line": 3235,
+   "type": "FUNCTION",
+   "content_hash": "87fb9782875c50ab"
+  },
+  "ld.c|ld.c::ea_mov_to": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ea_mov_to",
+   "start_line": 3236,
+   "end_line": 3241,
+   "type": "FUNCTION",
+   "content_hash": "4675277d3d0d0ed8"
+  },
+  "ld.c|ld.c::ea_alu": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ea_alu",
+   "start_line": 3242,
+   "end_line": 3247,
+   "type": "FUNCTION",
+   "content_hash": "2aeafaf84c0d33fe"
+  },
+  "ld.c|ld.c::ea_cmp": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ea_cmp",
+   "start_line": 3248,
+   "end_line": 3253,
+   "type": "FUNCTION",
+   "content_hash": "134e1d1ae27ba116"
+  },
+  "ld.c|ld.c::ea_grp": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ea_grp",
+   "start_line": 3254,
+   "end_line": 3259,
+   "type": "FUNCTION",
+   "content_hash": "c35470d42700e69c"
+  },
+  "ld.c|ld.c::elf_mov": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_mov",
+   "start_line": 3260,
+   "end_line": 3320,
+   "type": "FUNCTION",
+   "content_hash": "990718fa3d4b0040"
+  },
+  "ld.c|ld.c::elf_movzx": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_movzx",
+   "start_line": 3321,
+   "end_line": 3337,
+   "type": "FUNCTION",
+   "content_hash": "0f97ba96b8fd2712"
+  },
+  "ld.c|ld.c::elf_movw": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_movw",
+   "start_line": 3338,
+   "end_line": 3372,
+   "type": "FUNCTION",
+   "content_hash": "f10fc60faae9aca1"
+  },
+  "ld.c|ld.c::elf_lea": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_lea",
+   "start_line": 3373,
+   "end_line": 3379,
+   "type": "FUNCTION",
+   "content_hash": "273257cee906059d"
+  },
+  "ld.c|ld.c::elf_push": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_push",
+   "start_line": 3380,
+   "end_line": 3403,
+   "type": "FUNCTION",
+   "content_hash": "709a0a1887e7bdee"
+  },
+  "ld.c|ld.c::elf_pop": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_pop",
+   "start_line": 3404,
+   "end_line": 3416,
+   "type": "FUNCTION",
+   "content_hash": "0e497086a8dcd385"
+  },
+  "ld.c|ld.c::elf_alu": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_alu",
+   "start_line": 3417,
+   "end_line": 3479,
+   "type": "FUNCTION",
+   "content_hash": "2913975fb6aa461f"
+  },
+  "ld.c|ld.c::elf_imul": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_imul",
+   "start_line": 3480,
+   "end_line": 3508,
+   "type": "FUNCTION",
+   "content_hash": "b7ac7537dcba32fd"
+  },
+  "ld.c|ld.c::elf_imull": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_imull",
+   "start_line": 3509,
+   "end_line": 3537,
+   "type": "FUNCTION",
+   "content_hash": "a55cb599b6c4b5c6"
+  },
+  "ld.c|ld.c::elf_grp3": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_grp3",
+   "start_line": 3538,
+   "end_line": 3551,
+   "type": "FUNCTION",
+   "content_hash": "c013d7d07c3bc643"
+  },
+  "ld.c|ld.c::elf_grp3_32": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_grp3_32",
+   "start_line": 3552,
+   "end_line": 3565,
+   "type": "FUNCTION",
+   "content_hash": "4c51c0aabb54cad8"
+  },
+  "ld.c|ld.c::elf_xadd": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_xadd",
+   "start_line": 3566,
+   "end_line": 3582,
+   "type": "FUNCTION",
+   "content_hash": "3c03d92dbc6d16e3"
+  },
+  "ld.c|ld.c::elf_xchg": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_xchg",
+   "start_line": 3583,
+   "end_line": 3599,
+   "type": "FUNCTION",
+   "content_hash": "59be32f717721f66"
+  },
+  "ld.c|ld.c::elf_grp_ff": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_grp_ff",
+   "start_line": 3600,
+   "end_line": 3613,
+   "type": "FUNCTION",
+   "content_hash": "ba7ac56954ff2382"
+  },
+  "ld.c|ld.c::elf_shift_cl": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_shift_cl",
+   "start_line": 3614,
+   "end_line": 3621,
+   "type": "FUNCTION",
+   "content_hash": "eb5fede1238ede9c"
+  },
+  "ld.c|ld.c::elf_shift_cl32": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_shift_cl32",
+   "start_line": 3622,
+   "end_line": 3629,
+   "type": "FUNCTION",
+   "content_hash": "01886e3259f7dea2"
+  },
+  "ld.c|ld.c::elf_testl": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_testl",
+   "start_line": 3630,
+   "end_line": 3646,
+   "type": "FUNCTION",
+   "content_hash": "bc83dfe3ea5c50b8"
+  },
+  "ld.c|ld.c::elf_test": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_test",
+   "start_line": 3647,
+   "end_line": 3663,
+   "type": "FUNCTION",
+   "content_hash": "edfbf42ad779b535"
+  },
+  "ld.c|ld.c::elf_cmp": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_cmp",
+   "start_line": 3664,
+   "end_line": 3731,
+   "type": "FUNCTION",
+   "content_hash": "31f43ad3a44e534a"
+  },
+  "ld.c|ld.c::elf_set": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_set",
+   "start_line": 3732,
+   "end_line": 3739,
+   "type": "FUNCTION",
+   "content_hash": "4f0d6230f6e2a841"
+  },
+  "ld.c|ld.c::elf_branch": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_branch",
+   "start_line": 3740,
+   "end_line": 3750,
+   "type": "FUNCTION",
+   "content_hash": "97a26429f47bb518"
+  },
+  "ld.c|ld.c::elf_call_ind": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_call_ind",
+   "start_line": 3751,
+   "end_line": 3757,
+   "type": "FUNCTION",
+   "content_hash": "e6fbb985d13e2c3f"
+  },
+  "ld.c|ld.c::elf_ins": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_ins",
+   "start_line": 3758,
+   "end_line": 3854,
+   "type": "FUNCTION",
+   "content_hash": "0895b1500f3086d7"
+  },
+  "ld.c|ld.c::elf_sym_addr": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_sym_addr",
+   "start_line": 3855,
+   "end_line": 3873,
+   "type": "FUNCTION",
+   "content_hash": "764d863a6f306fe5"
+  },
+  "ld.c|ld.c::elf_route_import": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_route_import",
+   "start_line": 3874,
+   "end_line": 3884,
+   "type": "FUNCTION",
+   "content_hash": "72a358ee39aa5395"
+  },
+  "ld.c|ld.c::name_is_called": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::name_is_called",
+   "start_line": 3885,
+   "end_line": 3906,
+   "type": "FUNCTION",
+   "content_hash": "c911d47309ca3a45"
+  },
+  "ld.c|ld.c::elf_prune": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_prune",
+   "start_line": 3907,
+   "end_line": 3934,
+   "type": "FUNCTION",
+   "content_hash": "f09de687b52c88b9"
+  },
+  "ld.c|ld.c::elf_resolve_fixups": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_resolve_fixups",
+   "start_line": 3935,
+   "end_line": 3987,
+   "type": "FUNCTION",
+   "content_hash": "3b7de0f136eb3854"
+  },
+  "ld.c|ld.c::elf_encode_src": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_encode_src",
+   "start_line": 3988,
+   "end_line": 4050,
+   "type": "FUNCTION",
+   "content_hash": "347aac793f7129f8"
+  },
+  "ld.c|ld.c::elf_dyn_prepare": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_dyn_prepare",
+   "start_line": 4051,
+   "end_line": 4109,
+   "type": "FUNCTION",
+   "content_hash": "4c5781cd4f43ba9f"
+  },
+  "ld.c|ld.c::elf_imp_prepare": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_imp_prepare",
+   "start_line": 4110,
+   "end_line": 4200,
+   "type": "FUNCTION",
+   "content_hash": "bdf032b846185eb0"
+  },
+  "ld.c|ld.c::elf_has_dyn": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_has_dyn",
+   "start_line": 4201,
+   "end_line": 4206,
+   "type": "FUNCTION",
+   "content_hash": "d3a5ce1d641b1624"
+  },
+  "ld.c|ld.c::elf_has_rela": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_has_rela",
+   "start_line": 4207,
+   "end_line": 4210,
+   "type": "FUNCTION",
+   "content_hash": "6ce9d95738a735d3"
+  },
+  "ld.c|ld.c::elf_layout": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_layout",
+   "start_line": 4211,
+   "end_line": 4254,
+   "type": "FUNCTION",
+   "content_hash": "808a04ef7b0a5ea3"
+  },
+  "ld.c|ld.c::elf_dyn_emit": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_dyn_emit",
+   "start_line": 4255,
+   "end_line": 4262,
+   "type": "FUNCTION",
+   "content_hash": "9c5f16d806bb032f"
+  },
+  "ld.c|ld.c::elf_layout_rela": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_layout_rela",
+   "start_line": 4263,
+   "end_line": 4300,
+   "type": "FUNCTION",
+   "content_hash": "8a45961382b456f5"
+  },
+  "ld.c|ld.c::elf_write_rela": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_write_rela",
+   "start_line": 4301,
+   "end_line": 4316,
+   "type": "FUNCTION",
+   "content_hash": "aa209c04a31ac4b4"
+  },
+  "ld.c|ld.c::elf_write_plt": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_write_plt",
+   "start_line": 4317,
+   "end_line": 4334,
+   "type": "FUNCTION",
+   "content_hash": "b34683e707bad195"
+  },
+  "ld.c|ld.c::elf_write_dynamic": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_write_dynamic",
+   "start_line": 4335,
+   "end_line": 4354,
+   "type": "FUNCTION",
+   "content_hash": "c1d2abcef80a2715"
+  },
+  "ld.c|ld.c::elf_write_dynsym": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_write_dynsym",
+   "start_line": 4355,
+   "end_line": 4383,
+   "type": "FUNCTION",
+   "content_hash": "81c062e24d88dd4f"
+  },
+  "ld.c|ld.c::elf_write_dynstr": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_write_dynstr",
+   "start_line": 4384,
+   "end_line": 4392,
+   "type": "FUNCTION",
+   "content_hash": "b657313b2f6ec3aa"
+  },
+  "ld.c|ld.c::elf_write_hash": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_write_hash",
+   "start_line": 4393,
+   "end_line": 4412,
+   "type": "FUNCTION",
+   "content_hash": "5c4f3d479636ca44"
+  },
+  "ld.c|ld.c::elf_write": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_write",
+   "start_line": 4413,
+   "end_line": 4468,
+   "type": "FUNCTION",
+   "content_hash": "7b971886a44cf2f0"
+  },
+  "ld.c|ld.c::image": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::image",
+   "start_line": 4469,
+   "end_line": 4638,
+   "type": "FUNCTION",
+   "content_hash": "acb3e21df1494fc9"
+  },
+  "ld.c|ld.c::r16at": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::r16at",
+   "start_line": 4639,
+   "end_line": 4642,
+   "type": "FUNCTION",
+   "content_hash": "507a8435b4297cba"
+  },
+  "ld.c|ld.c::r64at": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::r64at",
+   "start_line": 4643,
+   "end_line": 4654,
+   "type": "FUNCTION",
+   "content_hash": "72aee781a440d939"
+  },
+  "ld.c|ld.c::ld_read_lib": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::ld_read_lib",
+   "start_line": 4655,
+   "end_line": 4862,
+   "type": "FUNCTION",
+   "content_hash": "46430e8f2c747c57"
+  },
+  "ld.c|ld.c::elf_build": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::elf_build",
+   "start_line": 4863,
+   "end_line": 4967,
+   "type": "FUNCTION",
+   "content_hash": "7b6457859fb2523f"
+  },
+  "ld.c|ld.c::usage": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::usage",
+   "start_line": 4968,
+   "end_line": 4984,
+   "type": "FUNCTION",
+   "content_hash": "2676147e723e11ff"
+  },
+  "ld.c|ld.c::main": {
+   "file_path": "ld.c",
+   "qualified_name": "ld.c::main",
+   "start_line": 4985,
+   "end_line": 5110,
+   "type": "FUNCTION",
+   "content_hash": "f341e09437bf24c8"
+  },
+  "test/argv.c|test/argv.c::write": {
+   "file_path": "test/argv.c",
+   "qualified_name": "test/argv.c::write",
+   "start_line": 1,
+   "end_line": 1,
+   "type": "FUNCTION",
+   "content_hash": "66584b5d07152a38"
+  },
+  "test/argv.c|test/argv.c::main": {
+   "file_path": "test/argv.c",
+   "qualified_name": "test/argv.c::main",
+   "start_line": 2,
+   "end_line": 9,
+   "type": "FUNCTION",
+   "content_hash": "f72bfd5ddb61c8a7"
+  },
+  "test/argv.s|test/argv.s::main": {
+   "file_path": "test/argv.s",
+   "qualified_name": "test/argv.s::main",
+   "start_line": 3,
+   "end_line": 97,
+   "type": "FUNCTION",
+   "content_hash": "395f8a6bda4640a6"
+  },
+  "test/argv.s|test/argv.s::_start": {
+   "file_path": "test/argv.s",
+   "qualified_name": "test/argv.s::_start",
+   "start_line": 98,
+   "end_line": 107,
+   "type": "FUNCTION",
+   "content_hash": "cce4f57f1b50cf72"
+  },
+  "test/asm.c|test/asm.c::printf": {
+   "file_path": "test/asm.c",
+   "qualified_name": "test/asm.c::printf",
+   "start_line": 1,
+   "end_line": 4,
+   "type": "FUNCTION",
+   "content_hash": "830fb5606f226073"
+  },
+  "test/asm.c|test/asm.c::main": {
+   "file_path": "test/asm.c",
+   "qualified_name": "test/asm.c::main",
+   "start_line": 5,
+   "end_line": 16,
+   "type": "FUNCTION",
+   "content_hash": "a9eece153934e537"
+  },
+  "test/chain.c|test/chain.c::fib": {
+   "file_path": "test/chain.c",
+   "qualified_name": "test/chain.c::fib",
+   "start_line": 1,
+   "end_line": 5,
+   "type": "FUNCTION",
+   "content_hash": "54b26d273c2bcbd1"
+  },
+  "test/chain.c|test/chain.c::main": {
+   "file_path": "test/chain.c",
+   "qualified_name": "test/chain.c::main",
+   "start_line": 6,
+   "end_line": 8,
+   "type": "FUNCTION",
+   "content_hash": "214f8213cac018b2"
+  },
+  "test/dynlib.c|test/dynlib.c::dynadd": {
+   "file_path": "test/dynlib.c",
+   "qualified_name": "test/dynlib.c::dynadd",
+   "start_line": 1,
+   "end_line": 4,
+   "type": "FUNCTION",
+   "content_hash": "7d36a867594f5180"
+  },
+  "test/dynlib.c|test/dynlib.c::dynlen": {
+   "file_path": "test/dynlib.c",
+   "qualified_name": "test/dynlib.c::dynlen",
+   "start_line": 5,
+   "end_line": 9,
+   "type": "FUNCTION",
+   "content_hash": "b9dc2bab389e2101"
+  },
+  "test/dynuse.c|test/dynuse.c::dynadd": {
+   "file_path": "test/dynuse.c",
+   "qualified_name": "test/dynuse.c::dynadd",
+   "start_line": 1,
+   "end_line": 1,
+   "type": "FUNCTION",
+   "content_hash": "728a152cf68afffe"
+  },
+  "test/dynuse.c|test/dynuse.c::dynlen": {
+   "file_path": "test/dynuse.c",
+   "qualified_name": "test/dynuse.c::dynlen",
+   "start_line": 2,
+   "end_line": 3,
+   "type": "FUNCTION",
+   "content_hash": "e4821322d6b525df"
+  },
+  "test/dynuse.c|test/dynuse.c::main": {
+   "file_path": "test/dynuse.c",
+   "qualified_name": "test/dynuse.c::main",
+   "start_line": 4,
+   "end_line": 6,
+   "type": "FUNCTION",
+   "content_hash": "fa8f9624385efd01"
+  },
+  "test/fib.s|test/fib.s::fib": {
+   "file_path": "test/fib.s",
+   "qualified_name": "test/fib.s::fib",
+   "start_line": 3,
+   "end_line": 60,
+   "type": "FUNCTION",
+   "content_hash": "1737e78d51e46bbb"
+  },
+  "test/fib.s|test/fib.s::main": {
+   "file_path": "test/fib.s",
+   "qualified_name": "test/fib.s::main",
+   "start_line": 61,
+   "end_line": 81,
+   "type": "FUNCTION",
+   "content_hash": "5c48a5096573eebc"
+  },
+  "test/fib.s|test/fib.s::_start": {
+   "file_path": "test/fib.s",
+   "qualified_name": "test/fib.s::_start",
+   "start_line": 82,
+   "end_line": 91,
+   "type": "FUNCTION",
+   "content_hash": "2eb311c9002c215b"
+  },
+  "test/fib2.s|test/fib2.s::fib": {
+   "file_path": "test/fib2.s",
+   "qualified_name": "test/fib2.s::fib",
+   "start_line": 3,
+   "end_line": 60,
+   "type": "FUNCTION",
+   "content_hash": "17bfb9d8986060a6"
+  },
+  "test/fib2.s|test/fib2.s::main": {
+   "file_path": "test/fib2.s",
+   "qualified_name": "test/fib2.s::main",
+   "start_line": 61,
+   "end_line": 81,
+   "type": "FUNCTION",
+   "content_hash": "e57ad2212cdedb24"
+  },
+  "test/fib2.s|test/fib2.s::_start": {
+   "file_path": "test/fib2.s",
+   "qualified_name": "test/fib2.s::_start",
+   "start_line": 82,
+   "end_line": 91,
+   "type": "FUNCTION",
+   "content_hash": "6039af7f84ed4935"
+  },
+  "test/fib3.s|test/fib3.s::fib": {
+   "file_path": "test/fib3.s",
+   "qualified_name": "test/fib3.s::fib",
+   "start_line": 3,
+   "end_line": 60,
+   "type": "FUNCTION",
+   "content_hash": "4e06168a09fe943f"
+  },
+  "test/fib3.s|test/fib3.s::main": {
+   "file_path": "test/fib3.s",
+   "qualified_name": "test/fib3.s::main",
+   "start_line": 61,
+   "end_line": 81,
+   "type": "FUNCTION",
+   "content_hash": "35161fa2cc1e22c3"
+  },
+  "test/fib3.s|test/fib3.s::_start": {
+   "file_path": "test/fib3.s",
+   "qualified_name": "test/fib3.s::_start",
+   "start_line": 82,
+   "end_line": 91,
+   "type": "FUNCTION",
+   "content_hash": "ed7e3371da6e2584"
+  },
+  "test/fmt.c|test/fmt.c::printf": {
+   "file_path": "test/fmt.c",
+   "qualified_name": "test/fmt.c::printf",
+   "start_line": 1,
+   "end_line": 2,
+   "type": "FUNCTION",
+   "content_hash": "a24a4940305b4725"
+  },
+  "test/fmt.c|test/fmt.c::main": {
+   "file_path": "test/fmt.c",
+   "qualified_name": "test/fmt.c::main",
+   "start_line": 3,
+   "end_line": 18,
+   "type": "FUNCTION",
+   "content_hash": "7ee14e1d6c873289"
+  },
+  "test/fnptr.c|test/fnptr.c::printf": {
+   "file_path": "test/fnptr.c",
+   "qualified_name": "test/fnptr.c::printf",
+   "start_line": 1,
+   "end_line": 2,
+   "type": "FUNCTION",
+   "content_hash": "56aeaf8a16c61d9d"
+  },
+  "test/fnptr.c|test/fnptr.c::add2": {
+   "file_path": "test/fnptr.c",
+   "qualified_name": "test/fnptr.c::add2",
+   "start_line": 3,
+   "end_line": 6,
+   "type": "FUNCTION",
+   "content_hash": "abbf2acf9d40d09a"
+  },
+  "test/fnptr.c|test/fnptr.c::mul2": {
+   "file_path": "test/fnptr.c",
+   "qualified_name": "test/fnptr.c::mul2",
+   "start_line": 7,
+   "end_line": 10,
+   "type": "FUNCTION",
+   "content_hash": "7d808a0bd1b39dc7"
+  },
+  "test/fnptr.c|test/fnptr.c::apply2": {
+   "file_path": "test/fnptr.c",
+   "qualified_name": "test/fnptr.c::apply2",
+   "start_line": 11,
+   "end_line": 14,
+   "type": "FUNCTION",
+   "content_hash": "5118c6f7e438d25a"
+  },
+  "test/fnptr.c|test/fnptr.c::ops_t": {
+   "file_path": "test/fnptr.c",
+   "qualified_name": "test/fnptr.c::ops_t",
+   "start_line": 15,
+   "end_line": 21,
+   "type": "CLASS",
+   "content_hash": "833051afe2f26ddd"
+  },
+  "test/fnptr.c|test/fnptr.c::run_op": {
+   "file_path": "test/fnptr.c",
+   "qualified_name": "test/fnptr.c::run_op",
+   "start_line": 22,
+   "end_line": 25,
+   "type": "FUNCTION",
+   "content_hash": "b0bd3e981eb8bcb8"
+  },
+  "test/fnptr.c|test/fnptr.c::main": {
+   "file_path": "test/fnptr.c",
+   "qualified_name": "test/fnptr.c::main",
+   "start_line": 26,
+   "end_line": 51,
+   "type": "FUNCTION",
+   "content_hash": "d7eff5b26779576c"
+  },
+  "test/globals.c|test/globals.c::printf": {
+   "file_path": "test/globals.c",
+   "qualified_name": "test/globals.c::printf",
+   "start_line": 1,
+   "end_line": 1,
+   "type": "FUNCTION",
+   "content_hash": "1633a5ded2289064"
+  },
+  "test/globals.c|test/globals.c::puts": {
+   "file_path": "test/globals.c",
+   "qualified_name": "test/globals.c::puts",
+   "start_line": 2,
+   "end_line": 10,
+   "type": "FUNCTION",
+   "content_hash": "a3aee83b558a7f5f"
+  },
+  "test/globals.c|test/globals.c::main": {
+   "file_path": "test/globals.c",
+   "qualified_name": "test/globals.c::main",
+   "start_line": 11,
+   "end_line": 19,
+   "type": "FUNCTION",
+   "content_hash": "b5b0e0678bfe4e79"
+  },
+  "test/hello.c|test/hello.c::main": {
+   "file_path": "test/hello.c",
+   "qualified_name": "test/hello.c::main",
+   "start_line": 1,
+   "end_line": 3,
+   "type": "FUNCTION",
+   "content_hash": "e8422f5da57a173d"
+  },
+  "test/loop.s|test/loop.s::main": {
+   "file_path": "test/loop.s",
+   "qualified_name": "test/loop.s::main",
+   "start_line": 3,
+   "end_line": 20,
+   "type": "FUNCTION",
+   "content_hash": "3114b3064436efb2"
+  },
+  "test/loop.s|test/loop.s::_start": {
+   "file_path": "test/loop.s",
+   "qualified_name": "test/loop.s::_start",
+   "start_line": 21,
+   "end_line": 25,
+   "type": "FUNCTION",
+   "content_hash": "ef5e912754c0b8b5"
+  },
+  "test/movslq.s|test/movslq.s::main": {
+   "file_path": "test/movslq.s",
+   "qualified_name": "test/movslq.s::main",
+   "start_line": 3,
+   "end_line": 13,
+   "type": "FUNCTION",
+   "content_hash": "ed4dae4a965511ad"
+  },
+  "test/movslq.s|test/movslq.s::_start": {
+   "file_path": "test/movslq.s",
+   "qualified_name": "test/movslq.s::_start",
+   "start_line": 14,
+   "end_line": 18,
+   "type": "FUNCTION",
+   "content_hash": "8287ea5bd8078551"
+  },
+  "test/priv.s|test/priv.s::main": {
+   "file_path": "test/priv.s",
+   "qualified_name": "test/priv.s::main",
+   "start_line": 3,
+   "end_line": 12,
+   "type": "FUNCTION",
+   "content_hash": "d77f7cf7b50c9289"
+  },
+  "test/priv.s|test/priv.s::_start": {
+   "file_path": "test/priv.s",
+   "qualified_name": "test/priv.s::_start",
+   "start_line": 13,
+   "end_line": 15,
+   "type": "FUNCTION",
+   "content_hash": "c76d1a015edda916"
+  },
+  "test/run_tests.sh|test/run_tests.sh::run_prog": {
+   "file_path": "test/run_tests.sh",
+   "qualified_name": "test/run_tests.sh::run_prog",
+   "start_line": 40,
+   "end_line": 46,
+   "type": "FUNCTION",
+   "content_hash": "945286b9b7b31b5a"
+  },
+  "test/run_tests.sh|test/run_tests.sh::note_fail": {
+   "file_path": "test/run_tests.sh",
+   "qualified_name": "test/run_tests.sh::note_fail",
+   "start_line": 47,
+   "end_line": 52,
+   "type": "FUNCTION",
+   "content_hash": "d5177b7d402e75a2"
+  },
+  "test/run_tests.sh|test/run_tests.sh::check": {
+   "file_path": "test/run_tests.sh",
+   "qualified_name": "test/run_tests.sh::check",
+   "start_line": 53,
+   "end_line": 77,
+   "type": "FUNCTION",
+   "content_hash": "d9f3d8b0cdebb783"
+  },
+  "test/run_tests.sh|test/run_tests.sh::run_fixture": {
+   "file_path": "test/run_tests.sh",
+   "qualified_name": "test/run_tests.sh::run_fixture",
+   "start_line": 78,
+   "end_line": 106,
+   "type": "FUNCTION",
+   "content_hash": "f77c2fbf19711c4a"
+  },
+  "test/run_tests.sh|test/run_tests.sh::run_chain": {
+   "file_path": "test/run_tests.sh",
+   "qualified_name": "test/run_tests.sh::run_chain",
+   "start_line": 107,
+   "end_line": 138,
+   "type": "FUNCTION",
+   "content_hash": "52b9711100e6179a"
+  },
+  "test/run_tests.sh|test/run_tests.sh::elf_structure_check": {
+   "file_path": "test/run_tests.sh",
+   "qualified_name": "test/run_tests.sh::elf_structure_check",
+   "start_line": 139,
+   "end_line": 208,
+   "type": "FUNCTION",
+   "content_hash": "b0adda4ca1ee69e4"
+  },
+  "test/run_tests.sh|test/run_tests.sh::run_shared_dynlib": {
+   "file_path": "test/run_tests.sh",
+   "qualified_name": "test/run_tests.sh::run_shared_dynlib",
+   "start_line": 209,
+   "end_line": 260,
+   "type": "FUNCTION",
+   "content_hash": "0f055ddc91ce6621"
+  },
+  "test/run_tests.sh|test/run_tests.sh::run_shared_dynuse": {
+   "file_path": "test/run_tests.sh",
+   "qualified_name": "test/run_tests.sh::run_shared_dynuse",
+   "start_line": 261,
+   "end_line": 316,
+   "type": "FUNCTION",
+   "content_hash": "1abc30d68474e526"
+  },
+  "test/run_tests.sh|test/run_tests.sh::run_shared_override": {
+   "file_path": "test/run_tests.sh",
+   "qualified_name": "test/run_tests.sh::run_shared_override",
+   "start_line": 317,
+   "end_line": 369,
+   "type": "FUNCTION",
+   "content_hash": "d2de09b94228bd90"
+  },
+  "test/run_tests.sh|test/run_tests.sh::run_runtime": {
+   "file_path": "test/run_tests.sh",
+   "qualified_name": "test/run_tests.sh::run_runtime",
+   "start_line": 370,
+   "end_line": 395,
+   "type": "FUNCTION",
+   "content_hash": "ea39192d5162c009"
+  },
+  "test/run_tests.sh|test/run_tests.sh::run_import_prune": {
+   "file_path": "test/run_tests.sh",
+   "qualified_name": "test/run_tests.sh::run_import_prune",
+   "start_line": 396,
+   "end_line": 527,
+   "type": "FUNCTION",
+   "content_hash": "30000903c8bd66a4"
+  },
+  "test/start.s|test/start.s::main": {
+   "file_path": "test/start.s",
+   "qualified_name": "test/start.s::main",
+   "start_line": 3,
+   "end_line": 7,
+   "type": "FUNCTION",
+   "content_hash": "5f56c8d3e95bc61c"
+  },
+  "test/start.s|test/start.s::_start": {
+   "file_path": "test/start.s",
+   "qualified_name": "test/start.s::_start",
+   "start_line": 8,
+   "end_line": 11,
+   "type": "FUNCTION",
+   "content_hash": "0f030f2fd9fe4a78"
+  },
+  "test/stdint.c|test/stdint.c::idtr_t": {
+   "file_path": "test/stdint.c",
+   "qualified_name": "test/stdint.c::idtr_t",
+   "start_line": 4,
+   "end_line": 21,
+   "type": "CLASS",
+   "content_hash": "0ae2bf4a7182006a"
+  },
+  "test/stdint.c|test/stdint.c::loads_u8": {
+   "file_path": "test/stdint.c",
+   "qualified_name": "test/stdint.c::loads_u8",
+   "start_line": 22,
+   "end_line": 25,
+   "type": "FUNCTION",
+   "content_hash": "b421614a85e149e1"
+  },
+  "test/stdint.c|test/stdint.c::loads_s16": {
+   "file_path": "test/stdint.c",
+   "qualified_name": "test/stdint.c::loads_s16",
+   "start_line": 26,
+   "end_line": 29,
+   "type": "FUNCTION",
+   "content_hash": "e0b4821ce1462710"
+  },
+  "test/stdint.c|test/stdint.c::loads_u32": {
+   "file_path": "test/stdint.c",
+   "qualified_name": "test/stdint.c::loads_u32",
+   "start_line": 30,
+   "end_line": 33,
+   "type": "FUNCTION",
+   "content_hash": "de7fe832d4be00be"
+  },
+  "test/stdint.c|test/stdint.c::add_shorts": {
+   "file_path": "test/stdint.c",
+   "qualified_name": "test/stdint.c::add_shorts",
+   "start_line": 34,
+   "end_line": 37,
+   "type": "FUNCTION",
+   "content_hash": "2b7fa3cb2040805b"
+  },
+  "test/stdint.c|test/stdint.c::main": {
+   "file_path": "test/stdint.c",
+   "qualified_name": "test/stdint.c::main",
+   "start_line": 38,
+   "end_line": 106,
+   "type": "FUNCTION",
+   "content_hash": "4f6596fed0c08af1"
+  },
+  "test/sync.c|test/sync.c::printf": {
+   "file_path": "test/sync.c",
+   "qualified_name": "test/sync.c::printf",
+   "start_line": 1,
+   "end_line": 5,
+   "type": "FUNCTION",
+   "content_hash": "460078eaf1cf6922"
+  },
+  "test/sync.c|test/sync.c::main": {
+   "file_path": "test/sync.c",
+   "qualified_name": "test/sync.c::main",
+   "start_line": 6,
+   "end_line": 19,
+   "type": "FUNCTION",
+   "content_hash": "898441288e2f32e0"
+  },
+  "test/t1.c|test/t1.c::main": {
+   "file_path": "test/t1.c",
+   "qualified_name": "test/t1.c::main",
+   "start_line": 1,
+   "end_line": 3,
+   "type": "FUNCTION",
+   "content_hash": "f501d77b99eb7082"
+  },
+  "test/t1.s|test/t1.s::main": {
+   "file_path": "test/t1.s",
+   "qualified_name": "test/t1.s::main",
+   "start_line": 3,
+   "end_line": 13,
+   "type": "FUNCTION",
+   "content_hash": "72457d7b8590575e"
+  },
+  "test/t1.s|test/t1.s::_start": {
+   "file_path": "test/t1.s",
+   "qualified_name": "test/t1.s::_start",
+   "start_line": 14,
+   "end_line": 23,
+   "type": "FUNCTION",
+   "content_hash": "8e03d1ddbce72d0f"
+  },
+  "test/udiv.c|test/udiv.c::printf": {
+   "file_path": "test/udiv.c",
+   "qualified_name": "test/udiv.c::printf",
+   "start_line": 1,
+   "end_line": 2,
+   "type": "FUNCTION",
+   "content_hash": "0f8bb5647d8dc26f"
+  },
+  "test/udiv.c|test/udiv.c::main": {
+   "file_path": "test/udiv.c",
+   "qualified_name": "test/udiv.c::main",
+   "start_line": 3,
+   "end_line": 35,
+   "type": "FUNCTION",
+   "content_hash": "939167124764d28d"
+  },
+  "test/usestr.c|test/usestr.c::strlen": {
+   "file_path": "test/usestr.c",
+   "qualified_name": "test/usestr.c::strlen",
+   "start_line": 1,
+   "end_line": 1,
+   "type": "FUNCTION",
+   "content_hash": "6188c8ba13a55002"
+  },
+  "test/usestr.c|test/usestr.c::memcmp": {
+   "file_path": "test/usestr.c",
+   "qualified_name": "test/usestr.c::memcmp",
+   "start_line": 2,
+   "end_line": 3,
+   "type": "FUNCTION",
+   "content_hash": "e0e919838b2c4c90"
+  },
+  "test/usestr.c|test/usestr.c::main": {
+   "file_path": "test/usestr.c",
+   "qualified_name": "test/usestr.c::main",
+   "start_line": 4,
+   "end_line": 8,
+   "type": "FUNCTION",
+   "content_hash": "ffb3e07385154b17"
+  },
+  "test/w1.c|test/w1.c::write": {
+   "file_path": "test/w1.c",
+   "qualified_name": "test/w1.c::write",
+   "start_line": 1,
+   "end_line": 1,
+   "type": "FUNCTION",
+   "content_hash": "7e019df2d9542467"
+  },
+  "test/w1.c|test/w1.c::main": {
+   "file_path": "test/w1.c",
+   "qualified_name": "test/w1.c::main",
+   "start_line": 2,
+   "end_line": 5,
+   "type": "FUNCTION",
+   "content_hash": "d4d392c781b5e223"
+  },
+  "test/w1.s|test/w1.s::main": {
+   "file_path": "test/w1.s",
+   "qualified_name": "test/w1.s::main",
+   "start_line": 3,
+   "end_line": 36,
+   "type": "FUNCTION",
+   "content_hash": "6d01ef5de06dde98"
+  },
+  "test/w1.s|test/w1.s::_start": {
+   "file_path": "test/w1.s",
+   "qualified_name": "test/w1.s::_start",
+   "start_line": 37,
+   "end_line": 46,
+   "type": "FUNCTION",
+   "content_hash": "3a40a7915586e792"
+  }
+ },
+ "components": [
+  {
+   "name": "project",
+   "description": "project groups 31 files (c, py, s, sh) around CFG_MAX_SYMBOLS, CFG_MAX_FIXUPS, CFG_FIXUP_INIT, CFG_LINE_MAX, CFG_NAME_MAX. Autor: Gris Iscomeback Correo electrónico: grisiscomeback[at]gmail[dot]com Fecha de...",
+   "key_entities": [
+    {
+     "qualified_name": "ld.c::CFG_MAX_SYMBOLS",
+     "reference_file": "ld.c",
+     "reference_start_line": 25,
+     "reference_end_line": 25
+    },
+    {
+     "qualified_name": "ld.c::CFG_MAX_FIXUPS",
+     "reference_file": "ld.c",
+     "reference_start_line": 26,
+     "reference_end_line": 26
+    },
+    {
+     "qualified_name": "ld.c::CFG_FIXUP_INIT",
+     "reference_file": "ld.c",
+     "reference_start_line": 27,
+     "reference_end_line": 27
+    },
+    {
+     "qualified_name": "ld.c::CFG_LINE_MAX",
+     "reference_file": "ld.c",
+     "reference_start_line": 28,
+     "reference_end_line": 28
+    },
+    {
+     "qualified_name": "ld.c::CFG_NAME_MAX",
+     "reference_file": "ld.c",
+     "reference_start_line": 29,
+     "reference_end_line": 29
+    },
+    {
+     "qualified_name": "ld.c::CFG_MAX_NATS",
+     "reference_file": "ld.c",
+     "reference_start_line": 30,
+     "reference_end_line": 30
+    },
+    {
+     "qualified_name": "ld.c::CFG_MAX_ERRORS",
+     "reference_file": "ld.c",
+     "reference_start_line": 31,
+     "reference_end_line": 31
+    },
+    {
+     "qualified_name": "ld.c::CFG_GROW_UNIT",
+     "reference_file": "ld.c",
+     "reference_start_line": 32,
+     "reference_end_line": 33
+    }
+   ],
+   "source_cluster_ids": [],
+   "file_methods": [
+    {
+     "file_path": "app.py",
+     "methods": []
+    },
+    {
+     "file_path": "install.sh",
+     "methods": []
+    },
+    {
+     "file_path": "ld.c",
+     "methods": [
+      "ld.c::CFG_MAX_SYMBOLS",
+      "ld.c::CFG_MAX_FIXUPS",
+      "ld.c::CFG_FIXUP_INIT",
+      "ld.c::CFG_LINE_MAX",
+      "ld.c::CFG_NAME_MAX",
+      "ld.c::CFG_MAX_NATS",
+      "ld.c::CFG_MAX_ERRORS",
+      "ld.c::CFG_GROW_UNIT",
+      "ld.c::CFG_ABI_BYTES",
+      "ld.c::CFG_STACK_BASE",
+      "ld.c::CFG_XSTACK_DEF",
+      "ld.c::CFG_MAX_ARGS",
+      "ld.c::CFG_REG_LOCALS",
+      "ld.c::CFG_SLOT_FLAGS_A",
+      "ld.c::CFG_SLOT_FLAGS_B",
+      "ld.c::CFG_SLOT_S0",
+      "ld.c::CFG_SLOT_S1",
+      "ld.c::CFG_GSLOT_RSP",
+      "ld.c::CFG_GSLOT_RBP",
+      "ld.c::CFG_GSLOT_ARGS",
+      "ld.c::CFG_GSLOT_RET",
+      "ld.c::CFG_CVM_MAGIC_0",
+      "ld.c::CFG_CVM_MAGIC_1",
+      "ld.c::CFG_CVM_MAGIC_2",
+      "ld.c::CFG_CVM_MAGIC_3",
+      "ld.c::CFG_CVM_VER_MAJ",
+      "ld.c::CFG_CVM_VER_MIN",
+      "ld.c::CFG_CVM_HDR_SIZE",
+      "ld.c::CFG_ELF_PAGE",
+      "ld.c::CFG_ELF_HSIZE",
+      "ld.c::CFG_ELF_PHENTSZ",
+      "ld.c::CFG_ELF_PHNUM",
+      "ld.c::CFG_ELF_SHENTSZ",
+      "ld.c::CFG_ELF_SHNUM",
+      "ld.c::CFG_ELF_SHSTRNDX",
+      "ld.c::CFG_ELF_ET_DYN",
+      "ld.c::CFG_ELF_EM_X8664",
+      "ld.c::CFG_ELF_PF_R",
+      "ld.c::CFG_ELF_PF_W",
+      "ld.c::CFG_ELF_PF_X",
+      "ld.c::CFG_ELF_PT_LOAD",
+      "ld.c::CFG_ELF_PT_DYNAMIC",
+      "ld.c::CFG_ELF_PT_GNU_STACK",
+      "ld.c::CFG_ELF_SHT_PROGBITS",
+      "ld.c::CFG_ELF_SHT_NOBITS",
+      "ld.c::CFG_ELF_SHT_STRTAB",
+      "ld.c::CFG_ELF_SHT_HASH",
+      "ld.c::CFG_ELF_SHT_DYNAMIC",
+      "ld.c::CFG_ELF_SHT_DYNSYM",
+      "ld.c::CFG_ELF_SHT_RELA",
+      "ld.c::CFG_ELF_DT_NULL",
+      "ld.c::CFG_ELF_DT_NEEDED",
+      "ld.c::CFG_ELF_DT_RELA",
+      "ld.c::CFG_ELF_DT_RELASZ",
+      "ld.c::CFG_ELF_DT_RELAENT",
+      "ld.c::CFG_ELF_DT_HASH",
+      "ld.c::CFG_ELF_DT_STRTAB",
+      "ld.c::CFG_ELF_DT_SYMTAB",
+      "ld.c::CFG_ELF_DT_STRSZ",
+      "ld.c::CFG_ELF_DT_SYMENT",
+      "ld.c::CFG_ELF_DT_SONAME",
+      "ld.c::CFG_ELF_STB_GLOBAL",
+      "ld.c::CFG_ELF_STT_NOTYPE",
+      "ld.c::CFG_ELF_STT_FUNC",
+      "ld.c::CFG_ELF_R_GLOB_DAT",
+      "ld.c::CFG_ELF_R_RELATIVE",
+      "ld.c::CFG_ELF_SHN_UNDEF",
+      "ld.c::CFG_LD_MAXLIBS",
+      "ld.c::CFG_LD_MAXIMPORTS",
+      "ld.c::CFG_LD_LIB_MAXSZ",
+      "ld.c::CFG_ELF_DYN_NENTRY",
+      "ld.c::CFG_ELF_DYNSYM_ENT",
+      "ld.c::CFG_ELF_SHF_A",
+      "ld.c::CFG_ELF_SHF_X",
+      "ld.c::CFG_ELF_SHF_W",
+      "ld.c::CFG_ELF_TEXT_BASE",
+      "ld.c::CFG_FMT_CVM",
+      "ld.c::CFG_FMT_ELF",
+      "ld.c::X86_G1_ADD",
+      "ld.c::X86_G1_OR",
+      "ld.c::X86_G1_AND",
+      "ld.c::X86_G1_SUB",
+      "ld.c::X86_G1_XOR",
+      "ld.c::X86_G1_CMP",
+      "ld.c::X86_JCC_JE",
+      "ld.c::X86_JCC_JNE",
+      "ld.c::X86_JCC_JL",
+      "ld.c::X86_JCC_JG",
+      "ld.c::X86_JCC_JLE",
+      "ld.c::X86_JCC_JGE",
+      "ld.c::X86_JCC_JA",
+      "ld.c::X86_JCC_JAE",
+      "ld.c::X86_JCC_JB",
+      "ld.c::X86_JCC_JBE",
+      "ld.c::X86_SET_E",
+      "ld.c::X86_SET_NE",
+      "ld.c::X86_SET_L",
+      "ld.c::X86_SET_G",
+      "ld.c::X86_SET_LE",
+      "ld.c::X86_SET_GE",
+      "ld.c::X86_SET_A",
+      "ld.c::X86_SET_AE",
+      "ld.c::X86_SET_B",
+      "ld.c::X86_SET_BE",
+      "ld.c::X86_SYS_WRITE",
+      "ld.c::X86_SYS_READ",
+      "ld.c::X86_SYS_OPEN",
+      "ld.c::X86_SYS_CLOSE",
+      "ld.c::X86_SYS_LSEEK",
+      "ld.c::X86_SYS_BRK",
+      "ld.c::X86_SYS_EXIT",
+      "ld.c::X86_SYS_EXIT_GROUP",
+      "ld.c::REG_RAX",
+      "ld.c::REG_RCX",
+      "ld.c::REG_RDX",
+      "ld.c::REG_RBX",
+      "ld.c::REG_RSP",
+      "ld.c::REG_RBP",
+      "ld.c::REG_RSI",
+      "ld.c::REG_RDI",
+      "ld.c::SEC_TEXT",
+      "ld.c::SEC_BSS",
+      "ld.c::SEC_DATA",
+      "ld.c::SEC_RODATA",
+      "ld.c::SYM_FUNC",
+      "ld.c::SYM_LABEL",
+      "ld.c::SYM_GLOBAL",
+      "ld.c::SYM_BLOB",
+      "ld.c::K_REG",
+      "ld.c::K_IMM",
+      "ld.c::K_MEM",
+      "ld.c::K_SYM",
+      "ld.c::K_SYM_IMM",
+      "ld.c::K_IND",
+      "ld.c::OP_NOP",
+      "ld.c::OP_PUSH_IMM64",
+      "ld.c::OP_PUSH_IMM32",
+      "ld.c::OP_PUSH_IMM8",
+      "ld.c::OP_PUSH_ZERO",
+      "ld.c::OP_PUSH_ONE",
+      "ld.c::OP_PUSH_LOCAL",
+      "ld.c::OP_STORE_LOCAL",
+      "ld.c::OP_PUSH_GLOBAL",
+      "ld.c::OP_STORE_GLOBAL",
+      "ld.c::OP_ADD",
+      "ld.c::OP_SUB",
+      "ld.c::OP_MUL",
+      "ld.c::OP_DIV",
+      "ld.c::OP_MOD",
+      "ld.c::OP_NEG",
+      "ld.c::OP_UDIV",
+      "ld.c::OP_UMOD",
+      "ld.c::OP_AND",
+      "ld.c::OP_OR",
+      "ld.c::OP_XOR",
+      "ld.c::OP_NOT",
+      "ld.c::OP_SHL",
+      "ld.c::OP_SHR",
+      "ld.c::OP_USHR",
+      "ld.c::OP_CMP_EQ",
+      "ld.c::OP_CMP_NE",
+      "ld.c::OP_CMP_LT",
+      "ld.c::OP_CMP_LE",
+      "ld.c::OP_CMP_GT",
+      "ld.c::OP_CMP_GE",
+      "ld.c::OP_LNOT",
+      "ld.c::OP_CMP_ULT",
+      "ld.c::OP_CMP_ULE",
+      "ld.c::OP_CMP_UGT",
+      "ld.c::OP_CMP_UGE",
+      "ld.c::OP_JMP",
+      "ld.c::OP_JZ",
+      "ld.c::OP_JNZ",
+      "ld.c::OP_CALL",
+      "ld.c::OP_RET",
+      "ld.c::OP_CALL_NATIVE",
+      "ld.c::OP_CALL_INDIRECT",
+      "ld.c::OP_LOAD8",
+      "ld.c::OP_LOAD16",
+      "ld.c::OP_LOAD32",
+      "ld.c::OP_LOAD64",
+      "ld.c::OP_STORE8",
+      "ld.c::OP_STORE16",
+      "ld.c::OP_STORE32",
+      "ld.c::OP_STORE64",
+      "ld.c::OP_LEA_LOCAL",
+      "ld.c::OP_LEA_GLOBAL",
+      "ld.c::OP_ALLOC",
+      "ld.c::OP_FREE",
+      "ld.c::OP_LEA_DATA",
+      "ld.c::OP_SYSCALL",
+      "ld.c::OP_HALT",
+      "ld.c::Sym",
+      "ld.c::Op",
+      "ld.c::Fixup",
+      "ld.c::LineSrc",
+      "ld.c::Func",
+      "ld.c::GVar",
+      "ld.c::Blob",
+      "ld.c::Nat",
+      "ld.c::Label",
+      "ld.c::LdImport",
+      "ld.c::ld_soname_of",
+      "ld.c::ld_release",
+      "ld.c::die",
+      "ld.c::breserve",
+      "ld.c::fixup_reserve",
+      "ld.c::creserve",
+      "ld.c::parse_num",
+      "ld.c::trim",
+      "ld.c::strip_comment",
+      "ld.c::name_copy",
+      "ld.c::split_word",
+      "ld.c::hexval",
+      "ld.c::find_sym",
+      "ld.c::add_sym",
+      "ld.c::parse_reg",
+      "ld.c::parse_mem",
+      "ld.c::parse_operand",
+      "ld.c::split_operands",
+      "ld.c::ls_open_file",
+      "ld.c::ls_open_mem",
+      "ld.c::ls_getline",
+      "ld.c::ls_close",
+      "ld.c::data_put",
+      "ld.c::data_fill",
+      "ld.c::data_align",
+      "ld.c::blob_put",
+      "ld.c::blob_append_str",
+      "ld.c::set_section",
+      "ld.c::scan_directive",
+      "ld.c::scan_src",
+      "ld.c::cvm_find_func",
+      "ld.c::cvm_find_global",
+      "ld.c::cvm_find_blob",
+      "ld.c::cvm_find_nat",
+      "ld.c::cvm_add_nat",
+      "ld.c::e1",
+      "ld.c::e4",
+      "ld.c::e8",
+      "ld.c::eimm",
+      "ld.c::epush_local",
+      "ld.c::estore_local",
+      "ld.c::epush_global",
+      "ld.c::estore_global",
+      "ld.c::cvm_slot",
+      "ld.c::epush_reg",
+      "ld.c::estore_reg",
+      "ld.c::pool_add",
+      "ld.c::cvm_fixup_add",
+      "ld.c::ejmp",
+      "ld.c::ejz",
+      "ld.c::ejnz",
+      "ld.c::find_label",
+      "ld.c::add_label",
+      "ld.c::resolve_fixups",
+      "ld.c::push_mask32",
+      "ld.c::push_mask8",
+      "ld.c::push_mask16",
+      "ld.c::elea_mem",
+      "ld.c::elea_operand",
+      "ld.c::epush_value",
+      "ld.c::signext8",
+      "ld.c::signext32",
+      "ld.c::signext16",
+      "ld.c::mov",
+      "ld.c::arith_mem",
+      "ld.c::arith_reg",
+      "ld.c::cvm_push_cmpval",
+      "ld.c::cvm_cmp",
+      "ld.c::cvm_translate",
+      "ld.c::cvm_prepare_tables",
+      "ld.c::cvm_layout_data",
+      "ld.c::func_glue",
+      "ld.c::entry_glue",
+      "ld.c::cvm_encode",
+      "ld.c::w32",
+      "ld.c::w16",
+      "ld.c::w64_at",
+      "ld.c::cvm_write_module",
+      "ld.c::x86_align_up",
+      "ld.c::x8",
+      "ld.c::x16",
+      "ld.c::x32",
+      "ld.c::x64",
+      "ld.c::xfix32",
+      "ld.c::fixup_trail",
+      "ld.c::emit_rex",
+      "ld.c::emit_modrm",
+      "ld.c::emit_sib",
+      "ld.c::x86_ea_rex",
+      "ld.c::x86_ea_modrm",
+      "ld.c::x86_rex_reg",
+      "ld.c::x86_rex8",
+      "ld.c::ea_mov",
+      "ld.c::ea_mov_to",
+      "ld.c::ea_alu",
+      "ld.c::ea_cmp",
+      "ld.c::ea_grp",
+      "ld.c::elf_mov",
+      "ld.c::elf_movzx",
+      "ld.c::elf_movw",
+      "ld.c::elf_lea",
+      "ld.c::elf_push",
+      "ld.c::elf_pop",
+      "ld.c::elf_alu",
+      "ld.c::elf_imul",
+      "ld.c::elf_imull",
+      "ld.c::elf_grp3",
+      "ld.c::elf_grp3_32",
+      "ld.c::elf_xadd",
+      "ld.c::elf_xchg",
+      "ld.c::elf_grp_ff",
+      "ld.c::elf_shift_cl",
+      "ld.c::elf_shift_cl32",
+      "ld.c::elf_testl",
+      "ld.c::elf_test",
+      "ld.c::elf_cmp",
+      "ld.c::elf_set",
+      "ld.c::elf_branch",
+      "ld.c::elf_call_ind",
+      "ld.c::elf_ins",
+      "ld.c::elf_sym_addr",
+      "ld.c::elf_route_import",
+      "ld.c::name_is_called",
+      "ld.c::elf_prune",
+      "ld.c::elf_resolve_fixups",
+      "ld.c::elf_encode_src",
+      "ld.c::elf_dyn_prepare",
+      "ld.c::elf_imp_prepare",
+      "ld.c::elf_has_dyn",
+      "ld.c::elf_has_rela",
+      "ld.c::elf_layout",
+      "ld.c::elf_dyn_emit",
+      "ld.c::elf_layout_rela",
+      "ld.c::elf_write_rela",
+      "ld.c::elf_write_plt",
+      "ld.c::elf_write_dynamic",
+      "ld.c::elf_write_dynsym",
+      "ld.c::elf_write_dynstr",
+      "ld.c::elf_write_hash",
+      "ld.c::elf_write",
+      "ld.c::image",
+      "ld.c::r16at",
+      "ld.c::r64at",
+      "ld.c::ld_read_lib",
+      "ld.c::elf_build",
+      "ld.c::usage",
+      "ld.c::main"
+     ]
+    },
+    {
+     "file_path": "test/argv.c",
+     "methods": [
+      "test/argv.c::write",
+      "test/argv.c::main"
+     ]
+    },
+    {
+     "file_path": "test/argv.s",
+     "methods": [
+      "test/argv.s::main",
+      "test/argv.s::_start"
+     ]
+    },
+    {
+     "file_path": "test/asm.c",
+     "methods": [
+      "test/asm.c::printf",
+      "test/asm.c::main"
+     ]
+    },
+    {
+     "file_path": "test/chain.c",
+     "methods": [
+      "test/chain.c::fib",
+      "test/chain.c::main"
+     ]
+    },
+    {
+     "file_path": "test/dynlib.c",
+     "methods": [
+      "test/dynlib.c::dynadd",
+      "test/dynlib.c::dynlen"
+     ]
+    },
+    {
+     "file_path": "test/dynlib_host.c",
+     "methods": []
+    },
+    {
+     "file_path": "test/dynuse.c",
+     "methods": [
+      "test/dynuse.c::dynadd",
+      "test/dynuse.c::dynlen",
+      "test/dynuse.c::main"
+     ]
+    },
+    {
+     "file_path": "test/fib.s",
+     "methods": [
+      "test/fib.s::fib",
+      "test/fib.s::main",
+      "test/fib.s::_start"
+     ]
+    },
+    {
+     "file_path": "test/fib2.s",
+     "methods": [
+      "test/fib2.s::fib",
+      "test/fib2.s::main",
+      "test/fib2.s::_start"
+     ]
+    },
+    {
+     "file_path": "test/fib3.s",
+     "methods": [
+      "test/fib3.s::fib",
+      "test/fib3.s::main",
+      "test/fib3.s::_start"
+     ]
+    },
+    {
+     "file_path": "test/fmt.c",
+     "methods": [
+      "test/fmt.c::printf",
+      "test/fmt.c::main"
+     ]
+    },
+    {
+     "file_path": "test/fnptr.c",
+     "methods": [
+      "test/fnptr.c::printf",
+      "test/fnptr.c::add2",
+      "test/fnptr.c::mul2",
+      "test/fnptr.c::apply2",
+      "test/fnptr.c::ops_t",
+      "test/fnptr.c::run_op",
+      "test/fnptr.c::main"
+     ]
+    },
+    {
+     "file_path": "test/globals.c",
+     "methods": [
+      "test/globals.c::printf",
+      "test/globals.c::puts",
+      "test/globals.c::main"
+     ]
+    },
+    {
+     "file_path": "test/hello.c",
+     "methods": [
+      "test/hello.c::main"
+     ]
+    },
+    {
+     "file_path": "test/loop.s",
+     "methods": [
+      "test/loop.s::main",
+      "test/loop.s::_start"
+     ]
+    },
+    {
+     "file_path": "test/movslq.s",
+     "methods": [
+      "test/movslq.s::main",
+      "test/movslq.s::_start"
+     ]
+    },
+    {
+     "file_path": "test/mutate.sh",
+     "methods": []
+    },
+    {
+     "file_path": "test/priv.s",
+     "methods": [
+      "test/priv.s::main",
+      "test/priv.s::_start"
+     ]
+    },
+    {
+     "file_path": "test/run_tests.sh",
+     "methods": [
+      "test/run_tests.sh::run_prog",
+      "test/run_tests.sh::note_fail",
+      "test/run_tests.sh::check",
+      "test/run_tests.sh::run_fixture",
+      "test/run_tests.sh::run_chain",
+      "test/run_tests.sh::elf_structure_check",
+      "test/run_tests.sh::run_shared_dynlib",
+      "test/run_tests.sh::run_shared_dynuse",
+      "test/run_tests.sh::run_shared_override",
+      "test/run_tests.sh::run_runtime",
+      "test/run_tests.sh::run_import_prune"
+     ]
+    },
+    {
+     "file_path": "test/start.s",
+     "methods": [
+      "test/start.s::main",
+      "test/start.s::_start"
+     ]
+    },
+    {
+     "file_path": "test/stdint.c",
+     "methods": [
+      "test/stdint.c::idtr_t",
+      "test/stdint.c::loads_u8",
+      "test/stdint.c::loads_s16",
+      "test/stdint.c::loads_u32",
+      "test/stdint.c::add_shorts",
+      "test/stdint.c::main"
+     ]
+    },
+    {
+     "file_path": "test/sync.c",
+     "methods": [
+      "test/sync.c::printf",
+      "test/sync.c::main"
+     ]
+    },
+    {
+     "file_path": "test/t1.c",
+     "methods": [
+      "test/t1.c::main"
+     ]
+    },
+    {
+     "file_path": "test/t1.s",
+     "methods": [
+      "test/t1.s::main",
+      "test/t1.s::_start"
+     ]
+    },
+    {
+     "file_path": "test/udiv.c",
+     "methods": [
+      "test/udiv.c::printf",
+      "test/udiv.c::main"
+     ]
+    },
+    {
+     "file_path": "test/usestr.c",
+     "methods": [
+      "test/usestr.c::strlen",
+      "test/usestr.c::memcmp",
+      "test/usestr.c::main"
+     ]
+    },
+    {
+     "file_path": "test/w1.c",
+     "methods": [
+      "test/w1.c::write",
+      "test/w1.c::main"
+     ]
+    },
+    {
+     "file_path": "test/w1.s",
+     "methods": [
+      "test/w1.s::main",
+      "test/w1.s::_start"
+     ]
+    }
+   ],
+   "component_id": "1",
+   "can_expand": true,
+   "components": [
+    {
+     "name": "root",
+     "description": "root groups 3 files (c, py, sh) around CFG_MAX_SYMBOLS, CFG_MAX_FIXUPS, CFG_FIXUP_INIT, CFG_LINE_MAX, CFG_NAME_MAX. Autor: Gris Iscomeback Correo electrónico: grisiscomeback[at]gmail[dot]com Fecha de...",
+     "key_entities": [
+      {
+       "qualified_name": "ld.c::CFG_MAX_SYMBOLS",
+       "reference_file": "ld.c",
+       "reference_start_line": 25,
+       "reference_end_line": 25
+      },
+      {
+       "qualified_name": "ld.c::CFG_MAX_FIXUPS",
+       "reference_file": "ld.c",
+       "reference_start_line": 26,
+       "reference_end_line": 26
+      },
+      {
+       "qualified_name": "ld.c::CFG_FIXUP_INIT",
+       "reference_file": "ld.c",
+       "reference_start_line": 27,
+       "reference_end_line": 27
+      },
+      {
+       "qualified_name": "ld.c::CFG_LINE_MAX",
+       "reference_file": "ld.c",
+       "reference_start_line": 28,
+       "reference_end_line": 28
+      },
+      {
+       "qualified_name": "ld.c::CFG_NAME_MAX",
+       "reference_file": "ld.c",
+       "reference_start_line": 29,
+       "reference_end_line": 29
+      },
+      {
+       "qualified_name": "ld.c::CFG_MAX_NATS",
+       "reference_file": "ld.c",
+       "reference_start_line": 30,
+       "reference_end_line": 30
+      },
+      {
+       "qualified_name": "ld.c::CFG_MAX_ERRORS",
+       "reference_file": "ld.c",
+       "reference_start_line": 31,
+       "reference_end_line": 31
+      },
+      {
+       "qualified_name": "ld.c::CFG_GROW_UNIT",
+       "reference_file": "ld.c",
+       "reference_start_line": 32,
+       "reference_end_line": 33
+      }
+     ],
+     "source_cluster_ids": [],
+     "file_methods": [
+      {
+       "file_path": "app.py",
+       "methods": []
+      },
+      {
+       "file_path": "install.sh",
+       "methods": []
+      },
+      {
+       "file_path": "ld.c",
+       "methods": [
+        "ld.c::CFG_MAX_SYMBOLS",
+        "ld.c::CFG_MAX_FIXUPS",
+        "ld.c::CFG_FIXUP_INIT",
+        "ld.c::CFG_LINE_MAX",
+        "ld.c::CFG_NAME_MAX",
+        "ld.c::CFG_MAX_NATS",
+        "ld.c::CFG_MAX_ERRORS",
+        "ld.c::CFG_GROW_UNIT",
+        "ld.c::CFG_ABI_BYTES",
+        "ld.c::CFG_STACK_BASE",
+        "ld.c::CFG_XSTACK_DEF",
+        "ld.c::CFG_MAX_ARGS",
+        "ld.c::CFG_REG_LOCALS",
+        "ld.c::CFG_SLOT_FLAGS_A",
+        "ld.c::CFG_SLOT_FLAGS_B",
+        "ld.c::CFG_SLOT_S0",
+        "ld.c::CFG_SLOT_S1",
+        "ld.c::CFG_GSLOT_RSP",
+        "ld.c::CFG_GSLOT_RBP",
+        "ld.c::CFG_GSLOT_ARGS",
+        "ld.c::CFG_GSLOT_RET",
+        "ld.c::CFG_CVM_MAGIC_0",
+        "ld.c::CFG_CVM_MAGIC_1",
+        "ld.c::CFG_CVM_MAGIC_2",
+        "ld.c::CFG_CVM_MAGIC_3",
+        "ld.c::CFG_CVM_VER_MAJ",
+        "ld.c::CFG_CVM_VER_MIN",
+        "ld.c::CFG_CVM_HDR_SIZE",
+        "ld.c::CFG_ELF_PAGE",
+        "ld.c::CFG_ELF_HSIZE",
+        "ld.c::CFG_ELF_PHENTSZ",
+        "ld.c::CFG_ELF_PHNUM",
+        "ld.c::CFG_ELF_SHENTSZ",
+        "ld.c::CFG_ELF_SHNUM",
+        "ld.c::CFG_ELF_SHSTRNDX",
+        "ld.c::CFG_ELF_ET_DYN",
+        "ld.c::CFG_ELF_EM_X8664",
+        "ld.c::CFG_ELF_PF_R",
+        "ld.c::CFG_ELF_PF_W",
+        "ld.c::CFG_ELF_PF_X",
+        "ld.c::CFG_ELF_PT_LOAD",
+        "ld.c::CFG_ELF_PT_DYNAMIC",
+        "ld.c::CFG_ELF_PT_GNU_STACK",
+        "ld.c::CFG_ELF_SHT_PROGBITS",
+        "ld.c::CFG_ELF_SHT_NOBITS",
+        "ld.c::CFG_ELF_SHT_STRTAB",
+        "ld.c::CFG_ELF_SHT_HASH",
+        "ld.c::CFG_ELF_SHT_DYNAMIC",
+        "ld.c::CFG_ELF_SHT_DYNSYM",
+        "ld.c::CFG_ELF_SHT_RELA",
+        "ld.c::CFG_ELF_DT_NULL",
+        "ld.c::CFG_ELF_DT_NEEDED",
+        "ld.c::CFG_ELF_DT_RELA",
+        "ld.c::CFG_ELF_DT_RELASZ",
+        "ld.c::CFG_ELF_DT_RELAENT",
+        "ld.c::CFG_ELF_DT_HASH",
+        "ld.c::CFG_ELF_DT_STRTAB",
+        "ld.c::CFG_ELF_DT_SYMTAB",
+        "ld.c::CFG_ELF_DT_STRSZ",
+        "ld.c::CFG_ELF_DT_SYMENT",
+        "ld.c::CFG_ELF_DT_SONAME",
+        "ld.c::CFG_ELF_STB_GLOBAL",
+        "ld.c::CFG_ELF_STT_NOTYPE",
+        "ld.c::CFG_ELF_STT_FUNC",
+        "ld.c::CFG_ELF_R_GLOB_DAT",
+        "ld.c::CFG_ELF_R_RELATIVE",
+        "ld.c::CFG_ELF_SHN_UNDEF",
+        "ld.c::CFG_LD_MAXLIBS",
+        "ld.c::CFG_LD_MAXIMPORTS",
+        "ld.c::CFG_LD_LIB_MAXSZ",
+        "ld.c::CFG_ELF_DYN_NENTRY",
+        "ld.c::CFG_ELF_DYNSYM_ENT",
+        "ld.c::CFG_ELF_SHF_A",
+        "ld.c::CFG_ELF_SHF_X",
+        "ld.c::CFG_ELF_SHF_W",
+        "ld.c::CFG_ELF_TEXT_BASE",
+        "ld.c::CFG_FMT_CVM",
+        "ld.c::CFG_FMT_ELF",
+        "ld.c::X86_G1_ADD",
+        "ld.c::X86_G1_OR",
+        "ld.c::X86_G1_AND",
+        "ld.c::X86_G1_SUB",
+        "ld.c::X86_G1_XOR",
+        "ld.c::X86_G1_CMP",
+        "ld.c::X86_JCC_JE",
+        "ld.c::X86_JCC_JNE",
+        "ld.c::X86_JCC_JL",
+        "ld.c::X86_JCC_JG",
+        "ld.c::X86_JCC_JLE",
+        "ld.c::X86_JCC_JGE",
+        "ld.c::X86_JCC_JA",
+        "ld.c::X86_JCC_JAE",
+        "ld.c::X86_JCC_JB",
+        "ld.c::X86_JCC_JBE",
+        "ld.c::X86_SET_E",
+        "ld.c::X86_SET_NE",
+        "ld.c::X86_SET_L",
+        "ld.c::X86_SET_G",
+        "ld.c::X86_SET_LE",
+        "ld.c::X86_SET_GE",
+        "ld.c::X86_SET_A",
+        "ld.c::X86_SET_AE",
+        "ld.c::X86_SET_B",
+        "ld.c::X86_SET_BE",
+        "ld.c::X86_SYS_WRITE",
+        "ld.c::X86_SYS_READ",
+        "ld.c::X86_SYS_OPEN",
+        "ld.c::X86_SYS_CLOSE",
+        "ld.c::X86_SYS_LSEEK",
+        "ld.c::X86_SYS_BRK",
+        "ld.c::X86_SYS_EXIT",
+        "ld.c::X86_SYS_EXIT_GROUP",
+        "ld.c::REG_RAX",
+        "ld.c::REG_RCX",
+        "ld.c::REG_RDX",
+        "ld.c::REG_RBX",
+        "ld.c::REG_RSP",
+        "ld.c::REG_RBP",
+        "ld.c::REG_RSI",
+        "ld.c::REG_RDI",
+        "ld.c::SEC_TEXT",
+        "ld.c::SEC_BSS",
+        "ld.c::SEC_DATA",
+        "ld.c::SEC_RODATA",
+        "ld.c::SYM_FUNC",
+        "ld.c::SYM_LABEL",
+        "ld.c::SYM_GLOBAL",
+        "ld.c::SYM_BLOB",
+        "ld.c::K_REG",
+        "ld.c::K_IMM",
+        "ld.c::K_MEM",
+        "ld.c::K_SYM",
+        "ld.c::K_SYM_IMM",
+        "ld.c::K_IND",
+        "ld.c::OP_NOP",
+        "ld.c::OP_PUSH_IMM64",
+        "ld.c::OP_PUSH_IMM32",
+        "ld.c::OP_PUSH_IMM8",
+        "ld.c::OP_PUSH_ZERO",
+        "ld.c::OP_PUSH_ONE",
+        "ld.c::OP_PUSH_LOCAL",
+        "ld.c::OP_STORE_LOCAL",
+        "ld.c::OP_PUSH_GLOBAL",
+        "ld.c::OP_STORE_GLOBAL",
+        "ld.c::OP_ADD",
+        "ld.c::OP_SUB",
+        "ld.c::OP_MUL",
+        "ld.c::OP_DIV",
+        "ld.c::OP_MOD",
+        "ld.c::OP_NEG",
+        "ld.c::OP_UDIV",
+        "ld.c::OP_UMOD",
+        "ld.c::OP_AND",
+        "ld.c::OP_OR",
+        "ld.c::OP_XOR",
+        "ld.c::OP_NOT",
+        "ld.c::OP_SHL",
+        "ld.c::OP_SHR",
+        "ld.c::OP_USHR",
+        "ld.c::OP_CMP_EQ",
+        "ld.c::OP_CMP_NE",
+        "ld.c::OP_CMP_LT",
+        "ld.c::OP_CMP_LE",
+        "ld.c::OP_CMP_GT",
+        "ld.c::OP_CMP_GE",
+        "ld.c::OP_LNOT",
+        "ld.c::OP_CMP_ULT",
+        "ld.c::OP_CMP_ULE",
+        "ld.c::OP_CMP_UGT",
+        "ld.c::OP_CMP_UGE",
+        "ld.c::OP_JMP",
+        "ld.c::OP_JZ",
+        "ld.c::OP_JNZ",
+        "ld.c::OP_CALL",
+        "ld.c::OP_RET",
+        "ld.c::OP_CALL_NATIVE",
+        "ld.c::OP_CALL_INDIRECT",
+        "ld.c::OP_LOAD8",
+        "ld.c::OP_LOAD16",
+        "ld.c::OP_LOAD32",
+        "ld.c::OP_LOAD64",
+        "ld.c::OP_STORE8",
+        "ld.c::OP_STORE16",
+        "ld.c::OP_STORE32",
+        "ld.c::OP_STORE64",
+        "ld.c::OP_LEA_LOCAL",
+        "ld.c::OP_LEA_GLOBAL",
+        "ld.c::OP_ALLOC",
+        "ld.c::OP_FREE",
+        "ld.c::OP_LEA_DATA",
+        "ld.c::OP_SYSCALL",
+        "ld.c::OP_HALT",
+        "ld.c::Sym",
+        "ld.c::Op",
+        "ld.c::Fixup",
+        "ld.c::LineSrc",
+        "ld.c::Func",
+        "ld.c::GVar",
+        "ld.c::Blob",
+        "ld.c::Nat",
+        "ld.c::Label",
+        "ld.c::LdImport",
+        "ld.c::ld_soname_of",
+        "ld.c::ld_release",
+        "ld.c::die",
+        "ld.c::breserve",
+        "ld.c::fixup_reserve",
+        "ld.c::creserve",
+        "ld.c::parse_num",
+        "ld.c::trim",
+        "ld.c::strip_comment",
+        "ld.c::name_copy",
+        "ld.c::split_word",
+        "ld.c::hexval",
+        "ld.c::find_sym",
+        "ld.c::add_sym",
+        "ld.c::parse_reg",
+        "ld.c::parse_mem",
+        "ld.c::parse_operand",
+        "ld.c::split_operands",
+        "ld.c::ls_open_file",
+        "ld.c::ls_open_mem",
+        "ld.c::ls_getline",
+        "ld.c::ls_close",
+        "ld.c::data_put",
+        "ld.c::data_fill",
+        "ld.c::data_align",
+        "ld.c::blob_put",
+        "ld.c::blob_append_str",
+        "ld.c::set_section",
+        "ld.c::scan_directive",
+        "ld.c::scan_src",
+        "ld.c::cvm_find_func",
+        "ld.c::cvm_find_global",
+        "ld.c::cvm_find_blob",
+        "ld.c::cvm_find_nat",
+        "ld.c::cvm_add_nat",
+        "ld.c::e1",
+        "ld.c::e4",
+        "ld.c::e8",
+        "ld.c::eimm",
+        "ld.c::epush_local",
+        "ld.c::estore_local",
+        "ld.c::epush_global",
+        "ld.c::estore_global",
+        "ld.c::cvm_slot",
+        "ld.c::epush_reg",
+        "ld.c::estore_reg",
+        "ld.c::pool_add",
+        "ld.c::cvm_fixup_add",
+        "ld.c::ejmp",
+        "ld.c::ejz",
+        "ld.c::ejnz",
+        "ld.c::find_label",
+        "ld.c::add_label",
+        "ld.c::resolve_fixups",
+        "ld.c::push_mask32",
+        "ld.c::push_mask8",
+        "ld.c::push_mask16",
+        "ld.c::elea_mem",
+        "ld.c::elea_operand",
+        "ld.c::epush_value",
+        "ld.c::signext8",
+        "ld.c::signext32",
+        "ld.c::signext16",
+        "ld.c::mov",
+        "ld.c::arith_mem",
+        "ld.c::arith_reg",
+        "ld.c::cvm_push_cmpval",
+        "ld.c::cvm_cmp",
+        "ld.c::cvm_translate",
+        "ld.c::cvm_prepare_tables",
+        "ld.c::cvm_layout_data",
+        "ld.c::func_glue",
+        "ld.c::entry_glue",
+        "ld.c::cvm_encode",
+        "ld.c::w32",
+        "ld.c::w16",
+        "ld.c::w64_at",
+        "ld.c::cvm_write_module",
+        "ld.c::x86_align_up",
+        "ld.c::x8",
+        "ld.c::x16",
+        "ld.c::x32",
+        "ld.c::x64",
+        "ld.c::xfix32",
+        "ld.c::fixup_trail",
+        "ld.c::emit_rex",
+        "ld.c::emit_modrm",
+        "ld.c::emit_sib",
+        "ld.c::x86_ea_rex",
+        "ld.c::x86_ea_modrm",
+        "ld.c::x86_rex_reg",
+        "ld.c::x86_rex8",
+        "ld.c::ea_mov",
+        "ld.c::ea_mov_to",
+        "ld.c::ea_alu",
+        "ld.c::ea_cmp",
+        "ld.c::ea_grp",
+        "ld.c::elf_mov",
+        "ld.c::elf_movzx",
+        "ld.c::elf_movw",
+        "ld.c::elf_lea",
+        "ld.c::elf_push",
+        "ld.c::elf_pop",
+        "ld.c::elf_alu",
+        "ld.c::elf_imul",
+        "ld.c::elf_imull",
+        "ld.c::elf_grp3",
+        "ld.c::elf_grp3_32",
+        "ld.c::elf_xadd",
+        "ld.c::elf_xchg",
+        "ld.c::elf_grp_ff",
+        "ld.c::elf_shift_cl",
+        "ld.c::elf_shift_cl32",
+        "ld.c::elf_testl",
+        "ld.c::elf_test",
+        "ld.c::elf_cmp",
+        "ld.c::elf_set",
+        "ld.c::elf_branch",
+        "ld.c::elf_call_ind",
+        "ld.c::elf_ins",
+        "ld.c::elf_sym_addr",
+        "ld.c::elf_route_import",
+        "ld.c::name_is_called",
+        "ld.c::elf_prune",
+        "ld.c::elf_resolve_fixups",
+        "ld.c::elf_encode_src",
+        "ld.c::elf_dyn_prepare",
+        "ld.c::elf_imp_prepare",
+        "ld.c::elf_has_dyn",
+        "ld.c::elf_has_rela",
+        "ld.c::elf_layout",
+        "ld.c::elf_dyn_emit",
+        "ld.c::elf_layout_rela",
+        "ld.c::elf_write_rela",
+        "ld.c::elf_write_plt",
+        "ld.c::elf_write_dynamic",
+        "ld.c::elf_write_dynsym",
+        "ld.c::elf_write_dynstr",
+        "ld.c::elf_write_hash",
+        "ld.c::elf_write",
+        "ld.c::image",
+        "ld.c::r16at",
+        "ld.c::r64at",
+        "ld.c::ld_read_lib",
+        "ld.c::elf_build",
+        "ld.c::usage",
+        "ld.c::main"
+       ]
+      }
+     ],
+     "component_id": "1.1",
+     "can_expand": false,
+     "components": [],
+     "components_relations": [],
+     "layer": "utility",
+     "symbol_count": 349,
+     "top_symbols": [
+      {
+       "n": "CFG_MAX_SYMBOLS",
+       "k": "macro"
+      },
+      {
+       "n": "CFG_MAX_FIXUPS",
+       "k": "macro"
+      },
+      {
+       "n": "CFG_FIXUP_INIT",
+       "k": "macro"
+      }
+     ],
+     "top_symbols_more": 346
+    },
+    {
+     "name": "test",
+     "description": "test groups 28 files (c, s, sh) around write, main, main, _start, printf.",
+     "key_entities": [
+      {
+       "qualified_name": "test/argv.c::write",
+       "reference_file": "test/argv.c",
+       "reference_start_line": 1,
+       "reference_end_line": 1
+      },
+      {
+       "qualified_name": "test/argv.c::main",
+       "reference_file": "test/argv.c",
+       "reference_start_line": 2,
+       "reference_end_line": 9
+      },
+      {
+       "qualified_name": "test/argv.s::main",
+       "reference_file": "test/argv.s",
+       "reference_start_line": 3,
+       "reference_end_line": 97
+      },
+      {
+       "qualified_name": "test/argv.s::_start",
+       "reference_file": "test/argv.s",
+       "reference_start_line": 98,
+       "reference_end_line": 107
+      },
+      {
+       "qualified_name": "test/asm.c::printf",
+       "reference_file": "test/asm.c",
+       "reference_start_line": 1,
+       "reference_end_line": 4
+      },
+      {
+       "qualified_name": "test/asm.c::main",
+       "reference_file": "test/asm.c",
+       "reference_start_line": 5,
+       "reference_end_line": 16
+      },
+      {
+       "qualified_name": "test/chain.c::fib",
+       "reference_file": "test/chain.c",
+       "reference_start_line": 1,
+       "reference_end_line": 5
+      },
+      {
+       "qualified_name": "test/chain.c::main",
+       "reference_file": "test/chain.c",
+       "reference_start_line": 6,
+       "reference_end_line": 8
+      }
+     ],
+     "source_cluster_ids": [],
+     "file_methods": [
+      {
+       "file_path": "test/argv.c",
+       "methods": [
+        "test/argv.c::write",
+        "test/argv.c::main"
+       ]
+      },
+      {
+       "file_path": "test/argv.s",
+       "methods": [
+        "test/argv.s::main",
+        "test/argv.s::_start"
+       ]
+      },
+      {
+       "file_path": "test/asm.c",
+       "methods": [
+        "test/asm.c::printf",
+        "test/asm.c::main"
+       ]
+      },
+      {
+       "file_path": "test/chain.c",
+       "methods": [
+        "test/chain.c::fib",
+        "test/chain.c::main"
+       ]
+      },
+      {
+       "file_path": "test/dynlib.c",
+       "methods": [
+        "test/dynlib.c::dynadd",
+        "test/dynlib.c::dynlen"
+       ]
+      },
+      {
+       "file_path": "test/dynlib_host.c",
+       "methods": []
+      },
+      {
+       "file_path": "test/dynuse.c",
+       "methods": [
+        "test/dynuse.c::dynadd",
+        "test/dynuse.c::dynlen",
+        "test/dynuse.c::main"
+       ]
+      },
+      {
+       "file_path": "test/fib.s",
+       "methods": [
+        "test/fib.s::fib",
+        "test/fib.s::main",
+        "test/fib.s::_start"
+       ]
+      },
+      {
+       "file_path": "test/fib2.s",
+       "methods": [
+        "test/fib2.s::fib",
+        "test/fib2.s::main",
+        "test/fib2.s::_start"
+       ]
+      },
+      {
+       "file_path": "test/fib3.s",
+       "methods": [
+        "test/fib3.s::fib",
+        "test/fib3.s::main",
+        "test/fib3.s::_start"
+       ]
+      },
+      {
+       "file_path": "test/fmt.c",
+       "methods": [
+        "test/fmt.c::printf",
+        "test/fmt.c::main"
+       ]
+      },
+      {
+       "file_path": "test/fnptr.c",
+       "methods": [
+        "test/fnptr.c::printf",
+        "test/fnptr.c::add2",
+        "test/fnptr.c::mul2",
+        "test/fnptr.c::apply2",
+        "test/fnptr.c::ops_t",
+        "test/fnptr.c::run_op",
+        "test/fnptr.c::main"
+       ]
+      },
+      {
+       "file_path": "test/globals.c",
+       "methods": [
+        "test/globals.c::printf",
+        "test/globals.c::puts",
+        "test/globals.c::main"
+       ]
+      },
+      {
+       "file_path": "test/hello.c",
+       "methods": [
+        "test/hello.c::main"
+       ]
+      },
+      {
+       "file_path": "test/loop.s",
+       "methods": [
+        "test/loop.s::main",
+        "test/loop.s::_start"
+       ]
+      },
+      {
+       "file_path": "test/movslq.s",
+       "methods": [
+        "test/movslq.s::main",
+        "test/movslq.s::_start"
+       ]
+      },
+      {
+       "file_path": "test/mutate.sh",
+       "methods": []
+      },
+      {
+       "file_path": "test/priv.s",
+       "methods": [
+        "test/priv.s::main",
+        "test/priv.s::_start"
+       ]
+      },
+      {
+       "file_path": "test/run_tests.sh",
+       "methods": [
+        "test/run_tests.sh::run_prog",
+        "test/run_tests.sh::note_fail",
+        "test/run_tests.sh::check",
+        "test/run_tests.sh::run_fixture",
+        "test/run_tests.sh::run_chain",
+        "test/run_tests.sh::elf_structure_check",
+        "test/run_tests.sh::run_shared_dynlib",
+        "test/run_tests.sh::run_shared_dynuse",
+        "test/run_tests.sh::run_shared_override",
+        "test/run_tests.sh::run_runtime",
+        "test/run_tests.sh::run_import_prune"
+       ]
+      },
+      {
+       "file_path": "test/start.s",
+       "methods": [
+        "test/start.s::main",
+        "test/start.s::_start"
+       ]
+      },
+      {
+       "file_path": "test/stdint.c",
+       "methods": [
+        "test/stdint.c::idtr_t",
+        "test/stdint.c::loads_u8",
+        "test/stdint.c::loads_s16",
+        "test/stdint.c::loads_u32",
+        "test/stdint.c::add_shorts",
+        "test/stdint.c::main"
+       ]
+      },
+      {
+       "file_path": "test/sync.c",
+       "methods": [
+        "test/sync.c::printf",
+        "test/sync.c::main"
+       ]
+      },
+      {
+       "file_path": "test/t1.c",
+       "methods": [
+        "test/t1.c::main"
+       ]
+      },
+      {
+       "file_path": "test/t1.s",
+       "methods": [
+        "test/t1.s::main",
+        "test/t1.s::_start"
+       ]
+      },
+      {
+       "file_path": "test/udiv.c",
+       "methods": [
+        "test/udiv.c::printf",
+        "test/udiv.c::main"
+       ]
+      },
+      {
+       "file_path": "test/usestr.c",
+       "methods": [
+        "test/usestr.c::strlen",
+        "test/usestr.c::memcmp",
+        "test/usestr.c::main"
+       ]
+      },
+      {
+       "file_path": "test/w1.c",
+       "methods": [
+        "test/w1.c::write",
+        "test/w1.c::main"
+       ]
+      },
+      {
+       "file_path": "test/w1.s",
+       "methods": [
+        "test/w1.s::main",
+        "test/w1.s::_start"
+       ]
+      }
+     ],
+     "component_id": "1.2",
+     "can_expand": false,
+     "components": [],
+     "components_relations": [],
+     "layer": "testing",
+     "symbol_count": 74,
+     "top_symbols": [
+      {
+       "n": "write",
+       "k": "function"
+      },
+      {
+       "n": "main",
+       "k": "function"
+      },
+      {
+       "n": "main",
+       "k": "function"
+      }
+     ],
+     "top_symbols_more": 28
+    }
+   ],
+   "components_relations": [
+    {
+     "relation": "calls into",
+     "src_name": "root",
+     "dst_name": "test",
+     "evidence": "0 imports, 7 calls across the boundary",
+     "import_count": 0,
+     "call_count": 7,
+     "key_edges": [
+      {
+       "source": "ld.c|ld.c::ld_soname_of",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 422,
+         "column": 15
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "ld.c|ld.c::trim",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 573,
+         "column": 18
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "ld.c|ld.c::name_copy",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 597,
+         "column": 19
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "ld.c|ld.c::ls_open_mem",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 810,
+         "column": 17
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "ld.c|ld.c::scan_src",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 1029,
+         "column": 23
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "ld.c|ld.c::pool_add",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 1183,
+         "column": 19
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "ld.c|ld.c::cvm_encode",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 2158,
+         "column": 23
+        }
+       ],
+       "description": ""
+      }
+     ],
+     "src_id": "1.1",
+     "dst_id": "1.2",
+     "is_static": true,
+     "all_edges": [
+      {
+       "source": "ld.c|ld.c::ld_soname_of",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 422,
+         "column": 15
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "ld.c|ld.c::trim",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 573,
+         "column": 18
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "ld.c|ld.c::name_copy",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 597,
+         "column": 19
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "ld.c|ld.c::ls_open_mem",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 810,
+         "column": 17
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "ld.c|ld.c::scan_src",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 1029,
+         "column": 23
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "ld.c|ld.c::pool_add",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 1183,
+         "column": 19
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "ld.c|ld.c::cvm_encode",
+       "target": "test/usestr.c|test/usestr.c::strlen",
+       "call_sites": [
+        {
+         "line": 2158,
+         "column": 23
+        }
+       ],
+       "description": ""
+      }
+     ]
+    },
+    {
+     "relation": "calls into",
+     "src_name": "test",
+     "dst_name": "root",
+     "evidence": "0 imports, 9 calls across the boundary",
+     "import_count": 0,
+     "call_count": 9,
+     "key_edges": [
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::elf_movzx",
+       "call_sites": [
+        {
+         "line": 27,
+         "column": 21
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::elf_movzx",
+       "call_sites": [
+        {
+         "line": 27,
+         "column": 51
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::e1",
+       "call_sites": [
+        {
+         "line": 33,
+         "column": 18
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::e1",
+       "call_sites": [
+        {
+         "line": 33,
+         "column": 48
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::ejnz",
+       "call_sites": [
+        {
+         "line": 33,
+         "column": 33
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::ejnz",
+       "call_sites": [
+        {
+         "line": 33,
+         "column": 63
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::elf_branch",
+       "call_sites": [
+        {
+         "line": 34,
+         "column": 20
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::elf_branch",
+       "call_sites": [
+        {
+         "line": 34,
+         "column": 41
+        }
+       ],
+       "description": ""
+      }
+     ],
+     "src_id": "1.2",
+     "dst_id": "1.1",
+     "is_static": true,
+     "all_edges": [
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::elf_movzx",
+       "call_sites": [
+        {
+         "line": 27,
+         "column": 21
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::elf_movzx",
+       "call_sites": [
+        {
+         "line": 27,
+         "column": 51
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::e1",
+       "call_sites": [
+        {
+         "line": 33,
+         "column": 18
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::e1",
+       "call_sites": [
+        {
+         "line": 33,
+         "column": 48
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::ejnz",
+       "call_sites": [
+        {
+         "line": 33,
+         "column": 33
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::ejnz",
+       "call_sites": [
+        {
+         "line": 33,
+         "column": 63
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::elf_branch",
+       "call_sites": [
+        {
+         "line": 34,
+         "column": 20
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::elf_branch",
+       "call_sites": [
+        {
+         "line": 34,
+         "column": 41
+        }
+       ],
+       "description": ""
+      },
+      {
+       "source": "test/mutate.sh|test/mutate.sh",
+       "target": "ld.c|ld.c::find_sym",
+       "call_sites": [
+        {
+         "line": 35,
+         "column": 31
+        }
+       ],
+       "description": ""
+      }
+     ]
+    }
+   ],
+   "layer": "testing",
+   "symbol_count": 423,
+   "top_symbols": [
+    {
+     "n": "CFG_MAX_SYMBOLS",
+     "k": "macro"
+    },
+    {
+     "n": "CFG_MAX_FIXUPS",
+     "k": "macro"
+    },
+    {
+     "n": "CFG_FIXUP_INIT",
+     "k": "macro"
+    }
+   ],
+   "top_symbols_more": 376,
+   "hub": true
+  }
+ ],
+ "components_relations": []
+}
